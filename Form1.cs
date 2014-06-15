@@ -26,16 +26,16 @@ namespace WindowsFormsApplication1
         public Image buttonimage_7_0;
         public Image buttonimage_7_1;
         public Image buttonimage_7_2;
-        System.Drawing.Image img_3_1 = System.Drawing.Image.FromFile(@"grp_dummy\g_btn_003_1.bmp");
-        System.Drawing.Image img_3_2 = System.Drawing.Image.FromFile(@"grp_dummy\g_btn_003_2.bmp");
-        System.Drawing.Image img_4_1 = System.Drawing.Image.FromFile(@"grp_dummy\g_btn_004_1.bmp");
-        System.Drawing.Image img_4_2 = System.Drawing.Image.FromFile(@"grp_dummy\g_btn_004_2.bmp");
-        System.Drawing.Image img_5_1 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_005_1.bmp");
-        System.Drawing.Image img_5_2 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_005_2.bmp");
-        System.Drawing.Image img_6_1 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_006_1.bmp");
-        System.Drawing.Image img_6_2 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_006_2.bmp");
-        System.Drawing.Image img_7_1 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_007_1.bmp");
-        System.Drawing.Image img_7_2 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_007_2.bmp");
+        System.Drawing.Image img_3_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_003_1.bmp");
+        System.Drawing.Image img_3_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_003_2.bmp");
+        System.Drawing.Image img_4_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_004_1.bmp");
+        System.Drawing.Image img_4_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_004_2.bmp");
+        System.Drawing.Image img_5_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_005_1.bmp");
+        System.Drawing.Image img_5_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_005_2.bmp");
+        System.Drawing.Image img_6_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_006_1.bmp");
+        System.Drawing.Image img_6_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_006_2.bmp");
+        System.Drawing.Image img_7_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_007_1.bmp");
+        System.Drawing.Image img_7_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_007_2.bmp");
 //        System.Drawing.Image img_7_2 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_007_2.bmp");
 
         
