@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,205 +11,173 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class doujin_game_sharp : Form
     {
-        public Image buttonimage_3_0;
-        public Image buttonimage_3_1;
-        public Image buttonimage_3_2;
-        public Image buttonimage_4_0;
-        public Image buttonimage_4_1;
-        public Image buttonimage_4_2;
-        public Image buttonimage_5_0;
-        public Image buttonimage_5_1;
-        public Image buttonimage_5_2;
-        public Image buttonimage_6_0;
-        public Image buttonimage_6_1;
-        public Image buttonimage_6_2;
-        public Image buttonimage_7_0;
-        public Image buttonimage_7_1;
-        public Image buttonimage_7_2;
-        System.Drawing.Image img_3_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_003_1.bmp");
-        System.Drawing.Image img_3_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_003_2.bmp");
-        System.Drawing.Image img_4_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_004_1.bmp");
-        System.Drawing.Image img_4_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_004_2.bmp");
-        System.Drawing.Image img_5_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_005_1.bmp");
-        System.Drawing.Image img_5_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_005_2.bmp");
-        System.Drawing.Image img_6_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_006_1.bmp");
-        System.Drawing.Image img_6_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_006_2.bmp");
-        System.Drawing.Image img_7_1 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_007_1.bmp");
-        System.Drawing.Image img_7_2 = System.Drawing.Image.FromFile(@"..\..\grp_dummy\g_btn_007_2.bmp");
-//        System.Drawing.Image img_7_2 = System.Drawing.Image.FromFile(@"C:\Users\Y\Desktop\doujin_game\Doujin_game_sharp\grp_dummy\g_btn_007_2.bmp");
-
         
-        public Form1()
+        int count = 0;
+        int countold = 0;
+        int inlawcount = 0;
+
+        /*--- ここに使用するクラスを置く ---*/
+        Properties.Sister Sister1 = new Properties.Sister();
+
+        public doujin_game_sharp()
         {
             InitializeComponent();
-            buttonimage_3_0 = 外出.Image;
-            buttonimage_3_1 = img_3_1;
-            buttonimage_3_2 = img_3_2;
-            buttonimage_4_0 = 教会.Image;
-            buttonimage_4_1 = img_4_1;
-            buttonimage_4_2 = img_4_2;
-            buttonimage_5_0 = 休む.Image;
-            buttonimage_5_1 = img_5_1;
-            buttonimage_5_2 = img_5_2;
-            buttonimage_6_0 = 読書.Image;
-            buttonimage_6_1 = img_6_1;
-            buttonimage_6_2 = img_6_2;
-            buttonimage_7_0 = ステータス.Image;
-            buttonimage_7_1 = img_7_1;
-            buttonimage_7_2 = img_7_2;
+
+            /* --- オブジェクトの背景色を透明にできるようにする処理 --- */
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+
+            /* --- 各オブジェクトの背景色を透明にする --- */
+            panel2.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
         }
 
-        /* === 外出ボタン === */
-        private void 外出_MouseEnter(object sender, EventArgs e)
+//        int counter = 0;
+//        string line;
+
+        /* === スタートボタン === */
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            外出.Image = buttonimage_3_1;
+            pictureBox1.Image = Properties.Resources.g_btn_000_1;
+
         }
 
-        private void 外出_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            外出.Image = buttonimage_3_2;
-        }
+            pictureBox1.Image = Properties.Resources.g_btn_000_2;
+            const int D_CHAR_LAST = 1000;
+            bool linelastflg = false;
 
-        private void 外出_MouseUp(object sender, MouseEventArgs e)
-        {
-            外出.Image = buttonimage_3_1;
-        }
+            //フォントオブジェクトの作成
+            Font fnt = new Font("MS UI Gothic", 10);
+            //文字列を位置(0,0)、白色で表示
 
-        private void 外出_MouseLeave(object sender, EventArgs e)
-        {
-            外出.Image = buttonimage_3_0;
-        }
+            string text = Properties.Resources.texttest;    /* ファイルの中身を文字の配列として取得 */
+            string textlawbuf;
 
-        private void 外出_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (外出.ClientRectangle.Contains(外出.PointToClient(Cursor.Position)) == false)
+            while (count < D_CHAR_LAST)
             {
-                外出.Image = buttonimage_3_0;
+                Console.Write(text[count]);
+                if (text[count] == '@')
+                {
+                    count++;
+                    inlawcount++;
+                    linelastflg = true;
+                }
+                else if (text[count] == 'f' && linelastflg == true)
+                {
+                    linelastflg = false;
+                    count++;
+                    //描画先とするImageオブジェクトを作成する
+                    Bitmap canvas = new Bitmap(pictureBox9.Width, pictureBox9.Height);
+                    //ImageオブジェクトのGraphicsオブジェクトを作成する
+                    Graphics g = Graphics.FromImage(canvas);
+
+                    if (countold == 0)
+                    {
+                        textlawbuf = text.Substring(countold, inlawcount - 1);
+                    }
+                    else
+                    {
+                        textlawbuf = text.Substring(countold + 2, inlawcount - 3);
+                    }
+
+                    g.DrawString(textlawbuf, fnt, Brushes.White, 0, 0);
+                    //PictureBox1に表示する
+                    pictureBox9.Image = canvas;
+
+                    //リソースを解放する
+                    fnt.Dispose();
+                    g.Dispose();
+
+                    count = 0;
+                    countold = 0;
+                    inlawcount = 0;
+                    break;
+                }
+                else if (text[count] == 'c' && linelastflg == true)
+                {
+                    linelastflg = false;
+                    count++;
+
+                    //描画先とするImageオブジェクトを作成する
+                    Bitmap canvas = new Bitmap(pictureBox9.Width, pictureBox9.Height);
+                    //ImageオブジェクトのGraphicsオブジェクトを作成する
+                    Graphics g = Graphics.FromImage(canvas);
+
+                    if (countold == 0)
+                    {
+                        textlawbuf = text.Substring(countold, inlawcount - 1);
+                    }
+                    else
+                    {
+                        textlawbuf = text.Substring(countold + 2, inlawcount - 3);
+                    }
+
+                    g.DrawString(textlawbuf, fnt, Brushes.White, 0, 0);
+                    //PictureBox1に表示する
+                    pictureBox9.Image = canvas;
+
+                    //リソースを解放する
+                    fnt.Dispose();
+                    g.Dispose();
+
+                    countold = count;
+                    inlawcount = 0;
+
+                    break;
+                }
+                else
+                {
+                    count++;
+                    inlawcount++;
+                }
+            }
+
+
+
+
+
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.g_btn_000_1;
+
+            Sister1.Money = 2;
+
+            Console.WriteLine("" + Sister1.Money);
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.g_btn_000_0;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (pictureBox1.ClientRectangle.Contains(pictureBox1.PointToClient(Cursor.Position)) == false)
+            {
+                pictureBox1.Image = Properties.Resources.g_btn_000_0;
+
+                Sister1.Money = 1;
+
+                Console.WriteLine("" + Sister1.Money);
             }
         }
 
-
-        /* === 教会ボタン === */
-        private void 教会_MouseEnter(object sender, EventArgs e)
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            教会.Image = buttonimage_4_1;
-        }
 
-        private void 教会_MouseDown(object sender, MouseEventArgs e)
-        {
-            教会.Image = buttonimage_4_2;
-        }
-
-        private void 教会_MouseUp(object sender, MouseEventArgs e)
-        {
-            教会.Image = buttonimage_4_1;
-        }
-
-        private void 教会_MouseLeave(object sender, EventArgs e)
-        {
-            教会.Image = buttonimage_4_0;
-        }
-
-        private void 教会_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (教会.ClientRectangle.Contains(教会.PointToClient(Cursor.Position)) == false)
-            {
-                教会.Image = buttonimage_4_0;
-            }
         }
 
 
-        /* === 休むボタン === */
-        private void 休む_MouseEnter(object sender, EventArgs e)
-        {
-            休む.Image = buttonimage_5_1;
-        }
-
-        private void 休む_MouseDown(object sender, MouseEventArgs e)
-        {
-            休む.Image = buttonimage_5_2;
-        }
-
-        private void 休む_MouseUp(object sender, MouseEventArgs e)
-        {
-            休む.Image = buttonimage_5_1;
-        }
-
-        private void 休む_MouseLeave(object sender, EventArgs e)
-        {
-            休む.Image = buttonimage_5_0;
-        }
-
-        private void 休む_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (休む.ClientRectangle.Contains(休む.PointToClient(Cursor.Position)) == false)
-            {
-                休む.Image = buttonimage_5_0;
-            }
-        }
+        /* === ロードボタン === */
 
 
-        /* === 読書 === */
-        private void 読書_MouseEnter(object sender, EventArgs e)
-        {
-            読書.Image = buttonimage_6_1;
-        }
+        /* === オプションボタン === */
 
-        private void 読書_MouseDown(object sender, MouseEventArgs e)
-        {
-            読書.Image = buttonimage_6_2;
-        }
-
-        private void 読書_MouseUp(object sender, MouseEventArgs e)
-        {
-            読書.Image = buttonimage_6_1;
-        }
-
-        private void 読書_MouseLeave(object sender, EventArgs e)
-        {
-            読書.Image = buttonimage_6_0;
-        }
-
-        private void 読書_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (読書.ClientRectangle.Contains(読書.PointToClient(Cursor.Position)) == false)
-            {
-                読書.Image = buttonimage_6_0;
-            }
-        }
-
-
-        /* ステータスボタン */
-        private void ステータス_MouseEnter(object sender, EventArgs e)
-        {
-            ステータス.Image = buttonimage_7_1;
-        }
-
-        private void ステータス_MouseDown(object sender, MouseEventArgs e)
-        {
-            ステータス.Image = buttonimage_7_2;
-        }
-
-        private void ステータス_MouseUp(object sender, MouseEventArgs e)
-        {
-            ステータス.Image = buttonimage_7_1;
-        }
-
-        private void ステータス_MouseLeave(object sender, EventArgs e)
-        {
-            ステータス.Image = buttonimage_7_0;
-        }
-
-        private void ステータス_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (ステータス.ClientRectangle.Contains(ステータス.PointToClient(Cursor.Position)) == false)
-            {
-                ステータス.Image = buttonimage_7_0;
-            }
-        }
-
+   
     }
 
 

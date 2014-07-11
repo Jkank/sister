@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class doujin_game_sharp
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -28,157 +28,195 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.外出 = new System.Windows.Forms.Button();
-            this.教会 = new System.Windows.Forms.Button();
-            this.休む = new System.Windows.Forms.Button();
-            this.読書 = new System.Windows.Forms.Button();
-            this.ステータス = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
-            // 
-            // 外出
-            // 
-            this.外出.Image = ((System.Drawing.Image)(resources.GetObject("外出.Image")));
-            this.外出.Location = new System.Drawing.Point(124, 414);
-            this.外出.Name = "外出";
-            this.外出.Size = new System.Drawing.Size(100, 127);
-            this.外出.TabIndex = 0;
-            this.外出.UseVisualStyleBackColor = true;
-            this.外出.MouseDown += new System.Windows.Forms.MouseEventHandler(this.外出_MouseDown);
-            this.外出.MouseEnter += new System.EventHandler(this.外出_MouseEnter);
-            this.外出.MouseLeave += new System.EventHandler(this.外出_MouseLeave);
-            this.外出.MouseMove += new System.Windows.Forms.MouseEventHandler(this.外出_MouseMove);
-            this.外出.MouseUp += new System.Windows.Forms.MouseEventHandler(this.外出_MouseUp);
-            // 
-            // 教会
-            // 
-            this.教会.Image = ((System.Drawing.Image)(resources.GetObject("教会.Image")));
-            this.教会.Location = new System.Drawing.Point(230, 414);
-            this.教会.Name = "教会";
-            this.教会.Size = new System.Drawing.Size(100, 127);
-            this.教会.TabIndex = 1;
-            this.教会.UseVisualStyleBackColor = true;
-            this.教会.MouseDown += new System.Windows.Forms.MouseEventHandler(this.教会_MouseDown);
-            this.教会.MouseEnter += new System.EventHandler(this.教会_MouseEnter);
-            this.教会.MouseLeave += new System.EventHandler(this.教会_MouseLeave);
-            this.教会.MouseMove += new System.Windows.Forms.MouseEventHandler(this.教会_MouseMove);
-            this.教会.MouseUp += new System.Windows.Forms.MouseEventHandler(this.教会_MouseUp);
-            // 
-            // 休む
-            // 
-            this.休む.Image = ((System.Drawing.Image)(resources.GetObject("休む.Image")));
-            this.休む.Location = new System.Drawing.Point(336, 414);
-            this.休む.Name = "休む";
-            this.休む.Size = new System.Drawing.Size(100, 127);
-            this.休む.TabIndex = 2;
-            this.休む.UseVisualStyleBackColor = true;
-            this.休む.MouseDown += new System.Windows.Forms.MouseEventHandler(this.休む_MouseDown);
-            this.休む.MouseEnter += new System.EventHandler(this.休む_MouseEnter);
-            this.休む.MouseLeave += new System.EventHandler(this.休む_MouseLeave);
-            this.休む.MouseMove += new System.Windows.Forms.MouseEventHandler(this.休む_MouseMove);
-            this.休む.MouseUp += new System.Windows.Forms.MouseEventHandler(this.休む_MouseUp);
-            // 
-            // 読書
-            // 
-            this.読書.Image = ((System.Drawing.Image)(resources.GetObject("読書.Image")));
-            this.読書.Location = new System.Drawing.Point(442, 414);
-            this.読書.Name = "読書";
-            this.読書.Size = new System.Drawing.Size(100, 127);
-            this.読書.TabIndex = 3;
-            this.読書.UseVisualStyleBackColor = true;
-            this.読書.MouseDown += new System.Windows.Forms.MouseEventHandler(this.読書_MouseDown);
-            this.読書.MouseEnter += new System.EventHandler(this.読書_MouseEnter);
-            this.読書.MouseLeave += new System.EventHandler(this.読書_MouseLeave);
-            this.読書.MouseMove += new System.Windows.Forms.MouseEventHandler(this.読書_MouseMove);
-            this.読書.MouseUp += new System.Windows.Forms.MouseEventHandler(this.読書_MouseUp);
-            // 
-            // ステータス
-            // 
-            this.ステータス.Image = ((System.Drawing.Image)(resources.GetObject("ステータス.Image")));
-            this.ステータス.Location = new System.Drawing.Point(548, 414);
-            this.ステータス.Name = "ステータス";
-            this.ステータス.Size = new System.Drawing.Size(100, 127);
-            this.ステータス.TabIndex = 4;
-            this.ステータス.UseVisualStyleBackColor = true;
-            this.ステータス.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ステータス_MouseDown);
-            this.ステータス.MouseEnter += new System.EventHandler(this.ステータス_MouseEnter);
-            this.ステータス.MouseLeave += new System.EventHandler(this.ステータス_MouseLeave);
-            this.ステータス.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ステータス_MouseMove);
-            this.ステータス.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ステータス_MouseUp);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(655, 414);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 38);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(655, 459);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 38);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Load";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(655, 503);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 38);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Option";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(43, 81);
+            this.pictureBox1.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_000_0;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Location = new System.Drawing.Point(300, 317);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 400);
-            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.Size = new System.Drawing.Size(200, 80);
+            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // Form1
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_001_0;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox2.Location = new System.Drawing.Point(300, 403);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(200, 80);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_001_0;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.Location = new System.Drawing.Point(300, 489);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(200, 80);
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_001_0;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 10);
+            this.panel1.TabIndex = 3;
+            this.panel1.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Controls.Add(this.pictureBox8);
+            this.panel2.Controls.Add(this.pictureBox7);
+            this.panel2.Controls.Add(this.pictureBox6);
+            this.panel2.Controls.Add(this.pictureBox5);
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(10, 10);
+            this.panel2.TabIndex = 0;
+            this.panel2.Visible = false;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_007_0;
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox8.Location = new System.Drawing.Point(562, 442);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(100, 127);
+            this.pictureBox8.TabIndex = 4;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_006_0;
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox7.Location = new System.Drawing.Point(456, 442);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(100, 127);
+            this.pictureBox7.TabIndex = 3;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_005_0;
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox6.Location = new System.Drawing.Point(350, 442);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(100, 127);
+            this.pictureBox6.TabIndex = 2;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_004_0;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox5.Location = new System.Drawing.Point(244, 442);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(100, 127);
+            this.pictureBox5.TabIndex = 1;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_003_0;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox4.Location = new System.Drawing.Point(138, 442);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(100, 127);
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_ev_004_1;
+            this.pictureBox9.Location = new System.Drawing.Point(533, 49);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(232, 292);
+            this.pictureBox9.TabIndex = 4;
+            this.pictureBox9.TabStop = false;
+            // 
+            // doujin_game_sharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.ステータス);
-            this.Controls.Add(this.読書);
-            this.Controls.Add(this.休む);
-            this.Controls.Add(this.教会);
-            this.Controls.Add(this.外出);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_000_0;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "doujin_game_sharp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "doujin_game_sharp";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button 外出;
-        private System.Windows.Forms.Button 教会;
-        private System.Windows.Forms.Button 休む;
-        private System.Windows.Forms.Button 読書;
-        private System.Windows.Forms.Button ステータス;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox9;
+
     }
+
 }
 

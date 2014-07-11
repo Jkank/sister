@@ -1,0 +1,6 @@
+6
+3
+id,name,attribute,price,attack,defence
+item_w_0001,–Ø“,weapon,100,10,0
+item_w_0002,“º‚ÌŒ•,weapon,500,20,0
+item_w_0003,“S‚ÌŒ•,weapon,1200,35,0
