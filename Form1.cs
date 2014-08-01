@@ -66,10 +66,6 @@ namespace WindowsFormsApplication1
             if (pictureBox1.ClientRectangle.Contains(pictureBox1.PointToClient(Cursor.Position)) == false)
             {
                 pictureBox1.Image = Properties.Resources.g_btn_000_0;
-
-                Sister1.Money = 1;
-
-                Console.WriteLine("" + Sister1.Money);
             }
         }
 
