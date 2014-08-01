@@ -136,24 +136,6 @@
   <data name="g_bg_003_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_bg_003_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="g_bg_003_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_003_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_bg_004_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_004_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_bg_005_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_005_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_bg_006_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_006_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_bg_007_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_007_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_bg_007_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_bg_007_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="g_btn_000_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_btn_000_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -271,15 +253,6 @@
   <data name="g_chara_000_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_chara_000_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="g_chara_000_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_000_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_000_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="g_chara_001_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_chara_001_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -288,15 +261,6 @@
   </data>
   <data name="g_chara_001_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_chara_001_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="g_ev_000_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_000_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -307,12 +271,6 @@
   <data name="g_ev_000_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_000_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="g_ev_000_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_000_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_000_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_000_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="g_ev_001_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_001_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -322,61 +280,13 @@
   <data name="g_ev_001_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_001_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="g_ev_001_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_001_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="opening" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\try.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
-  <data name="g_ev_001_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_001_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_002_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_002_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_002_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_002_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_002_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_002_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_002_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_002_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_002_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_002_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_003_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_003_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_003_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_003_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_003_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_003_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_003_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_003_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_003_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_003_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_004_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_004_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_004_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_004_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_004_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_004_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_004_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_004_3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_ev_004_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_ev_004_4.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sara_0_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\grp_dummy\sister_raugh_02_cmp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\text.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
-  </data>
-  <data name="texttest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\try.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
 </root>

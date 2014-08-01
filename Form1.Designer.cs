@@ -32,24 +32,30 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textarea = new System.Windows.Forms.PictureBox();
+            this.chara_pos2 = new System.Windows.Forms.PictureBox();
+            this.chara_pos_1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textarea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chara_pos2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chara_pos_1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -90,12 +96,53 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_001_0;
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 10);
+            this.panel1.Size = new System.Drawing.Size(800, 600);
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.textarea);
+            this.panel3.Controls.Add(this.chara_pos2);
+            this.panel3.Controls.Add(this.chara_pos_1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(800, 600);
+            this.panel3.TabIndex = 1;
+            // 
+            // textarea
+            // 
+            this.textarea.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.textarea.Location = new System.Drawing.Point(145, 403);
+            this.textarea.Name = "textarea";
+            this.textarea.Size = new System.Drawing.Size(523, 185);
+            this.textarea.TabIndex = 0;
+            this.textarea.TabStop = false;
+            this.textarea.Click += new System.EventHandler(this.pictureBox9_Click);
+            // 
+            // chara_pos2
+            // 
+            this.chara_pos2.Location = new System.Drawing.Point(422, 118);
+            this.chara_pos2.Name = "chara_pos2";
+            this.chara_pos2.Size = new System.Drawing.Size(321, 482);
+            this.chara_pos2.TabIndex = 2;
+            this.chara_pos2.TabStop = false;
+            this.chara_pos2.Visible = false;
+            // 
+            // chara_pos_1
+            // 
+            this.chara_pos_1.Location = new System.Drawing.Point(72, 118);
+            this.chara_pos_1.Name = "chara_pos_1";
+            this.chara_pos_1.Size = new System.Drawing.Size(321, 482);
+            this.chara_pos_1.TabIndex = 1;
+            this.chara_pos_1.TabStop = false;
+            this.chara_pos_1.Visible = false;
             // 
             // panel2
             // 
@@ -162,15 +209,6 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_ev_004_1;
-            this.pictureBox9.Location = new System.Drawing.Point(533, 49);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(232, 292);
-            this.pictureBox9.TabIndex = 4;
-            this.pictureBox9.TabStop = false;
-            // 
             // doujin_game_sharp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -179,7 +217,6 @@
             this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_000_0;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -191,13 +228,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.textarea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chara_pos2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chara_pos_1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -214,7 +254,10 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox textarea;
+        public System.Windows.Forms.PictureBox chara_pos_1;
+        public System.Windows.Forms.PictureBox chara_pos2;
 
     }
 

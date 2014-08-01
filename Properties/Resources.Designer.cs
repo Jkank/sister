@@ -123,66 +123,6 @@ namespace WindowsFormsApplication1.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_bg_003_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_003_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_bg_004_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_004_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_bg_005_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_005_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_bg_006_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_006_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_bg_007_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_007_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_bg_007_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_bg_007_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap g_btn_000_0 {
             get {
                 object obj = ResourceManager.GetObject("g_btn_000_0", resourceCulture);
@@ -573,36 +513,6 @@ namespace WindowsFormsApplication1.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_5 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap g_chara_001_0 {
             get {
                 object obj = ResourceManager.GetObject("g_chara_001_0", resourceCulture);
@@ -626,36 +536,6 @@ namespace WindowsFormsApplication1.Properties {
         internal static System.Drawing.Bitmap g_chara_001_2 {
             get {
                 object obj = ResourceManager.GetObject("g_chara_001_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_5 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -693,26 +573,6 @@ namespace WindowsFormsApplication1.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_ev_000_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_000_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_000_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_000_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap g_ev_001_0 {
             get {
                 object obj = ResourceManager.GetObject("g_ev_001_0", resourceCulture);
@@ -741,171 +601,67 @@ namespace WindowsFormsApplication1.Properties {
         }
         
         /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        ///   
+        ///// オープニングシナリオ
+        /////senario1
+        ///@1
+        ///
+        ///In:サラ
+        ///
+        ///Text:
+        ///私はサラ。この小さな町にただ一つある教会で
+        ///シスターをしています。
+        ///日々町の皆さんの健康やこの世界の平和を願って
+        ///お祈りをするのが私の仕事です。;
+        ///
+        ///マリー:
+        ///あ、サラ、ちょうどいいところに。
+        ///もう言ってあったと思うけど、
+        ///今夜はバディオの大聖堂で神父会があるから
+        ///神父様と私は出かけてくるわね。;
+        ///
+        ///マリー:
+        ///今夜は帰らないから。
+        ///戸締りとか、見回りとか、よろしくね。;
+        ///
+        ///サラ:
+        ///はい、わかりました、姉様。;
+        ///
+        ///Text:
+        ///この人はシスターマリー。私の先輩です。
+        ///姉様と言っても、本当のお姉さんというわけではなく、
+        ///この辺りでは、シスターが目上のシスターを呼ぶときは
+        ///&quot;姉様&quot;って呼ぶものなんです。;
+        ///
+        ///Text:
+        ///とても気さくで面倒見が良く、
+        ///誰とでもすぐに打ち解けられるし、正義感が強い…
+        ///私の憧れです。;
+        ///
+        ///マリー:
+        ///それじゃ、頼んだわよ。;
+        ///
+        ///サラ:
+        ///はい、姉様。
+        ///お気をつけて。;
+        ///
+        ///Out:マリー
+        ///
+        ///モフィ:
+        ///…あの、サラ姉様… [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_ev_001_3 {
+        internal static string opening {
             get {
-                object obj = ResourceManager.GetObject("g_ev_001_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("opening", resourceCulture);
             }
         }
         
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_ev_001_4 {
+        internal static System.Drawing.Bitmap sara_0_0 {
             get {
-                object obj = ResourceManager.GetObject("g_ev_001_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_002_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_002_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_002_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_002_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_002_2 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_002_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_002_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_002_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_002_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_002_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_003_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_003_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_003_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_003_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_003_2 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_003_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_003_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_003_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_003_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_003_4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_004_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_004_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_004_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_004_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_004_2 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_004_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_004_3 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_004_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_ev_004_4 {
-            get {
-                object obj = ResourceManager.GetObject("g_ev_004_4", resourceCulture);
+                object obj = ResourceManager.GetObject("sara_0_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -921,22 +677,6 @@ namespace WindowsFormsApplication1.Properties {
         internal static string text {
             get {
                 return ResourceManager.GetString("text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   テスト１@c
-        ///テスト２@c
-        ///テスト３@c
-        ///テスト４@e
-        ///テスト５@c
-        ///テスト６@c
-        ///テスト７@c
-        ///テスト８@e に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string texttest {
-            get {
-                return ResourceManager.GetString("texttest", resourceCulture);
             }
         }
     }
