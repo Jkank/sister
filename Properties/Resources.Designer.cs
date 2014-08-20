@@ -630,7 +630,7 @@ namespace WindowsFormsApplication1.Properties {
         ///Text:
         ///この人はシスターマリー。私の先輩です。
         ///姉様と言っても、本当のお姉さんというわけではなく、
-        ///この辺りでは、シスターが目上のシスターを呼ぶときは
+        ///この教会ではシスターが目上のシスターを呼ぶときは
         ///&quot;姉様&quot;って呼ぶものなんです。;
         ///
         ///Text:
@@ -648,7 +648,7 @@ namespace WindowsFormsApplication1.Properties {
         ///Out:マリー
         ///
         ///モフィ:
-        ///…あの、サラ姉様… [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///…あの、サラ姉様…; [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string opening {
             get {
@@ -677,6 +677,55 @@ namespace WindowsFormsApplication1.Properties {
         internal static string text {
             get {
                 return ResourceManager.GetString("text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   //
+        /////休息時イベント
+        /////
+        /////
+        ///
+        ///If()
+        ///
+        /////昼イントロ
+        ///サラ:
+        ///ちょっと休もうかな……;
+        ///
+        ///
+        /////夜イントロ
+        ///サラ:
+        ///そろそろ寝ようかな……;
+        ///
+        ///
+        /////触手の成長度による分岐（未作成）
+        /////IF( 触手成長度 &gt;= 100 ) L_LEST_3000:
+        /////IF( 触手成長度 &gt;= 60 ) L_LEST_2000:
+        /////IF( 触手成長度 &gt;= 30 ) L_LEST_1000:
+        ///
+        ///
+        /////触手成長度 &lt; 30
+        ///If( サラ.性欲値 &gt;= 80 ) L_LEST_0000:
+        ///If( サラ.性欲値 &gt;= 50 ) L_LEST_0200:
+        ///If( サラ.性欲値 &gt;= 20 ) L_LEST_0400:
+        ///JMP L_LEST_END
+        ///
+        ///[L_LEST_0000]
+        ///
+        ///If( サラ.堕落度 &gt;= 80 ) L_LEST_0100:
+        ///If( サラ.堕落度 &gt;= 40 ) L_LEST_0050:
+        ///
+        /////触手成長度 &lt; 30  性欲値 &gt; 80  堕落度 &gt;= 80
+        ///サラ:
+        ///ハァ……ハァ……
+        ///んふ……んふふ……;
+        ///
+        ///Text:
+        ///        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 休息 {
+            get {
+                return ResourceManager.GetString("休息", resourceCulture);
             }
         }
     }

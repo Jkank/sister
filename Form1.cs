@@ -14,9 +14,8 @@ namespace WindowsFormsApplication1
     public partial class doujin_game_sharp : Form
     {
         /*--- ここに使用するクラスを置く ---*/
-        Properties.Sister Sister1 = new Properties.Sister();
-        Properties.SE SE1 = new Properties.SE();
-
+        public Properties.Sister Sara = new Properties.Sister();
+        public Properties.SE SE1 = new Properties.SE();
         
         public int sent_ct = 0;
 
@@ -32,7 +31,12 @@ namespace WindowsFormsApplication1
             panel2.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
             panel3.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
             chara_pos_1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
-            
+
+            Sara.PassionPoint.MaxValue = 100;
+            Sara.CorruptionPoint.MaxValue = 100;
+            Sara.PassionPoint.CurrentValue = 90;
+            Sara.CorruptionPoint.CurrentValue = 50;
+
         }
 
 //        string line;
@@ -93,7 +97,7 @@ namespace WindowsFormsApplication1
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            sent_ct = SE1.s_ScriptEngine( sent_ct, textarea, chara_pos_1, chara_pos2);
+            sent_ct = SE1.s_ScriptEngine( sent_ct, textarea, chara_pos_1, chara_pos2, Sara);
         }
 
 
