@@ -78,6 +78,7 @@ namespace WindowsFormsApplication1.Properties
             string textlawbuf;                            /* 文章バッファ */
 
             count = s_nowsenthead(sentence_ct);   /* テキスト内の初期値を取得 */
+            countold = count;
 
             while (count < D_CHAR_LAST)
             {
@@ -115,7 +116,7 @@ namespace WindowsFormsApplication1.Properties
 
                         count += 2;
                         countold = count;
-                        sentence_ct = s_getnowsent(count);
+                        sentence_ct++;
                         inrowcount = 0;
                     }
                     else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "JMP")
@@ -304,6 +305,7 @@ namespace WindowsFormsApplication1.Properties
 
                         count++;
                         countold = count;
+                        sentence_ct++;
                         inrowcount = 0;
                     }
                     else if (textlawbuf == "サラ")
@@ -313,6 +315,7 @@ namespace WindowsFormsApplication1.Properties
 
                         count++;
                         countold = count;
+                        sentence_ct++;
                         inrowcount = 0;
                     }
                     else if (textlawbuf == "マリー")
@@ -323,6 +326,7 @@ namespace WindowsFormsApplication1.Properties
 
                         count++;
                         countold = count;
+                        sentence_ct++;
                         inrowcount = 0;
                     }
                     else if (textlawbuf == "モフィ")
@@ -333,6 +337,7 @@ namespace WindowsFormsApplication1.Properties
 
                         count++;
                         countold = count;
+                        sentence_ct++;
                         inrowcount = 0;
                     }
                     else if (textlawbuf == "魔物")
@@ -343,9 +348,9 @@ namespace WindowsFormsApplication1.Properties
 
                         count++;
                         countold = count;
+                        sentence_ct++;
                         inrowcount = 0;
                     }
-                    sentence_ct++;
                 }
                 else if (text[count] == ';')
                 {
@@ -365,16 +370,16 @@ namespace WindowsFormsApplication1.Properties
                     fnt.Dispose();
                     g.Dispose();
 
-                    count += 3;
+                    count += 2;
                     countold = count;
                     sentence_ct++;
                     inrowcount = 0;
                     break;
                 }
-                else if (checkrowlast(count) == 1 && checkrowlast(count + 2) == 1)
+                else if ( count >= 2 && checkrowlast(count) == 1 && checkrowlast(count - 2) == 1 )
                 {
                     /* 空白行 */
-                    count += 2;
+                    count += 1;
                     countold = count;
                     inrowcount = 0;
                 }
@@ -410,12 +415,13 @@ namespace WindowsFormsApplication1.Properties
                 i++;
 
                 /* 次の文字が改行コードだったら、さらに一文字進める */
-                if (text[i + 1] == '\r')
+                if (text[i + 1] == '\r' && text[i + 2] == '\n')
                 {
+                    i++;
                     i++;
                 }
             }
-
+            i++;
             return i;
         }
 
@@ -427,7 +433,7 @@ namespace WindowsFormsApplication1.Properties
             int i = 0;
             int j;
 
-            for (j = 0; j < (ct-2); j++)
+            for (j = 0; j < (ct); j++)
             {
                 if ( text[j] == ':' || text[j] == ';' )
                 {
