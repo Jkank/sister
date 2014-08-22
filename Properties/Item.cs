@@ -10,5 +10,13 @@ namespace WindowsFormsApplication1.Properties
         {
             IsEnabled = true;
         }
+
+        public Item() { }
+
+        public Item(string name, bool isEnabled)
+        {
+            Name = name;
+            IsEnabled = isEnabled;
+        }
     }
 }

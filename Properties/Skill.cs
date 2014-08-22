@@ -44,5 +44,14 @@ namespace WindowsFormsApplication1.Properties
             Level = 1;
         }
 
+        public Skill() { }
+
+        public Skill(string name, int maxlevel, int level)
+        {
+            Name = name;
+            MaxLevel = maxlevel;
+            Level = level;
+        }
+
     }
 }

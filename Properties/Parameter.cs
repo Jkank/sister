@@ -26,5 +26,13 @@ namespace WindowsFormsApplication1.Properties
         public void Recover( ){
             CurrentValue = MaxValue;
         }
+
+        public Parameter() { }
+
+        public Parameter(int current, int max)
+        {
+            MaxValue = max;
+            CurrentValue = current;
+        }
     }
 }
