@@ -122,8 +122,7 @@ namespace WindowsFormsApplication1.Properties
                     else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "JMP")
                     {
                         /*** ジャンプ ***/
-                        count = 1 + textlawbuf.Length + text.IndexOf(textlawbuf.Remove(0, 4)) + 1;
-                        count = text.IndexOf(textlawbuf.Remove(0, 4));
+                        count = text.IndexOf("\r\n" + textlawbuf.Remove(0, 4));
                         countold = count;
                         sentence_ct = s_getnowsent(count);
                         inrowcount = 0;
