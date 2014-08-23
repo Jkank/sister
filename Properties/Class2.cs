@@ -122,11 +122,289 @@ namespace WindowsFormsApplication1.Properties
                     else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "JMP")
                     {
                         /*** ジャンプ ***/
-                        count = 1 + textlawbuf.Length + text.IndexOf(textlawbuf.Remove(0, 4)) + 1;
-                        count = text.IndexOf(textlawbuf.Remove(0, 4));
+                        count = text.IndexOf("\r\n" + textlawbuf.Remove(0, 4));
                         countold = count;
                         sentence_ct = s_getnowsent(count);
                         inrowcount = 0;
+                    }
+                    else if (textlawbuf.Length >= 2 && textlawbuf.Substring(0, 2) == "計算")
+                    {
+                        /*** 計算 ***/
+
+                        inrowcount = 3;
+                        int inrowcountold = inrowcount;
+                        int work_ct = 0;
+                        Parameter work_1 = new Parameter();
+                        int work_2 = 0;
+                        Parameter work_5 = new Parameter();
+                        Parameter work_6 = new Parameter();
+                        int work_value_1 = 0;
+                        int work_value_2 = 0;
+                        bool int_flag_1 = false;            /*即値フラグ*/
+                        bool int_flag_2 = false;            /*即値フラグ*/
+
+                        /** 計算式左辺取得 **/
+                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        {
+                            inrowcount++;
+                            work_ct++;
+                        }
+                        if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.PassionPoint;
+                        }
+                        else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.CorruptionPoint;
+                        }
+                        else
+                        {
+                            Console.WriteLine("work_1 該当するパラメーターが存在しないようです");
+                        }
+
+                        inrowcount++;
+                        inrowcountold = inrowcount;
+
+                        /** 計算式等号取得 **/
+                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        {
+                            inrowcount++;
+                            work_2++;
+                        }
+
+                        inrowcount++;
+                        /* inrowcountoldは、演算子付き等号を後で拾うために動かさない */
+
+                        if (2 >= work_2)
+                        {
+                            /* += -= *= /= */
+                            /* 右辺の項は一つ */
+
+                            /** 右辺取得 **/
+                            if ("性欲値" == textlawbuf.Substring(inrowcount - work_ct))
+                            {
+                                work_5 = Sis.PassionPoint;
+                            }
+                            else if ("堕落度" == textlawbuf.Substring(inrowcount - work_ct))
+                            {
+                                work_5 = Sis.CorruptionPoint;
+                            }
+                            else
+                            {
+                                /* 整数値 */
+                                while (work_value_1 < D_WORKVAL_MAX)
+                                {
+                                    if (textlawbuf.Substring(inrowcountold) == work_value_1.ToString())
+                                    {
+                                        break;
+                                    }
+                                    work_value_1++;
+                                    int_flag_1 = true;
+                                }  
+                            }
+
+                            if (int_flag_1 == true)
+                            {
+                                /* 右辺は即値 */
+                                if ("+=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue += work_value_1;
+                                }
+                                else if ("-=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue -= work_value_1;
+                                }
+                                else if ("*=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue *= work_value_1;
+                                }
+                                else if ("/=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue /= work_value_1;
+                                }
+                            }
+                            else
+                            {
+                                /* 右辺は変数 */
+                                if ("+=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue += work_5.CurrentValue;
+                                }
+                                else if ("-=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue -= work_5.CurrentValue;
+                                }
+                                else if ("*=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue *= work_5.CurrentValue;
+                                }
+                                else if ("/=" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue /= work_5.CurrentValue;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            /* = */
+                            /* 右辺の項は二つ */
+
+                            inrowcountold = inrowcount;
+                            /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
+                            
+                            /** 右辺第一項取得 **/
+                            while (textlawbuf.Substring(inrowcount, 1) != ":")
+                            {
+                                inrowcount++;
+                                work_ct++;
+                            }
+                            if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcount, work_ct))
+                            {
+                                work_5 = Sis.PassionPoint;
+                            }
+                            else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcount, work_ct))
+                            {
+                                work_5 = Sis.CorruptionPoint;
+                            }
+                            else
+                            {
+                                /* 整数値 */
+                                while (work_value_1 < D_WORKVAL_MAX)
+                                {
+                                    if (textlawbuf.Substring(inrowcountold, work_ct) == work_value_1.ToString())
+                                    {
+                                        break;
+                                    }
+                                    work_value_1++;
+                                    int_flag_1 = true;
+                                }
+                            }
+
+                            inrowcount++;
+                            inrowcountold = inrowcount;
+                            /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
+
+                            /* 演算子の分カウンタを進める */
+                            inrowcount++;
+                            inrowcount++;
+                            /* inrowcountoldは、演算子を後で拾うために動かさない */
+
+                            /** 右辺第二項取得 **/
+                            if ("性欲値" == textlawbuf.Substring(inrowcount))
+                            {
+                                work_6 = Sis.PassionPoint;
+                            }
+                            else if ("堕落度" == textlawbuf.Substring(inrowcount))
+                            {
+                                work_6 = Sis.CorruptionPoint;
+                            }
+                            else
+                            {
+                                /* 整数値 */
+                                while (work_value_2 < D_WORKVAL_MAX)
+                                {
+                                    if (textlawbuf.Substring(inrowcount) == work_value_2.ToString())
+                                    {
+                                        break;
+                                    }
+                                    work_value_2++;
+                                    int_flag_2 = true;
+                                }
+                            }
+
+                            /** 計算 **/
+                            if (int_flag_1 == true && int_flag_2 == true)
+                            {
+                                /* 右辺の両項とも即値 */
+                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 + work_value_2;
+                                }
+                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 - work_value_2;
+                                }
+                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 * work_value_2;
+                                }
+                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 / work_value_2;
+                                }
+                            }
+                            else if (int_flag_1 == true && int_flag_2 == false)
+                            {
+                                /* 右辺の第一項：即値　第二項：変数 */
+                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 + work_6.CurrentValue;
+                                }
+                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 - work_6.CurrentValue;
+                                }
+                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 * work_6.CurrentValue;
+                                }
+                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_value_1 / work_6.CurrentValue;
+                                }
+                            }
+                            else if (int_flag_1 == false && int_flag_2 == true)
+                            {
+                                /* 右辺の第一項：即値　第二項：変数 */
+                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue + work_value_2;
+                                }
+                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue - work_value_2;
+                                }
+                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue * work_value_2;
+                                }
+                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue / work_value_2;
+                                }
+                            }
+                            else
+                            {
+                                /* 右辺の両項とも変数 */
+                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue + work_6.CurrentValue;
+                                }
+                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue - work_6.CurrentValue;
+                                }
+                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue * work_6.CurrentValue;
+                                }
+                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                {
+                                    work_1.CurrentValue = work_5.CurrentValue / work_6.CurrentValue;
+                                }
+                            }
+
+                        }
+
+                        /* 改行 */
+                        count++;
+                        count++;
+
+                        countold = count;
+                        sentence_ct++;
+                        inrowcount = 0;
+                        inrowcountold = 0;
+
                     }
                     else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "If(")
                     {
@@ -227,6 +505,7 @@ namespace WindowsFormsApplication1.Properties
                             else
                             {
                                 count++;
+                                count++;
                             }
                         }
                         else if ("<=" == textlawbuf.Substring(5 + work_ct, work_2))
@@ -238,6 +517,8 @@ namespace WindowsFormsApplication1.Properties
                             }
                             else
                             {
+                                /* 改行 */
+                                count++;
                                 count++;
                             }
                         }
@@ -250,6 +531,8 @@ namespace WindowsFormsApplication1.Properties
                             }
                             else
                             {
+                                /* 改行 */
+                                count++;
                                 count++;
                             }
                         }
@@ -263,6 +546,8 @@ namespace WindowsFormsApplication1.Properties
                             }
                             else
                             {
+                                /* 改行 */
+                                count++;
                                 count++;
                             }
                         }
@@ -275,6 +560,8 @@ namespace WindowsFormsApplication1.Properties
                             }
                             else
                             {
+                                /* 改行 */
+                                count++;
                                 count++;
                             }
                         }
@@ -287,6 +574,8 @@ namespace WindowsFormsApplication1.Properties
                             }
                             else
                             {
+                                /* 改行 */
+                                count++;
                                 count++;
                             }
                         }
