@@ -49,9 +49,13 @@ namespace WindowsFormsApplication1.Properties
         /* パラメーター */
 
 
-        int count = 0;              /* テキストファイル全体の中でのカウンタ */
-        int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
+        int count = 15;              /* テキストファイル全体の中でのカウンタ */
+        int countold = 15;           /* 前回処理終了時点でのカウンタの値 */
         int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
+
+        static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
+        static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
+        static Parameter C_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
 
         string text = Properties.Resources.休息;    /* ファイルの中身を文字の配列として取得 */
 
@@ -69,6 +73,7 @@ namespace WindowsFormsApplication1.Properties
         {
             const long D_CHAR_LAST = 100000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
             const short D_WORKVAL_MAX = 100;
+
 
             //フォントオブジェクトの作成
             Font fnt = new Font("メイリオ", 15);
@@ -99,7 +104,7 @@ namespace WindowsFormsApplication1.Properties
                 else if (text[count] == ':')
                 {
                     textlawbuf = text.Substring(countold + 1, inrowcount - 1);
-
+                    
                     /*====================*/
                     /*    文法コマンド    */
                     /*====================*/
@@ -136,8 +141,8 @@ namespace WindowsFormsApplication1.Properties
                         int work_ct = 0;
                         Parameter work_1 = new Parameter();
                         int work_2 = 0;
-                        Parameter work_5 = new Parameter();
-                        Parameter work_6 = new Parameter();
+                        Parameter right_1 = new Parameter();
+                        Parameter right_2 = new Parameter();
                         int work_value_1 = 0;
                         int work_value_2 = 0;
                         bool int_flag_1 = false;            /*即値フラグ*/
@@ -156,6 +161,18 @@ namespace WindowsFormsApplication1.Properties
                         else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.CorruptionPoint;
+                        }
+                        else if (work_ct >= 3 && "汎用Ａ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = A_REG;
+                        }
+                        else if (work_ct >= 3 && "汎用Ｂ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = B_REG;
+                        }
+                        else if (work_ct >= 3 && "汎用Ｃ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = C_REG;
                         }
                         else
                         {
@@ -177,17 +194,17 @@ namespace WindowsFormsApplication1.Properties
 
                         if (2 >= work_2)
                         {
-                            /* += -= *= /= */
+                            /* += -= *= /= <-(代入) */
                             /* 右辺の項は一つ */
 
                             /** 右辺取得 **/
                             if ("性欲値" == textlawbuf.Substring(inrowcount - work_ct))
                             {
-                                work_5 = Sis.PassionPoint;
+                                right_1 = Sis.PassionPoint;
                             }
                             else if ("堕落度" == textlawbuf.Substring(inrowcount - work_ct))
                             {
-                                work_5 = Sis.CorruptionPoint;
+                                right_1 = Sis.CorruptionPoint;
                             }
                             else
                             {
@@ -222,25 +239,33 @@ namespace WindowsFormsApplication1.Properties
                                 {
                                     work_1.CurrentValue /= work_value_1;
                                 }
+                                else if ("<-" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue = work_value_1;
+                                }
                             }
                             else
                             {
                                 /* 右辺は変数 */
                                 if ("+=" == textlawbuf.Substring(inrowcountold, work_2))
                                 {
-                                    work_1.CurrentValue += work_5.CurrentValue;
+                                    work_1.CurrentValue += right_1.CurrentValue;
                                 }
                                 else if ("-=" == textlawbuf.Substring(inrowcountold, work_2))
                                 {
-                                    work_1.CurrentValue -= work_5.CurrentValue;
+                                    work_1.CurrentValue -= right_1.CurrentValue;
                                 }
                                 else if ("*=" == textlawbuf.Substring(inrowcountold, work_2))
                                 {
-                                    work_1.CurrentValue *= work_5.CurrentValue;
+                                    work_1.CurrentValue *= right_1.CurrentValue;
                                 }
                                 else if ("/=" == textlawbuf.Substring(inrowcountold, work_2))
                                 {
-                                    work_1.CurrentValue /= work_5.CurrentValue;
+                                    work_1.CurrentValue /= right_1.CurrentValue;
+                                }
+                                else if ("<-" == textlawbuf.Substring(inrowcountold, work_2))
+                                {
+                                    work_1.CurrentValue = right_1.CurrentValue;
                                 }
                             }
                         }
@@ -260,11 +285,11 @@ namespace WindowsFormsApplication1.Properties
                             }
                             if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcount, work_ct))
                             {
-                                work_5 = Sis.PassionPoint;
+                                right_1 = Sis.PassionPoint;
                             }
                             else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcount, work_ct))
                             {
-                                work_5 = Sis.CorruptionPoint;
+                                right_1 = Sis.CorruptionPoint;
                             }
                             else
                             {
@@ -292,11 +317,11 @@ namespace WindowsFormsApplication1.Properties
                             /** 右辺第二項取得 **/
                             if ("性欲値" == textlawbuf.Substring(inrowcount))
                             {
-                                work_6 = Sis.PassionPoint;
+                                right_2 = Sis.PassionPoint;
                             }
                             else if ("堕落度" == textlawbuf.Substring(inrowcount))
                             {
-                                work_6 = Sis.CorruptionPoint;
+                                right_2 = Sis.CorruptionPoint;
                             }
                             else
                             {
@@ -338,19 +363,19 @@ namespace WindowsFormsApplication1.Properties
                                 /* 右辺の第一項：即値　第二項：変数 */
                                 if ("+" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_value_1 + work_6.CurrentValue;
+                                    work_1.CurrentValue = work_value_1 + right_2.CurrentValue;
                                 }
                                 else if ("-" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_value_1 - work_6.CurrentValue;
+                                    work_1.CurrentValue = work_value_1 - right_2.CurrentValue;
                                 }
                                 else if ("*" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_value_1 * work_6.CurrentValue;
+                                    work_1.CurrentValue = work_value_1 * right_2.CurrentValue;
                                 }
                                 else if ("/" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_value_1 / work_6.CurrentValue;
+                                    work_1.CurrentValue = work_value_1 / right_2.CurrentValue;
                                 }
                             }
                             else if (int_flag_1 == false && int_flag_2 == true)
@@ -358,19 +383,19 @@ namespace WindowsFormsApplication1.Properties
                                 /* 右辺の第一項：即値　第二項：変数 */
                                 if ("+" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue + work_value_2;
+                                    work_1.CurrentValue = right_1.CurrentValue + work_value_2;
                                 }
                                 else if ("-" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue - work_value_2;
+                                    work_1.CurrentValue = right_1.CurrentValue - work_value_2;
                                 }
                                 else if ("*" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue * work_value_2;
+                                    work_1.CurrentValue = right_1.CurrentValue * work_value_2;
                                 }
                                 else if ("/" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue / work_value_2;
+                                    work_1.CurrentValue = right_1.CurrentValue / work_value_2;
                                 }
                             }
                             else
@@ -378,19 +403,19 @@ namespace WindowsFormsApplication1.Properties
                                 /* 右辺の両項とも変数 */
                                 if ("+" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue + work_6.CurrentValue;
+                                    work_1.CurrentValue = right_1.CurrentValue + right_2.CurrentValue;
                                 }
                                 else if ("-" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue - work_6.CurrentValue;
+                                    work_1.CurrentValue = right_1.CurrentValue - right_2.CurrentValue;
                                 }
                                 else if ("*" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue * work_6.CurrentValue;
+                                    work_1.CurrentValue = right_1.CurrentValue * right_2.CurrentValue;
                                 }
                                 else if ("/" == textlawbuf.Substring(inrowcountold, 1))
                                 {
-                                    work_1.CurrentValue = work_5.CurrentValue / work_6.CurrentValue;
+                                    work_1.CurrentValue = right_1.CurrentValue / right_2.CurrentValue;
                                 }
                             }
 
