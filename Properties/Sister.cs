@@ -23,9 +23,17 @@ namespace WindowsFormsApplication1.Properties
             // スキルリストの生成
             // アイテムリストの生成
             // イベントフラグリストの生成
+
             // その他値の読み込み
+            HitPoint = new Parameter();
+            EnergyPoint = new Parameter();
+            MoralPoint = new Parameter();
             PassionPoint = new Parameter();
             CorruptionPoint = new Parameter();
+            MagicPoint = new Parameter();
+
+            Money = 0;
+            ChargedMagicPoint = 0;
         }
 
 

@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
 
             Sara.PassionPoint.MaxValue = 100;
             Sara.CorruptionPoint.MaxValue = 100;
-            Sara.PassionPoint.CurrentValue = 10;
+            Sara.PassionPoint.CurrentValue = 90;
             Sara.CorruptionPoint.CurrentValue = 50;
 
         }
