@@ -23,6 +23,9 @@ namespace WindowsFormsApplication1
         public doujin_game_sharp()
         {
             InitializeComponent();
+            //ホイールイベントの追加  
+            this.pictureBox1.MouseWheel
+                += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseWheel); 
 
             /* --- オブジェクトの背景色を透明にできるようにする処理 --- */
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -34,8 +37,8 @@ namespace WindowsFormsApplication1
 
             Sara.PassionPoint.MaxValue = 100;
             Sara.CorruptionPoint.MaxValue = 100;
-            Sara.PassionPoint.CurrentValue = 90;
-            Sara.CorruptionPoint.CurrentValue = 50;
+            Sara.PassionPoint.CurrentValue = 10;
+            Sara.CorruptionPoint.CurrentValue = 30;
 
         }
 
@@ -100,6 +103,16 @@ namespace WindowsFormsApplication1
             sent_ct = SE1.s_ScriptEngine( sent_ct, textarea, chara_pos_1, chara_pos2, Sara);
         }
 
+        private void panel3_MouseWheel(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void panel3_MouseWheel(object sender, EventArgs e)
+        {
+            // ピクチャボックスにフォーカスを移す  
+            panel3.Focus();
+        } 
 
 
         /* == 以下サブルーチン的メソッド == */

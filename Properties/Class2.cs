@@ -11,6 +11,49 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Properties
 {
+    //★★スクリプトを書く際の注意★★////////////////////////////////
+    ////○ラベルを切る行には他のことを書いてはいけない。
+    //////////////////////////////////////////////////////////////////
+
+    //★スクリプトの文法ルール////////////////////////////////////////
+    ////○ラベル　　If文やJMP文で飛んでくる先。
+    ////            　サンプル：
+    ////            [L_***_***]:
+    ////        ※注意！！ラベルを切る行には他のことを書いてはいけない。
+    ////    　　
+    ////○If文　　　( )内の条件を満たしたらラベルにジャンプ。
+    ////　　　　　　　サンプル１（即値）：
+    ////　　　　　　If ( A >= 30 ) [L_***_***]:
+    ////         　　↑↑↑ ↑ ↑↑
+    ////        　　これらの箇所では半角スペースを置くこと。
+    ////            　サンプル２（変数）：
+    ////            If ( A >= B ) [L_***_***]:
+    ////            ・変数A,Bの型はint型に限る。
+    ////
+    ////○JMP文 　　指定したラベルにジャンプ。
+    ////　　　　　　　サンプル：
+    ////        　　JMP [L_***_***]:
+    ////        　　  ↑
+    ////        　　ここに半角スペースを置くこと。
+    ////
+    ////○計算　　　変数に値を代入したり、変数の値を変えたりする。
+    ////　　　　　　　サンプル１（代入）：
+    ////            計算 A <- B:
+    ////　　　　　　　サンプル２（計算）：
+    ////            計算 A += B:
+    ////            計算 A -= B:
+    ////            計算 A *= B:
+    ////            計算 A /= B:
+    ////　　　　　　　サンプル３（二項以上の計算）：
+    ////            計算 A = B + C:
+    ////            ・どの計算の場合も、右辺の項B,Cは、
+    ////            　int型でさえあれば、即値でも変数でも良い。
+    ////            ・演算子や等号の両側には半角スペースを置くこと。
+    ////            ・割り算の場合、得られる結果は「商,あまり」のうちの商のみ。
+    ////
+    ////○コメント　"//"でその行のそれ以降の部分は無視される。
+    //////////////////////////////////////////////////////////////////
+
     public class SE
     {
 
@@ -49,8 +92,8 @@ namespace WindowsFormsApplication1.Properties
         /* パラメーター */
 
 
-        int count = 15;              /* テキストファイル全体の中でのカウンタ */
-        int countold = 15;           /* 前回処理終了時点でのカウンタの値 */
+        int count = 0;              /* テキストファイル全体の中でのカウンタ */
+        int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
         int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
 
         static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
@@ -97,13 +140,13 @@ namespace WindowsFormsApplication1.Properties
                     {
                         count++;
                     }
-                    count++;
+                    count += 2;
                     countold = count;
                     inrowcount = 0;
                 }
                 else if (text[count] == ':')
                 {
-                    textlawbuf = text.Substring(countold + 1, inrowcount - 1);
+                    textlawbuf = text.Substring(countold, inrowcount);
                     
                     /*====================*/
                     /*    文法コマンド    */
@@ -119,7 +162,11 @@ namespace WindowsFormsApplication1.Properties
                         /*** ラベル ***/
                         /* ラベルはすっ飛ばして次へ */
 
-                        count += 2;
+                        count++;
+
+                        ////ここにcount += 2 を入れるべきかどうか////
+                        count += 2;     /* 改行（ラベルの行には、何もコメントを書かないこと） */
+
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
@@ -127,7 +174,7 @@ namespace WindowsFormsApplication1.Properties
                     else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "JMP")
                     {
                         /*** ジャンプ ***/
-                        count = text.IndexOf("\r\n" + textlawbuf.Remove(0, 4));
+                        count = text.IndexOf("\r\n" + textlawbuf.Remove(0, 4)) + 2;
                         countold = count;
                         sentence_ct = s_getnowsent(count);
                         inrowcount = 0;
@@ -154,7 +201,15 @@ namespace WindowsFormsApplication1.Properties
                             inrowcount++;
                             work_ct++;
                         }
-                        if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct))
+                        if (work_ct >= 2 && "体力" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.HitPoint;
+                        }
+                        else if (work_ct >= 2 && "気力" == textlawbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.EnergyPoint;
+                        }
+                        else if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.PassionPoint;
                         }
@@ -283,7 +338,15 @@ namespace WindowsFormsApplication1.Properties
                                 inrowcount++;
                                 work_ct++;
                             }
-                            if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcount, work_ct))
+                            if (work_ct >= 2 && "体力" == textlawbuf.Substring(inrowcount, work_ct))
+                            {
+                                work_1 = Sis.HitPoint;
+                            }
+                            else if (work_ct >= 2 && "気力" == textlawbuf.Substring(inrowcount, work_ct))
+                            {
+                                work_1 = Sis.EnergyPoint;
+                            }
+                            else if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcount, work_ct))
                             {
                                 right_1 = Sis.PassionPoint;
                             }
@@ -425,6 +488,7 @@ namespace WindowsFormsApplication1.Properties
                         count++;
                         count++;
 
+                        count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
@@ -437,24 +501,26 @@ namespace WindowsFormsApplication1.Properties
 
                         inrowcount = 4;
                         int inrowcountold = inrowcount;
-                        int work_ct = 0;
+                        int work_ct_1 = 0;
+                        int work_ct_2 = 0;
                         Parameter work_1 = new Parameter();
                         int work_2 = 0;
-                        int work_3 = 0;
                         int work_4 = 0;
+                        Parameter work_5 = new Parameter();
                         int work_value = 0;
+                        bool int_flag = false;
 
                         /** 条件左辺取得 **/
                         while (textlawbuf.Substring(inrowcount, 1) != " ")
                         {
                             inrowcount++;
-                            work_ct++;
+                            work_ct_1++;
                         }
-                        if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct))
+                        if (work_ct_1 >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct_1))
                         {
                             work_1 = Sis.PassionPoint;
                         }
-                        else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct_1 >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct_1))
                         {
                             work_1 = Sis.CorruptionPoint;
                         }
@@ -478,131 +544,282 @@ namespace WindowsFormsApplication1.Properties
 
                         /** 条件右辺取得 **/
                         /* 文字数取得 */
-                        while (textlawbuf.Substring(inrowcountold + work_3, 1) != " " && textlawbuf.Substring(inrowcountold + work_3, 1) != ")")
+                        while (textlawbuf.Substring(inrowcountold + work_ct_2, 1) != " ")
                         {
                             inrowcount++;
-                            work_3++;
+                            work_ct_2++;
                         }
-
-                        /* 値取得 */
-                        if (textlawbuf.Length >= inrowcountold + 4 && textlawbuf.Substring(inrowcountold, work_3) == "true")
+                        if (work_ct_2 >= 2 && "体力" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.HitPoint;
+                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 2 && "気力" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.EnergyPoint;
+                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.PassionPoint;
+                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.CorruptionPoint;
+                            int_flag = false;
+                        }
+                        else if (textlawbuf.Length >= inrowcountold + 4 && textlawbuf.Substring(inrowcountold, work_ct_2) == "true")
                         {
                             /* true (bool) */
                             /* bool値は、true⇒1　false⇒0 と変換して使用する */
 
                             work_value = 1;
-                            inrowcount++;
+                            int_flag = true;
                         }
-                        else if (textlawbuf.Length >= inrowcountold + 5 && textlawbuf.Substring(inrowcountold, work_3) == "false")
+                        else if (textlawbuf.Length >= inrowcountold + 5 && textlawbuf.Substring(inrowcountold, work_ct_2) == "false")
                         {
                             /* false (bool) */
 
                             work_value = 0;
-                            inrowcount++;
+                            int_flag = true;
                         }
                         else
                         {
                             /* 整数値 */
                             while (work_value < D_WORKVAL_MAX)
                             {
-                                if (textlawbuf.Substring(inrowcountold, work_3) == work_value.ToString())
+                                if (textlawbuf.Substring(inrowcountold, work_ct_2) == work_value.ToString())
                                 {
                                     break;
                                 }
                                 work_value++;
                             }
+                            int_flag = true;
                         }
 
+                        inrowcount += 3;
+
                         /** ジャンプ先ラベル文字数取得 **/
-                        while (textlawbuf.Substring(inrowcount + work_3 + 2 + work_4, 1) != "]")
+                        while (textlawbuf.Substring(inrowcount + work_4, 1) != "]")
                         {
                             work_4++;
                         }
-                        work_4 += 3;
+                        work_4++;
 
                         /** 条件式に従ってジャンプ **/
-                        if ("<" == textlawbuf.Substring(5 + work_ct, work_2))
-                        {
-                            if (work_1.CurrentValue < work_value)
-                            {
-                                count = text.IndexOf(textlawbuf.Substring(inrowcount + work_3, work_4));
-                            }
-                            else
-                            {
-                                count++;
-                                count++;
-                            }
-                        }
-                        else if ("<=" == textlawbuf.Substring(5 + work_ct, work_2))
-                        {
 
-                            if (work_1.CurrentValue <= work_value)
-                            {
-                                count = text.IndexOf(textlawbuf.Substring(inrowcount + work_3, work_4));
-                            }
-                            else
-                            {
-                                /* 改行 */
-                                count++;
-                                count++;
-                            }
-                        }
-                        else if (">" == textlawbuf.Substring(5 + work_ct, work_2))
+                        if (int_flag == false)
                         {
+                            if ("<" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+                                if (work_1.CurrentValue < work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
 
-                            if (work_1.CurrentValue > work_value)
-                            {
-                                count = text.IndexOf(textlawbuf.Substring(inrowcount + work_3, work_4));
+                                    count++;
+                                }
                             }
-                            else
+                            else if ("<=" == textlawbuf.Substring(5 + work_ct_1, work_2))
                             {
-                                /* 改行 */
-                                count++;
-                                count++;
+
+                                if (work_1.CurrentValue <= work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
                             }
+                            else if (">" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue > work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+                            else if (">=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue >= work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+                            else if ("==" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue == work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+                            else if ("!=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue != work_5.CurrentValue)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+
                         }
-                        else if (">=" == textlawbuf.Substring(5 + work_ct, work_2))
+                        else
                         {
+                            int_flag = false;
 
-                            if (work_1.CurrentValue >= work_value)
+                            if ("<" == textlawbuf.Substring(5 + work_ct_1, work_2))
                             {
-                                string aiueo = "\r\n" + textlawbuf.Substring(inrowcount + work_3 + 1, work_4 - 1);
-                                count = text.IndexOf(aiueo) + 1;
-                            }
-                            else
-                            {
-                                /* 改行 */
-                                count++;
-                                count++;
-                            }
-                        }
-                        else if ("==" == textlawbuf.Substring(5 + work_ct, work_2))
-                        {
+                                if (work_1.CurrentValue < work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
 
-                            if (work_1.CurrentValue == work_value)
-                            {
-                                count = text.IndexOf(textlawbuf.Substring(inrowcount + work_3, work_4));
+                                    count++;
+                                }
                             }
-                            else
+                            else if ("<=" == textlawbuf.Substring(5 + work_ct_1, work_2))
                             {
-                                /* 改行 */
-                                count++;
-                                count++;
-                            }
-                        }
-                        else if ("!=" == textlawbuf.Substring(5 + work_ct, work_2))
-                        {
 
-                            if (work_1.CurrentValue != work_value)
-                            {
-                                count = text.IndexOf(textlawbuf.Substring(inrowcount + work_3, work_4));
+                                if (work_1.CurrentValue <= work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
                             }
-                            else
+                            else if (">" == textlawbuf.Substring(5 + work_ct_1, work_2))
                             {
-                                /* 改行 */
-                                count++;
-                                count++;
+
+                                if (work_1.CurrentValue > work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
                             }
+                            else if (">=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue >= work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+                            else if ("==" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue == work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+                            else if ("!=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            {
+
+                                if (work_1.CurrentValue != work_value)
+                                {
+                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    count = text.IndexOf(aiueo) + 2;
+                                }
+                                else
+                                {
+                                    /* 改行 */
+                                    count++;
+                                    count++;
+
+                                    count++;
+                                }
+                            }
+
                         }
                         countold = count;
                         sentence_ct = s_getnowsent(count);
@@ -665,6 +882,28 @@ namespace WindowsFormsApplication1.Properties
                         sentence_ct++;
                         inrowcount = 0;
                     }
+                    else if (textlawbuf == "Plus")
+                    {
+                        Color = Brushes.Blue;
+
+                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+
+                        count++;
+                        countold = count;
+                        sentence_ct++;
+                        inrowcount = 0;
+                    }
+                    else if (textlawbuf == "Minus")
+                    {
+                        Color = Brushes.Red;
+
+                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+
+                        count++;
+                        countold = count;
+                        sentence_ct++;
+                        inrowcount = 0;
+                    }
                 }
                 else if (text[count] == ';')
                 {
@@ -684,7 +923,7 @@ namespace WindowsFormsApplication1.Properties
                     fnt.Dispose();
                     g.Dispose();
 
-                    count += 2;
+                    count ++;
                     countold = count;
                     sentence_ct++;
                     inrowcount = 0;
@@ -693,7 +932,7 @@ namespace WindowsFormsApplication1.Properties
                 else if ( count >= 2 && checkrowlast(count) == 1 && checkrowlast(count - 2) == 1 )
                 {
                     /* 空白行 */
-                    count += 1;
+                    count += 2;
                     countold = count;
                     inrowcount = 0;
                 }
@@ -716,23 +955,69 @@ namespace WindowsFormsApplication1.Properties
             /* ロード後の文章表示や文章振り返りで使用予定 */
 
             int i = 0;
+            int k = 0;
+            bool mark_active = false;
             int j;
 
             for (j = 0; j < ct; j++)
             {
                 /* ;が来るまで開始位置からのカウンタを進める */
-                while (text[i] != ';' && text[i] != ':')
-                {
-                    i++;
-                }
+//                while (text[i] != ';' && text[i] != ':')
+//                {
+//                    i++;
+//                }
 
-                i++;
-
-                /* 次の文字が改行コードだったら、さらに一文字進める */
-                if (text[i + 1] == '\r' && text[i + 2] == '\n')
+                while( i != -1 )
                 {
-                    i++;
-                    i++;
+                    if (text[i] == ';' || text[i] == ':')
+                    {
+                        /* ;や:が登場した場合、*/
+                        /* コメント内部だったら一文字としてカウント */
+                        /* コメント外だったら文章のカウンタをインクリメント */
+
+                        k = i;
+                        while ( text[k] != '/' || text[k+1] != '/' )
+                        {
+                            if ( text[k] == '\r' && text[k+1] == '\n' )
+                            {
+                                /* 前回のコメント記号より前に改行 ⇒ 使用中の;や: */
+                                mark_active = true;
+                                break;
+                            }
+                            else
+                            {
+                                k--;
+                                if ( k <= 0 )
+                                {
+                                    mark_active = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (mark_active == true)
+                        {
+                            /* 使用中の;や: */
+                            mark_active = false;
+
+                            /* ;や:出現後、次の文字が改行コードだったらさらに二文字進める */
+                            if (text[i + 1] == '\r' && text[i + 2] == '\n')
+                            {
+                                i++;
+                                i++;
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            /* コメント内 */
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        /* ;や:以外の文字だったら文章のカウンタをインクリメント */
+                        i++;
+                    }
                 }
             }
             i++;
@@ -746,12 +1031,47 @@ namespace WindowsFormsApplication1.Properties
 
             int i = 0;
             int j;
+            int k = 0;
+            bool mark_active = false;
 
             for (j = 0; j < (ct); j++)
             {
+//                if ( text[j] == ':' || text[j] == ';' )
+//                {
+//                    i++;
+//                }
                 if ( text[j] == ':' || text[j] == ';' )
                 {
-                    i++;
+                    k = j;
+                    while (text[k] != '/' || text[k + 1] != '/')
+                    {
+                        if (text[k] == '\r' && text[k + 1] == '\n')
+                        {
+                            /* 前回のコメント記号より前に改行 ⇒ 使用中の;や: */
+                            mark_active = true;
+                            break;
+                        }
+                        else
+                        {
+                            k--;
+                            if (k <= 0)
+                            {
+                                mark_active = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (mark_active == true)
+                    {
+                        /* 使用中の;や: */
+                        mark_active = false;
+                        i++;
+                    }
+                    else
+                    {
+                        /* コメント内 */
+                    }
+
                 }
             }
             
