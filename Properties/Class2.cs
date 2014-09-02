@@ -95,8 +95,8 @@ namespace WindowsFormsApplication1.Properties
         int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
         int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
 
-        static string[] log = new string[100];
-        static string[] name = new string[100];
+        static string[] log = new string[101];
+        static string[] name = new string[101];
 
         static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
@@ -131,7 +131,7 @@ namespace WindowsFormsApplication1.Properties
             count = s_nowsenthead(sentence_ct);   /* テキスト内の初期値を取得 */
             countold = count;
 
-            for (i = log_ct_use + 1; i < 100; i++)
+            for (i = log_ct_use + 1; i <= 100; i++)
             {
                 log[i] = " ";
                 name[i] = " ";
