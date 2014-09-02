@@ -91,16 +91,18 @@ namespace WindowsFormsApplication1.Properties
 
         /* パラメーター */
 
-
         int count = 0;              /* テキストファイル全体の中でのカウンタ */
         int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
         int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
+
+        static string[] log = new string[100];
+        static string[] name = new string[100];
 
         static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter C_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
 
-        string text = Properties.Resources.休息;    /* ファイルの中身を文字の配列として取得 */
+        string text = Properties.Resources.opening;    /* ファイルの中身を文字の配列として取得 */
 
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -112,14 +114,15 @@ namespace WindowsFormsApplication1.Properties
         /* ■　出力：sentence_ct　次回読み込み用のカウンタの値 　　■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public int s_ScriptEngine(int sentence_ct, PictureBox o_bgpic, PictureBox o_chrbox1, PictureBox o_chrbox2, Sister Sis)
+        public int s_ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, PictureBox o_bgpic, PictureBox o_chrbox1, PictureBox o_chrbox2, Sister Sis)
         {
+            int i;
             const long D_CHAR_LAST = 100000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
             const short D_WORKVAL_MAX = 100;
 
 
             //フォントオブジェクトの作成
-            Font fnt = new Font("メイリオ", 15);
+            Font fnt = new Font("メイリオ", 12);
 
             Brush Color = Brushes.White;
 
@@ -127,6 +130,12 @@ namespace WindowsFormsApplication1.Properties
 
             count = s_nowsenthead(sentence_ct);   /* テキスト内の初期値を取得 */
             countold = count;
+
+            for (i = log_ct_use + 1; i < 100; i++)
+            {
+                log[i] = " ";
+                name[i] = " ";
+            }
 
             while (count < D_CHAR_LAST)
             {
@@ -838,6 +847,7 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "Text";
                     }
                     else if (textlawbuf == "サラ")
                     {
@@ -848,6 +858,8 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "サラ";
+
                     }
                     else if (textlawbuf == "マリー")
                     {
@@ -859,8 +871,9 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "マリー";
                     }
-                    else if (textlawbuf == "モフィ")
+                    else if (textlawbuf == "リディ")
                     {
                         Color = Brushes.Orange;
 
@@ -870,6 +883,7 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "リディ";
                     }
                     else if (textlawbuf == "魔物")
                     {
@@ -881,6 +895,7 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "魔物";
                     }
                     else if (textlawbuf == "Plus")
                     {
@@ -892,6 +907,7 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "Plus";
                     }
                     else if (textlawbuf == "Minus")
                     {
@@ -903,6 +919,7 @@ namespace WindowsFormsApplication1.Properties
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
+                        name[0] = "Minus";
                     }
                 }
                 else if (text[count] == ';')
@@ -927,6 +944,8 @@ namespace WindowsFormsApplication1.Properties
                     countold = count;
                     sentence_ct++;
                     inrowcount = 0;
+                    log[0] = textlawbuf;
+                    s_BacklogRenew(log_ct_use);
                     break;
                 }
                 else if ( count >= 2 && checkrowlast(count) == 1 && checkrowlast(count - 2) == 1 )
@@ -946,14 +965,226 @@ namespace WindowsFormsApplication1.Properties
         }
 
 
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_ScrollInit  　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：バックログ初期表示処理                     　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public void s_ScrollInit(int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
+        {
+            //フォントオブジェクトの作成
+            Font fnt = new Font("メイリオ", 12);
+
+            int i;
+
+            Brush Color = Brushes.White;
+
+            for (i = 1; i <= log_ct_use; i++)
+            {
+                if (name[i] == "Text")
+                {
+                    Color = Brushes.White;
+                }
+                else if (name[i] == "サラ")
+                {
+                    Color = Brushes.Pink;
+                }
+                else if (name[i] == "マリー")
+                {
+                    Color = Brushes.Yellow;
+                }
+                else if (name[i] == "リディ")
+                {
+                    Color = Brushes.Orange;
+                }
+                else if (name[i] == "魔物")
+                {
+                    Color = Brushes.Purple;
+                }
+                else if (name[i] == "Plus")
+                {
+                    Color = Brushes.Blue;
+                }
+                else if (name[i] == "Minus")
+                {
+                    Color = Brushes.Red;
+                }
+
+                if (i == 1)
+                {
+                    /* 描画先とするImageオブジェクトを作成する */
+                    Bitmap canvas0 = new Bitmap(o_bgpic_0.Width, o_bgpic_0.Height);
+                    /* ImageオブジェクトのGraphicsオブジェクトを作成する */
+                    Graphics g0 = Graphics.FromImage(canvas0);
+                    /* 描画内容を準備 */
+                    g0.DrawString(log[i], fnt, Color, 0, 0);
+                    /* PictureBoxに表示*/
+                    o_bgpic_0.Image = canvas0;
+                    /* リソースを解放 */
+                    g0.Dispose();
+                }
+                else if (i == 2)
+                {
+                    Bitmap canvas1 = new Bitmap(o_bgpic_1.Width, o_bgpic_1.Height);
+                    Graphics g1 = Graphics.FromImage(canvas1);
+                    g1.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_1.Image = canvas1;
+                    g1.Dispose();
+                }
+                else if (i == 3)
+                {
+                    Bitmap canvas2 = new Bitmap(o_bgpic_2.Width, o_bgpic_2.Height);
+                    Graphics g2 = Graphics.FromImage(canvas2);
+                    g2.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_2.Image = canvas2;
+                    g2.Dispose();
+                }
+                else if (i == 4)
+                {
+                    Bitmap canvas3 = new Bitmap(o_bgpic_3.Width, o_bgpic_3.Height);
+                    Graphics g3 = Graphics.FromImage(canvas3);
+                    g3.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_3.Image = canvas3;
+                    g3.Dispose();
+                }
+                else if (i == 5)
+                {
+                    Bitmap canvas4 = new Bitmap(o_bgpic_4.Width, o_bgpic_4.Height);
+                    Graphics g4 = Graphics.FromImage(canvas4);
+                    g4.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_4.Image = canvas4;
+                    g4.Dispose();
+                }
+
+                if (i >= 5)
+                {
+                    break;
+                }
+            }
+            //リソースを解放する
+            fnt.Dispose();
+        }
+
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_ScrollRedraw　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：バックログ初期表示処理                     　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public void s_ScrollRedraw(int log_ct, int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
+        {
+            //フォントオブジェクトの作成
+            Font fnt = new Font("メイリオ", 12);
+
+            int i;
+
+
+            Brush Color = Brushes.White;
+
+            for (i = log_ct; i <= log_ct_use; i++)
+            {
+                if (name[i] == "Text")
+                {
+                    Color = Brushes.White;
+                }
+                else if (name[i] == "サラ")
+                {
+                    Color = Brushes.Pink;
+                }
+                else if (name[i] == "マリー")
+                {
+                    Color = Brushes.Yellow;
+                }
+                else if (name[i] == "リディ")
+                {
+                    Color = Brushes.Orange;
+                }
+                else if (name[i] == "魔物")
+                {
+                    Color = Brushes.Purple;
+                }
+                else if (name[i] == "Plus")
+                {
+                    Color = Brushes.Blue;
+                }
+                else if (name[i] == "Minus")
+                {
+                    Color = Brushes.Red;
+                }
+
+                if (i == log_ct)
+                {
+                    /* 描画先とするImageオブジェクトを作成する */
+                    Bitmap canvas0 = new Bitmap(o_bgpic_0.Width, o_bgpic_0.Height);
+                    /* ImageオブジェクトのGraphicsオブジェクトを作成する */
+                    Graphics g0 = Graphics.FromImage(canvas0);
+                    /* 描画内容を準備 */
+                    g0.DrawString(log[i], fnt, Color, 0, 0);
+                    /* PictureBoxに表示*/
+                    o_bgpic_0.Image = canvas0;
+                    /* リソースを解放 */
+                    g0.Dispose();
+                }
+                else if (i == log_ct + 1)
+                {
+                    Bitmap canvas1 = new Bitmap(o_bgpic_1.Width, o_bgpic_1.Height);
+                    Graphics g1 = Graphics.FromImage(canvas1);
+                    g1.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_1.Image = canvas1;
+                    g1.Dispose();
+                }
+                else if (i == log_ct + 2)
+                {
+                    Bitmap canvas2 = new Bitmap(o_bgpic_2.Width, o_bgpic_2.Height);
+                    Graphics g2 = Graphics.FromImage(canvas2);
+                    g2.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_2.Image = canvas2;
+                    g2.Dispose();
+                }
+                else if (i == log_ct + 3)
+                {
+                    Bitmap canvas3 = new Bitmap(o_bgpic_3.Width, o_bgpic_3.Height);
+                    Graphics g3 = Graphics.FromImage(canvas3);
+                    g3.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_3.Image = canvas3;
+                    g3.Dispose();
+                }
+                else if (i == log_ct + 4)
+                {
+                    Bitmap canvas4 = new Bitmap(o_bgpic_4.Width, o_bgpic_4.Height);
+                    Graphics g4 = Graphics.FromImage(canvas4);
+                    g4.DrawString(log[i], fnt, Color, 0, 0);
+                    o_bgpic_4.Image = canvas4;
+                    g4.Dispose();
+                }
+
+                if (i >= log_ct + 5)
+                {
+                    break;
+                }
+            }
+            //リソースを解放する
+            fnt.Dispose();
+        }
+
+
         /*////////////////////////ここからサブルーチン的メソッド////////////////////////*/
 
 
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_nowsenthead 　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：テキストの現在地取得処理                   　 ■ */
+        /* ■　      sentence_ctからファイル中の位置を算出する  　 ■ */
+        /* ■　　　　文章の送り時や、ロード後の最初の文探しに使用  ■ */
+        /* ■　入力：sentence_ct                             　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
         public int s_nowsenthead(int ct)
         {
-            /* テキストの現在地取得処理 */
-            /* ロード後の文章表示や文章振り返りで使用予定 */
-
             int i = 0;
             int k = 0;
             bool mark_active = false;
@@ -962,11 +1193,6 @@ namespace WindowsFormsApplication1.Properties
             for (j = 0; j < ct; j++)
             {
                 /* ;が来るまで開始位置からのカウンタを進める */
-//                while (text[i] != ';' && text[i] != ':')
-//                {
-//                    i++;
-//                }
-
                 while( i != -1 )
                 {
                     if (text[i] == ';' || text[i] == ':')
@@ -1024,11 +1250,18 @@ namespace WindowsFormsApplication1.Properties
             return i;
         }
 
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_getnowsent  　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：現在のファイル中の位置から     　             ■ */
+        /* ■　　　  sentence_ctの値を算出する処理  　             ■ */
+        /* ■　　　　ifやjmpなどでcountが急に変わった後に呼ぶ   　 ■ */
+        /* ■　入力：sentence_ct                             　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
         public int s_getnowsent(int ct)
         {
-            /* 現在の行からsentence_ctの値を取得する処理 */
-            /* ifやjmpなどでcountが急に変わった後に呼ぶ */
-
             int i = 0;
             int j;
             int k = 0;
@@ -1079,6 +1312,7 @@ namespace WindowsFormsApplication1.Properties
         }
 
 
+
         public int checkrowlast(int ct)
         {
             /* 改行判定処理 */
@@ -1093,6 +1327,13 @@ namespace WindowsFormsApplication1.Properties
 
             return i;
         }
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_disptachie  　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：立ち絵を表示                            　 　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
         public void s_disptachie(PictureBox chrbox, int chrnum)
         {
@@ -1137,6 +1378,57 @@ namespace WindowsFormsApplication1.Properties
 
             }
             chrbox.Visible = true;
+        }
+
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_BacklogRenew　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：バックログ用文字列配列を更新する処理    　 　 ■ */
+        /* ■　入力：log_ct                                  　 　 ■ */
+        /* ■　出力：log_ct                                  　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
+        public void s_BacklogRenew(int log_ct_use)
+        {
+            int i;
+            string test_1;
+            string test_2;
+
+            for (i = log_ct_use + 1; i > 0; i--)
+            {
+                if (name[i].Length < name[i - 1].Length)
+                {
+                    name[i] = name[i].PadRight(name[i - 1].Length);
+                }
+                else if (name[i].Length > name[i - 1].Length)
+                {
+                    name[i] = name[i].Substring(0, name[i - 1].Length);
+                }
+                name[i] = name[i].Replace(name[i], name[i - 1]);
+
+
+                if (log[i].Length < log[i - 1].Length)
+                {
+                    log[i] = log[i].PadRight(log[i - 1].Length);
+                }
+                else if (log[i].Length > log[i - 1].Length)
+                {
+                    log[i] = log[i].Substring(0, log[i - 1].Length);
+                }
+                string work_str = string.Copy(log[i]);
+                log[i] = work_str.Replace(work_str, log[i - 1]);
+                test_2 = log[i - 1];
+                test_1 = log[i];
+                test_2 = log[i - 1];
+
+            }
+
+            test_1 = log[0];
+            test_2 = log[1];
+            var test_3 = log[2];
+            var test_4 = log[3];
+
+            //return log_ct_use;
         }
     }
 }
