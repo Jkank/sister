@@ -31,9 +31,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.background = new System.Windows.Forms.Panel();
+            this.panel_slct = new System.Windows.Forms.Panel();
+            this.Slctbox_4 = new System.Windows.Forms.PictureBox();
+            this.Slctbox_3 = new System.Windows.Forms.PictureBox();
+            this.Slctbox_2 = new System.Windows.Forms.PictureBox();
+            this.Slctbox_1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.logwindow = new System.Windows.Forms.Panel();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
@@ -52,9 +57,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.background.SuspendLayout();
+            this.panel_slct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_1)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.logwindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -107,21 +117,75 @@
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
             // 
-            // panel1
+            // background
             // 
-            this.panel1.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_001_0;
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 600);
-            this.panel1.TabIndex = 3;
-            this.panel1.Visible = false;
+            this.background.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_001_0;
+            this.background.Controls.Add(this.panel_slct);
+            this.background.Controls.Add(this.panel3);
+            this.background.Controls.Add(this.panel2);
+            this.background.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.background.Location = new System.Drawing.Point(0, 0);
+            this.background.Name = "background";
+            this.background.Size = new System.Drawing.Size(800, 600);
+            this.background.TabIndex = 3;
+            this.background.Visible = false;
+            // 
+            // panel_slct
+            // 
+            this.panel_slct.Controls.Add(this.Slctbox_4);
+            this.panel_slct.Controls.Add(this.Slctbox_3);
+            this.panel_slct.Controls.Add(this.Slctbox_2);
+            this.panel_slct.Controls.Add(this.Slctbox_1);
+            this.panel_slct.Location = new System.Drawing.Point(0, 0);
+            this.panel_slct.Name = "panel_slct";
+            this.panel_slct.Size = new System.Drawing.Size(800, 444);
+            this.panel_slct.TabIndex = 2;
+            this.panel_slct.Visible = false;
+            // 
+            // Slctbox_4
+            // 
+            this.Slctbox_4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Slctbox_4.Location = new System.Drawing.Point(175, 370);
+            this.Slctbox_4.Name = "Slctbox_4";
+            this.Slctbox_4.Size = new System.Drawing.Size(450, 60);
+            this.Slctbox_4.TabIndex = 3;
+            this.Slctbox_4.TabStop = false;
+            // 
+            // Slctbox_3
+            // 
+            this.Slctbox_3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Slctbox_3.Location = new System.Drawing.Point(175, 280);
+            this.Slctbox_3.Name = "Slctbox_3";
+            this.Slctbox_3.Size = new System.Drawing.Size(450, 60);
+            this.Slctbox_3.TabIndex = 2;
+            this.Slctbox_3.TabStop = false;
+            // 
+            // Slctbox_2
+            // 
+            this.Slctbox_2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Slctbox_2.Location = new System.Drawing.Point(175, 190);
+            this.Slctbox_2.Name = "Slctbox_2";
+            this.Slctbox_2.Size = new System.Drawing.Size(450, 60);
+            this.Slctbox_2.TabIndex = 1;
+            this.Slctbox_2.TabStop = false;
+            // 
+            // Slctbox_1
+            // 
+            this.Slctbox_1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Slctbox_1.Location = new System.Drawing.Point(175, 100);
+            this.Slctbox_1.Name = "Slctbox_1";
+            this.Slctbox_1.Size = new System.Drawing.Size(450, 60);
+            this.Slctbox_1.TabIndex = 0;
+            this.Slctbox_1.TabStop = false;
+            this.Slctbox_1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Slctbox_1_MouseDown);
+            this.Slctbox_1.MouseEnter += new System.EventHandler(this.Slctbox_1_MouseEnter);
+            this.Slctbox_1.MouseLeave += new System.EventHandler(this.Slctbox_1_MouseLeave);
+            this.Slctbox_1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Slctbox_1_MouseMove);
+            this.Slctbox_1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slctbox_1_MouseUp);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.logwindow);
             this.panel3.Controls.Add(this.textarea);
             this.panel3.Controls.Add(this.chara_pos2);
             this.panel3.Controls.Add(this.chara_pos_1);
@@ -132,21 +196,20 @@
             this.panel3.TabIndex = 1;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
-            // panel4
+            // logwindow
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panel4.Controls.Add(this.pictureBox10);
-            this.panel4.Controls.Add(this.pictureBox14);
-            this.panel4.Controls.Add(this.pictureBox13);
-            this.panel4.Controls.Add(this.pictureBox12);
-            this.panel4.Controls.Add(this.pictureBox11);
-            this.panel4.Controls.Add(this.pictureBox9);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(800, 600);
-            this.panel4.TabIndex = 4;
-            this.panel4.Visible = false;
+            this.logwindow.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.logwindow.Controls.Add(this.pictureBox10);
+            this.logwindow.Controls.Add(this.pictureBox14);
+            this.logwindow.Controls.Add(this.pictureBox13);
+            this.logwindow.Controls.Add(this.pictureBox12);
+            this.logwindow.Controls.Add(this.pictureBox11);
+            this.logwindow.Controls.Add(this.pictureBox9);
+            this.logwindow.Location = new System.Drawing.Point(0, 0);
+            this.logwindow.Name = "logwindow";
+            this.logwindow.Size = new System.Drawing.Size(10, 10);
+            this.logwindow.TabIndex = 4;
+            this.logwindow.Visible = false;
             // 
             // pictureBox10
             // 
@@ -199,7 +262,7 @@
             this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox9.Location = new System.Drawing.Point(0, 0);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(800, 600);
+            this.pictureBox9.Size = new System.Drawing.Size(10, 10);
             this.pictureBox9.TabIndex = 0;
             this.pictureBox9.TabStop = false;
             // 
@@ -211,7 +274,7 @@
             this.textarea.Size = new System.Drawing.Size(523, 135);
             this.textarea.TabIndex = 0;
             this.textarea.TabStop = false;
-            this.textarea.Click += new System.EventHandler(this.pictureBox9_Click);
+            this.textarea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textarea_MouseDown);
             // 
             // chara_pos2
             // 
@@ -241,9 +304,10 @@
             this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.pictureBox5);
             this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(10, 10);
+            this.panel2.Size = new System.Drawing.Size(800, 600);
             this.panel2.TabIndex = 0;
             this.panel2.Visible = false;
             // 
@@ -305,7 +369,7 @@
             this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_000_0;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.background);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -315,9 +379,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.background.ResumeLayout(false);
+            this.panel_slct.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slctbox_1)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.logwindow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
@@ -342,7 +411,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel background;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox7;
@@ -353,13 +422,18 @@
         private System.Windows.Forms.PictureBox textarea;
         public System.Windows.Forms.PictureBox chara_pos_1;
         public System.Windows.Forms.PictureBox chara_pos2;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel logwindow;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Panel panel_slct;
+        private System.Windows.Forms.PictureBox Slctbox_1;
+        private System.Windows.Forms.PictureBox Slctbox_3;
+        private System.Windows.Forms.PictureBox Slctbox_2;
+        private System.Windows.Forms.PictureBox Slctbox_4;
 
     }
 

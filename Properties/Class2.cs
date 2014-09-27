@@ -97,12 +97,13 @@ namespace WindowsFormsApplication1.Properties
 
         static string[] log = new string[101];
         static string[] name = new string[101];
+        static int Slct_ct = 0;
 
         static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter C_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
 
-        string text = Properties.Resources.opening;    /* ファイルの中身を文字の配列として取得 */
+        string text = Properties.Resources.休息;    /* ファイルの中身を文字の配列として取得 */
 
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -114,19 +115,18 @@ namespace WindowsFormsApplication1.Properties
         /* ■　出力：sentence_ct　次回読み込み用のカウンタの値 　　■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public int s_ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, PictureBox o_bgpic, PictureBox o_chrbox1, PictureBox o_chrbox2, Sister Sis)
+        public int s_ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, PictureBox o_bgpic, PictureBox o_chrbox1, PictureBox o_chrbox2, Sister Sis, Panel Sel_panel, PictureBox Slctbox_1, PictureBox Slctbox_2, PictureBox Slctbox_3, PictureBox Slctbox_4, Panel panel_slct, int Slct_No)
         {
             int i;
             const long D_CHAR_LAST = 100000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
             const short D_WORKVAL_MAX = 100;
-
 
             //フォントオブジェクトの作成
             Font fnt = new Font("メイリオ", 12);
 
             Brush Color = Brushes.White;
 
-            string textlawbuf;                            /* 文章バッファ */
+            string textrowbuf;                            /* 文章バッファ */
 
             count = s_nowsenthead(sentence_ct);   /* テキスト内の初期値を取得 */
             countold = count;
@@ -155,18 +155,62 @@ namespace WindowsFormsApplication1.Properties
                 }
                 else if (text[count] == ':')
                 {
-                    textlawbuf = text.Substring(countold, inrowcount);
+                    textrowbuf = text.Substring(countold, inrowcount);
+
+
+
+                    /*======================*/
+                    /*    選択肢コマンド    */
+                    /*======================*/
+                    if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "選択肢")
+                    {
+                        int work_count;
+
+
+                        Slct_ct = 0;
+
+                        for (work_count = 0; work_count <= 1000; work_count++)
+                        {
+                            if (text[count + work_count]     == '選'
+                             && text[count + work_count + 1] == '択'
+                             && text[count + work_count + 2] == '肢'
+                             && text[count + work_count + 3] == '終')
+                            {
+                                int ct;
+                                for (ct = 0; ct <= work_count; ct++)
+                                {
+                                    if (text[ct] == ';')
+                                    {
+                                        Slct_ct++;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                        count++;
+                        countold = count;
+                        inrowcount = 0;
+                    }
+                    else if (textrowbuf.Length >= 4 && textrowbuf.Substring(0, 3) == "選択肢終")
+                    {
+                        DispSlctBox(Slct_ct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct);
+
+                        count++;
+                        countold = count;
+                        inrowcount = 0;
+                    }
                     
                     /*====================*/
                     /*    文法コマンド    */
                     /*====================*/
-                    if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "end")
+                    else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "end")
                     {
                         /*** 文章表示終了処理 ***/
                         sentence_ct = 0;
                         return sentence_ct;
                     }
-                    else if (textlawbuf.Substring(0, 1) == "[")
+                    else if (textrowbuf.Substring(0, 1) == "[")
                     {
                         /*** ラベル ***/
                         /* ラベルはすっ飛ばして次へ */
@@ -180,15 +224,15 @@ namespace WindowsFormsApplication1.Properties
                         sentence_ct++;
                         inrowcount = 0;
                     }
-                    else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "JMP")
+                    else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "JMP")
                     {
                         /*** ジャンプ ***/
-                        count = text.IndexOf("\r\n" + textlawbuf.Remove(0, 4)) + 2;
+                        count = text.IndexOf("\r\n" + textrowbuf.Remove(0, 4)) + 2;
                         countold = count;
                         sentence_ct = s_getnowsent(count);
                         inrowcount = 0;
                     }
-                    else if (textlawbuf.Length >= 2 && textlawbuf.Substring(0, 2) == "計算")
+                    else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "計算")
                     {
                         /*** 計算 ***/
 
@@ -205,36 +249,36 @@ namespace WindowsFormsApplication1.Properties
                         bool int_flag_2 = false;            /*即値フラグ*/
 
                         /** 計算式左辺取得 **/
-                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        while (textrowbuf.Substring(inrowcount, 1) != " ")
                         {
                             inrowcount++;
                             work_ct++;
                         }
-                        if (work_ct >= 2 && "体力" == textlawbuf.Substring(inrowcountold, work_ct))
+                        if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.HitPoint;
                         }
-                        else if (work_ct >= 2 && "気力" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.EnergyPoint;
                         }
-                        else if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.PassionPoint;
                         }
-                        else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
-                            work_1 = Sis.CorruptionPoint;
+                            work_1 = Sis.MoralPoint;
                         }
-                        else if (work_ct >= 3 && "汎用Ａ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = A_REG;
                         }
-                        else if (work_ct >= 3 && "汎用Ｂ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = B_REG;
                         }
-                        else if (work_ct >= 3 && "汎用Ｃ" == textlawbuf.Substring(inrowcountold, work_ct))
+                        else if (work_ct >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = C_REG;
                         }
@@ -247,7 +291,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcountold = inrowcount;
 
                         /** 計算式等号取得 **/
-                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        while (textrowbuf.Substring(inrowcount, 1) != " ")
                         {
                             inrowcount++;
                             work_2++;
@@ -262,20 +306,20 @@ namespace WindowsFormsApplication1.Properties
                             /* 右辺の項は一つ */
 
                             /** 右辺取得 **/
-                            if ("性欲値" == textlawbuf.Substring(inrowcount - work_ct))
+                            if ("性欲値" == textrowbuf.Substring(inrowcount - work_ct))
                             {
                                 right_1 = Sis.PassionPoint;
                             }
-                            else if ("堕落度" == textlawbuf.Substring(inrowcount - work_ct))
+                            else if ("堕落度" == textrowbuf.Substring(inrowcount - work_ct))
                             {
-                                right_1 = Sis.CorruptionPoint;
+                                right_1 = Sis.MoralPoint;
                             }
                             else
                             {
                                 /* 整数値 */
                                 while (work_value_1 < D_WORKVAL_MAX)
                                 {
-                                    if (textlawbuf.Substring(inrowcountold) == work_value_1.ToString())
+                                    if (textrowbuf.Substring(inrowcountold) == work_value_1.ToString())
                                     {
                                         break;
                                     }
@@ -287,23 +331,23 @@ namespace WindowsFormsApplication1.Properties
                             if (int_flag_1 == true)
                             {
                                 /* 右辺は即値 */
-                                if ("+=" == textlawbuf.Substring(inrowcountold, work_2))
+                                if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue += work_value_1;
                                 }
-                                else if ("-=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue -= work_value_1;
                                 }
-                                else if ("*=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue *= work_value_1;
                                 }
-                                else if ("/=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue /= work_value_1;
                                 }
-                                else if ("<-" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue = work_value_1;
                                 }
@@ -311,23 +355,23 @@ namespace WindowsFormsApplication1.Properties
                             else
                             {
                                 /* 右辺は変数 */
-                                if ("+=" == textlawbuf.Substring(inrowcountold, work_2))
+                                if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue += right_1.CurrentValue;
                                 }
-                                else if ("-=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue -= right_1.CurrentValue;
                                 }
-                                else if ("*=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue *= right_1.CurrentValue;
                                 }
-                                else if ("/=" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue /= right_1.CurrentValue;
                                 }
-                                else if ("<-" == textlawbuf.Substring(inrowcountold, work_2))
+                                else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue;
                                 }
@@ -342,33 +386,33 @@ namespace WindowsFormsApplication1.Properties
                             /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
                             
                             /** 右辺第一項取得 **/
-                            while (textlawbuf.Substring(inrowcount, 1) != ":")
+                            while (textrowbuf.Substring(inrowcount, 1) != ":")
                             {
                                 inrowcount++;
                                 work_ct++;
                             }
-                            if (work_ct >= 2 && "体力" == textlawbuf.Substring(inrowcount, work_ct))
+                            if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcount, work_ct))
                             {
                                 work_1 = Sis.HitPoint;
                             }
-                            else if (work_ct >= 2 && "気力" == textlawbuf.Substring(inrowcount, work_ct))
+                            else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcount, work_ct))
                             {
                                 work_1 = Sis.EnergyPoint;
                             }
-                            else if (work_ct >= 3 && "性欲値" == textlawbuf.Substring(inrowcount, work_ct))
+                            else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcount, work_ct))
                             {
-                                right_1 = Sis.PassionPoint;
+                                work_1 = Sis.PassionPoint;
                             }
-                            else if (work_ct >= 3 && "堕落度" == textlawbuf.Substring(inrowcount, work_ct))
+                            else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcount, work_ct))
                             {
-                                right_1 = Sis.CorruptionPoint;
+                                work_1 = Sis.MoralPoint;
                             }
                             else
                             {
                                 /* 整数値 */
                                 while (work_value_1 < D_WORKVAL_MAX)
                                 {
-                                    if (textlawbuf.Substring(inrowcountold, work_ct) == work_value_1.ToString())
+                                    if (textrowbuf.Substring(inrowcountold, work_ct) == work_value_1.ToString())
                                     {
                                         break;
                                     }
@@ -387,20 +431,20 @@ namespace WindowsFormsApplication1.Properties
                             /* inrowcountoldは、演算子を後で拾うために動かさない */
 
                             /** 右辺第二項取得 **/
-                            if ("性欲値" == textlawbuf.Substring(inrowcount))
+                            if ("性欲値" == textrowbuf.Substring(inrowcount))
                             {
                                 right_2 = Sis.PassionPoint;
                             }
-                            else if ("堕落度" == textlawbuf.Substring(inrowcount))
+                            else if ("堕落度" == textrowbuf.Substring(inrowcount))
                             {
-                                right_2 = Sis.CorruptionPoint;
+                                right_2 = Sis.MoralPoint;
                             }
                             else
                             {
                                 /* 整数値 */
                                 while (work_value_2 < D_WORKVAL_MAX)
                                 {
-                                    if (textlawbuf.Substring(inrowcount) == work_value_2.ToString())
+                                    if (textrowbuf.Substring(inrowcount) == work_value_2.ToString())
                                     {
                                         break;
                                     }
@@ -413,19 +457,19 @@ namespace WindowsFormsApplication1.Properties
                             if (int_flag_1 == true && int_flag_2 == true)
                             {
                                 /* 右辺の両項とも即値 */
-                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                if ("+" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 + work_value_2;
                                 }
-                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("-" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 - work_value_2;
                                 }
-                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("*" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 * work_value_2;
                                 }
-                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("/" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 / work_value_2;
                                 }
@@ -433,19 +477,19 @@ namespace WindowsFormsApplication1.Properties
                             else if (int_flag_1 == true && int_flag_2 == false)
                             {
                                 /* 右辺の第一項：即値　第二項：変数 */
-                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                if ("+" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 + right_2.CurrentValue;
                                 }
-                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("-" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 - right_2.CurrentValue;
                                 }
-                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("*" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 * right_2.CurrentValue;
                                 }
-                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("/" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = work_value_1 / right_2.CurrentValue;
                                 }
@@ -453,19 +497,19 @@ namespace WindowsFormsApplication1.Properties
                             else if (int_flag_1 == false && int_flag_2 == true)
                             {
                                 /* 右辺の第一項：即値　第二項：変数 */
-                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                if ("+" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue + work_value_2;
                                 }
-                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("-" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue - work_value_2;
                                 }
-                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("*" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue * work_value_2;
                                 }
-                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("/" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue / work_value_2;
                                 }
@@ -473,19 +517,19 @@ namespace WindowsFormsApplication1.Properties
                             else
                             {
                                 /* 右辺の両項とも変数 */
-                                if ("+" == textlawbuf.Substring(inrowcountold, 1))
+                                if ("+" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue + right_2.CurrentValue;
                                 }
-                                else if ("-" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("-" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue - right_2.CurrentValue;
                                 }
-                                else if ("*" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("*" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue * right_2.CurrentValue;
                                 }
-                                else if ("/" == textlawbuf.Substring(inrowcountold, 1))
+                                else if ("/" == textrowbuf.Substring(inrowcountold, 1))
                                 {
                                     work_1.CurrentValue = right_1.CurrentValue / right_2.CurrentValue;
                                 }
@@ -504,7 +548,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcountold = 0;
 
                     }
-                    else if (textlawbuf.Length >= 3 && textlawbuf.Substring(0, 3) == "If(")
+                    else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "If(")
                     {
                         /*** 条件分岐 ***/
 
@@ -520,18 +564,26 @@ namespace WindowsFormsApplication1.Properties
                         bool int_flag = false;
 
                         /** 条件左辺取得 **/
-                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        while (textrowbuf.Substring(inrowcount, 1) != " ")
                         {
                             inrowcount++;
                             work_ct_1++;
                         }
-                        if (work_ct_1 >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct_1))
+                        if (work_ct_1 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = Sis.HitPoint;
+                        }
+                        else if (work_ct_1 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = Sis.EnergyPoint;
+                        }
+                        else if (work_ct_1 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_1))
                         {
                             work_1 = Sis.PassionPoint;
                         }
-                        else if (work_ct_1 >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct_1))
+                        else if (work_ct_1 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_1))
                         {
-                            work_1 = Sis.CorruptionPoint;
+                            work_1 = Sis.MoralPoint;
                         }
                         else
                         {
@@ -542,7 +594,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcountold = inrowcount;
 
                         /** 比較演算子取得 **/
-                        while (textlawbuf.Substring(inrowcount, 1) != " ")
+                        while (textrowbuf.Substring(inrowcount, 1) != " ")
                         {
                             inrowcount++;
                             work_2++;
@@ -553,32 +605,52 @@ namespace WindowsFormsApplication1.Properties
 
                         /** 条件右辺取得 **/
                         /* 文字数取得 */
-                        while (textlawbuf.Substring(inrowcountold + work_ct_2, 1) != " ")
+                        while (textrowbuf.Substring(inrowcountold + work_ct_2, 1) != " ")
                         {
                             inrowcount++;
                             work_ct_2++;
                         }
-                        if (work_ct_2 >= 2 && "体力" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        if (work_ct_2 >= 2 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5 = Sis.HitPoint;
                             int_flag = false;
                         }
-                        else if (work_ct_2 >= 2 && "気力" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.HitPoint;
+                            int_flag = false;
+                        }
+                        if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.HitPoint;
+                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5 = Sis.EnergyPoint;
                             int_flag = false;
                         }
-                        else if (work_ct_2 >= 3 && "性欲値" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        else if (work_ct_2 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5 = Sis.PassionPoint;
                             int_flag = false;
                         }
-                        else if (work_ct_2 >= 3 && "堕落度" == textlawbuf.Substring(inrowcountold, work_ct_2))
+                        else if (work_ct_2 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
-                            work_5 = Sis.CorruptionPoint;
+                            work_5 = Sis.MoralPoint;
                             int_flag = false;
                         }
-                        else if (textlawbuf.Length >= inrowcountold + 4 && textlawbuf.Substring(inrowcountold, work_ct_2) == "true")
+                        else if (work_ct_2 >= 3 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = Sis.MoralPoint;
+                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 3 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5.CurrentValue = Slct_No;
+                            int_flag = false;
+                        }
+                        else if (textrowbuf.Length >= inrowcountold + 4 && textrowbuf.Substring(inrowcountold, work_ct_2) == "true")
                         {
                             /* true (bool) */
                             /* bool値は、true⇒1　false⇒0 と変換して使用する */
@@ -586,7 +658,7 @@ namespace WindowsFormsApplication1.Properties
                             work_value = 1;
                             int_flag = true;
                         }
-                        else if (textlawbuf.Length >= inrowcountold + 5 && textlawbuf.Substring(inrowcountold, work_ct_2) == "false")
+                        else if (textrowbuf.Length >= inrowcountold + 5 && textrowbuf.Substring(inrowcountold, work_ct_2) == "false")
                         {
                             /* false (bool) */
 
@@ -598,7 +670,7 @@ namespace WindowsFormsApplication1.Properties
                             /* 整数値 */
                             while (work_value < D_WORKVAL_MAX)
                             {
-                                if (textlawbuf.Substring(inrowcountold, work_ct_2) == work_value.ToString())
+                                if (textrowbuf.Substring(inrowcountold, work_ct_2) == work_value.ToString())
                                 {
                                     break;
                                 }
@@ -610,7 +682,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount += 3;
 
                         /** ジャンプ先ラベル文字数取得 **/
-                        while (textlawbuf.Substring(inrowcount + work_4, 1) != "]")
+                        while (textrowbuf.Substring(inrowcount + work_4, 1) != "]")
                         {
                             work_4++;
                         }
@@ -620,11 +692,11 @@ namespace WindowsFormsApplication1.Properties
 
                         if (int_flag == false)
                         {
-                            if ("<" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
                                 if (work_1.CurrentValue < work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -636,12 +708,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("<=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue <= work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -653,12 +725,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if (">" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue > work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -670,12 +742,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if (">=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue >= work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -687,12 +759,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("==" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue == work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -704,12 +776,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("!=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue != work_5.CurrentValue)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -727,11 +799,11 @@ namespace WindowsFormsApplication1.Properties
                         {
                             int_flag = false;
 
-                            if ("<" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
                                 if (work_1.CurrentValue < work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -743,12 +815,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("<=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue <= work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -760,12 +832,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if (">" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue > work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -777,12 +849,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if (">=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue >= work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -794,12 +866,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("==" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue == work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -811,12 +883,12 @@ namespace WindowsFormsApplication1.Properties
                                     count++;
                                 }
                             }
-                            else if ("!=" == textlawbuf.Substring(5 + work_ct_1, work_2))
+                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
                             {
 
                                 if (work_1.CurrentValue != work_value)
                                 {
-                                    string aiueo = "\r\n" + textlawbuf.Substring(inrowcount, work_4);
+                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
                                     count = text.IndexOf(aiueo) + 2;
                                 }
                                 else
@@ -835,11 +907,10 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         inrowcountold = 0;
                     }
-
                     /*======================*/
                     /*    発言者コマンド    */
                     /*======================*/
-                    else if (textlawbuf == "Text")
+                    else if (textrowbuf == "Text")
                     {
                         Color = Brushes.White;
 
@@ -849,7 +920,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         name[0] = "Text";
                     }
-                    else if (textlawbuf == "サラ")
+                    else if (textrowbuf == "サラ")
                     {
                         Color = Brushes.Pink;
                         s_disptachie(o_chrbox1, D_CHR_SARA_00);
@@ -861,7 +932,7 @@ namespace WindowsFormsApplication1.Properties
                         name[0] = "サラ";
 
                     }
-                    else if (textlawbuf == "マリー")
+                    else if (textrowbuf == "マリー")
                     {
                         Color = Brushes.Yellow;
 
@@ -873,7 +944,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         name[0] = "マリー";
                     }
-                    else if (textlawbuf == "リディ")
+                    else if (textrowbuf == "リディ")
                     {
                         Color = Brushes.Orange;
 
@@ -885,7 +956,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         name[0] = "リディ";
                     }
-                    else if (textlawbuf == "魔物")
+                    else if (textrowbuf == "魔物")
                     {
                         Color = Brushes.Purple;
 
@@ -897,7 +968,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         name[0] = "魔物";
                     }
-                    else if (textlawbuf == "Plus")
+                    else if (textrowbuf == "Plus")
                     {
                         Color = Brushes.Blue;
 
@@ -909,7 +980,7 @@ namespace WindowsFormsApplication1.Properties
                         inrowcount = 0;
                         name[0] = "Plus";
                     }
-                    else if (textlawbuf == "Minus")
+                    else if (textrowbuf == "Minus")
                     {
                         Color = Brushes.Red;
 
@@ -925,28 +996,97 @@ namespace WindowsFormsApplication1.Properties
                 else if (text[count] == ';')
                 {
 
-                    //描画先とするImageオブジェクトを作成する
-                    Bitmap canvas = new Bitmap(o_bgpic.Width, o_bgpic.Height);
-                    //ImageオブジェクトのGraphicsオブジェクトを作成する
-                    Graphics g = Graphics.FromImage(canvas);
+                    if ( Slct_ct != 0 )
+                    {
+                        /* 選択肢の表示 */
+                        Bitmap canvas;
+                        Graphics g1, g2, g3, g4;
 
-                    textlawbuf = text.Substring(countold, inrowcount);
+                        textrowbuf = text.Substring(countold + 2, inrowcount - 2);
 
-                    g.DrawString(textlawbuf, fnt, Color, 0, 0);
-                    //PictureBox1に表示する
-                    o_bgpic.Image = canvas;
+                        //描画先とするImageオブジェクトを作成する
+                        if (Slct_ct == 4)
+                        {
+                            canvas = new Bitmap(Slctbox_1.Width, Slctbox_1.Height);
+                            g1 = Graphics.FromImage(canvas);
+                            g1.DrawString(textrowbuf, fnt, Color, 10, 17);
 
-                    //リソースを解放する
-                    fnt.Dispose();
-                    g.Dispose();
+                            //表示する
+                            Slctbox_1.Image = canvas;
+                            g1.Dispose();
+                        }
+                        else if (Slct_ct == 3)
+                        {
+                            canvas = new Bitmap(Slctbox_2.Width, Slctbox_2.Height);
+                            g2 = Graphics.FromImage(canvas);
+                            g2.DrawString(textrowbuf, fnt, Color, 10, 17);
+                            //表示する
+                            Slctbox_2.Image = canvas;
+                            g2.Dispose();
+                        }
+                        else if (Slct_ct == 2)
+                        {
+                            canvas = new Bitmap(Slctbox_3.Width, Slctbox_3.Height);
+                            g3 = Graphics.FromImage(canvas);
+                            g3.DrawString(textrowbuf, fnt, Color, 10, 17);
+                            //表示する
+                            Slctbox_3.Image = canvas;
+                            g3.Dispose();
+                        }
+                        else
+                        {
+                            canvas = new Bitmap(Slctbox_4.Width, Slctbox_4.Height);
+                            g4 = Graphics.FromImage(canvas);
+                            g4.DrawString(textrowbuf, fnt, Color, 10, 17);
+                            //表示する
+                            Slctbox_4.Image = canvas;
+                            g4.Dispose();
+                        }
+                        //ImageオブジェクトのGraphicsオブジェクトを作成する
 
-                    count ++;
-                    countold = count;
-                    sentence_ct++;
-                    inrowcount = 0;
-                    log[0] = textlawbuf;
-                    s_BacklogRenew(log_ct_use);
-                    break;
+
+
+                        count++;
+                        countold = count;
+                        inrowcount = 0;
+                        Slct_ct--;
+                        if (Slct_ct == 0)
+                        {
+                            count += 2;
+                            countold = count;
+                            sentence_ct++;
+                            //リソースを解放する
+                            fnt.Dispose();
+                            /* 選択肢の表示終了 */
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        /* ナレーション・セリフの表示 */
+                        //描画先とするImageオブジェクトを作成する
+                        Bitmap canvas = new Bitmap(o_bgpic.Width, o_bgpic.Height);
+                        //ImageオブジェクトのGraphicsオブジェクトを作成する
+                        Graphics g = Graphics.FromImage(canvas);
+
+                        textrowbuf = text.Substring(countold, inrowcount);
+
+                        g.DrawString(textrowbuf, fnt, Color, 0, 0);
+                        //PictureBox1に表示する
+                        o_bgpic.Image = canvas;
+
+                        //リソースを解放する
+                        fnt.Dispose();
+                        g.Dispose();
+
+                        count++;
+                        countold = count;
+                        sentence_ct++;
+                        inrowcount = 0;
+                        log[0] = textrowbuf;
+                        s_BacklogRenew(log_ct_use);
+                        break;
+                    }
                 }
                 else if ( count >= 2 && checkrowlast(count) == 1 && checkrowlast(count - 2) == 1 )
                 {
@@ -1429,6 +1569,75 @@ namespace WindowsFormsApplication1.Properties
             var test_4 = log[3];
 
             //return log_ct_use;
+        }
+
+
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_BacklogRenew　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：バックログ用文字列配列を更新する処理    　 　 ■ */
+        /* ■　入力：Slct_ct                                 　 　 ■ */
+        /* ■　出力：なし                                    　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        void DispSlctBox(int Slct_ct, PictureBox Slctbox_1, PictureBox Slctbox_2, PictureBox Slctbox_3, PictureBox Slctbox_4, Panel panel_slct)
+        {
+
+
+            int i;
+
+            // 選択肢ボックス位置
+            Point Position = new Point(Slctbox_1.Location.X, Slctbox_1.Location.Y); // 選択肢ボックス位置
+
+            if (Slct_ct == 4)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = true;
+                Slctbox_4.Visible = true;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 100;
+                Slctbox_1.Location = Position;
+                Position.Y = 190;
+                Slctbox_2.Location = Position;
+                Position.Y = 280;
+                Slctbox_3.Location = Position;
+                Position.Y = 370;
+                Slctbox_4.Location = Position;
+
+            }
+            else if (Slct_ct == 3)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = true;
+                Slctbox_4.Visible = false;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 130;
+                Slctbox_1.Location = Position;
+                Position.Y = 235;
+                Slctbox_2.Location = Position;
+                Position.Y = 340;
+                Slctbox_3.Location = Position;
+                
+            }
+            else if (Slct_ct == 2)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = false;
+                Slctbox_4.Visible = false;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 145;
+                Slctbox_1.Location = Position;
+                Position.Y = 325;
+                Slctbox_2.Location = Position;
+            }
+
+
+            panel_slct.Visible = true;
         }
     }
 }

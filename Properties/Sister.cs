@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1.Properties
         public Parameter EnergyPoint { get; set; }
         public Parameter MoralPoint { get; set; }
         public Parameter PassionPoint { get; set; }
-        public Parameter CorruptionPoint { get; set; }
         public Parameter MagicPoint { get; set; }
         public int ChargedMagicPoint { get; set; }
 
@@ -29,7 +28,6 @@ namespace WindowsFormsApplication1.Properties
             EnergyPoint = new Parameter();
             MoralPoint = new Parameter();
             PassionPoint = new Parameter();
-            CorruptionPoint = new Parameter();
             MagicPoint = new Parameter();
 
             Money = 0;
