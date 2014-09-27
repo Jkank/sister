@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApplication1.Properties
+namespace DoujinGameProject.Properties
 {
     public class Skill
     {

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.Properties
+namespace DoujinGameProject.Properties
 {
     //★★スクリプトを書く際の注意★★////////////////////////////////
     ////○ラベルを切る行には他のことを書いてはいけない。

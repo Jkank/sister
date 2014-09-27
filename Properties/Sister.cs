@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApplication1.Properties
+namespace DoujinGameProject.Properties
 {
     // セーブデータ読み込み時に生成するクラス
     public class Sister

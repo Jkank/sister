@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace DoujinGameProject
 {
     partial class doujin_game_sharp
     {
@@ -84,7 +84,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_000_0;
+            this.pictureBox1.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_000_0;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Location = new System.Drawing.Point(300, 317);
             this.pictureBox1.Name = "pictureBox1";
@@ -99,7 +99,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_001_0;
+            this.pictureBox2.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_001_0;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox2.Location = new System.Drawing.Point(300, 403);
             this.pictureBox2.Name = "pictureBox2";
@@ -109,7 +109,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_001_0;
+            this.pictureBox3.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_001_0;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox3.Location = new System.Drawing.Point(300, 489);
             this.pictureBox3.Name = "pictureBox3";
@@ -119,7 +119,7 @@
             // 
             // background
             // 
-            this.background.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_001_0;
+            this.background.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_bg_001_0;
             this.background.Controls.Add(this.panel_slct);
             this.background.Controls.Add(this.panel3);
             this.background.Controls.Add(this.panel2);
@@ -313,7 +313,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_007_0;
+            this.pictureBox8.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_007_0;
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox8.Location = new System.Drawing.Point(562, 442);
             this.pictureBox8.Name = "pictureBox8";
@@ -323,7 +323,7 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_006_0;
+            this.pictureBox7.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_006_0;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox7.Location = new System.Drawing.Point(456, 442);
             this.pictureBox7.Name = "pictureBox7";
@@ -333,7 +333,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_005_0;
+            this.pictureBox6.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_005_0;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox6.Location = new System.Drawing.Point(350, 442);
             this.pictureBox6.Name = "pictureBox6";
@@ -343,7 +343,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_004_0;
+            this.pictureBox5.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_004_0;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox5.Location = new System.Drawing.Point(244, 442);
             this.pictureBox5.Name = "pictureBox5";
@@ -353,7 +353,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_btn_003_0;
+            this.pictureBox4.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_003_0;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox4.Location = new System.Drawing.Point(138, 442);
             this.pictureBox4.Name = "pictureBox4";
@@ -366,7 +366,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.g_bg_000_0;
+            this.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_bg_000_0;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.background);
