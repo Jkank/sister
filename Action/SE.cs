@@ -8,8 +8,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DoujinGameProject.Data;
 
-namespace DoujinGameProject.Properties
+namespace DoujinGameProject.Action
 {
     //★★スクリプトを書く際の注意★★////////////////////////////////
     ////○ラベルを切る行には他のことを書いてはいけない。
@@ -54,46 +55,14 @@ namespace DoujinGameProject.Properties
     ////○コメント　"//"でその行のそれ以降の部分は無視される。
     //////////////////////////////////////////////////////////////////
 
-    public class SE
+    public static class SE
     {
-
-        /* ------------------ */
-        /*      定数定義      */
-        /* ------------------ */
-
-        /* キャラ立ち絵番号 */
-        public const int D_CHR_SARA_00 = 0;
-        public const int D_CHR_SARA_01 = 1;
-        public const int D_CHR_SARA_02 = 2;
-        public const int D_CHR_SARA_03 = 3;
-        public const int D_CHR_SARA_04 = 4;
-        public const int D_CHR_SARA_05 = 5;
-        public const int D_CHR_SARA_06 = 6;
-        public const int D_CHR_SARA_07 = 7;
-        public const int D_CHR_SARA_08 = 8;
-        public const int D_CHR_SARA_09 = 9;
-        public const int D_CHR_SARA_10 = 10;
-        public const int D_CHR_SARA_11 = 11;
-        public const int D_CHR_SARA_12 = 12;
-        public const int D_CHR_SARA_13 = 13;
-        public const int D_CHR_SARA_14 = 14;
-        public const int D_CHR_SARA_15 = 15;
-        public const int D_CHR_SARA_16 = 16;
-        public const int D_CHR_SARA_17 = 17;
-        public const int D_CHR_SARA_18 = 18;
-        public const int D_CHR_SARA_19 = 19;
-        public const int D_CHR_DEVIL_00 = 20;
-        public const int D_CHR_DEVIL_01 = 21;
-        public const int D_CHR_DEVIL_02 = 22;
-        public const int D_CHR_DEVIL_03 = 23;
-        public const int D_CHR_DEVIL_04 = 24;
-        public const int D_CHR_DEVIL_05 = 25;
 
         /* パラメーター */
 
-        int count = 0;              /* テキストファイル全体の中でのカウンタ */
-        int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
-        int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
+        static int count = 0;              /* テキストファイル全体の中でのカウンタ */
+        static int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
+        static int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
 
         static string[] log = new string[101];
         static string[] name = new string[101];
@@ -103,7 +72,7 @@ namespace DoujinGameProject.Properties
         static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter C_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
 
-        string text = Properties.Resources.休息;    /* ファイルの中身を文字の配列として取得 */
+        static string text = Properties.Resources.休息;    /* ファイルの中身を文字の配列として取得 */
 
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -115,20 +84,23 @@ namespace DoujinGameProject.Properties
         /* ■　出力：sentence_ct　次回読み込み用のカウンタの値 　　■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public int s_ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, PictureBox o_bgpic, PictureBox o_chrbox1, PictureBox o_chrbox2, Sister Sis, Panel Sel_panel, PictureBox Slctbox_1, PictureBox Slctbox_2, PictureBox Slctbox_3, PictureBox Slctbox_4, Panel panel_slct, int Slct_No)
+        public static int ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, int Slct_No)
         {
             int i;
             const long D_CHAR_LAST = 100000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
             const short D_WORKVAL_MAX = 100;
 
             //フォントオブジェクトの作成
-            Font fnt = new Font("メイリオ", 12);
+            Font fnt = new Font(Defines.FontName, Defines.MainTextFontSize);
 
             Brush Color = Brushes.White;
 
+            //SisterData取得
+            Sister Sis = GameData.SisterData;
+
             string textrowbuf;                            /* 文章バッファ */
 
-            count = s_nowsenthead(sentence_ct);   /* テキスト内の初期値を取得 */
+            count = nowSentHead(sentence_ct);   /* テキスト内の初期値を取得 */
             countold = count;
 
             for (i = log_ct_use + 1; i <= 100; i++)
@@ -139,13 +111,13 @@ namespace DoujinGameProject.Properties
 
             while (count < D_CHAR_LAST)
             {
-                if (this.text[count] == '/' && text[count + 1] == '/')
+                if (text[count] == '/' && text[count + 1] == '/')
                 {
 
                     /*====================*/
                     /*   コメントアウト   */
                     /*====================*/
-                    while (checkrowlast(count) == 0)
+                    while (checkRowLast(count) == 0)
                     {
                         count++;
                     }
@@ -171,7 +143,7 @@ namespace DoujinGameProject.Properties
 
                         for (work_count = 0; work_count <= 1000; work_count++)
                         {
-                            if (text[count + work_count]     == '選'
+                            if (text[count + work_count] == '選'
                              && text[count + work_count + 1] == '択'
                              && text[count + work_count + 2] == '肢'
                              && text[count + work_count + 3] == '終')
@@ -194,13 +166,13 @@ namespace DoujinGameProject.Properties
                     }
                     else if (textrowbuf.Length >= 4 && textrowbuf.Substring(0, 3) == "選択肢終")
                     {
-                        DispSlctBox(Slct_ct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct);
+                        Program.Doujin_game_sharp.dispSlctBox(Slct_ct);
 
                         count++;
                         countold = count;
                         inrowcount = 0;
                     }
-                    
+
                     /*====================*/
                     /*    文法コマンド    */
                     /*====================*/
@@ -229,7 +201,7 @@ namespace DoujinGameProject.Properties
                         /*** ジャンプ ***/
                         count = text.IndexOf("\r\n" + textrowbuf.Remove(0, 4)) + 2;
                         countold = count;
-                        sentence_ct = s_getnowsent(count);
+                        sentence_ct = getNowSent(count);
                         inrowcount = 0;
                     }
                     else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "計算")
@@ -325,7 +297,7 @@ namespace DoujinGameProject.Properties
                                     }
                                     work_value_1++;
                                     int_flag_1 = true;
-                                }  
+                                }
                             }
 
                             if (int_flag_1 == true)
@@ -384,7 +356,7 @@ namespace DoujinGameProject.Properties
 
                             inrowcountold = inrowcount;
                             /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
-                            
+
                             /** 右辺第一項取得 **/
                             while (textrowbuf.Substring(inrowcount, 1) != ":")
                             {
@@ -903,7 +875,7 @@ namespace DoujinGameProject.Properties
 
                         }
                         countold = count;
-                        sentence_ct = s_getnowsent(count);
+                        sentence_ct = getNowSent(count);
                         inrowcount = 0;
                         inrowcountold = 0;
                     }
@@ -923,7 +895,7 @@ namespace DoujinGameProject.Properties
                     else if (textrowbuf == "サラ")
                     {
                         Color = Brushes.Pink;
-                        s_disptachie(o_chrbox1, D_CHR_SARA_00);
+                        Program.Doujin_game_sharp.setCharacterImageLeft(Defines.CharacterImageID.D_CHR_SARA_00);
 
                         count++;
                         countold = count;
@@ -996,52 +968,40 @@ namespace DoujinGameProject.Properties
                 else if (text[count] == ';')
                 {
 
-                    if ( Slct_ct != 0 )
+                    if (Slct_ct != 0)
                     {
                         /* 選択肢の表示 */
                         Bitmap canvas;
-                        Graphics g1, g2, g3, g4;
+                        Graphics g1;
+                        int no = 0;
 
                         textrowbuf = text.Substring(countold + 2, inrowcount - 2);
 
                         //描画先とするImageオブジェクトを作成する
-                        if (Slct_ct == 4)
-                        {
-                            canvas = new Bitmap(Slctbox_1.Width, Slctbox_1.Height);
-                            g1 = Graphics.FromImage(canvas);
-                            g1.DrawString(textrowbuf, fnt, Color, 10, 17);
+                        canvas = new Bitmap(Defines.SelectBoxWidth, Defines.SelectBoxHeight);
+                        g1 = Graphics.FromImage(canvas);
+                        g1.DrawString(textrowbuf, fnt, Color, 10, 17);
 
-                            //表示する
-                            Slctbox_1.Image = canvas;
-                            g1.Dispose();
-                        }
-                        else if (Slct_ct == 3)
+                        //表示する
+                        switch (Slct_ct)
                         {
-                            canvas = new Bitmap(Slctbox_2.Width, Slctbox_2.Height);
-                            g2 = Graphics.FromImage(canvas);
-                            g2.DrawString(textrowbuf, fnt, Color, 10, 17);
-                            //表示する
-                            Slctbox_2.Image = canvas;
-                            g2.Dispose();
+                            case 4:
+                                no = 1;
+                                break;
+                            case 3:
+                                no = 2;
+                                break;
+                            case 2:
+                                no = 3;
+                                break;
+                            case 1:
+                                no = 4;
+                                break;
+                            default:
+                                break;
                         }
-                        else if (Slct_ct == 2)
-                        {
-                            canvas = new Bitmap(Slctbox_3.Width, Slctbox_3.Height);
-                            g3 = Graphics.FromImage(canvas);
-                            g3.DrawString(textrowbuf, fnt, Color, 10, 17);
-                            //表示する
-                            Slctbox_3.Image = canvas;
-                            g3.Dispose();
-                        }
-                        else
-                        {
-                            canvas = new Bitmap(Slctbox_4.Width, Slctbox_4.Height);
-                            g4 = Graphics.FromImage(canvas);
-                            g4.DrawString(textrowbuf, fnt, Color, 10, 17);
-                            //表示する
-                            Slctbox_4.Image = canvas;
-                            g4.Dispose();
-                        }
+                        Program.Doujin_game_sharp.setSelectBoxImage(no, canvas);
+                        g1.Dispose();
                         //ImageオブジェクトのGraphicsオブジェクトを作成する
 
 
@@ -1065,7 +1025,7 @@ namespace DoujinGameProject.Properties
                     {
                         /* ナレーション・セリフの表示 */
                         //描画先とするImageオブジェクトを作成する
-                        Bitmap canvas = new Bitmap(o_bgpic.Width, o_bgpic.Height);
+                        Bitmap canvas = new Bitmap(Defines.TextAreaWidth, Defines.TextAreaHeight);
                         //ImageオブジェクトのGraphicsオブジェクトを作成する
                         Graphics g = Graphics.FromImage(canvas);
 
@@ -1073,7 +1033,7 @@ namespace DoujinGameProject.Properties
 
                         g.DrawString(textrowbuf, fnt, Color, 0, 0);
                         //PictureBox1に表示する
-                        o_bgpic.Image = canvas;
+                        Program.Doujin_game_sharp.setTextAreaImage(canvas);
 
                         //リソースを解放する
                         fnt.Dispose();
@@ -1084,11 +1044,11 @@ namespace DoujinGameProject.Properties
                         sentence_ct++;
                         inrowcount = 0;
                         log[0] = textrowbuf;
-                        s_BacklogRenew(log_ct_use);
+                        backlogRenew(log_ct_use);
                         break;
                     }
                 }
-                else if ( count >= 2 && checkrowlast(count) == 1 && checkrowlast(count - 2) == 1 )
+                else if (count >= 2 && checkRowLast(count) == 1 && checkRowLast(count - 2) == 1)
                 {
                     /* 空白行 */
                     count += 2;
@@ -1112,7 +1072,7 @@ namespace DoujinGameProject.Properties
         /* ■　入力：                                        　 　 ■ */
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public void s_ScrollInit(int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
+        public static void ScrollInit(int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
         {
             //フォントオブジェクトの作成
             Font fnt = new Font("メイリオ", 12);
@@ -1214,7 +1174,7 @@ namespace DoujinGameProject.Properties
         /* ■　入力：                                        　 　 ■ */
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public void s_ScrollRedraw(int log_ct, int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
+        public static void ScrollRedraw(int log_ct, int log_ct_use, PictureBox o_bgpic_0, PictureBox o_bgpic_1, PictureBox o_bgpic_2, PictureBox o_bgpic_3, PictureBox o_bgpic_4)
         {
             //フォントオブジェクトの作成
             Font fnt = new Font("メイリオ", 12);
@@ -1323,7 +1283,7 @@ namespace DoujinGameProject.Properties
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public int s_nowsenthead(int ct)
+        private static int nowSentHead(int ct)
         {
             int i = 0;
             int k = 0;
@@ -1333,7 +1293,7 @@ namespace DoujinGameProject.Properties
             for (j = 0; j < ct; j++)
             {
                 /* ;が来るまで開始位置からのカウンタを進める */
-                while( i != -1 )
+                while (i != -1)
                 {
                     if (text[i] == ';' || text[i] == ':')
                     {
@@ -1342,9 +1302,9 @@ namespace DoujinGameProject.Properties
                         /* コメント外だったら文章のカウンタをインクリメント */
 
                         k = i;
-                        while ( text[k] != '/' || text[k+1] != '/' )
+                        while (text[k] != '/' || text[k + 1] != '/')
                         {
-                            if ( text[k] == '\r' && text[k+1] == '\n' )
+                            if (text[k] == '\r' && text[k + 1] == '\n')
                             {
                                 /* 前回のコメント記号より前に改行 ⇒ 使用中の;や: */
                                 mark_active = true;
@@ -1353,7 +1313,7 @@ namespace DoujinGameProject.Properties
                             else
                             {
                                 k--;
-                                if ( k <= 0 )
+                                if (k <= 0)
                                 {
                                     mark_active = false;
                                     break;
@@ -1400,7 +1360,7 @@ namespace DoujinGameProject.Properties
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public int s_getnowsent(int ct)
+        private static int getNowSent(int ct)
         {
             int i = 0;
             int j;
@@ -1409,11 +1369,11 @@ namespace DoujinGameProject.Properties
 
             for (j = 0; j < (ct); j++)
             {
-//                if ( text[j] == ':' || text[j] == ';' )
-//                {
-//                    i++;
-//                }
-                if ( text[j] == ':' || text[j] == ';' )
+                //                if ( text[j] == ':' || text[j] == ';' )
+                //                {
+                //                    i++;
+                //                }
+                if (text[j] == ':' || text[j] == ';')
                 {
                     k = j;
                     while (text[k] != '/' || text[k + 1] != '/')
@@ -1447,13 +1407,13 @@ namespace DoujinGameProject.Properties
 
                 }
             }
-            
-                return i;
+
+            return i;
         }
 
 
 
-        public int checkrowlast(int ct)
+        private static int checkRowLast(int ct)
         {
             /* 改行判定処理 */
             /* コメントアウトの終端を判定するのに用いる */
@@ -1474,48 +1434,91 @@ namespace DoujinGameProject.Properties
         /* ■　入力：                                        　 　 ■ */
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-
-        public void s_disptachie(PictureBox chrbox, int chrnum)
+#warning 廃止予定
+        private static void disptachie(PictureBox chrbox, Defines.CharacterImageID chrnum)
         {
             switch (chrnum)
             {
-                case D_CHR_SARA_00:
+                case Defines.CharacterImageID.D_CHR_SARA_00:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_01:
+                case Defines.CharacterImageID.D_CHR_SARA_01:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_02:
+                case Defines.CharacterImageID.D_CHR_SARA_02:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_03:
+                case Defines.CharacterImageID.D_CHR_SARA_03:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_04:
+                case Defines.CharacterImageID.D_CHR_SARA_04:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_05:
+                case Defines.CharacterImageID.D_CHR_SARA_05:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_06:
+                case Defines.CharacterImageID.D_CHR_SARA_06:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_07:
+                case Defines.CharacterImageID.D_CHR_SARA_07:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_08:
+                case Defines.CharacterImageID.D_CHR_SARA_08:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_09:
+                case Defines.CharacterImageID.D_CHR_SARA_09:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_10:
+                case Defines.CharacterImageID.D_CHR_SARA_10:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-                case D_CHR_SARA_11:
+                case Defines.CharacterImageID.D_CHR_SARA_11:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
-
+                case Defines.CharacterImageID.D_CHR_SARA_12:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_13:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_14:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_15:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_16:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_17:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_18:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_19:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_00:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_01:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_02:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_03:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_04:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_05:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                default:
+                    break;
             }
             chrbox.Visible = true;
         }
@@ -1528,7 +1531,7 @@ namespace DoujinGameProject.Properties
         /* ■　出力：log_ct                                  　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public void s_BacklogRenew(int log_ct_use)
+        private static void backlogRenew(int log_ct_use)
         {
             int i;
             string test_1;
@@ -1569,75 +1572,6 @@ namespace DoujinGameProject.Properties
             var test_4 = log[3];
 
             //return log_ct_use;
-        }
-
-
-
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：s_BacklogRenew　　　　　　 　　　　　　　 　■ */
-        /* ■　内容：バックログ用文字列配列を更新する処理    　 　 ■ */
-        /* ■　入力：Slct_ct                                 　 　 ■ */
-        /* ■　出力：なし                                    　 　 ■ */
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        void DispSlctBox(int Slct_ct, PictureBox Slctbox_1, PictureBox Slctbox_2, PictureBox Slctbox_3, PictureBox Slctbox_4, Panel panel_slct)
-        {
-
-
-            int i;
-
-            // 選択肢ボックス位置
-            Point Position = new Point(Slctbox_1.Location.X, Slctbox_1.Location.Y); // 選択肢ボックス位置
-
-            if (Slct_ct == 4)
-            {
-                Slctbox_1.Visible = true;
-                Slctbox_2.Visible = true;
-                Slctbox_3.Visible = true;
-                Slctbox_4.Visible = true;
-
-                Position.X = 175;       /* fail safe のためX座標も再設定 */
-                Position.Y = 100;
-                Slctbox_1.Location = Position;
-                Position.Y = 190;
-                Slctbox_2.Location = Position;
-                Position.Y = 280;
-                Slctbox_3.Location = Position;
-                Position.Y = 370;
-                Slctbox_4.Location = Position;
-
-            }
-            else if (Slct_ct == 3)
-            {
-                Slctbox_1.Visible = true;
-                Slctbox_2.Visible = true;
-                Slctbox_3.Visible = true;
-                Slctbox_4.Visible = false;
-
-                Position.X = 175;       /* fail safe のためX座標も再設定 */
-                Position.Y = 130;
-                Slctbox_1.Location = Position;
-                Position.Y = 235;
-                Slctbox_2.Location = Position;
-                Position.Y = 340;
-                Slctbox_3.Location = Position;
-                
-            }
-            else if (Slct_ct == 2)
-            {
-                Slctbox_1.Visible = true;
-                Slctbox_2.Visible = true;
-                Slctbox_3.Visible = false;
-                Slctbox_4.Visible = false;
-
-                Position.X = 175;       /* fail safe のためX座標も再設定 */
-                Position.Y = 145;
-                Slctbox_1.Location = Position;
-                Position.Y = 325;
-                Slctbox_2.Location = Position;
-            }
-
-
-            panel_slct.Visible = true;
         }
     }
 }

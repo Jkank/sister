@@ -7,6 +7,8 @@ namespace DoujinGameProject
 {
     static class Program
     {
+        public static doujin_game_sharp Doujin_game_sharp;
+
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
@@ -15,7 +17,8 @@ namespace DoujinGameProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new doujin_game_sharp());
+            Doujin_game_sharp = new doujin_game_sharp();
+            Application.Run(Doujin_game_sharp);
         }
     }
 }
