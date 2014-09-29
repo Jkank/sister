@@ -8,14 +8,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DoujinGameProject.Data;
+using DoujinGameProject.Action;
 
 namespace DoujinGameProject
 {
     public partial class doujin_game_sharp : Form
     {
         /*--- ここに使用するクラスを置く ---*/
-        public Properties.Sister Sara = new Properties.Sister();
-        public Properties.SE SE1 = new Properties.SE();
+        //public Sister Sara = new Sister();
         
         public int sent_ct = 0;
         public int log_ct = 0;          /* ログ現在位置カウンタ */
@@ -41,13 +42,16 @@ namespace DoujinGameProject
             panel3.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
             panel_slct.BackColor = Color.Transparent;   /* 選択肢のPanel */
             //panel4.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
-            chara_pos_1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
+            chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
 
-            Sara.PassionPoint.MaxValue = 100;
-            Sara.MoralPoint.MaxValue = 100;
-            Sara.PassionPoint.CurrentValue = 10;
-            Sara.MoralPoint.CurrentValue = 30;
+            /* --- データ類初期化 --- */
+            //TODO: ここでやるか、NewGame/LoadGame時にやるか検討
+            GameData.Initialize();
 
+            GameData.SisterData.PassionPoint.MaxValue = 100;
+            GameData.SisterData.MoralPoint.MaxValue = 100;
+            GameData.SisterData.PassionPoint.CurrentValue = 10;
+            GameData.SisterData.MoralPoint.CurrentValue = 30;
         }
 
 //        string line;
@@ -115,7 +119,7 @@ namespace DoujinGameProject
         ////////////////////* === オプションボタン === *////////////////////
         private void textarea_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE1.s_ScriptEngine(sent_ct, log_ct, log_ct_use, textarea, chara_pos_1, chara_pos2, Sara, panel_slct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct, Slct_No);
+            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
 
             if (sent_ct == 0)
             {
@@ -132,7 +136,7 @@ namespace DoujinGameProject
         }
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE1.s_ScriptEngine(sent_ct, log_ct, log_ct_use, textarea, chara_pos_1, chara_pos2, Sara, panel_slct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct, Slct_No);
+            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
 
             if (sent_ct == 0)
             {
@@ -148,7 +152,7 @@ namespace DoujinGameProject
         }
         private void chara_pos_1_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE1.s_ScriptEngine(sent_ct, log_ct, log_ct_use, textarea, chara_pos_1, chara_pos2, Sara, panel_slct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct, Slct_No);
+            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
 
             if (sent_ct == 0)
             {
@@ -164,7 +168,7 @@ namespace DoujinGameProject
         }
         private void chara_pos2_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE1.s_ScriptEngine(sent_ct, log_ct, log_ct_use, textarea, chara_pos_1, chara_pos2, Sara, panel_slct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct, Slct_No);
+            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
 
             if (sent_ct == 0)
             {
@@ -189,7 +193,7 @@ namespace DoujinGameProject
                 logwindow.Focus();
 
                 // スクロール画面初期状態
-                SE1.s_ScrollInit(log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
+                SE.ScrollInit(log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
             }
             int a = 1;
         }
@@ -208,7 +212,7 @@ namespace DoujinGameProject
                 else
                 {
                     log_ct--;
-                    SE1.s_ScrollRedraw(log_ct, log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
+                    SE.ScrollRedraw(log_ct, log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
                 }
             }
             else if (e.Delta > 3)
@@ -217,7 +221,7 @@ namespace DoujinGameProject
                 {
                     log_ct++;
                     /* スクロール画面の一番上ではない */
-                    SE1.s_ScrollRedraw(log_ct, log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
+                    SE.ScrollRedraw(log_ct, log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
                 }
             }
         }
@@ -248,7 +252,7 @@ namespace DoujinGameProject
             {
                 Slct_No = 1;
                 panel_slct.Visible = false;
-                sent_ct = SE1.s_ScriptEngine(sent_ct, log_ct, log_ct_use, textarea, chara_pos_1, chara_pos2, Sara, panel_slct, Slctbox_1, Slctbox_2, Slctbox_3, Slctbox_4, panel_slct, Slct_No);
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
 
             }
         }
@@ -278,9 +282,197 @@ namespace DoujinGameProject
 
 
         /* == 以下サブルーチン的メソッド == */
+        public void setCharacterImageLeft(Defines.CharacterImageID imageID)
+        {
+            setCharacterImage(chara_pos1, imageID);
+        }
 
-    }
+        public void setCharacterImageRight(Defines.CharacterImageID imageID)
+        {
+            setCharacterImage(chara_pos2, imageID);
+        }
+
+        public void setTextAreaImage(Bitmap canvas)
+        {
+            textarea.Image = canvas;
+        }
+
+        public void setSelectBoxImage(int i, Bitmap canvas)
+        {
+            switch (i)
+            {
+                case 1:
+                    Slctbox_1.Image = canvas;
+                    break;
+                case 2:
+                    Slctbox_3.Image = canvas;
+                    break;
+                case 3:
+                    Slctbox_3.Image = canvas;
+                    break;
+                case 4:
+                    Slctbox_4.Image = canvas;
+                    break;
+                default:
+                    break;
+            }
+            textarea.Image = canvas;
+        }
+
+        private void setCharacterImage(PictureBox chrbox, Defines.CharacterImageID imageID)
+        {
+            switch (imageID)
+            {
+                case Defines.CharacterImageID.D_CHR_SARA_00:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_01:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_02:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_03:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_04:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_05:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_06:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_07:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_08:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_09:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_10:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_11:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_12:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_13:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_14:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_15:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_16:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_17:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_18:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_SARA_19:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_00:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_01:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_02:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_03:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_04:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_DEVIL_05:
+                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+                    break;
+                default:
+                    break;
+            }
+            chrbox.Visible = true;
+        }
+    
+        //SE.csから移植/TODO:メンテナンス
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：s_BacklogRenew　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：バックログ用文字列配列を更新する処理    　 　 ■ */
+        /* ■　入力：Slct_ct                                 　 　 ■ */
+        /* ■　出力：なし                                    　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public void dispSlctBox(int Slct_ct)
+        {
 
 
+            int i;
 
+            // 選択肢ボックス位置
+            Point Position = new Point(Slctbox_1.Location.X, Slctbox_1.Location.Y); // 選択肢ボックス位置
+
+            if (Slct_ct == 4)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = true;
+                Slctbox_4.Visible = true;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 100;
+                Slctbox_1.Location = Position;
+                Position.Y = 190;
+                Slctbox_2.Location = Position;
+                Position.Y = 280;
+                Slctbox_3.Location = Position;
+                Position.Y = 370;
+                Slctbox_4.Location = Position;
+
+            }
+            else if (Slct_ct == 3)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = true;
+                Slctbox_4.Visible = false;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 130;
+                Slctbox_1.Location = Position;
+                Position.Y = 235;
+                Slctbox_2.Location = Position;
+                Position.Y = 340;
+                Slctbox_3.Location = Position;
+                
+            }
+            else if (Slct_ct == 2)
+            {
+                Slctbox_1.Visible = true;
+                Slctbox_2.Visible = true;
+                Slctbox_3.Visible = false;
+                Slctbox_4.Visible = false;
+
+                Position.X = 175;       /* fail safe のためX座標も再設定 */
+                Position.Y = 145;
+                Slctbox_1.Location = Position;
+                Position.Y = 325;
+                Slctbox_2.Location = Position;
+            }
+
+
+            panel_slct.Visible = true;
+        }
+    }    
 }
