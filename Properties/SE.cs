@@ -95,9 +95,10 @@ namespace DoujinGameProject.Properties
         int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
         int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
 
-        static string[] log = new string[101];
-        static string[] name = new string[101];
-        static int Slct_ct = 0;
+        static string[] log = new string[101];          /* ログ文字列 */
+        static string[] name = new string[101];         /* ログ文字列に対応する名前 */
+
+        static int Slct_ct = 0;                         /* 選択番号 */
 
         static Parameter A_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static Parameter B_REG;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
@@ -270,6 +271,18 @@ namespace DoujinGameProject.Properties
                         {
                             work_1 = Sis.MoralPoint;
                         }
+                        else if (work_ct >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
+                        else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
+                        else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
                         else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = A_REG;
@@ -311,6 +324,14 @@ namespace DoujinGameProject.Properties
                                 right_1 = Sis.PassionPoint;
                             }
                             else if ("堕落度" == textrowbuf.Substring(inrowcount - work_ct))
+                            {
+                                right_1 = Sis.MoralPoint;
+                            }
+                            else if ("お香数" == textrowbuf.Substring(inrowcount - work_ct))
+                            {
+                                right_1 = Sis.MoralPoint;
+                            }
+                            else if ("酒数" == textrowbuf.Substring(inrowcount - work_ct))
                             {
                                 right_1 = Sis.MoralPoint;
                             }
@@ -404,6 +425,14 @@ namespace DoujinGameProject.Properties
                                 work_1 = Sis.PassionPoint;
                             }
                             else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcount, work_ct))
+                            {
+                                work_1 = Sis.MoralPoint;
+                            }
+                            else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
+                            {
+                                work_1 = Sis.MoralPoint;
+                            }
+                            else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
                             {
                                 work_1 = Sis.MoralPoint;
                             }
@@ -585,9 +614,38 @@ namespace DoujinGameProject.Properties
                         {
                             work_1 = Sis.MoralPoint;
                         }
+                        else if (work_ct_1 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
+                        else if (work_ct_1 >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
+                        else if (work_ct_1 >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = Sis.MoralPoint;
+                        }
+                        else if (work_ct_1 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = A_REG;
+                        }
+                        else if (work_ct_1 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = B_REG;
+                        }
+                        else if (work_ct_1 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1 = C_REG;
+                        }
+                        else if (work_ct_1 >= 3 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_1))
+                        {
+                            work_1.CurrentValue = Slct_No;
+                            int_flag = false;
+                        }
                         else
                         {
-                            Console.WriteLine("work_1 該当するパラメーターが存在しないようです");
+                            Console.WriteLine("if文左辺");
                         }
 
                         inrowcount++;
@@ -640,10 +698,21 @@ namespace DoujinGameProject.Properties
                             work_5 = Sis.MoralPoint;
                             int_flag = false;
                         }
-                        else if (work_ct_2 >= 3 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        else if (work_ct_2 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5 = Sis.MoralPoint;
-                            int_flag = false;
+                        }
+                        else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = A_REG;
+                        }
+                        else if (work_ct_2 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = B_REG;
+                        }
+                        else if (work_ct_2 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+                        {
+                            work_5 = C_REG;
                         }
                         else if (work_ct_2 >= 3 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
@@ -1052,6 +1121,9 @@ namespace DoujinGameProject.Properties
                         Slct_ct--;
                         if (Slct_ct == 0)
                         {
+                            //選択肢パネルの表示
+                            panel_slct.Visible = true;
+
                             count += 2;
                             countold = count;
                             sentence_ct++;

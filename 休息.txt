@@ -1,7 +1,7 @@
 
 
 Text:
-自分の部屋に来ました;
+自分の部屋に来ました。;
 サラ:
 どうしようかな……;
 
@@ -80,7 +80,7 @@ JMP [L_LEST_2400]:
 //触手成長 Lv.1  性欲 Lv.1  堕落 Lv.1↓↓↓↓↓↓↓↓↓↓↓↓↓↓//
 
 [L_LEST_0000]:
-If ( お香数 >= 1 ) [L_LEST_0010]:
+If( お香数 >= 1 ) [L_LEST_0010]:
 
 //お香なし
 
@@ -91,8 +91,8 @@ If ( お香数 >= 1 ) [L_LEST_0010]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -106,9 +106,9 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
 
 //触手成長 Lv.1  性欲 Lv.1  堕落 Lv.1↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -117,9 +117,9 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_0050]:
 
-If ( お香数 >= 1 ) [L_LEST_0070]:
+If( お香数 >= 1 ) [L_LEST_0070]:
 
-If ( 酒数 >= 1 ) [L_LEST_0060]:
+If( 酒数 >= 1 ) [L_LEST_0060]:
 
 //お香なし・酒なし
 選択肢:
@@ -129,9 +129,9 @@ If ( 酒数 >= 1 ) [L_LEST_0060]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -144,23 +144,23 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 酒を飲む;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0060]:
 
 [L_LEST_0070]:
 
-If ( 酒数 >= 1 ) [L_LEST_0080]:
+If( 酒数 >= 1 ) [L_LEST_0080]:
 
 //お香あり・酒なし
 選択肢:
@@ -170,9 +170,9 @@ If ( 酒数 >= 1 ) [L_LEST_0080]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -180,8 +180,8 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0070]:
 
 
@@ -194,9 +194,9 @@ JMP [L_LEST_0070]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 オナニー;
@@ -206,8 +206,8 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0080]:
 
 //触手成長 Lv.1  性欲 Lv.1  堕落 Lv.2↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -216,7 +216,7 @@ JMP [L_LEST_0080]:
 
 [L_LEST_0100]:
 
-If ( 淫魔化 == true ) [L_LEST_0150]:
+If( 淫魔化 == true ) [L_LEST_0150]:
 
 //人間
 JMP [L_LEST_0050]:
@@ -224,7 +224,7 @@ JMP [L_LEST_0050]:
 
 [L_LEST_0150]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_0152]:
+If( 酒数 >= 1 ) [L_LEST_0152]:
 
 //酒なし
 選択肢:
@@ -234,9 +234,9 @@ If ( 酒数 >= 1 ) [L_LEST_0152]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 [L_LEST_0152]:
@@ -249,9 +249,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -259,8 +259,8 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0152]:
 
 
@@ -276,9 +276,9 @@ JMP [L_LEST_0152]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -286,8 +286,8 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0200]:
 
 
@@ -297,7 +297,7 @@ JMP [L_LEST_0200]:
 
 [L_LEST_0250]:
 
-If ( 酒数 >= 1 ) [L_LEST_0260]:
+If( 酒数 >= 1 ) [L_LEST_0260]:
 
 選択肢:
 お茶を淹れる;
@@ -306,9 +306,9 @@ If ( 酒数 >= 1 ) [L_LEST_0260]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -321,9 +321,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -331,8 +331,8 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0260]:
 
 
@@ -342,10 +342,10 @@ JMP [L_LEST_0260]:
 
 [L_LEST_0300]:
 
-If ( 淫魔化 == true ) [L_LEST_0350]:
+If( 淫魔化 == true ) [L_LEST_0350]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_0302]:
+If( 酒数 >= 1 ) [L_LEST_0302]:
 
 //酒なし
 選択肢:
@@ -354,8 +354,8 @@ If ( 酒数 >= 1 ) [L_LEST_0302]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 [L_LEST_0302]:
@@ -367,15 +367,15 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 JMP [L_LEST_SLEEP]:
 
 
 [L_LEST_0350]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_0352]:
+If( 酒数 >= 1 ) [L_LEST_0352]:
 
 //酒なし
 選択肢:
@@ -385,9 +385,9 @@ If ( 酒数 >= 1 ) [L_LEST_0352]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 [L_LEST_0352]:
@@ -400,9 +400,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -410,8 +410,8 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_0352]:
 
 
@@ -427,8 +427,8 @@ JMP [L_LEST_0352]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -438,7 +438,7 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_0450]:
 
-If ( 酒数 >= 1 ) [L_LEST_0460]:
+If( 酒数 >= 1 ) [L_LEST_0460]:
 
 //酒なし
 
@@ -448,9 +448,9 @@ If ( 酒数 >= 1 ) [L_LEST_0460]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -464,9 +464,9 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -476,10 +476,10 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_0500]:
 
-If ( 淫魔化 == true ) [L_LEST_0550]:
+If( 淫魔化 == true ) [L_LEST_0550]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_0502]:
+If( 酒数 >= 1 ) [L_LEST_0502]:
 
 //酒なし
 選択肢:
@@ -495,20 +495,20 @@ JMP [L_LEST_MB]:
 酒を飲む;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
 JMP [L_LEST_DRANK]:
 
 
 [L_LEST_0550]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_0552]:
+If( 酒数 >= 1 ) [L_LEST_0552]:
 
 //酒なし
 選択肢:
 擬態を解いてオナニー;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
 JMP [L_LEST_SLEEP]:
 
 [L_LEST_0552]:
@@ -519,7 +519,7 @@ JMP [L_LEST_SLEEP]:
 酒を飲む;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
 JMP [L_LEST_DRANK]:
 
 
@@ -528,7 +528,7 @@ JMP [L_LEST_DRANK]:
 //触手成長 Lv.2  性欲 Lv.1  堕落 Lv.1↓↓↓↓↓↓↓↓↓↓↓↓↓↓//
 
 [L_LEST_1000]:
-If ( お香数 >= 1 ) [L_LEST_1010]:
+If( お香数 >= 1 ) [L_LEST_1010]:
 
 //お香なし
 
@@ -539,8 +539,8 @@ If ( お香数 >= 1 ) [L_LEST_1010]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -554,9 +554,9 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -566,9 +566,9 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_1050]:
 
-If ( お香数 >= 1 ) [L_LEST_1070]:
+If( お香数 >= 1 ) [L_LEST_1070]:
 
-If ( 酒数 >= 1 ) [L_LEST_1060]:
+If( 酒数 >= 1 ) [L_LEST_1060]:
 
 //お香なし・酒なし
 選択肢:
@@ -578,9 +578,9 @@ If ( 酒数 >= 1 ) [L_LEST_1060]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 触手を呼び出す;
@@ -588,8 +588,8 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1050]:
 
 
@@ -602,26 +602,26 @@ JMP [L_LEST_1050]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 酒を飲む;
 触手を呼び出す;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1060]:
 
 
 [L_LEST_1070]:
 
-If ( 酒数 >= 1 ) [L_LEST_1080]:
+If( 酒数 >= 1 ) [L_LEST_1080]:
 
 //お香あり・酒なし
 選択肢:
@@ -631,9 +631,9 @@ If ( 酒数 >= 1 ) [L_LEST_1080]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -642,9 +642,9 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1070]:
 
 
@@ -657,9 +657,9 @@ JMP [L_LEST_1070]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -668,9 +668,9 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_DRANK]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_DRANK]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1080]:
 
 //触手成長 Lv.2  性欲 Lv.1  堕落 Lv.2↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -679,10 +679,10 @@ JMP [L_LEST_1080]:
 
 [L_LEST_1100]:
 
-If ( 淫魔化 == true ) [L_LEST_1150]:
+If( 淫魔化 == true ) [L_LEST_1150]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_1102]:
+If( 酒数 >= 1 ) [L_LEST_1102]:
 
 //酒なし
 選択肢:
@@ -692,9 +692,9 @@ If ( 酒数 >= 1 ) [L_LEST_1102]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEFT_ROPER]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -708,9 +708,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 選択肢:
 触手を呼び出す;
@@ -718,14 +718,14 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1102]:
 
 
 [L_LEST_1150]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_1152]:
+If( 酒数 >= 1 ) [L_LEST_1152]:
 
 //酒なし
 選択肢:
@@ -735,18 +735,18 @@ If ( 酒数 >= 1 ) [L_LEST_1152]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 触手を呼び出す;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1150]:
 
 
@@ -760,9 +760,9 @@ JMP [L_LEST_1150]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -771,9 +771,9 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1152]:
 
 
@@ -784,7 +784,7 @@ JMP [L_LEST_1152]:
 
 [L_LEST_1200]:
 
-If ( お香数 >= 1 ) [L_LEST_1210]:
+If( お香数 >= 1 ) [L_LEST_1210]:
 
 //お香なし
 
@@ -796,9 +796,9 @@ If ( お香数 >= 1 ) [L_LEST_1210]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -812,17 +812,17 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1210]:
 
 
@@ -833,7 +833,7 @@ JMP [L_LEST_1210]:
 
 [L_LEST_1250]:
 
-If ( 酒数 >= 1 ) [L_LEST_1252]:
+If( 酒数 >= 1 ) [L_LEST_1252]:
 
 選択肢:
 お茶を淹れる;
@@ -842,9 +842,9 @@ If ( 酒数 >= 1 ) [L_LEST_1252]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -857,17 +857,17 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1252]:
 
 
@@ -878,10 +878,10 @@ JMP [L_LEST_1252]:
 
 [L_LEST_1300]:
 
-If ( 淫魔化 == true ) [L_LEST_1350]:
+If( 淫魔化 == true ) [L_LEST_1350]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_1302]:
+If( 酒数 >= 1 ) [L_LEST_1302]:
 
 //酒なし
 選択肢:
@@ -891,9 +891,9 @@ If ( 酒数 >= 1 ) [L_LEST_1302]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEFT_ROPER]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -907,9 +907,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 選択肢:
 触手を呼び出す;
@@ -917,14 +917,14 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1302]:
 
 
 [L_LEST_1350]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_1352]:
+If( 酒数 >= 1 ) [L_LEST_1352]:
 
 //酒なし
 選択肢:
@@ -934,18 +934,18 @@ If ( 酒数 >= 1 ) [L_LEST_1352]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 触手を呼び出す;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1350]:
 
 
@@ -959,9 +959,9 @@ JMP [L_LEST_1350]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -970,9 +970,9 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1352]:
 
 
@@ -988,8 +988,8 @@ JMP [L_LEST_1352]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 //触手成長 Lv.2  性欲 Lv.3  堕落 Lv.1↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -998,7 +998,7 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_1450]:
 
-If ( 酒数 >= 1 ) [L_LEST_1460]:
+If( 酒数 >= 1 ) [L_LEST_1460]:
 
 //酒なし
 
@@ -1009,9 +1009,9 @@ If ( 酒数 >= 1 ) [L_LEST_1460]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_LOPER]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_LOPER]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1025,9 +1025,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 
 選択肢:
@@ -1036,8 +1036,8 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_LOPER]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_LOPER]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1460]:
 
 
@@ -1047,10 +1047,10 @@ JMP [L_LEST_1460]:
 
 [L_LEST_1500]:
 
-If ( 淫魔化 == true ) [L_LEST_1550]:
+If( 淫魔化 == true ) [L_LEST_1550]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_1510]:
+If( 酒数 >= 1 ) [L_LEST_1510]:
 
 //酒なし
 選択肢:
@@ -1058,7 +1058,7 @@ If ( 酒数 >= 1 ) [L_LEST_1510]:
 触手を呼び出す;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
 JMP [L_LEST_LOPER]:
 
 [L_LEST_1510]:
@@ -1069,14 +1069,14 @@ JMP [L_LEST_LOPER]:
 触手を呼び出す;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_DRANK]:
 JMP [L_LEST_LOPER]:
 
 
 [L_LEST_1550]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_1560]:
+If( 酒数 >= 1 ) [L_LEST_1560]:
 
 //酒なし
 選択肢:
@@ -1084,7 +1084,7 @@ If ( 酒数 >= 1 ) [L_LEST_1560]:
 触手を呼び出す;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
 JMP [L_LEST_LOPER]:
 
 [L_LEST_1560]:
@@ -1096,8 +1096,8 @@ JMP [L_LEST_LOPER]:
 触手を呼び出す;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
 JMP [L_LEST_LOPER]:
 
 //触手成長 Lv.2  性欲 Lv.3  堕落 Lv.3↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1105,7 +1105,7 @@ JMP [L_LEST_LOPER]:
 //触手成長 Lv.3  性欲 Lv.1  堕落 Lv.1↓↓↓↓↓↓↓↓↓↓↓↓↓↓//
 
 [L_LEST_2000]:
-If ( お香数 >= 1 ) [L_LEST_2010]:
+If( お香数 >= 1 ) [L_LEST_2010]:
 
 //お香なし
 
@@ -1116,8 +1116,8 @@ If ( お香数 >= 1 ) [L_LEST_2010]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1131,9 +1131,9 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
 
 //触手成長 Lv.3  性欲 Lv.1  堕落 Lv.1↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1142,9 +1142,9 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_2050]:
 
-If ( お香数 >= 1 ) [L_LEST_2070]:
+If( お香数 >= 1 ) [L_LEST_2070]:
 
-If ( 酒数 >= 1 ) [L_LEST_2060]:
+If( 酒数 >= 1 ) [L_LEST_2060]:
 
 //お香なし・酒なし
 選択肢:
@@ -1154,9 +1154,9 @@ If ( 酒数 >= 1 ) [L_LEST_2060]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 触手を呼び出す;
@@ -1164,8 +1164,8 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2050]:
 
 
@@ -1178,26 +1178,26 @@ JMP [L_LEST_2050]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 酒を飲む;
 触手を呼び出す;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2060]:
 
 
 [L_LEST_2070]:
 
-If ( 酒数 >= 1 ) [L_LEST_2080]:
+If( 酒数 >= 1 ) [L_LEST_2080]:
 
 //お香あり・酒なし
 選択肢:
@@ -1207,9 +1207,9 @@ If ( 酒数 >= 1 ) [L_LEST_2080]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -1218,9 +1218,9 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2070]:
 
 
@@ -1233,9 +1233,9 @@ JMP [L_LEST_2070]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
@@ -1244,9 +1244,9 @@ If ( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_DRANK]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_DRANK]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2080]:
 
 //触手成長 Lv.3  性欲 Lv.1  堕落 Lv.2↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1255,10 +1255,10 @@ JMP [L_LEST_2080]:
 
 [L_LEST_2100]:
 
-If ( 淫魔化 == true ) [L_LEST_2150]:
+If( 淫魔化 == true ) [L_LEST_2150]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_2110]:
+If( 酒数 >= 1 ) [L_LEST_2110]:
 
 //酒なし
 選択肢:
@@ -1268,9 +1268,9 @@ If ( 酒数 >= 1 ) [L_LEST_2110]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEFT_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1284,9 +1284,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 選択肢:
 触手娘に相手をさせる;
@@ -1294,14 +1294,14 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2110]:
 
 
 [L_LEST_2150]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_2160]:
+If( 酒数 >= 1 ) [L_LEST_2160]:
 
 //酒なし
 選択肢:
@@ -1311,18 +1311,18 @@ If ( 酒数 >= 1 ) [L_LEST_2160]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
-選択肢;
+選択肢:
 触手娘に相手をさせる;
 寝る;
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2150]:
 
 
@@ -1336,9 +1336,9 @@ JMP [L_LEST_2150]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -1347,9 +1347,9 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2160]:
 
 //触手成長 Lv.3  性欲 Lv.1  堕落 Lv.3↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1358,7 +1358,7 @@ JMP [L_LEST_2160]:
 
 [L_LEST_2200]:
 
-If ( お香数 >= 1 ) [L_LEST_2210]:
+If( お香数 >= 1 ) [L_LEST_2210]:
 
 //お香なし
 
@@ -1370,9 +1370,9 @@ If ( お香数 >= 1 ) [L_LEST_2210]:
 選択肢終:
 
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:選択番号 == 
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:選択番号 == 
 JMP [L_LEST_SLEEP]:
 
 
@@ -1386,17 +1386,17 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_FLEG]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
 選択肢:
 オナニー;
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2210]:
 
 //触手成長 Lv.3  性欲 Lv.2  堕落 Lv.1↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1405,7 +1405,7 @@ JMP [L_LEST_2210]:
 
 [L_LEST_2250]:
 
-If ( 酒数 >= 1 ) [L_LEST_2260]:
+If( 酒数 >= 1 ) [L_LEST_2260]:
 
 選択肢:
 お茶を淹れてもらう;
@@ -1414,16 +1414,16 @@ If ( 酒数 >= 1 ) [L_LEST_2260]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 触手娘に相手をしてもらう;
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1436,9 +1436,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_PRAY]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_PRAY]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -1446,9 +1446,9 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2260]:
 
 
@@ -1459,10 +1459,10 @@ JMP [L_LEST_2260]:
 
 [L_LEST_2300]:
 
-If ( 淫魔化 == true ) [L_LEST_2350]:
+If( 淫魔化 == true ) [L_LEST_2350]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_2310]:
+If( 酒数 >= 1 ) [L_LEST_2310]:
 
 //酒なし
 選択肢:
@@ -1472,9 +1472,9 @@ If ( 酒数 >= 1 ) [L_LEST_2310]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEFT_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1488,9 +1488,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 選択肢:
 触手娘に相手をさせる;
@@ -1498,14 +1498,14 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2310]:
 
 
 [L_LEST_2350]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_2360]:
+If( 酒数 >= 1 ) [L_LEST_2360]:
 
 //酒なし
 選択肢:
@@ -1515,9 +1515,9 @@ If ( 酒数 >= 1 ) [L_LEST_2360]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 触手娘に相手をさせる;
@@ -1525,8 +1525,8 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2350]:
 
 
@@ -1540,9 +1540,9 @@ JMP [L_LEST_2350]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEFT_TEA]:
-If ( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
-If ( 選択番号 == 3 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
+If( 選択番号 == 3 ) [L_LEST_MB]:
 
 選択肢:
 酒を飲む;
@@ -1551,9 +1551,9 @@ If ( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
-If ( 選択番号 == 2 ) [L_LEFT_ROPER2]:
-If ( 選択番号 == 3 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2360]:
 
 //触手成長 Lv.3  性欲 Lv.2  堕落 Lv.3↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1568,8 +1568,8 @@ JMP [L_LEST_2360]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 //触手成長 Lv.3  性欲 Lv.3  堕落 Lv.1↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
@@ -1578,7 +1578,7 @@ JMP [L_LEST_SLEEP]:
 
 [L_LEST_2450]:
 
-If ( 酒数 >= 1 ) [L_LEST_2460]:
+If( 酒数 >= 1 ) [L_LEST_2460]:
 
 //酒なし
 
@@ -1589,9 +1589,9 @@ If ( 酒数 >= 1 ) [L_LEST_2460]:
 寝る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_LOPER2]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_LOPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1605,9 +1605,9 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_PRAY]:
-If ( 選択番号 == 2 ) [L_LEST_MB]:
-If ( 選択番号 == 3 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_PRAY]:
+If( 選択番号 == 2 ) [L_LEST_MB]:
+If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
 
 選択肢:
@@ -1616,8 +1616,8 @@ If ( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_LOPER2]:
-If ( 選択番号 == 2 ) [L_LEST_SLEEP]:
+If( 選択番号 == 1 ) [L_LEST_LOPER2]:
+If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2460]:
 
 
@@ -1627,10 +1627,10 @@ JMP [L_LEST_2460]:
 
 [L_LEST_2500]:
 
-If ( 淫魔化 == true ) [L_LEST_2550]:
+If( 淫魔化 == true ) [L_LEST_2550]:
 
 //人間
-If ( 酒数 >= 1 ) [L_LEST_2510]:
+If( 酒数 >= 1 ) [L_LEST_2510]:
 
 //酒なし
 選択肢:
@@ -1638,7 +1638,7 @@ If ( 酒数 >= 1 ) [L_LEST_2510]:
 触手娘に相手をさせる;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
 JMP [L_LEST_LOPER2]:
 
 [L_LEST_1510]:
@@ -1649,14 +1649,14 @@ JMP [L_LEST_LOPER2]:
 触手娘に相手をさせる;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MB]:
-If ( 選択番号 == 2 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_MB]:
+If( 選択番号 == 2 ) [L_LEST_DRANK]:
 JMP [L_LEST_LOPER2]:
 
 
 [L_LEST_1550]:
 //淫魔
-If ( 酒数 >= 1 ) [L_LEST_1560]:
+If( 酒数 >= 1 ) [L_LEST_1560]:
 
 //酒なし
 選択肢:
@@ -1664,7 +1664,7 @@ If ( 酒数 >= 1 ) [L_LEST_1560]:
 触手娘に相手をさせる;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
 JMP [L_LEST_LOPER2]:
 
 [L_LEST_1560]:
@@ -1676,29 +1676,37 @@ JMP [L_LEST_LOPER2]:
 触手娘に相手をさせる;
 選択肢終:
 
-If ( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
-If ( 選択番号 == 1 ) [L_LEST_DRANK]:
+If( 選択番号 == 1 ) [L_LEST_MBDEMIMIC]:
+If( 選択番号 == 1 ) [L_LEST_DRANK]:
 JMP [L_LEST_LOPER2]:
 
 //触手成長 Lv.3  性欲 Lv.3  堕落 Lv.3↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
 [L_LEFT_TEA]:
 
 
-If ( 触手成長度 >= 100 ) [L_LEFT_TEA_010]:
+If( 触手成長度 >= 100 ) [L_LEFT_TEA_010]:
+
+サラ:
+お茶でも飲もうかな……;
 
 Text:
 私はお茶を淹れて、
-一息つきました……
+しばらくゆったりと休憩しました。;
+
 JMP [L_LEFT_TEA_EXT]:
 
 [L_LEFT_TEA_010]:
 
 //触手娘いる
 
-If ( 道徳心 < 20 ) [L_LEFT_TEA_100]:
-If ( 道徳心 < 60 ) [L_LEFT_TEA_200]:
+If( 道徳心 < 20 ) [L_LEFT_TEA_100]:
+If( 道徳心 < 60 ) [L_LEFT_TEA_200]:
 
 //堕落 Lv.1
 Text:
@@ -1708,10 +1716,10 @@ Text:
 ……あ、触手娘も飲むかしら……
 触手娘、お茶を飲みますか？;
 
-SE ジュルジュル:
+SE ジュルジュル:+=
 
 触手娘:
-サラ様……次からそのようなことは私めが;
+サラ様……次からそのようなことは私めが……;
 
 サラ:
 いいんです、私がこの方が落ち着くんです。
@@ -1725,14 +1733,14 @@ Text:
 触手娘と他愛のない会話を楽しみました。;
 
 Plus:
-体力が10回復した;
+体力が10回復した。;
 
-計算 体力 += 10;
+計算 体力 += 10:
 
 Plus:
-気力が20回復した;
+気力が20回復した。;
 
-計算 気力 += 20;
+計算 気力 += 20:
 
 JMP [L_LEFT_TEA_EXT]:
 
@@ -1754,7 +1762,7 @@ SE ジュルジュル:
 
 Text:
 触手娘にお願いすると、
-なんでもやってくれるのでとっても楽です;
+なんでもやってくれるのでとっても楽です。;
 
 Text:
 自分で何にもやらなくなってしまいそうで
@@ -1762,7 +1770,7 @@ Text:
 ついつい甘えてしまいます……;
 
 触手娘:
-……お待たせいたしました;
+……お待たせいたしました。;
 
 サラ:
 あ、ありがとうございます♪;
@@ -1771,8 +1779,7 @@ Text:
 その後、お茶を飲みながら、
 触手娘と他愛のない会話を楽しみました。;
 
-[L_LEFT_TEA_EXT]:
-END:
+JMP [L_LEFT_TEA_EXT]:
 
 
 [L_LEFT_TEA_200]:
@@ -1788,10 +1795,10 @@ SE ジュルジュル:
 
 Text:
 私は暑苦しいベールとバンドーを脱ぎ去り、
-足を組んでお茶が来るのを待ちます;
+足を組んでお茶が来るのを待ちます。;
 
 触手娘:
-……お待たせいたしました;
+……お待たせいたしました。;
 
 サラ:
 ふふ……ありがと♪;
@@ -1801,16 +1808,16 @@ Text:
 触手娘と他愛のない会話を楽しみました。;
 
 Plus:
-体力が10回復した;
+体力が10回復した。;
 
-計算 体力 += 10;
+計算 体力 += 10:
 
 Plus:
-気力が20回復した;
+気力が20回復した。;
 
-計算 気力 += 20;
+計算 気力 += 20:
 
-計算 時刻 += 1;
+計算 時刻 += 1:
 
 [L_LEFT_TEA_EXT]:
 END:
@@ -1824,8 +1831,8 @@ Text:
 私は静かに神に祈りを捧げます……
 
 //触手発生判定
-If ( 触手成長度 < 60 )
-If ( 乱数 < 60 ) [L_LEST_PRAY_000]:
+If( 触手成長度 < 60 )
+If( 乱数 < 60 ) [L_LEST_PRAY_000]:
 RTNADR [L_LEST_PRAY_000]:
 JMP [L_SUB_ROPER]:
 
@@ -1836,21 +1843,21 @@ Text:
 心が安らいでくるのを感じます……;
 
 Plus:
-体力が10回復した;
+体力が10回復した。;
 
-計算 体力 += 10;
-
-Plus:
-気力が20回復した;
-
-計算 気力 += 20;
+計算 体力 += 10:
 
 Plus:
-道徳心が3回復した;
+気力が20回復した。;
 
-計算 道徳心 += 3;
+計算 気力 += 20:
 
-計算 時刻 += 1;
+Plus:
+道徳心が3回復した。;
+
+計算 道徳心 += 3:
+
+計算 時刻 += 1:
 
 END:
 
@@ -1859,7 +1866,7 @@ END:
 ///////////////////////////////////////////////////////////////////
 [L_LEST_FLEG]:
 
-If ( お香経験 >= 1 ) [L_LEST_FLEG_100]:
+If( お香経験 >= 1 ) [L_LEST_FLEG_100]:
 
 //お香初体験
 
@@ -1877,7 +1884,7 @@ Text:
 Text:
 お香から出る煙を胸いっぱいに吸い込むと、
 なんだか頭がくらくらして、
-私は崩れるように椅子に腰かけました;
+私は崩れるように椅子に腰かけました。;
 
 サラ:
 ふぅ……吸い込みすぎちゃったかな……
@@ -1889,7 +1896,7 @@ Text:
 
 Text:
 しばらくの間、
-私は虚ろな目で中空を見つめていました;
+私は虚ろな目で中空を見つめていました。;
 
 サラ:
 (あー……きもちいぃ……
@@ -1913,14 +1920,14 @@ Text:
 
 Text:
 なんだか私は、とても楽しくなってきました。
-訳もなく気分が高揚し、叫び出したいほどです;
+訳もなく気分が高揚し、叫び出したいほどです。;
 
 Text:
 身体はポカポカと温かくて、暑いくらい;
 
 Text:
 全身からぬるりとした汗が噴きだし、
-ティルケの裏地が肌にぴったりと張り付きます;
+ティルケの裏地が肌にぴったりと張り付きます。;
 
 サラ:
 あぁぁ……きもち～……♪もっと……もっとぉ……♪;
@@ -1955,21 +1962,21 @@ Text:
 お仕事へと戻ったのでした……;
 
 Plus:
-体力が20回復した;
+体力が20回復した。;
 
 計算 体力 += 20:
 
 Plus:
-気力が10回復した;
+気力が10回復した。;
 
 計算 気力 += 10:
 
 Minus:
-性欲が20高まった;
+性欲が20高まった。;
 
 計算 性欲 += 20:
 
-
+JMP [L_LEST_FLEG_EXT]:
 
 
 [L_LEST_FLEG_100]:
@@ -1981,7 +1988,7 @@ Minus:
 Text:
 これは"いけない"お香だということは、
 既に感づいていますが、あまりの心地よさに
-ついまた手を出してしまいます;
+ついまた手を出してしまいます。;
 
 Text:
 ヘヴンズゲートと書かれた袋を開けて
@@ -1994,12 +2001,12 @@ Text:
 Text:
 お香に慣れてきたためか、
 いまや頭がトロけ、体が火照る感覚を
-存分に楽しむことができました;
+存分に楽しむことができました。;
 
 Text:
 気分が高まってきたところでお香に鼻を近づけ、
 思いっきり深呼吸すると、
-頭の中でプチプチ何かが切れる様な音がして最高です;
+頭の中でプチプチ何かが切れる様な音がして最高です。;
 
 サラ:
 すぅぅぅ………
@@ -2007,24 +2014,24 @@ Text:
 
 
 Plus:
-体力が20回復した;
+体力が20回復した。;
 
 計算 体力 += 20:
 
 Plus:
-気力が10回復した;
+気力が10回復した。;
 
 計算 気力 += 10:
 
 Minus:
-性欲が20高まった;
+性欲が20高まった。;
 
 計算 性欲 += 20:
 
 計算 汎用Ａ = 100 / お香経験数:
 計算 汎用Ａ = 100 - 汎用Ａ:
 
-If ( 乱数 <= 汎用Ａ ) [L_LEST_FLEG_EXT]:
+If( 乱数 <= 汎用Ａ ) [L_LEST_FLEG_EXT]:
 
 //お香残り香
 
@@ -2033,7 +2040,7 @@ If ( 乱数 <= 汎用Ａ ) [L_LEST_FLEG_EXT]:
 
 計算 汎用Ｂ = お香経験数 % 2:
 
-If ( 汎用Ｂ >= 1 ) [L_LEST_FLEG_150]:
+If( 汎用Ｂ >= 1 ) [L_LEST_FLEG_150]:
 
 リディ:
 あっ、サラ姉様;
@@ -2043,7 +2050,7 @@ If ( 汎用Ｂ >= 1 ) [L_LEST_FLEG_150]:
 
 Text:
 まずいことに、
-廊下に出たところでリディに出くわしました;
+廊下に出たところでリディに出くわしました。;
 
 リディ:
 ……くんくん……あれ？
@@ -2069,10 +2076,10 @@ Text:
 Text:
 怪しまれずに済んだものの、
 じっとりと嫌な汗をかいて、
-なんだか疲れてしまいました;
+なんだか疲れてしまいました。;
 
 Minus:
-気力が30下がった;
+気力が30下がった。;
 
 計算 気力 -= 30:
 
@@ -2090,14 +2097,15 @@ JMP [L_LEST_FLEG_EXT]:
 
 Text:
 まずいことに、
-廊下に出たところでマリー姉様に出くわしました;
+廊下に出たところでマリー姉様に出くわしました。;
 
 マリー:
 くん……あら？
 何か変な匂いしない？;
 
 サラ:
-……えー……その……石鹸を変えたからですかね？;
+……え……あ……その……
+せっ、石鹸を変えたからですかね？;
 
 マリー:
 ……ふぅん？
@@ -2105,13 +2113,13 @@ Text:
 
 Text:
 姉様は若干訝しむ様な目で私を見ると、
-立ち去って行きました;
+立ち去って行きました。;
 
 サラ:
-(ちょっと妖しまれちゃったみたい……);
+(ちょっと怪しまれちゃったみたい……);
 
 Minus:
-信頼度が5下がった;
+信頼度が5下がった。;
 
 計算 信頼度 -= 5:
 
@@ -2142,7 +2150,7 @@ Text:
 Text:
 体の他の部分とは全く別の生き物であるかのような
 禍々しい造形のおちんぽからは、
-むっとするような雌の臭いが立ちのぼります;
+むっとするような雌の臭いが立ちのぼります。;
 
 サラ:
 あっ……あふぅ……;
@@ -2157,7 +2165,7 @@ Text:
 
 Text:
 裏スジを撫でるようになぞり上げると、
-ゾワゾワッとした快感に腰が浮きそうになります;
+ゾワゾワッとした快感に腰が浮きそうになります。;
 
 サラ:
 あっ…あっ……すごい……っ！
@@ -2165,7 +2173,7 @@ Text:
 
 Text:
 私はたまらなくなり、
-竿を掴んでゴシゴシと前後にしごきはじめました;
+竿を掴んでゴシゴシと前後にしごきはじめました。;
 
 サラ:
 あんっ……ああんっ……あぁぁあっ……！;
@@ -2188,7 +2196,7 @@ Text:
 今は一緒になって私に襲い掛かり
 私の頭を真っ白に塗りつぶしていきます……;
 
-If ( 姉様パンツ == false ) [L_LEST_0050]:
+If( 姉様パンツ == false ) [L_LEST_0050]:
 
 //姉様パンツあり
 サラ:
@@ -2196,7 +2204,7 @@ If ( 姉様パンツ == false ) [L_LEST_0050]:
 
 Text:
 私はサイドテーブルの引き出しから姉様のパンツを取り出して
-顔にかぶりました;
+顔にかぶりました。;
 
 サラ:
 (姉様の臭いがする……);
@@ -2207,12 +2215,12 @@ Text:
 Text:
 胸いっぱいに姉様の花園の臭いを吸い込むと、
 身体の奥からムラムラと熱いものが上がってきて
-どうしようもなく興奮してしまいます;
+どうしようもなく興奮してしまいます。;
 
 
-[L_LEST_0050]:
+[L_LEST_MB_0050]:
 
-If ( 乱数 >= 30 ) [L_LEST_0100]:
+If( 乱数 >= 30 ) [L_LEST_0100]:
 //通行人
 Text:
 ……コツ……コツ……コツ……;
@@ -2230,7 +2238,7 @@ Text:
 
 Text:
 しかし、私の両手は止まってくれません。
-……いえ、私が止めませんでした;
+……いえ、私が止めませんでした。;
 
 サラ:
 (いっ……いま止めるなんて……ムリィ……！)
@@ -2246,7 +2254,7 @@ Text:
 
 Text:
 私がそんなことをしている間にも
-靴音はだんだんとこの部屋に近づいてきました;
+靴音はだんだんとこの部屋に近づいてきました。;
 
 サラ:
 んふーっ……んふぅーっ……！！
@@ -2255,7 +2263,7 @@ Text:
 もしもこの呻き声や音がドアの外に漏れて、
 ドアが開けられてしまったら……
 それを想像すると、恐ろしいほど快感が増大し、
-極太メスちんぽが痛いほどに勃起していきます;
+極太メスちんぽが痛いほどに勃起していきます。;
 
 Text:
 ……コツ……コツ……コツ……;
@@ -2263,7 +2271,7 @@ Text:
 Text:
 靴音が、私の部屋の前までやってきました……
 それに呼応するように、
-私の興奮もほとんど最高潮まで達しています;
+私の興奮もほとんど最高潮まで達しています。;
 
 サラ:
 んっ……んっ……んーっ……んふぅーっ……！！
@@ -2282,7 +2290,7 @@ Text:
 (ばっ……ばれちゃった……！？);
 
 Text:
-そう思ったのと同時に、私は絶頂しました;
+そう思ったのと同時に、私は絶頂しました。;
 
 Text:
 おちんぽからはビュルルルッと音を立てながら
@@ -2301,7 +2309,7 @@ Text:
 ひっ！？;
 
 Text:
-靴音の主はマリー姉様でした;
+靴音の主はマリー姉様でした。;
 
 サラ:
 あっ、はい……います……;
@@ -2329,7 +2337,7 @@ Text:
 マリー:
 ああ、そうなの
 ゴメンゴメン
-無理せずにゆっくり休んでな;
+無理せずにゆっくり休んでな。;
 
 サラ:
 あ……ありがとうございまーす……;
@@ -2347,9 +2355,11 @@ Text:
 興奮から覚めるのを待ったのちに、
 お勤めに戻ったのでした……;
 
-JMP [L_LEST_0150]:
+JMP [L_LEST_MB_EXT]:
 
-[L_LEST_0100]:
+
+
+[L_LEST_MB_0100]:
 Text:
 周りに人の気配はありません。
 しばらくの間、静まり返った空間の中で、
@@ -2361,7 +2371,7 @@ Text:
 Text:
 突然性感が大きく高まり始め、
 全身のエネルギーがおちんぽの根元に
-集約されていくのを感じました;
+集約されていくのを感じました。;
 
 Text:
 魔物の前で初めて射精した時の、あの感覚です……！;
@@ -2389,7 +2399,7 @@ Text:
 …………はぁぁ…………
 ……いっぱいでたぁ……♪;
 
-If ( 臭いフェチ = false ) [L_LEST_0150]:
+If( 臭いフェチ = false ) [L_LEST_MB_0150]:
 
 //臭いフェチ
 
@@ -2398,14 +2408,15 @@ Text:
 大好きな精液の臭いが口の中いっぱいに広がり、
 その心地よさに私は陶然としてしまいました……;
 
-[L_LEST_0150]:
+[L_LEST_MB_0150]:
 
 Text:
 それから部屋を必死に掃除した私は、
 興奮から覚めるのを待ったのちに、
 お勤めに戻ったのでした……;
 
-JMP [L_LEST_EXT]:
+[L_LEST_MB_EXT]:
+END:
 
 ///////////////////////////////////////
 //通常　ふたなりなし
@@ -2421,25 +2432,29 @@ Text:
 
 Text:
 パンツの中はグッショリと塗れそぼり、
-陰唇はヒクヒクと痙攣しています;
+陰唇はヒクヒクと痙攣しています。;
+
+Text:
+指の腹でクリトリスを圧迫するように刺激すると
+柔らかな快感が私を包みました。;
 
 サラ:
-指の腹でクリトリスを圧迫するように刺激すると
+あぁぁ……これぇ……たまらないよぉぉ……;
 
 Text:
 グチュグチュとした水音と私の呻き声が、
-淫らなハーモニーとなってさらに私を興奮させます;
+淫らなハーモニーとなってさらに私を興奮させます。;
 
 サラ:
 あっ……あっ……神よ……女神セクリドよ……
 お赦し下さいぃぃっ！！;
 
-If ( 道徳心 < 60 ) [L_LEST_0220]:
+If( 道徳心 < 60 ) [L_LEST_0220]:
 //道徳心 >= 60
 Text:
 神に赦しを乞う言葉は、
 逆に私の中の背徳感を煽り立て、
-あろうことか私の快感をさらに高めていました;
+あろうことか私の快感をさらに高めていました。;
 
 Text:
 ……私は本当に最低の人間です。
@@ -2463,7 +2478,7 @@ Text:
 
 JMP [L_LEST_0240]:
 
-If ( 姉様パンツ == false ) [L_LEST_0050]:
+If( 姉様パンツ == false ) [L_LEST_0050]:
 
 //姉様パンツあり
 サラ:
@@ -2471,7 +2486,7 @@ If ( 姉様パンツ == false ) [L_LEST_0050]:
 
 Text:
 私はサイドテーブルの引き出しから姉様のパンツを取り出して
-鼻に押し当てました;
+鼻に押し当てました。;
 
 サラ:
 (姉様の臭いがする……);
@@ -2482,11 +2497,11 @@ Text:
 Text:
 胸いっぱいに姉様の花園の臭いを吸い込むと、
 身体の奥からムラムラと熱いものが上がってきて
-どうしようもなく興奮してしまいます;
+どうしようもなく興奮してしまいます。;
 
 [L_LEST_0050]:
 
-If ( 乱数 >= 30 ) [L_LEST_0100]:
+If( 乱数 >= 30 ) [L_LEST_0100]:
 //通行人
 Text:
 ……コツ……コツ……コツ……;
@@ -2504,7 +2519,7 @@ Text:
 
 Text:
 しかし、私の手は止まってくれません。
-……いえ、私が止めませんでした;
+……いえ、私が止めませんでした。;
 
 サラ:
 (いっ……いま止めるなんて……ムリィ……！)
@@ -2520,7 +2535,7 @@ Text:
 
 Text:
 私がそんなことをしている間にも
-靴音はだんだんとこの部屋に近づいてきました;
+靴音はだんだんとこの部屋に近づいてきました。;
 
 サラ:
 んふーっ……んふぅーっ……！！
@@ -2529,7 +2544,7 @@ Text:
 もしもこの呻き声や音がドアの外に漏れて、
 ドアが開けられてしまったら……
 それを想像すると、恐ろしいほど快感が増大し、
-クリトリスは痛いほどに敏感になっていきます;
+クリトリスは痛いほどに敏感になっていきます。;
 
 Text:
 ……コツ……コツ……コツ……;
@@ -2537,7 +2552,7 @@ Text:
 Text:
 靴音が、私の部屋の前までやってきました……
 それに呼応するように、
-私の興奮もほとんど最高潮まで達しています;
+私の興奮もほとんど最高潮まで達しています。;
 
 サラ:
 んっ……んっ……んーっ……んふぅーっ……！！
@@ -2546,7 +2561,7 @@ Text:
 (はっ……早く通り過ぎてぇ……っ！);
 
 Text:
-……コツ……コツ…………;
+……コツ……コッ……………………;
 
 Text:
 私の部屋から漏れる音に気付いたのか、
@@ -2556,16 +2571,16 @@ Text:
 (ばっ……ばれちゃった……！？);
 
 Text:
-そう思ったのと同時に、私は絶頂しました;
+そう思ったのと同時に、私は絶頂しました。;
 
 サラ：
-～～～～ッッ！！
+～～～～ッッ！！;
 
 サラ:
 ティルケを噛みちぎるほど強く噛みしめて
 必死に声を殺しますが、
 身体の痙攣は止められず、
-キシキシとベッドが音をたてています;
+キシキシとベッドが音をたてています。;
 
 Text:
 そのベッドのシーツには、
@@ -2579,13 +2594,13 @@ Text:
 ひっ！？;
 
 Text:
-靴音の主はマリー姉様でした;
+靴音の主はマリー姉様でした。;
 
 サラ:
 ………………;
 
 マリー:
-サラ？
+サラ？;
 
 サラ:
 あっ、はい……います……;
@@ -2644,7 +2659,7 @@ Text:
 
 Text:
 突然性感が大きく高まり始め、
-全身を快楽の波が覆い尽くしていくのを感じました;
+全身を快楽の波が覆い尽くしていくのを感じました。;
 
 サラ:
 イく……イっちゃうううっ！！
@@ -2660,7 +2675,7 @@ Text:
 …………はぁぁ…………
 ……気持ち良かったぁ……♪;
 
-If ( 臭いフェチ = false ) [L_LEST_0150]:
+If( 臭いフェチ = false ) [L_LEST_0150]:
 
 //臭いフェチ
 
@@ -2684,8 +2699,8 @@ JMP [L_LEST_EXT]:
 ///////////////////////////////////////////////////////////////////
 [L_LEST_LOPER]:
 
-If ( 道徳心 < 10 ) [L_LEST_LOPER_4000]:
-If ( 道徳心 < 60 ) [L_LEST_LOPER_2000]:
+If( 道徳心 < 10 ) [L_LEST_LOPER_4000]:
+If( 道徳心 < 60 ) [L_LEST_LOPER_2000]:
 
 
 //堕落Lv.1 触手Lv.1
@@ -2696,10 +2711,10 @@ If ( 道徳心 < 60 ) [L_LEST_LOPER_2000]:
 サラ:
 出てきて……もらえませんか？;
 
-If ( 触手成長度 >= 50 ) [L_LEST_LOPER_0100]:
+If( 触手成長度 >= 50 ) [L_LEST_LOPER_0100]:
 Text:
 私の呼びかけに応じて、
-ベッドから数本の触手が現れました;
+ベッドから数本の触手が現れました。;
 
 JMP [L_LEST_LOPER_0200]:
 
@@ -2707,7 +2722,7 @@ JMP [L_LEST_LOPER_0200]:
 Text:
 私の呼びかけに応じて、
 部屋の壁に擬態していた触手が
-肉色の正体を現しました;
+肉色の正体を現しました。;
 
 
 [L_LEST_LOPER_0200]:
@@ -2721,7 +2736,7 @@ Text:
 Text:
 何をしてほしいか言えない私の意を汲んでか、
 触手たちはベッドに腰掛けた私のティルケの中に入って、
-優しくクリトリスを刺激してくれました;
+優しくクリトリスを刺激してくれました。;
 
 サラ:
 あぁ……そこぉ……;
@@ -2734,7 +2749,7 @@ Text:
 
 
 [L_LEST_LOPER_2000]:
-If ( 触手成長度 >= 50 ) [L_LEST_LOPER_3000]:
+If( 触手成長度 >= 50 ) [L_LEST_LOPER_3000]:
 //堕落Lv.2 触手Lv.1
 
 サラ:
@@ -2742,7 +2757,7 @@ If ( 触手成長度 >= 50 ) [L_LEST_LOPER_3000]:
 
 Text:
 私の呼びかけに応じて、
-ベッドから数本の触手が現れました;
+ベッドから数本の触手が現れました。;
 
 サラ:
 あはぁん、見てぇ……
@@ -2753,7 +2768,7 @@ Text:
 そう言うと、
 触手たちはベッドに腰掛けた私の
 ティルケの中に入りこみ、
-優しくクリトリスを刺激してくれました;
+優しくクリトリスを刺激してくれました。;
 
 サラ:
 あぁ……そこぉ……;
@@ -2864,7 +2879,7 @@ JMP [L_LEST_LOPER_EXT]:
 
 [L_LEST_LOPER_4000]:
 
-If ( 触手成長度 >= 50 ) [L_LEST_LOPER_5000]:
+If( 触手成長度 >= 50 ) [L_LEST_LOPER_5000]:
 //堕落Lv.3 触手Lv.1
 
 サラ:
@@ -2873,7 +2888,7 @@ If ( 触手成長度 >= 50 ) [L_LEST_LOPER_5000]:
 
 Text:
 私の呼びかけに応じて、
-ベッドから数本の触手が現れました;
+ベッドから数本の触手が現れました。;
 
 サラ:
 うふふ……舐めなさい♪;
@@ -2900,7 +2915,7 @@ Text:
 Text:
 私はそのままベッドに寝転がり、
 触手たちに愛撫を続けさせつつ
-安らかな眠りにつきました;
+安らかな眠りにつきました。;
 
 JMP [L_LEST_LOPER_EXT]:
 
@@ -3014,8 +3029,8 @@ SE ジュルジュル:
 はい、サラ様……
 お呼びでしょうか;
 
-If ( 淫魔化 = true ) [L_LEST_LOPER2_0200]:
-If ( 道徳心 < 30 ) [L_LEST_LOPER2_0100]:
+If( 淫魔化 = true ) [L_LEST_LOPER2_0200]:
+If( 道徳心 < 30 ) [L_LEST_LOPER2_0100]:
 
 //堕落Lv.2
 
@@ -3036,27 +3051,27 @@ Text:
 Text:
 私は触手娘を強く抱きしめ、
 いやしく何度も何度も触手娘にキスを求め、
-触手娘は何度でもそれに応えてくれました;
+触手娘は何度でもそれに応えてくれました。;
 
 Text:
 私がひとまず落ち着くと、
 触手娘はベッドから降りて私の前に跪き、
-私のティルケの中に顔を埋めました;
+私のティルケの中に顔を埋めました。;
 
 触手娘:
-……失礼します;
+……失礼します。;
 
 Text:
 ティルケの中から、
 グチュグチュと水音が聞こえてきます
 それと同時に、私の股間から
-途方もない快楽の波が押し寄せてきました;
+途方もない快楽の波が押し寄せてきました。;
 
 サラ:
 あふっ……な……何本も……
 な……なにこれ……気持ちいい……っ！;
 
-If ( ふたなり == true ) [L_LEST_LOPER2_0010]:
+If( ふたなり == true ) [L_LEST_LOPER2_0010]:
 
 Text:
 私の女性器が、膣内が、
@@ -3105,7 +3120,7 @@ Text:
 ティルケから再び顔を出した触手娘の表情は
 いつものように無表情でしたが、
 しかしわずかに目元が緩み、
-頬は赤みを帯びているようでした;
+頬は赤みを帯びているようでした。;
 
 サラ:
 は……はい……
@@ -3131,7 +3146,7 @@ JMP [L_LEST_LOPER2_0300]:
 触手娘:
 はい、喜んで;
 
-If ( サドっ気 < 2 ) [L_LEST_LOPER2_0120]:
+If( サドっ気 < 2 ) [L_LEST_LOPER2_0120]:
 
 サラ:
 それじゃ、
@@ -3142,7 +3157,7 @@ If ( サドっ気 < 2 ) [L_LEST_LOPER2_0120]:
 
 Text:
 触手娘は少しだけ躊躇した後、
-私の言った通りの姿勢になりました;
+私の言った通りの姿勢になりました。;
 
 サラ:
 よろしい……オラッ！！;
@@ -3157,7 +3172,7 @@ Text:
 私の腹パンが、触手娘の鳩尾に綺麗に入りました。
 全身が触手なので鳩尾にあたる部位は無いのでしょうが
 大事な臓器でもあるのか、
-大きく目を見開いて苦しんでいます;
+大きく目を見開いて苦しんでいます。;
 
 サラ:
 良い声で哭くんですね♪
@@ -3171,7 +3186,7 @@ Text:
 
 Text:
 今度はかわいそうに、
-膝を落としてうずくまってしまいました;
+膝を落としてうずくまってしまいました。;
 
 サラ:
 ほら、立ってないとダメでしょう？
@@ -3179,7 +3194,7 @@ Text:
 
 Text:
 そう言いながら、
-私はうずくまる触手娘の後頭部を踏みにじって楽しみます;
+私はうずくまる触手娘の後頭部を踏みにじって楽しみます。;
 
 触手娘:
 も……申し訳……ありません……サラ様……;
@@ -3187,7 +3202,7 @@ Text:
 Text:
 こんな扱いを受けながらも、
 不満一つ言わずに私に従う触手娘の健気な姿に、
-わたしのおまんこがキュンキュン疼くのを感じます;
+わたしのおまんこがキュンキュン疼くのを感じます。;
 
 サラ:
 ふふっ……いいわ、許してあげます♪
@@ -3200,22 +3215,22 @@ Text:
 
 Text:
 触手娘は私の前に跪き、
-私のティルケの中に顔を埋めました;
+私のティルケの中に顔を埋めました。;
 
 触手娘:
-……失礼します;
+……失礼します。;
 
 Text:
 ティルケの中から、
 グチュグチュと水音が聞こえてきます
 それと同時に、私の股間から
-途方もない快楽の波が押し寄せてきました;
+途方もない快楽の波が押し寄せてきました。;
 
 サラ:
 あふっ……な……何本も……
 ……すごい……気持ちいい……っ！;
 
-If ( ふたなり == true ) [L_LEST_LOPER2_0010]:
+If( ふたなり == true ) [L_LEST_LOPER2_0010]:
 
 Text:
 私の女性器が、膣内が、
@@ -3264,7 +3279,7 @@ Text:
 ティルケから再び顔を出した触手娘の表情は
 いつものように無表情でしたが、
 しかしわずかに目元が緩み、
-頬は赤みを帯びているようでした;
+頬は赤みを帯びているようでした。;
 
 サラ:
 ふふ……なかなか良かったわ♪;
@@ -3276,11 +3291,11 @@ JMP [L_LEST_LOPER2_0300]:
 
 Text:
 私は擬態を解いてベッドに横たわると、
-触手娘に横に寝るよう促しました;
+触手娘に横に寝るよう促しました。;
 
 Text:
 触手娘はメイド服を脱ぎ去り、
-私のそばに横たわりました;
+私のそばに横たわりました。;
 
 サラ:
 いいコね……たっぷり可愛がってあげる♪;
@@ -3296,7 +3311,7 @@ Text:
 あまりの快楽のためか、触手娘は手足をバタつかせて
 私から逃れようとしますが、サキュバスの私に
 腕力で勝てるわけもなく、あっという間に手足を抑えられ、
-抵抗の手段を失いました;
+抵抗の手段を失いました。;
 
 触手娘:
 ………ンンッ！！;
@@ -3328,7 +3343,7 @@ Minus:
 計算 気力 -= 20:
 
 Plus:
-性欲が50下がった;
+性欲が50下がった。;
 
 計算 性欲 -= 50:
 
@@ -3343,14 +3358,14 @@ END:
 
 Text:
 私はベッドの下から
-隠しておいたワインを取り出しました;
+隠しておいたワインを取り出しました。;
 
 サラ:
 ゴクッ……ゴクッ……
 あぁ……いい気持ち……;
 
-If ( 触手成長度 < 100 ) [L_LEST_DRANK_0500]:
-If ( 乱数 > 50 ) [L_LEST_DRANK_0500]:
+If( 触手成長度 < 100 ) [L_LEST_DRANK_0500]:
+If( 乱数 > 50 ) [L_LEST_DRANK_0500]:
 
 //触手娘いる
 
@@ -3360,16 +3375,16 @@ If ( 乱数 > 50 ) [L_LEST_DRANK_0500]:
 SE ジュルジュル:
 
 触手娘:
-はい……いただきます;
+はい……いただきます。;
 
 サラ:
 ゴクッ……ゴクッ……
 ふぅ……美味しい？;
 
 触手娘:
-はい……なんだかポォッとしてきます;
+はい……なんだかポォッとしてきます。;
 
-If ( レズっ気 < 2 ) [L_LEST_DRANK_0100]:
+If( レズっ気 < 2 ) [L_LEST_DRANK_0100]:
 サラ:
 ふふっ……触手娘;
 
@@ -3381,7 +3396,7 @@ If ( レズっ気 < 2 ) [L_LEST_DRANK_0100]:
 
 Text:
 触手娘はワインを口に含むと、
-私の方に顔を向けて目を細め、唇を突き出しました;
+私の方に顔を向けて目を細め、唇を突き出しました。;
 
 触手娘:
 ん……;
@@ -3390,20 +3405,20 @@ Text:
 その様子は私にキスをおねだりしているかのようで、
 もはやどレズになってしまった私は、
 見ているだけでゾクゾクと昏い悦びが
-体の奥から上がってくるのを感じていました;
+体の奥から上がってくるのを感じていました。;
 
-If ( サドっ気 < 2 ) [L_LEST_DRANK_0200]:
+If( サドっ気 < 2 ) [L_LEST_DRANK_0200]:
 
 サラ:
 ふふっ……オイシソウ♪;
 
 Text:
 私は従順な触手娘を見て、
-少し意地悪したくなってしまいました;
+少し意地悪したくなってしまいました。;
 
 Text:
 首筋をベロリと舐め上げると、
-触手娘の身体がビクンと強張りました;
+触手娘の身体がビクンと強張りました。;
 
 触手娘:
 んっ……んむぅ……;
@@ -3419,7 +3434,7 @@ Text:
 Text:
 私は触手娘の長い耳を舐めしゃぶりながら、
 メイド服のスカートの中に手を入れて、
-触手まんこをクニュクニュと弄りまわります;
+触手まんこをクニュクニュと弄りまわります。;
 
 触手娘:
 んむっ……んむぅぅっ！;
@@ -3434,7 +3449,7 @@ Text:
 
 Text:
 触手娘の反応は、
-いつも私の嗜虐心を満たしてくれます;
+いつも私の嗜虐心を満たしてくれます。;
 
 サラ:
 くすっ……意地悪してゴメンね♪;
@@ -3449,7 +3464,7 @@ Text:
 サラ:
 私はぬるりとした触手娘の唇にむしゃぶりつき、
 サラの涎と混ざってとろみのついたワインを
-吸い出していきます;
+吸い出していきます。;
 
 サラ:
 (あぁ……美味しい……♪);
@@ -3477,15 +3492,15 @@ Text:
 Text:
 普段は無表情な触手娘の
 甘えた笑顔が見られるのも
-お酒の魅力なんだと思います;
+お酒の魅力なんだと思います。;
 
 JMP [L_LEST_DRANK_EXT]:
 
 
 [L_LEST_DRANK_0500]:
 
-If ( 道徳心 < 50 ) [L_LEST_DRANK_0600]:
-If ( 道徳心 < 80 ) [L_LEST_DRANK_0700]:
+If( 道徳心 < 50 ) [L_LEST_DRANK_0600]:
+If( 道徳心 < 80 ) [L_LEST_DRANK_0700]:
 JMP [L_LEST_DRANK_0800]:
 
 [L_LEST_DRANK_0600]:
@@ -3508,12 +3523,12 @@ JMP [L_LEST_DRANK_1000]:
 
 [L_LEST_DRANK_1000]:
 Plus:
-体力が10回復した;
+体力が10回復した。;
 
 計算 体力 += 10:
 
 Minus:
-道徳心が3下がった;
+道徳心が3下がった。;
 
 計算 道徳心 -= 3:
 
@@ -3529,7 +3544,7 @@ END:
 
 Text:
 私は服を脱ぐと擬態を解いて、
-姿見の前でサキュバスの正体をあらわにしました;
+姿見の前でサキュバスの正体をあらわにしました。;
 
 サラ:
 んーっ、開放感♪
@@ -3539,13 +3554,13 @@ Text:
 あまり人間だったころと変わっていないはずなのに
 何とも言えない妖しさを帯びた顔つき。
 シミひとつない青磁器のような肌。
-黒光りする長い爪;
+黒光りする長い爪。;
 
 Text:
 赤く輝く虹彩と○〇のように縦に割れた瞳。
 禍々しく捻じ曲がった黒曜石のような立派な角。
 まさしく悪魔の象徴である羽と尻尾。
-どれをとってもまさに完璧な肉体です;
+どれをとってもまさに完璧な肉体です。;
 
 サラ:
 はぁ……ん……♪;
@@ -3553,7 +3568,7 @@ Text:
 Text:
 自分の身体のいやらしさに欲情した私が
 舌なめずりをすると、鏡の中の私の口元から
-ぬらぬらと光る紫色の舌が顔を覗かせます;
+ぬらぬらと光る紫色の舌が顔を覗かせます。;
 
 サラ:
 あはっ、女神セクリドよ、
@@ -3563,7 +3578,7 @@ Text:
 
 Text:
 私はもはやこれっぽっちも崇拝していない女神に
-わざとらしく懺悔の口上を捧げます;
+わざとらしく懺悔の口上を捧げます。;
 
 サラ:
 さぁて、いつまでもこうしていたいけど……
@@ -3586,7 +3601,7 @@ END:
 
 Text:
 私は邪魔くさい僧衣を脱ぎ去ると、
-擬態を解いて自らを慰め始めました;
+擬態を解いて自らを慰め始めました。;
 
 サラ:
 ああっ、たまんないっ！！気持ちいいっ！！;
@@ -3599,7 +3614,8 @@ Text:
 
 Text:
 部屋中に発情したサキュバスの体臭が充満し、
-強烈な淫気で部屋がピンク色に霞がかっているようにさえ見えます;
+強烈な淫気で部屋がピンク色に
+霞がかっているようにさえ見えます。;
 
 サラ:
 あふぅぅ……でも……足りない……
@@ -3608,8 +3624,10 @@ Text:
 Text:
 性欲はかなり解消されましたが、
 吸精欲はいまひとつ収まりませんでした……
-オナニーしてもお腹はいっぱいになりませんから、
+人間だってオナニーでお腹はいっぱいになりませんから、
 当然なんですけどね……;
+
+END:
 
 
 ///////////////////////////////////////////////////////////////////
@@ -3619,13 +3637,13 @@ Text:
 少し横になろうっと……;
 
 
-If ( 乱数 < 50 ) [L_LEST_SLEEP_1000]:
+If( 乱数 < 50 ) [L_LEST_SLEEP_1000]:
 
-If ( 触手経験済 == true ) [L_LEST_0100]:
+If( 触手経験済 == true ) [L_LEST_0100]:
 //触手未経験
 Text:
 私は、ベッドに横になると
-そのまま目を閉じてノンビリ眠り始めました;
+そのまま目を閉じてノンビリ眠り始めました。;
 
 JMP [L_LEST_0200]:
 
@@ -3636,7 +3654,7 @@ JMP [L_LEST_0200]:
 Text:
 ドキドキしながらベッドに腰掛けると、
 幸いにも、今回は触手は出てこず、
-私はゆっくりと休むことが出来ました;
+私はゆっくりと休むことが出来ました。;
 
 [L_LEST_0200]:
 
@@ -3654,13 +3672,13 @@ Plus:
 JMP [L_LEST_EXT]:
 
 [L_LEST_SLEEP_1000]:
-If ( 触手経験済 == true ) [L_LEST_1100]:
+If( 触手経験済 == true ) [L_LEST_1100]:
 
 //触手初回
 
 Text:
 私は、ベッドに横になると
-そのまま目を閉じてノンビリ眠り始めました;
+そのまま目を閉じてノンビリ眠り始めました。;
 
 Text:
 その時……;
@@ -3674,11 +3692,11 @@ Text:
 Text:
 いきなり私の秘部が、
 何か柔らかい物に押し上げられ、
-私は驚いて飛び上がってしまいました;
+私は驚いて飛び上がってしまいました。;
 
 Text:
 慌てて自分が座っていたところを確認すると、
-そこにはピンク色の肉の塊のようなものがありました;
+そこにはピンク色の肉の塊のようなものがありました。;
 
 サラ:
 これは……もしかして触手……？
@@ -3686,7 +3704,7 @@ Text:
 
 Text:
 触手はグニグニとしばらくその場で蠢くと、
-ベッドの下へと沈んでいきました;
+ベッドの下へと沈んでいきました。;
 
 Text:
 その後、休んでいる間
@@ -3708,14 +3726,14 @@ JMP [L_LEST_EXT]:
 
 Text:
 ドキドキしながらベッドに腰掛けると、
-すぐにお尻がべろりと舐め上げられました;
+すぐにお尻がべろりと舐め上げられました。;
 
 サラ:
 ひゃっ……！！;
 
 Text:
 飛び上がって振り返ると、
-案の定ベッドからピンク色の触手が伸びていました;
+案の定ベッドからピンク色の触手が伸びていました。;
 
 Text:
 その後、休んでいる間
@@ -3729,6 +3747,4 @@ Plus:
 
 [L_LEST_EXT]:
 END:
-
-
 
