@@ -601,6 +601,16 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap lidy_0_0 {
+            get {
+                object obj = ResourceManager.GetObject("lidy_0_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   
         ///// オープニングシナリオ
         /////senario1
@@ -678,7 +688,8 @@ namespace DoujinGameProject.Properties {
         ///   
         ///
         ///Text:
-        ///自分の部屋に来ました;
+        ///自分の部屋に来ました。;
+        ///
         ///サラ:
         ///どうしようかな……;
         ///
@@ -705,11 +716,66 @@ namespace DoujinGameProject.Properties {
         ///JMP [L_LEST_0200]:
         ///
         ///[L_LEST_SEL_0400]:
-        ///If( 道徳心 &lt; [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///If( 道徳 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 休息 {
             get {
                 return ResourceManager.GetString("休息", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   //教会
+        ///
+        ///サラ:
+        ///教会でお勤めをしようっと;
+        ///
+        ///サラ:
+        ///何をしようかな？;
+        ///
+        ///
+        ///////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////
+        ///
+        ///If( 道徳心 &lt; 40 ) [L_CHRC_SEL_1000]:
+        ///
+        ///選択肢:
+        ///祈りを捧げる;
+        ///マリー姉様と話す;
+        ///リディと話す;
+        ///選択肢終:
+        ///
+        ///If( 選択番号 == 1 ) [L_CHRC_PRAY]:
+        ///If( 選択番号 == 2 ) [L_CHRC_MARY]:
+        ///JMP [L_CHRC_LIDY]:
+        ///
+        ///
+        ///[L_CHRC_SEL_1000]:
+        ///
+        ///選択肢:
+        ///祈りを捧げるふりをする;
+        ///マリー姉様と話す;
+        ///リディと話す;
+        ///選択肢終:
+        ///
+        ///If( 選択番号 == 1 ) [L_CHRC_PRAY_FAKE]:
+        ///If( 選択番号 == 2 ) [L_CHRC_MARY]:
+        ///JMP [L_CHRC_LIDY]:
+        ///
+        //////////////// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 教会 {
+            get {
+                return ResourceManager.GetString("教会", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 読書 {
+            get {
+                return ResourceManager.GetString("読書", resourceCulture);
             }
         }
     }

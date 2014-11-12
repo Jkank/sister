@@ -280,6 +280,9 @@
   <data name="g_ev_001_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_001_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lidy_0_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\grp_dummy\後輩_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="opening" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\try.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
@@ -291,5 +294,11 @@
   </data>
   <data name="休息" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\休息.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="教会" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\教会.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="読書" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\読書.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
 </root>

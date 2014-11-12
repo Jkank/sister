@@ -14,7 +14,7 @@ namespace DoujinGameProject.Data
         /// <summary>ステータス情報</summary>
         public static Sister SisterData;
         /// <summary>シナリオ情報</summary>
-        //public static Scenrio ScenarioData;
+        public static Scenario ScenarioData;
         //選択肢や既読状態等のデータをもつ必要があればScenarioDataをつくる
         /// <summary>イベントフラグ情報</summary>
         public static bool[] EventFlags;
@@ -24,6 +24,7 @@ namespace DoujinGameProject.Data
         public static void Initialize()
         {
             SisterData = new Sister();
+            ScenarioData = new Scenario();
         }
 
 

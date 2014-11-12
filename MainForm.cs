@@ -21,7 +21,6 @@ namespace DoujinGameProject
         public int sent_ct = 0;
         public int log_ct = 0;          /* ログ現在位置カウンタ */
         public int log_ct_use = 0;      /* ログ最古位置カウンタ */
-        public int Slct_No;
 
         public bool MouseLeftPushed = false;
 
@@ -50,11 +49,41 @@ namespace DoujinGameProject
 
             GameData.SisterData.PassionPoint.MaxValue = 100;
             GameData.SisterData.MoralPoint.MaxValue = 100;
-            GameData.SisterData.PassionPoint.CurrentValue = 10;
-            GameData.SisterData.MoralPoint.CurrentValue = 30;
+            GameData.SisterData.PassionPoint.CurrentValue = 80;
+            GameData.SisterData.MoralPoint.CurrentValue = 20;
+
+            GameData.ScenarioData.Slct_No = 0;
+
+            //this.DoubleBuffered = true;  // ダブルバッファリング: 画面のちらつきを抑止
+            ////////確認中　ちらつき防止にダブルバッファリングを有効にしたい////////
+            //this.SetStyle(ControlStyles.DoubleBuffer, true);
+            //this.SetStyle(ControlStyles.UserPaint, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            ////////////////////////////////////////////////////////////////////////
+            SetDoubleBuffered(pictureBox1);
+            SetDoubleBuffered(pictureBox2);
+            SetDoubleBuffered(pictureBox3);
         }
 
 //        string line;
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            // リモートアクセス中の場合は何もしない
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+            {
+                return;
+            }
+
+            // ダブルバッファ制御用のプロパティを強制的に取得する
+            System.Reflection.PropertyInfo p;
+            p = typeof(System.Windows.Forms.Control).GetProperty(
+                         "DoubleBuffered",
+                          System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+            // ダブルバッファを有効にする
+            p.SetValue(c, true, null);
+        }
 
         /////////////////////* === スタートボタン === */////////////////////
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
@@ -112,75 +141,160 @@ namespace DoujinGameProject
 
         ////////////////////////////////////////////////////////////////////
 
+        ////////////////////////////////////////////////////////////////////
+        //////////////////////* === 通常選択画面 === *//////////////////////
+        ////////////////////////////////////////////////////////////////////
+
+        ///////////////////////* === 教会ボタン === *///////////////////////
+        private void church_btn_MouseEnter(object sender, EventArgs e)
+        {church_btn.Image = Properties.Resources.g_btn_003_1;}
+        private void church_btn_MouseDown(object sender, MouseEventArgs e)
+        {if (e.Button == MouseButtons.Left){church_btn.Image = Properties.Resources.g_btn_003_2;MouseLeftPushed = true;}}
+        private void church_btn_MouseUp(object sender, MouseEventArgs e)
+        {church_btn.Image = Properties.Resources.g_btn_003_1;if (MouseLeftPushed == true){background.Visible = true;}}
+        private void church_btn_MouseLeave(object sender, EventArgs e)
+        {church_btn.Image = Properties.Resources.g_btn_003_0;MouseLeftPushed = false;}
+        private void church_btn_MouseMove(object sender, MouseEventArgs e)
+        {if (pictureBox1.ClientRectangle.Contains(pictureBox1.PointToClient(Cursor.Position)) == false){pictureBox1.Image = Properties.Resources.g_btn_000_0;MouseLeftPushed = false;}}
+        ////////////////////////////////////////////////////////////////////
+
+
+        ///////////////////////* === 休息ボタン === *///////////////////////
 
 
 
 
-        ////////////////////* === オプションボタン === *////////////////////
+        ////////////////////////////////////////////////////////////////////
+        //////////////////////* === イベント画面 === *//////////////////////
+        ////////////////////////////////////////////////////////////////////
         private void textarea_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
-
-            if (sent_ct == 0)
+            if (e.Button == MouseButtons.Right)
             {
-                log_ct = 0;
-                log_ct_use = 0;
+                if (textarea.Visible == true)
+                {
+                    /* テキストエリア表示中だったら、表示消す */
+                    textarea.Visible = false;
+                }
+                else
+                {
+                    /* テキストエリア消去中だったら、表示する */
+                    textarea.Visible = true;
+                }
             }
-            else if (log_ct_use < 99)
+            else
             {
-                log_ct_use++;
-            }
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-            /* パネル３にフォーカス */
-            panel3.Focus();
+                if (sent_ct == 0)
+                {
+                    log_ct = 0;
+                    log_ct_use = 0;
+                }
+                else if (log_ct_use < 99)
+                {
+                    log_ct_use++;
+                }
+
+                /* パネル３にフォーカス */
+                panel3.Focus();
+            }
         }
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
+            if (e.Button == MouseButtons.Right)
+            {
+                if (textarea.Visible == true)
+                {
+                    /* テキストエリア表示中だったら、表示消す */
+                    textarea.Visible = false;
+                }
+                else
+                {
+                    /* テキストエリア消去中だったら、表示する */
+                    textarea.Visible = true;
+                }
+            }
+            else
+            {
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-            if (sent_ct == 0)
-            {
-                log_ct = 0;
-                log_ct_use = 0;
+                if (sent_ct == 0)
+                {
+                    log_ct = 0;
+                    log_ct_use = 0;
+                }
+                else if (log_ct_use < 99)
+                {
+                    log_ct_use++;
+                }
+                /* パネル３にフォーカス */
+                panel3.Focus();
             }
-            else if (log_ct_use < 99)
-            {
-                log_ct_use++;
-            }
-            /* パネル３にフォーカス */
-            panel3.Focus();
         }
         private void chara_pos_1_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
+            if (e.Button == MouseButtons.Right)
+            {
+                if (textarea.Visible == true)
+                {
+                    /* テキストエリア表示中だったら、表示消す */
+                    textarea.Visible = false;
+                }
+                else
+                {
+                    /* テキストエリア消去中だったら、表示する */
+                    textarea.Visible = true;
+                }
+            }
+            else
+            {
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-            if (sent_ct == 0)
-            {
-                log_ct = 0;
-                log_ct_use = 0;
+                if (sent_ct == 0)
+                {
+                    log_ct = 0;
+                    log_ct_use = 0;
+                }
+                else if (log_ct_use < 99)
+                {
+                    log_ct_use++;
+                }
+                /* パネル３にフォーカス */
+                panel3.Focus();
             }
-            else if (log_ct_use < 99)
-            {
-                log_ct_use++;
-            }
-            /* パネル３にフォーカス */
-            panel3.Focus();
         }
         private void chara_pos2_MouseDown(object sender, MouseEventArgs e)
         {
-            sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
+            if (e.Button == MouseButtons.Right)
+            {
+                if (textarea.Visible == true)
+                {
+                    /* テキストエリア表示中だったら、表示消す */
+                    textarea.Visible = false;
+                }
+                else
+                {
+                    /* テキストエリア消去中だったら、表示する */
+                    textarea.Visible = true;
+                }
+            }
+            else
+            {
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-            if (sent_ct == 0)
-            {
-                log_ct = 0;
-                log_ct_use = 0;
+                if (sent_ct == 0)
+                {
+                    log_ct = 0;
+                    log_ct_use = 0;
+                }
+                else if (log_ct_use < 99)
+                {
+                    log_ct_use++;
+                }
+                /* パネル３にフォーカス */
+                panel3.Focus();
             }
-            else if (log_ct_use < 99)
-            {
-                log_ct_use++;
-            }
-            /* パネル３にフォーカス */
-            panel3.Focus();
         }
 
         //バックログ関係
@@ -250,9 +364,9 @@ namespace DoujinGameProject
             Slctbox_1.Image = Properties.Resources.g_btn_000_1;
             if (MouseLeftPushed == true)
             {
-                Slct_No = 1;
+                GameData.ScenarioData.Slct_No = 1;
                 panel_slct.Visible = false;
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, Slct_No);
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
             }
         }
@@ -268,6 +382,51 @@ namespace DoujinGameProject
             if (Slctbox_1.ClientRectangle.Contains(Slctbox_1.PointToClient(Cursor.Position)) == false)
             {
                 Slctbox_1.Image = Properties.Resources.g_btn_000_0;
+                MouseLeftPushed = false;
+            }
+        }
+
+
+        ////////////////////* === 選択肢２ボタン === *////////////////////
+
+
+        private void Slctbox_2_MouseEnter(object sender, EventArgs e)
+        {
+            Slctbox_2.Image = Properties.Resources.g_btn_000_1;
+        }
+
+        private void Slctbox_2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Slctbox_2.Image = Properties.Resources.g_btn_000_2;
+                MouseLeftPushed = true;
+            }
+        }
+
+        private void Slctbox_2_MouseUp(object sender, MouseEventArgs e)
+        {
+            Slctbox_2.Image = Properties.Resources.g_btn_000_1;
+            if (MouseLeftPushed == true)
+            {
+                GameData.ScenarioData.Slct_No = 2;
+                panel_slct.Visible = false;
+                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+
+            }
+        }
+
+        private void Slctbox_2_MouseLeave(object sender, EventArgs e)
+        {
+            Slctbox_2.Image = Properties.Resources.g_btn_000_0;
+            MouseLeftPushed = false;
+        }
+        
+        private void Slctbox_2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Slctbox_2.ClientRectangle.Contains(Slctbox_1.PointToClient(Cursor.Position)) == false)
+            {
+                Slctbox_2.Image = Properties.Resources.g_btn_000_0;
                 MouseLeftPushed = false;
             }
         }
@@ -305,7 +464,7 @@ namespace DoujinGameProject
                     Slctbox_1.Image = canvas;
                     break;
                 case 2:
-                    Slctbox_3.Image = canvas;
+                    Slctbox_2.Image = canvas;
                     break;
                 case 3:
                     Slctbox_3.Image = canvas;
@@ -316,7 +475,7 @@ namespace DoujinGameProject
                 default:
                     break;
             }
-            textarea.Image = canvas;
+            //textarea.Image = canvas;
         }
 
         private void setCharacterImage(PictureBox chrbox, Defines.CharacterImageID imageID)
@@ -383,6 +542,21 @@ namespace DoujinGameProject
                 case Defines.CharacterImageID.D_CHR_SARA_19:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
+                case Defines.CharacterImageID.D_CHR_LIDY_00:
+                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_LIDY_01:
+                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_LIDY_02:
+                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_LIDY_03:
+                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+                    break;
+                case Defines.CharacterImageID.D_CHR_LIDY_04:
+                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+                    break;
                 case Defines.CharacterImageID.D_CHR_DEVIL_00:
                     chrbox.BackgroundImage = Properties.Resources.sara_0_0;
                     break;
@@ -414,7 +588,7 @@ namespace DoujinGameProject
         /* ■　入力：Slct_ct                                 　 　 ■ */
         /* ■　出力：なし                                    　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public void dispSlctBox(int Slct_ct)
+        public void dispSlctBox(int Slct_ct_max)
         {
 
 
@@ -423,7 +597,7 @@ namespace DoujinGameProject
             // 選択肢ボックス位置
             Point Position = new Point(Slctbox_1.Location.X, Slctbox_1.Location.Y); // 選択肢ボックス位置
 
-            if (Slct_ct == 4)
+            if (Slct_ct_max == 4)
             {
                 Slctbox_1.Visible = true;
                 Slctbox_2.Visible = true;
@@ -441,7 +615,7 @@ namespace DoujinGameProject
                 Slctbox_4.Location = Position;
 
             }
-            else if (Slct_ct == 3)
+            else if (Slct_ct_max == 3)
             {
                 Slctbox_1.Visible = true;
                 Slctbox_2.Visible = true;
@@ -457,7 +631,7 @@ namespace DoujinGameProject
                 Slctbox_3.Location = Position;
                 
             }
-            else if (Slct_ct == 2)
+            else if (Slct_ct_max == 2)
             {
                 Slctbox_1.Visible = true;
                 Slctbox_2.Visible = true;
@@ -474,5 +648,18 @@ namespace DoujinGameProject
 
             panel_slct.Visible = true;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }    
 }

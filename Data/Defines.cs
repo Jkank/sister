@@ -13,31 +13,60 @@ namespace DoujinGameProject.Data
         public enum CharacterImageID
         {
             D_CHR_SARA_00 = 0,
-            D_CHR_SARA_01 = 1,
-            D_CHR_SARA_02 = 2,
-            D_CHR_SARA_03 = 3,
-            D_CHR_SARA_04 = 4,
-            D_CHR_SARA_05 = 5,
-            D_CHR_SARA_06 = 6,
-            D_CHR_SARA_07 = 7,
-            D_CHR_SARA_08 = 8,
-            D_CHR_SARA_09 = 9,
-            D_CHR_SARA_10 = 10,
-            D_CHR_SARA_11 = 11,
-            D_CHR_SARA_12 = 12,
-            D_CHR_SARA_13 = 13,
-            D_CHR_SARA_14 = 14,
-            D_CHR_SARA_15 = 15,
-            D_CHR_SARA_16 = 16,
-            D_CHR_SARA_17 = 17,
-            D_CHR_SARA_18 = 18,
-            D_CHR_SARA_19 = 19,
-            D_CHR_DEVIL_00 = 20,
-            D_CHR_DEVIL_01 = 21,
-            D_CHR_DEVIL_02 = 22,
-            D_CHR_DEVIL_03 = 23,
-            D_CHR_DEVIL_04 = 24,
-            D_CHR_DEVIL_05 = 25,
+            D_CHR_SARA_01,
+            D_CHR_SARA_02,
+            D_CHR_SARA_03,
+            D_CHR_SARA_04,
+            D_CHR_SARA_05,
+            D_CHR_SARA_06,
+            D_CHR_SARA_07,
+            D_CHR_SARA_08,
+            D_CHR_SARA_09,
+            D_CHR_SARA_10,
+            D_CHR_SARA_11,
+            D_CHR_SARA_12,
+            D_CHR_SARA_13,
+            D_CHR_SARA_14,
+            D_CHR_SARA_15,
+            D_CHR_SARA_16,
+            D_CHR_SARA_17,
+            D_CHR_SARA_18,
+            D_CHR_SARA_19,
+            D_CHR_LIDY_00,
+            D_CHR_LIDY_01,
+            D_CHR_LIDY_02,
+            D_CHR_LIDY_03,
+            D_CHR_LIDY_04,
+            D_CHR_LIDY_05,
+            D_CHR_DEVIL_00,
+            D_CHR_DEVIL_01,
+            D_CHR_DEVIL_02,
+            D_CHR_DEVIL_03,
+            D_CHR_DEVIL_04,
+            D_CHR_DEVIL_05,
+        }
+
+        public enum skillID
+        {
+            SKL_LESB,
+            SKL_MASO,
+            SKL_SADO,
+            SKL_SMLFETI,
+            SKL_FUTA,
+            SKL_ROSYUTSU,
+            SKL_MB,
+            SKL_KEMONER,
+            SKL_BODY_BIYAKU,
+            SKL_MONSTER,
+            SKL_SUCCUBUS,
+        }
+
+
+        public enum expID
+        {
+            EXP_MB,         //オナニー経験
+            EXP_EJAC,       //射精経験
+            EXP_STEAL,      //盗難経験
         }
 
         public const string FontName = "メイリオ";
@@ -48,5 +77,7 @@ namespace DoujinGameProject.Data
 
         public const int SelectBoxWidth = 450;
         public const int SelectBoxHeight = 60;
+
+        
     }
 }

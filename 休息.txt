@@ -2,6 +2,7 @@
 
 Text:
 自分の部屋に来ました。;
+
 サラ:
 どうしようかな……;
 
@@ -91,7 +92,7 @@ If( お香数 >= 1 ) [L_LEST_0010]:
 選択肢終:
 
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
@@ -106,7 +107,7 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
@@ -129,7 +130,7 @@ If( 酒数 >= 1 ) [L_LEST_0060]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -144,7 +145,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -170,7 +171,7 @@ If( 酒数 >= 1 ) [L_LEST_0080]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -194,7 +195,7 @@ JMP [L_LEST_0070]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -234,7 +235,7 @@ If( 酒数 >= 1 ) [L_LEST_0152]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -249,7 +250,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -276,7 +277,7 @@ JMP [L_LEST_0152]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -306,7 +307,7 @@ If( 酒数 >= 1 ) [L_LEST_0260]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -321,7 +322,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -354,7 +355,7 @@ If( 酒数 >= 1 ) [L_LEST_0302]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
@@ -367,7 +368,7 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 If( 選択番号 == 3 ) [L_LEST_DRANK]:
 JMP [L_LEST_SLEEP]:
@@ -385,7 +386,7 @@ If( 酒数 >= 1 ) [L_LEST_0352]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -400,7 +401,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -539,7 +540,7 @@ If( お香数 >= 1 ) [L_LEST_1010]:
 選択肢終:
 
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
@@ -554,7 +555,7 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
@@ -578,7 +579,7 @@ If( 酒数 >= 1 ) [L_LEST_1060]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -588,7 +589,7 @@ If( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEST_ROPER]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1050]:
 
@@ -602,7 +603,7 @@ JMP [L_LEST_1050]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -614,7 +615,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1060]:
 
@@ -631,7 +632,7 @@ If( 酒数 >= 1 ) [L_LEST_1080]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -643,7 +644,7 @@ If( 選択番号 == 3 ) [L_LEST_FLEG]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_MB]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1070]:
 
@@ -657,7 +658,7 @@ JMP [L_LEST_1070]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -692,9 +693,9 @@ If( 酒数 >= 1 ) [L_LEST_1102]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
-If( 選択番号 == 3 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_ROPER]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -708,7 +709,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
@@ -718,7 +719,7 @@ If( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEST_ROPER]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1102]:
 
@@ -735,7 +736,7 @@ If( 酒数 >= 1 ) [L_LEST_1152]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -745,7 +746,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1150]:
 
@@ -760,7 +761,7 @@ JMP [L_LEST_1150]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -772,7 +773,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1152]:
 
@@ -796,7 +797,7 @@ If( お香数 >= 1 ) [L_LEST_1210]:
 選択肢終:
 
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -812,7 +813,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -842,7 +843,7 @@ If( 酒数 >= 1 ) [L_LEST_1252]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
@@ -857,7 +858,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -891,9 +892,9 @@ If( 酒数 >= 1 ) [L_LEST_1302]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
-If( 選択番号 == 3 ) [L_LEFT_ROPER]:
+If( 選択番号 == 3 ) [L_LEST_ROPER]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -907,7 +908,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
@@ -917,7 +918,7 @@ If( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEST_ROPER]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1302]:
 
@@ -934,7 +935,7 @@ If( 酒数 >= 1 ) [L_LEST_1352]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -944,7 +945,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1350]:
 
@@ -959,7 +960,7 @@ JMP [L_LEST_1350]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -971,7 +972,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_1352]:
 
@@ -1116,7 +1117,7 @@ If( お香数 >= 1 ) [L_LEST_2010]:
 選択肢終:
 
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 JMP [L_LEST_SLEEP]:
 
@@ -1131,7 +1132,7 @@ JMP [L_LEST_SLEEP]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 JMP [L_LEST_SLEEP]:
@@ -1154,7 +1155,7 @@ If( 酒数 >= 1 ) [L_LEST_2060]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -1164,7 +1165,7 @@ If( 選択番号 == 3 ) [L_LEST_FLEG]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER]:
+If( 選択番号 == 1 ) [L_LEST_ROPER]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2050]:
 
@@ -1178,7 +1179,7 @@ JMP [L_LEST_2050]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1190,7 +1191,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2060]:
 
@@ -1207,7 +1208,7 @@ If( 酒数 >= 1 ) [L_LEST_2080]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -1219,7 +1220,7 @@ If( 選択番号 == 3 ) [L_LEST_FLEG]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_MB]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER]:
+If( 選択番号 == 2 ) [L_LEST_ROPER]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2070]:
 
@@ -1233,7 +1234,7 @@ JMP [L_LEST_2070]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -1268,9 +1269,9 @@ If( 酒数 >= 1 ) [L_LEST_2110]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
-If( 選択番号 == 3 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 3 ) [L_LEST_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1284,7 +1285,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
@@ -1294,7 +1295,7 @@ If( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEST_ROPER2]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2110]:
 
@@ -1311,7 +1312,7 @@ If( 酒数 >= 1 ) [L_LEST_2160]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1321,7 +1322,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEST_ROPER2]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2150]:
 
@@ -1336,7 +1337,7 @@ JMP [L_LEST_2150]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1348,7 +1349,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_ROPER2]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2160]:
 
@@ -1370,9 +1371,9 @@ If( お香数 >= 1 ) [L_LEST_2210]:
 選択肢終:
 
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
-If( 選択番号 == 3 ) [L_LEST_MB]:選択番号 == 
+If( 選択番号 == 3 ) [L_LEST_MB]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1386,7 +1387,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_FLEG]:
 
@@ -1414,7 +1415,7 @@ If( 酒数 >= 1 ) [L_LEST_2260]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1423,7 +1424,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEST_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1436,7 +1437,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_PRAY]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1447,7 +1448,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_ROPER2]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2260]:
 
@@ -1472,9 +1473,9 @@ If( 酒数 >= 1 ) [L_LEST_2310]:
 寝る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
-If( 選択番号 == 3 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 3 ) [L_LEST_ROPER2]:
 JMP [L_LEST_SLEEP]:
 
 
@@ -1488,7 +1489,7 @@ JMP [L_LEST_SLEEP]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_MB]:
 If( 選択番号 == 3 ) [L_LEST_DRANK]:
 
@@ -1498,7 +1499,7 @@ If( 選択番号 == 3 ) [L_LEST_DRANK]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 1 ) [L_LEST_ROPER2]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2310]:
 
@@ -1515,7 +1516,7 @@ If( 酒数 >= 1 ) [L_LEST_2360]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1525,7 +1526,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 戻る;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2350]:
 
@@ -1540,7 +1541,7 @@ JMP [L_LEST_2350]:
 次へ;
 選択肢終:
 
-If( 選択番号 == 1 ) [L_LEFT_TEA]:
+If( 選択番号 == 1 ) [L_LEST_TEA]:
 If( 選択番号 == 2 ) [L_LEST_DEMIMIC]:
 If( 選択番号 == 3 ) [L_LEST_MB]:
 
@@ -1552,7 +1553,7 @@ If( 選択番号 == 3 ) [L_LEST_MB]:
 選択肢終:
 
 If( 選択番号 == 1 ) [L_LEST_DRANK]:
-If( 選択番号 == 2 ) [L_LEFT_ROPER2]:
+If( 選択番号 == 2 ) [L_LEST_ROPER2]:
 If( 選択番号 == 3 ) [L_LEST_SLEEP]:
 JMP [L_LEST_2360]:
 
@@ -1687,10 +1688,10 @@ JMP [L_LEST_LOPER2]:
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-[L_LEFT_TEA]:
+[L_LEST_TEA]:
 
 
-If( 触手成長度 >= 100 ) [L_LEFT_TEA_010]:
+If( 触手成長度 >= 100 ) [L_LEST_TEA_010]:
 
 サラ:
 お茶でも飲もうかな……;
@@ -1699,14 +1700,14 @@ Text:
 私はお茶を淹れて、
 しばらくゆったりと休憩しました。;
 
-JMP [L_LEFT_TEA_EXT]:
+JMP [L_LEST_TEA_EXT]:
 
-[L_LEFT_TEA_010]:
+[L_LEST_TEA_010]:
 
 //触手娘いる
 
-If( 道徳心 < 20 ) [L_LEFT_TEA_100]:
-If( 道徳心 < 60 ) [L_LEFT_TEA_200]:
+If( 道徳心 < 20 ) [L_LEST_TEA_100]:
+If( 道徳心 < 60 ) [L_LEST_TEA_200]:
 
 //堕落 Lv.1
 Text:
@@ -1716,7 +1717,7 @@ Text:
 ……あ、触手娘も飲むかしら……
 触手娘、お茶を飲みますか？;
 
-SE ジュルジュル:+=
+//SE ジュルジュル:
 
 触手娘:
 サラ様……次からそのようなことは私めが……;
@@ -1742,10 +1743,10 @@ Plus:
 
 計算 気力 += 20:
 
-JMP [L_LEFT_TEA_EXT]:
+JMP [L_LEST_TEA_EXT]:
 
 
-[L_LEFT_TEA_100]:
+[L_LEST_TEA_100]:
 //堕落 Lv.2
 サラ:
 (お茶を飲みたいけれど
@@ -1755,7 +1756,7 @@ JMP [L_LEFT_TEA_EXT]:
 触手娘、すみませんが
 お茶を淹れてもらえませんか？;
 
-SE ジュルジュル:
+//SE ジュルジュル:
 
 触手娘:
 かしこまりました、サラ様……;
@@ -1779,16 +1780,16 @@ Text:
 その後、お茶を飲みながら、
 触手娘と他愛のない会話を楽しみました。;
 
-JMP [L_LEFT_TEA_EXT]:
+JMP [L_LEST_TEA_EXT]:
 
 
-[L_LEFT_TEA_200]:
+[L_LEST_TEA_200]:
 //堕落 Lv.3
 サラ:
 ふぅ、なんか疲れちゃったぁ……
 触手娘、お茶;
 
-SE ジュルジュル:
+//SE ジュルジュル:
 
 触手娘:
 かしこまりました、サラ様……;
@@ -1819,7 +1820,7 @@ Plus:
 
 計算 時刻 += 1:
 
-[L_LEFT_TEA_EXT]:
+[L_LEST_TEA_EXT]:
 END:
 
 
@@ -1828,15 +1829,7 @@ END:
 [L_LEST_PRAY]:
 
 Text:
-私は静かに神に祈りを捧げます……
-
-//触手発生判定
-If( 触手成長度 < 60 )
-If( 乱数 < 60 ) [L_LEST_PRAY_000]:
-RTNADR [L_LEST_PRAY_000]:
-JMP [L_SUB_ROPER]:
-
-[L_LEST_PRAY_000]:
+私は静かに神に祈りを捧げます……;
 
 Text:
 精神が落ち着き、
@@ -2139,7 +2132,7 @@ END:
 [L_LEST_MB_0001]:
 //通常オナニー
 
-If( ふたなり = false )[L_LEST_MB_0200]:
+//If( ふたなり == false ) [L_LEST_MB_0200]:
 //通常　ふたなりあり
 
 Text:
@@ -3023,7 +3016,7 @@ END:
 サラ:
 触手娘;
 
-SE ジュルジュル:
+//SE ジュルジュル:
 
 触手娘:
 はい、サラ様……
@@ -3321,7 +3314,13 @@ Text:
 キスだけでイっちゃったんですかぁ？
 クスクス……可愛い♪;
 
+サラ:
+それじゃ、次は貝合わせをしましょうか♪;
+
 触手娘:
+……ぁ……ぁ……;
+
+Text:
 その後も、触手娘は私の淫技の数々に
 なす術もなくイき続け、１時間もする頃には
 完全に気を失ってしまったのでした……;
@@ -3372,7 +3371,7 @@ If( 乱数 > 50 ) [L_LEST_DRANK_0500]:
 サラ:
 触手娘、あなたも飲みますか？;
 
-SE ジュルジュル:
+//SE ジュルジュル:
 
 触手娘:
 はい……いただきます。;
