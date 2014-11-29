@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -371,7 +371,7 @@
     <None Include="text.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="try.txt" />
+    <None Include="オープニング.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -408,6 +408,23 @@
     <None Include="教会.txt" />
     <None Include="Resources\lidy_0_0.bmp" />
     <None Include="grp_dummy\後輩_01.png" />
+    <None Include="Resources\musicbox.wav" />
+    <None Include="Resources\GRP_BG\douguya_dt.bmp" />
+    <None Include="Resources\GRP_BG\dungeon06.bmp" />
+    <None Include="Resources\GRP_BG\hiroba_dt.bmp" />
+    <None Include="Resources\GRP_BG\hiroba_ev.bmp" />
+    <None Include="Resources\GRP_BG\hiroba_nt.bmp" />
+    <None Include="Resources\GRP_BG\kyoukai_dt.bmp" />
+    <None Include="Resources\GRP_BG\kyoukai_ev.bmp" />
+    <None Include="Resources\GRP_BG\kyoukai_nt.bmp" />
+    <None Include="Resources\GRP_BG\rouya_nt.bmp" />
+    <None Include="Resources\GRP_BG\sakaba_ntr.bmp" />
+    <None Include="Resources\GRP_BG\syoko_dt.bmp" />
+    <None Include="Resources\GRP_BG\syoko_nt.bmp" />
+    <None Include="Resources\GRP_BG\yadoya_dt.bmp" />
+    <None Include="Resources\GRP_BG\yadoya_ntr.bmp" />
+    <None Include="grp_dummy\yadoya_ev.bmp" />
+    <None Include="grp_dummy\sister_raugh_02_cmp_2.png" />
     <Content Include="休息.txt" />
     <None Include="読書.txt" />
   </ItemGroup>

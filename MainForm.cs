@@ -17,7 +17,8 @@ namespace DoujinGameProject
     {
         /*--- ここに使用するクラスを置く ---*/
         //public Sister Sara = new Sister();
-        
+
+        public static Defines.fileID nowfile = 0;
         public int sent_ct = 0;
         public int log_ct = 0;          /* ログ現在位置カウンタ */
         public int log_ct_use = 0;      /* ログ最古位置カウンタ */
@@ -28,20 +29,20 @@ namespace DoujinGameProject
         {
             InitializeComponent();
             //ホイールイベントの追加  
-            this.panel3.MouseWheel
+            this.PNL_Event.MouseWheel
                 += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseWheel);
-            this.logwindow.MouseWheel
+            this.PNL_log.MouseWheel
                 += new System.Windows.Forms.MouseEventHandler(this.panel4_MouseWheel); 
 
             /* --- オブジェクトの背景色を透明にできるようにする処理 --- */
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
             /* --- 各オブジェクトの背景色を透明にする --- */
-            panel2.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
-            panel3.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
-            panel_slct.BackColor = Color.Transparent;   /* 選択肢のPanel */
-            //panel4.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
-            chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
+			PNL_Eventslct.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
+			PNL_Mainselect.BackColor = Color.Transparent;   /* メイン選択画面のPanel */
+            PNL_Event.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
+			PIC_Chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
+			PIC_Chara_pos2.BackColor = Color.Transparent;   /* 立ち絵位置１ */
 
             /* --- データ類初期化 --- */
             //TODO: ここでやるか、NewGame/LoadGame時にやるか検討
@@ -60,9 +61,9 @@ namespace DoujinGameProject
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             ////////////////////////////////////////////////////////////////////////
-            SetDoubleBuffered(pictureBox1);
-            SetDoubleBuffered(pictureBox2);
-            SetDoubleBuffered(pictureBox3);
+            SetDoubleBuffered(BTN_Start);
+            SetDoubleBuffered(BTN_Load);
+            SetDoubleBuffered(BTN_OpnOption);
         }
 
 //        string line;
@@ -88,7 +89,7 @@ namespace DoujinGameProject
         /////////////////////* === スタートボタン === */////////////////////
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            pictureBox1.Image = Properties.Resources.g_btn_000_1;
+            BTN_Start.Image = Properties.Resources.g_btn_000_1;
 
         }
 
@@ -96,7 +97,7 @@ namespace DoujinGameProject
         {
             if (e.Button == MouseButtons.Left)
             {
-                pictureBox1.Image = Properties.Resources.g_btn_000_2;
+                BTN_Start.Image = Properties.Resources.g_btn_000_2;
                 MouseLeftPushed = true;
             }
 
@@ -104,24 +105,29 @@ namespace DoujinGameProject
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            pictureBox1.Image = Properties.Resources.g_btn_000_1;
+            BTN_Start.Image = Properties.Resources.g_btn_000_1;
             if ( MouseLeftPushed == true )
-            {
-                background.Visible = true;
+			{
+				nowfile = Defines.fileID.TXT_OPENING;
+				ParmInit();
+
+                PNL_Background.Visible =true;
+				PNL_Event.Visible = true;
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
             }
         }
 
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
-            pictureBox1.Image = Properties.Resources.g_btn_000_0;
+            BTN_Start.Image = Properties.Resources.g_btn_000_0;
             MouseLeftPushed = false;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (pictureBox1.ClientRectangle.Contains(pictureBox1.PointToClient(Cursor.Position)) == false)
+            if (BTN_Start.ClientRectangle.Contains(BTN_Start.PointToClient(Cursor.Position)) == false)
             {
-                pictureBox1.Image = Properties.Resources.g_btn_000_0;
+                BTN_Start.Image = Properties.Resources.g_btn_000_0;
                 MouseLeftPushed = false;
             }
         }
@@ -147,21 +153,57 @@ namespace DoujinGameProject
 
         ///////////////////////* === 教会ボタン === *///////////////////////
         private void church_btn_MouseEnter(object sender, EventArgs e)
-        {church_btn.Image = Properties.Resources.g_btn_003_1;}
+        {BTN_Church.Image = Properties.Resources.g_btn_003_1;}
         private void church_btn_MouseDown(object sender, MouseEventArgs e)
-        {if (e.Button == MouseButtons.Left){church_btn.Image = Properties.Resources.g_btn_003_2;MouseLeftPushed = true;}}
+        {if (e.Button == MouseButtons.Left){BTN_Church.Image = Properties.Resources.g_btn_003_2;MouseLeftPushed = true;}}
         private void church_btn_MouseUp(object sender, MouseEventArgs e)
-        {church_btn.Image = Properties.Resources.g_btn_003_1;if (MouseLeftPushed == true){background.Visible = true;}}
+        {
+            BTN_Church.Image = Properties.Resources.g_btn_003_1;
+            if (MouseLeftPushed == true)
+            {
+				nowfile = Defines.fileID.TXT_CHURCH;
+                PNL_Background.Visible = true;
+				PNL_Event.Visible = true;
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+            }
+        }
         private void church_btn_MouseLeave(object sender, EventArgs e)
-        {church_btn.Image = Properties.Resources.g_btn_003_0;MouseLeftPushed = false;}
+        {BTN_Church.Image = Properties.Resources.g_btn_003_0;MouseLeftPushed = false;}
         private void church_btn_MouseMove(object sender, MouseEventArgs e)
-        {if (pictureBox1.ClientRectangle.Contains(pictureBox1.PointToClient(Cursor.Position)) == false){pictureBox1.Image = Properties.Resources.g_btn_000_0;MouseLeftPushed = false;}}
+        { if (BTN_Church.ClientRectangle.Contains(BTN_Church.PointToClient(Cursor.Position)) == false) { BTN_Church.Image = Properties.Resources.g_btn_003_0; MouseLeftPushed = false; } }
         ////////////////////////////////////////////////////////////////////
 
 
         ///////////////////////* === 休息ボタン === *///////////////////////
+		private void BTN_Lest_MouseEnter(object sender, EventArgs e)
+        {BTN_Lest.Image = Properties.Resources.g_btn_004_1;}
+        private void BTN_Lest_MouseDown(object sender, MouseEventArgs e)
+		{if (e.Button == MouseButtons.Left) { BTN_Lest.Image = Properties.Resources.g_btn_004_2; MouseLeftPushed = true; }}
+		private void BTN_Lest_MouseUp(object sender, MouseEventArgs e)
+        {
+            BTN_Lest.Image = Properties.Resources.g_btn_004_1;
+            if (MouseLeftPushed == true)
+			{
+				nowfile = Defines.fileID.TXT_LEST;
+				PNL_Background.Visible = true;
+				PNL_Event.Visible = true;
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+            }
+        }
+		private void BTN_Lest_MouseLeave(object sender, EventArgs e)
+        { BTN_Lest.Image = Properties.Resources.g_btn_004_0; MouseLeftPushed = false; }
+		private void BTN_Lest_MouseMove(object sender, MouseEventArgs e)
+        { if (BTN_Lest.ClientRectangle.Contains(BTN_Lest.PointToClient(Cursor.Position)) == false) { BTN_Lest.Image = Properties.Resources.g_btn_004_0; MouseLeftPushed = false; } }
+        ////////////////////////////////////////////////////////////////////
 
+        ///////////////////////* === 外出ボタン === *///////////////////////
+        ////////////////////////////////////////////////////////////////////
 
+        ///////////////////////* === 読書ボタン === *///////////////////////
+        ////////////////////////////////////////////////////////////////////
+
+        ////////////////* === オプションボタン（日常） === *////////////////
+        ////////////////////////////////////////////////////////////////////
 
 
         ////////////////////////////////////////////////////////////////////
@@ -184,21 +226,25 @@ namespace DoujinGameProject
             }
             else
             {
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-                if (sent_ct == 0)
-                {
-                    log_ct = 0;
-                    log_ct_use = 0;
-                }
-                else if (log_ct_use < 99)
-                {
-                    log_ct_use++;
-                }
-
-                /* パネル３にフォーカス */
-                panel3.Focus();
-            }
+				if (sent_ct == 0)
+				{
+					log_ct = 0;
+					log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
+				}
+				else
+				{
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
+				}
+			}
         }
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
@@ -217,19 +263,24 @@ namespace DoujinGameProject
             }
             else
             {
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
                 if (sent_ct == 0)
                 {
                     log_ct = 0;
                     log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
                 }
-                else if (log_ct_use < 99)
+                else 
                 {
-                    log_ct_use++;
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
                 }
-                /* パネル３にフォーカス */
-                panel3.Focus();
             }
         }
         private void chara_pos_1_MouseDown(object sender, MouseEventArgs e)
@@ -249,19 +300,24 @@ namespace DoujinGameProject
             }
             else
             {
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-                if (sent_ct == 0)
-                {
-                    log_ct = 0;
-                    log_ct_use = 0;
-                }
-                else if (log_ct_use < 99)
-                {
-                    log_ct_use++;
-                }
-                /* パネル３にフォーカス */
-                panel3.Focus();
+				if (sent_ct == 0)
+				{
+					log_ct = 0;
+					log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
+				}
+				else
+				{
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
+				}
             }
         }
         private void chara_pos2_MouseDown(object sender, MouseEventArgs e)
@@ -281,30 +337,35 @@ namespace DoujinGameProject
             }
             else
             {
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
-                if (sent_ct == 0)
-                {
-                    log_ct = 0;
-                    log_ct_use = 0;
-                }
-                else if (log_ct_use < 99)
-                {
-                    log_ct_use++;
-                }
-                /* パネル３にフォーカス */
-                panel3.Focus();
+				if (sent_ct == 0)
+				{
+					log_ct = 0;
+					log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
+				}
+				else
+				{
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
+				}
             }
         }
 
         //バックログ関係
         private void panel3_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta > 3 && logwindow.Visible == false)
+            if (e.Delta > 3 && PNL_log.Visible == false)
             {
                 // バックログウィンドウ（panel4）を展開
-                logwindow.Visible = true;
-                logwindow.Focus();
+                PNL_log.Visible = true;
+                PNL_log.Focus();
 
                 // スクロール画面初期状態
                 SE.ScrollInit(log_ct_use, pictureBox10, pictureBox11, pictureBox12, pictureBox13, pictureBox14);
@@ -320,8 +381,8 @@ namespace DoujinGameProject
                 {
                     /* スクロール画面の一番下でホイールを下に動かした */
                     /* ⇒テキスト画面に戻る */
-                    logwindow.Visible = false;
-                    panel3.Focus();
+                    PNL_log.Visible = false;
+                    PNL_Event.Focus();
                 }
                 else
                 {
@@ -342,7 +403,9 @@ namespace DoujinGameProject
 
 
 
-        ////////////////////* === 選択肢１ボタン === *////////////////////
+		//////////////////////////////////////////////////////////////////
+		////////////////////* === 選択肢１ボタン === *////////////////////
+		//////////////////////////////////////////////////////////////////
 
 
         private void Slctbox_1_MouseEnter(object sender, EventArgs e)
@@ -365,8 +428,9 @@ namespace DoujinGameProject
             if (MouseLeftPushed == true)
             {
                 GameData.ScenarioData.Slct_No = 1;
-                panel_slct.Visible = false;
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                PNL_Eventslct.Visible = false;
+                PNL_Event.Visible = true;
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
             }
         }
@@ -387,51 +451,98 @@ namespace DoujinGameProject
         }
 
 
-        ////////////////////* === 選択肢２ボタン === *////////////////////
+		//////////////////////////////////////////////////////////////////
+		////////////////////* === 選択肢２ボタン === *////////////////////
+		//////////////////////////////////////////////////////////////////
 
 
         private void Slctbox_2_MouseEnter(object sender, EventArgs e)
-        {
-            Slctbox_2.Image = Properties.Resources.g_btn_000_1;
+		{
+			Slctbox_2.Image = Properties.Resources.g_btn_001_1;
         }
 
         private void Slctbox_2_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                Slctbox_2.Image = Properties.Resources.g_btn_000_2;
+                Slctbox_2.Image = Properties.Resources.g_btn_001_2;
                 MouseLeftPushed = true;
             }
         }
 
         private void Slctbox_2_MouseUp(object sender, MouseEventArgs e)
         {
-            Slctbox_2.Image = Properties.Resources.g_btn_000_1;
+            Slctbox_2.Image = Properties.Resources.g_btn_001_1;
             if (MouseLeftPushed == true)
             {
                 GameData.ScenarioData.Slct_No = 2;
-                panel_slct.Visible = false;
-                sent_ct = SE.ScriptEngine(sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+                PNL_Eventslct.Visible = false;
+                PNL_Event.Visible = true;
+                sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
             }
         }
 
         private void Slctbox_2_MouseLeave(object sender, EventArgs e)
         {
-            Slctbox_2.Image = Properties.Resources.g_btn_000_0;
+            Slctbox_2.Image = Properties.Resources.g_btn_001_0;
             MouseLeftPushed = false;
         }
         
         private void Slctbox_2_MouseMove(object sender, MouseEventArgs e)
         {
-            if (Slctbox_2.ClientRectangle.Contains(Slctbox_1.PointToClient(Cursor.Position)) == false)
+            if (Slctbox_2.ClientRectangle.Contains(Slctbox_2.PointToClient(Cursor.Position)) == false)
             {
-                Slctbox_2.Image = Properties.Resources.g_btn_000_0;
+                Slctbox_2.Image = Properties.Resources.g_btn_001_0;
                 MouseLeftPushed = false;
             }
         }
 
-        ////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////
+		////////////////////* === 選択肢２ボタン === *////////////////////
+		//////////////////////////////////////////////////////////////////
+
+		private void Slctbox_3_MouseEnter(object sender, EventArgs e)
+		{
+			Slctbox_3.Image = Properties.Resources.g_btn_001_1;
+		}
+
+		private void Slctbox_3_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				Slctbox_3.Image = Properties.Resources.g_btn_001_2;
+				MouseLeftPushed = true;
+			}
+		}
+
+		private void Slctbox_3_MouseLeave(object sender, EventArgs e)
+		{
+			Slctbox_3.Image = Properties.Resources.g_btn_001_0;
+			MouseLeftPushed = false;
+		}
+
+		private void Slctbox_3_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (Slctbox_3.ClientRectangle.Contains(Slctbox_3.PointToClient(Cursor.Position)) == false)
+			{
+				Slctbox_3.Image = Properties.Resources.g_btn_001_0;
+				MouseLeftPushed = false;
+			}
+		}
+
+		private void Slctbox_3_MouseUp(object sender, MouseEventArgs e)
+		{
+			Slctbox_3.Image = Properties.Resources.g_btn_001_1;
+			if (MouseLeftPushed == true)
+			{
+				GameData.ScenarioData.Slct_No = 3;
+				PNL_Eventslct.Visible = false;
+				PNL_Event.Visible = true;
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+
+			}
+		}
 
 
 
@@ -441,21 +552,62 @@ namespace DoujinGameProject
 
 
         /* == 以下サブルーチン的メソッド == */
-        public void setCharacterImageLeft(Defines.CharacterImageID imageID)
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：ParmInit			　  　　　　　　　　　　 　■ */
+		/* ■　内容：変数初期化	処理							   ■ */
+		/* ■　入力：		                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static void ParmInit()
+		{
+
+		}
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：ChangeNowFile		　  　　　　　　　　　　 　■ */
+		/* ■　内容：ファイル変更処理							   ■ */
+		/* ■　入力：file_id                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public static void ChangeNowFile(Defines.fileID file_id)
         {
-            setCharacterImage(chara_pos1, imageID);
+            nowfile = file_id;
         }
 
-        public void setCharacterImageRight(Defines.CharacterImageID imageID)
+        public void setCharacterImageLeft(string imagename)
         {
-            setCharacterImage(chara_pos2, imageID);
+			setCharacterImage(PIC_Chara_pos1, imagename);
         }
+
+		public void setCharacterImageRight(string imagename)
+        {
+			setCharacterImage(PIC_Chara_pos2, imagename);
+        }
+
+		public void delCharacterImageLeft()
+		{
+			PIC_Chara_pos1.Visible = false;
+		}
+
+		public void delCharacterImageRight()
+		{
+			PIC_Chara_pos2.Visible = false;
+		}
 
         public void setTextAreaImage(Bitmap canvas)
         {
             textarea.Image = canvas;
         }
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：setSelectBoxImage　  　　　　　　　　　　 　■ */
+		/* ■　内容：選択肢表示処理								   ■ */
+		/* ■　入力：i                                       　 　 ■ */
+		/* ■　		 canvas                                  　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         public void setSelectBoxImage(int i, Bitmap canvas)
         {
             switch (i)
@@ -478,113 +630,124 @@ namespace DoujinGameProject
             //textarea.Image = canvas;
         }
 
-        private void setCharacterImage(PictureBox chrbox, Defines.CharacterImageID imageID)
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：setCharacterImage　  　　　　　　　　　　 　■ */
+		/* ■　内容：立ち絵設定処理								   ■ */
+		/* ■　入力：chrbox                                  　 　 ■ */
+		/* ■　      imageID                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        private void setCharacterImage(PictureBox chrbox, string tachie_name)
         {
-            switch (imageID)
-            {
-                case Defines.CharacterImageID.D_CHR_SARA_00:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_01:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_02:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_03:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_04:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_05:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_06:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_07:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_08:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_09:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_10:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_11:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_12:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_13:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_14:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_15:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_16:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_17:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_18:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_SARA_19:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_LIDY_00:
-                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_LIDY_01:
-                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_LIDY_02:
-                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_LIDY_03:
-                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_LIDY_04:
-                    chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_00:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_01:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_02:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_03:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_04:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                case Defines.CharacterImageID.D_CHR_DEVIL_05:
-                    chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-                    break;
-                default:
-                    break;
-            }
+            if (tachie_name == "サラ") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(落ち込み)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_2;
+			else if (tachie_name == "サラ(驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(裸シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(淫魔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(淫魔怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(淫魔驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(淫魔発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "サラ(淫魔悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "マリー") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "マリー(驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "マリー(怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "マリー(発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+            else if (tachie_name == "リディ") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "リディ(笑顔)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "リディ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "リディ(恐怖)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "リディ(苦しみ)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "触手娘") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "触手娘(恥じらい)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "触手娘(苦しみ)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "魔物") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "魔物(悪笑い)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+            else if (tachie_name == "魔物(驚き)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
             chrbox.Visible = true;
         }
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：setBGPic         　  　　　　　　　　　　 　■ */
+		/* ■　内容：背景画像表示処理							   ■ */
+		/* ■　入力：BGPicname                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void setBGPic(string BGPicname)
+		{
+
+			switch (BGPicname)
+            {
+				case "オープニング":
+					PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
+					break;
+				case "教会昼":
+					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
+					break;
+				case "教会夕":
+					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
+					break;
+				case "教会夜":
+					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
+					break;
+				case "階段":
+					PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
+					break;
+				case "檻":
+					PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
+					break;
+				case "部屋昼":
+					PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
+					break;
+				case "部屋夕":
+					PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
+					break;
+				case "部屋夜":
+					PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
+					break;
+				case "書庫":
+					PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
+					break;
+				case "町昼":
+					PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
+					break;
+				case "町夕":
+					PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
+					break;
+				case "町夜":
+					PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
+					break;
+				default:
+					Console.WriteLine("背景画像の指定値がテーブル上に用意されていません");
+					break;
+					
+			}
+		}
     
         //SE.csから移植/TODO:メンテナンス
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：s_BacklogRenew　　　　　　 　　　　　　　 　■ */
-        /* ■　内容：バックログ用文字列配列を更新する処理    　 　 ■ */
+        /* ■　関数名：dispSlctBox　  　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：選択肢パネルを表示する処理              　 　 ■ */
         /* ■　入力：Slct_ct                                 　 　 ■ */
         /* ■　出力：なし                                    　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -646,20 +809,8 @@ namespace DoujinGameProject
             }
 
 
-            panel_slct.Visible = true;
+            PNL_Eventslct.Visible = true;
+            PNL_Event.Visible = false;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }    
 }

@@ -73,6 +73,26 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap douguya_dt {
+            get {
+                object obj = ResourceManager.GetObject("douguya_dt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap dungeon06 {
+            get {
+                object obj = ResourceManager.GetObject("dungeon06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap g_bg_000_0 {
             get {
                 object obj = ResourceManager.GetObject("g_bg_000_0", resourceCulture);
@@ -603,6 +623,66 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap hiroba_dt {
+            get {
+                object obj = ResourceManager.GetObject("hiroba_dt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap hiroba_ev {
+            get {
+                object obj = ResourceManager.GetObject("hiroba_ev", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap hiroba_nt {
+            get {
+                object obj = ResourceManager.GetObject("hiroba_nt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap kyoukai_dt {
+            get {
+                object obj = ResourceManager.GetObject("kyoukai_dt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap kyoukai_ev {
+            get {
+                object obj = ResourceManager.GetObject("kyoukai_ev", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap kyoukai_nt {
+            get {
+                object obj = ResourceManager.GetObject("kyoukai_nt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap lidy_0_0 {
             get {
                 object obj = ResourceManager.GetObject("lidy_0_0", resourceCulture);
@@ -611,52 +691,22 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
-        ///   
-        ///// オープニングシナリオ
-        /////senario1
-        ///
-        /////In:サラ
-        ///
-        ///Text:
-        ///私はサラ。この小さな町にただ一つある教会で
-        ///シスターをしています。
-        ///日々町の皆さんの健康やこの世界の平和を願って
-        ///お祈りをするのが私の仕事です。;
-        ///
-        ///マリー:
-        ///あ、サラ、ちょうどいいところに。
-        ///もう言ってあったと思うけど、
-        ///今夜はバディオの大聖堂で神父会があるから
-        ///神父様と私は出かけてくるわね。;
-        ///
-        ///マリー:
-        ///今夜は帰らないから。
-        ///戸締りとか、見回りとか、よろしくね。;
-        ///
-        ///サラ:
-        ///はい、わかりました、姉様。;
-        ///
-        ///Text:
-        ///気分が高まってきたところでお香に鼻を近づけ、
-        ///思いっきり深呼吸すると、
-        ///頭の中でプチプチ何かが切れる様な音がして最高です;
-        ///
-        ///Text:
-        ///この人はシスターマリー。私の先輩です。
-        ///姉様と言っても、本当のお姉さんというわけではなく、
-        ///この教会ではシスターが目上のシスターを呼ぶときは
-        ///&quot;姉様&quot;って呼ぶものなんです。;
-        ///
-        ///Text:
-        ///とても気さくで面倒見が良く、
-        ///誰とでもすぐに打ち解けられるし、正義感が強い…
-        ///私の憧れです。;
-        ///
-        ///マリ [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static string opening {
+        internal static System.Drawing.Bitmap rouya_nt {
             get {
-                return ResourceManager.GetString("opening", resourceCulture);
+                object obj = ResourceManager.GetObject("rouya_nt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap sakaba_ntr {
+            get {
+                object obj = ResourceManager.GetObject("sakaba_ntr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -666,6 +716,36 @@ namespace DoujinGameProject.Properties {
         internal static System.Drawing.Bitmap sara_0_0 {
             get {
                 object obj = ResourceManager.GetObject("sara_0_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap sara_0_2 {
+            get {
+                object obj = ResourceManager.GetObject("sara_0_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap syoko_dt {
+            get {
+                object obj = ResourceManager.GetObject("syoko_dt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap syoko_nt {
+            get {
+                object obj = ResourceManager.GetObject("syoko_nt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -681,6 +761,94 @@ namespace DoujinGameProject.Properties {
         internal static string text {
             get {
                 return ResourceManager.GetString("text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap yadoya_dt {
+            get {
+                object obj = ResourceManager.GetObject("yadoya_dt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap yadoya_ev {
+            get {
+                object obj = ResourceManager.GetObject("yadoya_ev", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap yadoya_ntr {
+            get {
+                object obj = ResourceManager.GetObject("yadoya_ntr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///// オープニングシナリオ
+        /////senario1
+        ///
+        ///IN サラ:
+        ///
+        ///Text:
+        ///私の名前はサラ。;
+        ///
+        ///Text:
+        ///この小さな町にただ一つある教会で
+        ///シスターをしています。;
+        ///
+        ///Text:
+        ///日々町の皆さんの健康やこの世界の平和を願って
+        ///お祈りをするのが私の仕事です。;
+        ///
+        ///マリー:
+        ///あ、サラ、ちょうどいいところに。;
+        ///
+        ///マリー:
+        ///もう言ってあったと思うけど、
+        ///今夜はバディオの大聖堂で神父会があるから、;
+        ///
+        ///マリー:
+        ///神父様と私は出かけてくるわね。;
+        ///
+        ///マリー:
+        ///今夜は帰らないから。;
+        ///
+        ///マリー:
+        ///戸締りとか、見回りとか、
+        ///リディと手分けしてチェックしておいてね。;
+        ///
+        ///サラ:
+        ///はい、わかりました、姉様。;
+        ///
+        ///Text:
+        ///この人はシスターマリー。私の先輩です。;
+        ///
+        ///Text:
+        ///姉様と言っても、本当のお姉さんというわけではなく、
+        ///この教会ではシスターが目上のシスターを呼ぶときは
+        ///&quot;姉様&quot;って呼ぶものなんです。;
+        ///
+        ///Text:
+        ///とても気さくで面倒見が良く、
+        ///誰とでもすぐに打ち解けられるし、正義感が強い…
+        ///私の憧れです。;
+        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string オープニング {
+            get {
+                return ResourceManager.GetString("オープニング", resourceCulture);
             }
         }
         
@@ -776,6 +944,15 @@ namespace DoujinGameProject.Properties {
         internal static string 読書 {
             get {
                 return ResourceManager.GetString("読書", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream 音楽 {
+            get {
+                return ResourceManager.GetStream("音楽", resourceCulture);
             }
         }
     }

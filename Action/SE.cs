@@ -60,6 +60,8 @@ namespace DoujinGameProject.Action
 
         /* パラメーター */
 
+        static Defines.fileID fileID_next = Defines.fileID.TXT_INIT;
+
         static int count = 0;              /* テキストファイル全体の中でのカウンタ */
         static int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
         static int inrowcount = 0;         /* 一度に文章バッファに取り込む文章内でのカウンタ */
@@ -70,13 +72,15 @@ namespace DoujinGameProject.Action
         static int Slct_ct = 0;                         /* 選択肢表示用カウンタ */
         static int Slct_ct_max = 0;                     /* 選択肢表示個数 */
 
-        static string text = Properties.Resources.教会;    /* ファイルの中身を文字の配列として取得 */
+        static string text;    /* ファイルの中身を文字の配列として取得 */
 
         static int A_REG = 0;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static int B_REG = 0;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
         static int C_REG = 0;           /* スクリプト上での計算時に値を取っておくのに使うための変数 */
 
         static int val_reg = 0;
+
+		static System.Media.SoundPlayer player = null;
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         /* ■　関数名：s_ScriptEngine　　　　　　 　　　　　　　 　■ */
@@ -87,7 +91,7 @@ namespace DoujinGameProject.Action
         /* ■　出力：sentence_ct　次回読み込み用のカウンタの値 　　■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 
-        public static int ScriptEngine(int sentence_ct, int log_ct, int log_ct_use, int Slct_No)
+        public static int ScriptEngine(Defines.fileID file_no, int sentence_ct, int log_ct, int log_ct_use, int Slct_No)
         {
             int i;
             const int D_CHAR_LAST = 1000000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
@@ -95,9 +99,15 @@ namespace DoujinGameProject.Action
             const int VAL_REG_A = 1;
             const int VAL_REG_B = 2;
             const int VAL_REG_C = 3;
-            
 
-
+			
+            if (fileID_next != file_no)
+            {
+                ChangeFile(file_no);
+                fileID_next = file_no;
+			//	PlaySound("Property.Resource.音楽");
+            }
+			
 
             /* 乱数取得用クラスインスタンス生成 */
             Random rnd = new Random();
@@ -200,7 +210,13 @@ namespace DoujinGameProject.Action
                     else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "END")
                     {
                         /*** 文章表示終了処理 ***/
-                        sentence_ct = 0;
+						textrowbuf = "";
+						
+						/* 立ち絵の消去 */
+						Program.Doujin_game_sharp.delCharacterImageLeft();
+						Program.Doujin_game_sharp.delCharacterImageRight();
+
+						sentence_ct = 0;
                         return sentence_ct;
                     }
                     else if (textrowbuf.Substring(0, 1) == "[")
@@ -221,6 +237,23 @@ namespace DoujinGameProject.Action
                     {
                         /*** ジャンプ ***/
                         count = text.IndexOf("\r\n" + textrowbuf.Remove(0, 4)) + 2;
+                        countold = count;
+                        sentence_ct = getNowSent(count);
+                        inrowcount = 0;
+                    }
+                    else if (textrowbuf.Length >= 7 && textrowbuf.Substring(0, 7) == "FILEJMP")
+                    {
+                        int work_ct = 0;
+                        /*** ファイルをまたいだジャンプ ***/
+                        inrowcount = 8;
+                        while (textrowbuf.Substring(inrowcount + work_ct, 1) != " ")
+                        {
+                            work_ct++;
+                        }
+                        file_no = GetFileNo(textrowbuf.Substring(inrowcount, work_ct));
+                        ChangeFile(file_no);
+                        inrowcount += work_ct;
+                        count = text.IndexOf("\r\n" + textrowbuf.Remove(0, ++inrowcount)) + 2;
                         countold = count;
                         sentence_ct = getNowSent(count);
                         inrowcount = 0;
@@ -276,7 +309,11 @@ namespace DoujinGameProject.Action
                         else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1 = Sis.MoralPoint;
-                        }
+						}
+						else if (work_ct >= 2 && "時刻" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.MoralPoint;
+						}
                         else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
                             work_1_v = A_REG;
@@ -837,50 +874,54 @@ namespace DoujinGameProject.Action
                             work_1 = Sis.MoralPoint;
                             int_flag_L = false;
                         }
-                        else if (work_ct_1 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.MoralPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.MoralPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.MoralPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_3 = A_REG;
-                            int_flag_L = true;
-                        }
-                        else if (work_ct_1 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_3 = B_REG;
-                            int_flag_L = true;
-                        }
-                        else if (work_ct_1 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_3 = C_REG;
-                            int_flag_L = true;
-                        }
-                        else if (work_ct_1 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_3 = Slct_No;
-                            int_flag_L = true;
-                        }
-                        else if (work_ct_1 >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_3 = rand;
-                            int_flag_L = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("if文左辺");
-                        }
+						else if (work_ct_1 >= 4 && "ふたなり" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							//////////未作成//////////
+						}
+						else if (work_ct_1 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.MoralPoint;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.MoralPoint;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.MoralPoint;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = A_REG;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = B_REG;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = C_REG;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = Slct_No;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = rand;
+							int_flag_L = true;
+						}
+						else
+						{
+							Console.WriteLine("if文左辺");
+						}
 
                         inrowcount++;
                         inrowcountold = inrowcount;
@@ -1451,10 +1492,10 @@ namespace DoujinGameProject.Action
                         inrowcount = 0;
                         name[0] = "Text";
                     }
-                    else if (textrowbuf == "サラ")
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "サラ")
                     {
                         Color = Brushes.Pink;
-                        Program.Doujin_game_sharp.setCharacterImageLeft(Defines.CharacterImageID.D_CHR_SARA_00);
+						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
                         count++;
                         countold = count;
@@ -1463,11 +1504,11 @@ namespace DoujinGameProject.Action
                         name[0] = "サラ";
 
                     }
-                    else if (textrowbuf == "マリー")
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "マリー")
                     {
                         Color = Brushes.Yellow;
 
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
                         count++;
                         countold = count;
@@ -1475,11 +1516,10 @@ namespace DoujinGameProject.Action
                         inrowcount = 0;
                         name[0] = "マリー";
                     }
-                    else if (textrowbuf == "リディ")
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "リディ")
                     {
                         Color = Brushes.Orange;
-
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
                         count++;
                         countold = count;
@@ -1487,11 +1527,10 @@ namespace DoujinGameProject.Action
                         inrowcount = 0;
                         name[0] = "リディ";
                     }
-                    else if (textrowbuf == "触手娘")
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "触手娘")
                     {
-                        Color = Brushes.Green;
-
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						Color = Brushes.Green;
+						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
                         count++;
                         countold = count;
@@ -1499,18 +1538,28 @@ namespace DoujinGameProject.Action
                         inrowcount = 0;
                         name[0] = "触手娘";
                     }
-                    else if (textrowbuf == "魔物")
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "魔物")
                     {
-                        Color = Brushes.Purple;
-
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						Color = Brushes.Magenta;
+						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
                         name[0] = "魔物";
-                    }
+					}
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "？？？")
+					{
+						Color = Brushes.Gray;
+						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+						name[0] = "？？？";
+					}
                     else if (textrowbuf == "Plus")
                     {
                         Color = Brushes.Blue;
@@ -1535,6 +1584,67 @@ namespace DoujinGameProject.Action
                         inrowcount = 0;
                         name[0] = "Minus";
                     }
+                    /*======================*/
+                    /*     効果コマンド     */
+                    /*======================*/
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "IN")
+					{
+						/* 立ち絵の表示 */
+						string char_name = textrowbuf.Substring(3, textrowbuf.Length - 3);
+
+						if (char_name.Length >= 2 && char_name.Substring(0, 2) == "サラ")
+						{
+							Program.Doujin_game_sharp.setCharacterImageLeft(char_name);
+						}
+						else
+						{
+							Program.Doujin_game_sharp.setCharacterImageRight(char_name);
+						}
+						count += 2;
+						countold = count;
+						sentence_ct = getNowSent(count);
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "OUT")
+					{
+						/* 立ち絵の消去 */
+						string char_name = textrowbuf.Substring(4, textrowbuf.Length - 4);
+
+						if (char_name.Length >= 2 && char_name.Substring(0, 2) == "サラ")
+						{
+							Program.Doujin_game_sharp.delCharacterImageLeft();
+						}
+						else
+						{
+							Program.Doujin_game_sharp.delCharacterImageRight();
+						}
+						count += 2;
+						countold = count;
+						sentence_ct = getNowSent(count);
+						inrowcount = 0;
+
+
+					}
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "BGM")
+					{
+						/* BGMの鳴動 */
+
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "SE")
+					{
+						/* 効果音の鳴動 */
+
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "背景")
+					{
+						string str_BGPic = textrowbuf.Substring(3, textrowbuf.Length - 3);
+						/* 背景の変更 */
+						Program.Doujin_game_sharp.setBGPic(str_BGPic);
+						count += 2;
+						countold = count;
+						sentence_ct = getNowSent(count);
+						inrowcount = 0;
+					}
                 }
                 else if (text[count] == ';')
                 {
@@ -1640,9 +1750,95 @@ namespace DoujinGameProject.Action
         }
 
 
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：IsPassionLimit  　　　　　 　　　　　　　 　■ */
+        /* ■　内容：性欲限界判定                               　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：体力切れ…true                          　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public static bool IsPassionLimit(Parameter passion)
+        {
+            if (passion.CurrentValue >= passion.MaxValue)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：s_ScrollInit  　　　　　　 　　　　　　　 　■ */
+        /* ■　関数名：IsStaminaRunout  　　　　　 　　　　　　　 　■ */
+        /* ■　内容：体力切れ判定                               　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：体力切れ…true                          　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public static int IsStaminaRunout(int stamina)
+        {
+            if (stamina < 0)
+            {
+                return 2;
+            }
+            else if (stamina <= 10)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：IsMentalRunout  　　　　　 　　　　　　　 　■ */
+        /* ■　内容：気力切れ判定                               　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：体力切れ…true                          　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public static int IsMentalRunout(int energy)
+        {
+            if (energy < 0)
+            {
+                return 2;
+            }
+            else if (energy <= 10)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：IsDayFin      　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：１日終了判定                               　 ■ */
+        /* ■　入力：                                        　 　 ■ */
+        /* ■　出力：１日終了…true                          　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        public static bool IsDayFin(int time)
+        {
+            if (time > 24)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：ScrollInit    　　　　　　 　　　　　　　 　■ */
         /* ■　内容：バックログ初期表示処理                     　 ■ */
         /* ■　入力：                                        　 　 ■ */
         /* ■　出力：                                        　 　 ■ */
@@ -1853,6 +2049,72 @@ namespace DoujinGameProject.Action
         /*////////////////////////ここからサブルーチン的メソッド////////////////////////*/
 
 
+
+        public static Defines.fileID GetFileNo(string name)
+        {
+            Defines.fileID file_no = 0;
+
+            if (name == "オープニング") file_no = Defines.fileID.TXT_OPENING;
+            else if (name == "教会") file_no = Defines.fileID.TXT_CHURCH;
+            else if (name == "休息") file_no = Defines.fileID.TXT_LEST;
+            else if (name == "お店") file_no = Defines.fileID.TXT_SHOP;
+            else if (name == "読書") file_no = Defines.fileID.TXT_READ;
+            else if (name == "露出") file_no = Defines.fileID.TXT_ROSYUTSU;
+            else if (name == "性癖購入") file_no = Defines.fileID.TXT_NEWSKILL;
+            else if (name == "性欲限界") file_no = Defines.fileID.TXT_PUSSION_LIMIT;
+            else if (name == "体力限界") file_no = Defines.fileID.TXT_HP_RUNOUT;
+            else if (name == "気力限界") file_no = Defines.fileID.TXT_MENTAL_RUNOUT;
+            else if (name == "エンディング") file_no = Defines.fileID.TXT_ENDING;
+
+            return file_no;
+        }
+
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+        /* ■　関数名：ChangeFile    　　　　　　 　　　　　　　 　■ */
+        /* ■　内容：読み取るファイルを変更                     　 ■ */
+        /* ■　      file_noに対応したファイルをtext(文字列)に展開 ■ */
+        /* ■　入力：file_no                                 　 　 ■ */
+        /* ■　出力：                                        　 　 ■ */
+        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+
+        private static void ChangeFile(Defines.fileID file_no)
+        {
+            switch (file_no)
+            {
+                case Defines.fileID.TXT_OPENING:
+                    text = Properties.Resources.オープニング;
+                    break;
+                case Defines.fileID.TXT_CHURCH:
+                    text = Properties.Resources.教会;
+                    break;
+                case Defines.fileID.TXT_LEST:
+                    text = Properties.Resources.休息;
+                    break;
+                case Defines.fileID.TXT_SHOP:
+                    break;
+                case Defines.fileID.TXT_READ:
+                    text = Properties.Resources.読書;
+                    break;
+                case Defines.fileID.TXT_ROSYUTSU:
+                    break;
+                case Defines.fileID.TXT_NEWSKILL:
+                    break;
+                case Defines.fileID.TXT_PUSSION_LIMIT:
+                    break;
+                case Defines.fileID.TXT_HP_RUNOUT:
+                    break;
+                case Defines.fileID.TXT_MENTAL_RUNOUT:
+                    break;
+                case Defines.fileID.TXT_ENDING:
+                    break;
+                default:
+                    Console.WriteLine("エラー　該当するテキストファイルがありません");
+                    break;
+            }
+            doujin_game_sharp.ChangeNowFile(file_no);
+        }
+
+
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         /* ■　関数名：nowSentHead   　　　　　　 　　　　　　　 　■ */
         /* ■　内容：テキストの現在地取得処理                   　 ■ */
@@ -2057,6 +2319,53 @@ namespace DoujinGameProject.Action
 
             //return log_ct_use;
         }
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：PlaySound     　　　　　　 　　　　　　　 　■ */
+		/* ■　内容：BGMを鳴動する処理					     　 　 ■ */
+		/* ■　入力：wavefilename                            　 　 ■ */
+		/* ■　出力：		                                 　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		//WAVEファイルを再生する
+		private static void PlaySound(string wavefilename)
+		{
+
+			System.IO.UnmanagedMemoryStream music;
+			music = GetwaveFile(wavefilename);
+			//再生されているときは止める
+			if (player != null)
+				StopSound();
+
+			//読み込む
+			player = new System.Media.SoundPlayer(music);
+			//ループ再生する（DON'T KNOW 非同期とは？）
+			player.PlayLooping();
+			
+		}
+		private static void StopSound()
+		{
+			if (player != null)
+			{
+				player.Stop();
+				player.Dispose();
+				player = null;
+			}
+		}
+		private static System.IO.UnmanagedMemoryStream GetwaveFile(string wavefilename)
+		{
+			if (wavefilename == "音楽")
+			{
+				return Properties.Resources.音楽;
+			}
+			else
+			{
+				Console.WriteLine("error 外套の音楽がありません");
+				return Properties.Resources.音楽;
+			}
+
+		}
+
     }
 }
 
