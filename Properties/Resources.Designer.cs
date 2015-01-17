@@ -63,16 +63,6 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap clear {
-            get {
-                object obj = ResourceManager.GetObject("clear", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap douguya_dt {
             get {
                 object obj = ResourceManager.GetObject("douguya_dt", resourceCulture);
@@ -503,66 +493,6 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_000_2 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_000_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_0 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_1 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap g_chara_001_2 {
-            get {
-                object obj = ResourceManager.GetObject("g_chara_001_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap g_ev_000_0 {
             get {
                 object obj = ResourceManager.GetObject("g_ev_000_0", resourceCulture);
@@ -693,6 +623,16 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap Nameform {
+            get {
+                object obj = ResourceManager.GetObject("Nameform", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap rouya_nt {
             get {
                 object obj = ResourceManager.GetObject("rouya_nt", resourceCulture);
@@ -767,6 +707,16 @@ namespace DoujinGameProject.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap Textform {
+            get {
+                object obj = ResourceManager.GetObject("Textform", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap yadoya_dt {
             get {
                 object obj = ResourceManager.GetObject("yadoya_dt", resourceCulture);
@@ -796,13 +746,38 @@ namespace DoujinGameProject.Properties {
         
         /// <summary>
         ///   
+        ///
+        ///END:
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string エンディング {
+            get {
+                return ResourceManager.GetString("エンディング", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
         ///// オープニングシナリオ
         /////senario1
+        ///
+        ///背景 教会夕:
         ///
         ///IN サラ:
         ///
         ///Text:
+        ///;
+        ///
+        ///Text:
         ///私の名前はサラ。;
+        ///
+        //////////////////////////
+        /////	デバッグ用
+        //////////////////////////
+        ///背景 教会昼:
+        ///
+        ///END:
+        //////////////////////////
         ///
         ///Text:
         ///この小さな町にただ一つある教会で
@@ -836,15 +811,7 @@ namespace DoujinGameProject.Properties {
         ///この人はシスターマリー。私の先輩です。;
         ///
         ///Text:
-        ///姉様と言っても、本当のお姉さんというわけではなく、
-        ///この教会ではシスターが目上のシスターを呼ぶときは
-        ///&quot;姉様&quot;って呼ぶものなんです。;
-        ///
-        ///Text:
-        ///とても気さくで面倒見が良く、
-        ///誰とでもすぐに打ち解けられるし、正義感が強い…
-        ///私の憧れです。;
-        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///姉様と言 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string オープニング {
             get {
@@ -854,6 +821,37 @@ namespace DoujinGameProject.Properties {
         
         /// <summary>
         ///   
+        ///
+        ///
+        ///
+        ///END:
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string スキル取得 {
+            get {
+                return ResourceManager.GetString("スキル取得", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   //休息
+        ///
+        ///If( 時刻 &gt;= 19 ) [L_LEST_BGP_002]:
+        ///If( 時刻 &gt;= 16 ) [L_LEST_BGP_001]:
+        ///
+        ///背景 部屋昼:
+        ///
+        ///JMP [L_LEST_BGP_EXT]:
+        ///
+        ///[L_LEST_BGP_001]:
+        ///背景 部屋夕:
+        ///
+        ///JMP [L_LEST_BGP_EXT]:
+        ///
+        ///[L_LEST_BGP_002]:
+        ///背景 部屋夜:
+        ///
+        ///[L_LEST_BGP_EXT]:
         ///
         ///Text:
         ///自分の部屋に来ました。;
@@ -873,18 +871,7 @@ namespace DoujinGameProject.Properties {
         /////触手成長度 &gt;= 0
         ///If( 性欲値 &gt;= 80 ) [L_LEST_SEL_0400]:
         ///If( 性欲値 &gt;= 40 ) [L_LEST_SEL_0200]:
-        ///
-        ///If( 道徳心 &lt; 20 ) [L_LEST_0100]:
-        ///If( 道徳心 &lt; 60 ) [L_LEST_0050]:
-        ///JMP [L_LEST_0000]:
-        ///
-        ///[L_LEST_SEL_0200]:
-        ///If( 道徳心 &lt; 20 ) [L_LEST_0300]:
-        ///If( 道徳心 &lt; 60 ) [L_LEST_0250]:
-        ///JMP [L_LEST_0200]:
-        ///
-        ///[L_LEST_SEL_0400]:
-        ///If( 道徳 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 休息 {
             get {
@@ -893,7 +880,107 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
+        ///   
+        /////体力切れ
+        ///
+        ///
+        ///If( 体力 &gt;= 10 ) [HP_RUNOUT_0000]:
+        ///JMP [HP_RUNOUT_1000]:
+        ///
+        ///[HP_RUNOUT_0000]:
+        /////体力切れ間近
+        ///サラ:
+        ///はぁ……はぁ……;
+        ///
+        ///サラ:
+        ///きょ……今日はもう疲れちゃった……
+        ///寝ようかな……;
+        ///
+        ///サラ:
+        ///私は今日はもう休むことにしました。;
+        ///
+        ///Plus:
+        ///体力が60回復した。;
+        ///
+        ///計算 体力 += 60:
+        ///
+        ///Text:
+        ///…………;
+        ///
+        ///計算 時刻 = 6:
+        ///
+        ///背景 部屋昼:
+        ///
+        ///Text:
+        ///朝になりました。;
+        ///
+        ///JMP [HP_RUNOUT_EXT]:
+        ///
+        ///
+        ///[HP_RUNOUT_1000]:
+        /////体力切れ
+        ///サラ:
+        ///もう……だめ……;
+        ///
+        ///Text:
+        ///バタッ……;
+        ///
+        ///Text:
+        ///私は疲れ果てて倒れてしまいました。;
+        ///
+        ///Text:
+        ///…………;
+        ///
+        /////If( 乱数 &gt; 90 ) [HP_RUNOUT_1000]:
+        ///
+        ///サラ:
+        ///うぅん……ここは？;
+        ///
+        ///マリー:
+        ///目が覚めたかい？;
+        ///
+        ///サラ:
+        ///あっ……姉様……;
+        ///
+        ///マリー: [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 体力切れ {
+            get {
+                return ResourceManager.GetString("体力切れ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///
+        ///END:
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 性欲限界 {
+            get {
+                return ResourceManager.GetString("性欲限界", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   //教会
+        ///
+        ///If( 時刻 &gt;= 19 ) [L_CHRC_SEL_NT]:
+        ///If( 時刻 &gt;= 16 ) [L_CHRC_SEL_EV]:
+        ///
+        ///背景 教会昼:
+        ///
+        ///JMP [L_CHRC_SEL_START]:
+        ///
+        ///[L_CHRC_SEL_EV]:
+        ///背景 教会夕:
+        ///
+        ///JMP [L_CHRC_SEL_START]:
+        ///
+        ///[L_CHRC_SEL_NT]:
+        ///背景 教会夜:
+        ///
+        ///[L_CHRC_SEL_START]:
         ///
         ///サラ:
         ///教会でお勤めをしようっと;
@@ -909,28 +996,12 @@ namespace DoujinGameProject.Properties {
         ///
         ///選択肢:
         ///祈りを捧げる;
-        ///マリー姉様と話す;
-        ///リディと話す;
+        ///マリー姉様の部屋に行く;
+        ///リディの部屋に行く;
         ///選択肢終:
         ///
         ///If( 選択番号 == 1 ) [L_CHRC_PRAY]:
-        ///If( 選択番号 == 2 ) [L_CHRC_MARY]:
-        ///JMP [L_CHRC_LIDY]:
-        ///
-        ///
-        ///[L_CHRC_SEL_1000]:
-        ///
-        ///選択肢:
-        ///祈りを捧げるふりをする;
-        ///マリー姉様と話す;
-        ///リディと話す;
-        ///選択肢終:
-        ///
-        ///If( 選択番号 == 1 ) [L_CHRC_PRAY_FAKE]:
-        ///If( 選択番号 == 2 ) [L_CHRC_MARY]:
-        ///JMP [L_CHRC_LIDY]:
-        ///
-        //////////////// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///If( 選択番号 == [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 教会 {
             get {
@@ -939,11 +1010,35 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
-        ///    に類似しているローカライズされた文字列を検索します。
+        ///   
+        ///
+        ///END:
+        /// に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 気力切れ {
+            get {
+                return ResourceManager.GetString("気力切れ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///背景 
+        ///
+        ///END: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 読書 {
             get {
                 return ResourceManager.GetString("読書", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 露出 {
+            get {
+                return ResourceManager.GetString("露出", resourceCulture);
             }
         }
         
@@ -953,6 +1048,15 @@ namespace DoujinGameProject.Properties {
         internal static System.IO.UnmanagedMemoryStream 音楽 {
             get {
                 return ResourceManager.GetStream("音楽", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string 魔物パート {
+            get {
+                return ResourceManager.GetString("魔物パート", resourceCulture);
             }
         }
     }

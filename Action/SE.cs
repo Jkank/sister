@@ -208,7 +208,14 @@ namespace DoujinGameProject.Action
                     /*    文法コマンド    */
                     /*====================*/
                     else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "END")
-                    {
+					{
+						sentence_ct = 0;
+						if (true == EndEventCheck())
+						{
+							break;
+						}
+
+
                         /*** 文章表示終了処理 ***/
 						textrowbuf = "";
 						
@@ -216,7 +223,6 @@ namespace DoujinGameProject.Action
 						Program.Doujin_game_sharp.delCharacterImageLeft();
 						Program.Doujin_game_sharp.delCharacterImageRight();
 
-						sentence_ct = 0;
                         return sentence_ct;
                     }
                     else if (textrowbuf.Substring(0, 1) == "[")
@@ -288,7 +294,7 @@ namespace DoujinGameProject.Action
                         }
                         else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
-                            work_1 = Sis.EnergyPoint;
+							work_1 = Sis.MentalPoint;
                         }
                         else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
@@ -313,6 +319,12 @@ namespace DoujinGameProject.Action
 						else if (work_ct >= 2 && "時刻" == textrowbuf.Substring(inrowcountold, work_ct))
 						{
 							work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 2 && "日数" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1_v = GameData.ScenarioData.DayCt;
+							val_reg = VAL_REG_A;
+							var_flag_L = true;
 						}
                         else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
                         {
@@ -371,7 +383,12 @@ namespace DoujinGameProject.Action
                             else if ("酒数" == textrowbuf.Substring(inrowcount))
                             {
                                 right_1 = Sis.MoralPoint;
-                            }
+							}
+							else if ("日数" == textrowbuf.Substring(inrowcount))
+							{
+								work_value_1 = GameData.ScenarioData.DayCt;
+								int_flag_R_1 = true;
+							}
                             else if ("乱数" == textrowbuf.Substring(inrowcount))
                             {
                                 work_value_1 = rand;
@@ -530,7 +547,7 @@ namespace DoujinGameProject.Action
                             }
                             else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcount, work_ct))
                             {
-                                work_1 = Sis.EnergyPoint;
+								work_1 = Sis.MentalPoint;
                             }
                             else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcount, work_ct))
                             {
@@ -832,7 +849,7 @@ namespace DoujinGameProject.Action
                     }
                     else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "If(")
                     {
-                        /*** 条件分岐 ***/
+                        /*** 条件分岐 If文 ***/
 
                         inrowcount = 4;
                         int inrowcountold = inrowcount;
@@ -861,7 +878,7 @@ namespace DoujinGameProject.Action
                         }
                         else if (work_ct_1 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_1))
                         {
-                            work_1 = Sis.EnergyPoint;
+							work_1 = Sis.MentalPoint;
                             int_flag_L = false;
                         }
                         else if (work_ct_1 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_1))
@@ -892,6 +909,11 @@ namespace DoujinGameProject.Action
 						{
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 2 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = GameData.ScenarioData.DayCt;
+							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
@@ -960,7 +982,7 @@ namespace DoujinGameProject.Action
                         }
                         else if (work_ct_2 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
-                            work_5 = Sis.EnergyPoint;
+							work_5 = Sis.MentalPoint;
                             int_flag_R = false;
                         }
                         else if (work_ct_2 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_2))
@@ -972,26 +994,31 @@ namespace DoujinGameProject.Action
                         {
                             work_5 = Sis.MoralPoint;
                             int_flag_R = false;
-                        }
+						}
                         else if (work_ct_2 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5 = Sis.MoralPoint;
                             int_flag_R = false;
-                        }
+						}
+						else if (work_ct_2 >= 5 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = GameData.ScenarioData.DayCt;
+							int_flag_R = true;
+						}
                         else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5.CurrentValue = A_REG;
-                            int_flag_R = false;
+							int_flag_R = true;
                         }
                         else if (work_ct_2 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5.CurrentValue = B_REG;
-                            int_flag_R = false;
+							int_flag_R = true;
                         }
                         else if (work_ct_2 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5.CurrentValue = C_REG;
-                            int_flag_R = false;
+							int_flag_R = true;
                         }
                         else if (work_ct_2 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
@@ -1486,23 +1513,30 @@ namespace DoujinGameProject.Action
                     {
                         Color = Brushes.White;
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                        name[0] = "Text";
+						name[0] = "Text";
+
+						/* ナレーション・セリフの消去 */
+						Program.Doujin_game_sharp.ClearCharacterName();
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
                     }
 					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "サラ")
                     {
                         Color = Brushes.Pink;
 						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                        name[0] = "サラ";
+						name[0] = "サラ";
 
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
                     }
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "マリー")
                     {
@@ -1510,79 +1544,103 @@ namespace DoujinGameProject.Action
 
 						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
+						name[0] = "マリー";
+
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "マリー";
                     }
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "リディ")
                     {
                         Color = Brushes.Orange;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
+						name[0] = "リディ";
+
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "リディ";
                     }
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "触手娘")
                     {
 						Color = Brushes.Green;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
+						name[0] = "触手娘";
+
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "触手娘";
                     }
 					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "魔物")
                     {
 						Color = Brushes.Magenta;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
+						name[0] = "魔物";
+
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "魔物";
 					}
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "？？？")
 					{
 						Color = Brushes.Gray;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
+						name[0] = "？？？";
+
+						/* ナレーション・セリフの表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
 						count++;
 						countold = count;
 						sentence_ct++;
 						inrowcount = 0;
-						name[0] = "？？？";
 					}
                     else if (textrowbuf == "Plus")
                     {
                         Color = Brushes.Blue;
 
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						name[0] = "Plus";
+
+						/* ナレーション・セリフの消去 */
+						Program.Doujin_game_sharp.ClearCharacterName();
 
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "Plus";
                     }
                     else if (textrowbuf == "Minus")
                     {
                         Color = Brushes.Red;
 
-                        //    s_disptachie(o_chrbox1, D_CHR_SARA_00);
+						name[0] = "Minus";
+
+						/* ナレーション・セリフの消去 */
+						Program.Doujin_game_sharp.ClearCharacterName();
 
                         count++;
                         countold = count;
                         sentence_ct++;
                         inrowcount = 0;
-                        name[0] = "Minus";
                     }
                     /*======================*/
                     /*     効果コマンド     */
@@ -1652,15 +1710,14 @@ namespace DoujinGameProject.Action
                     if (Slct_ct != 0)
                     {
                         /* 選択肢の表示 */
-                        Bitmap canvas;
-                        Graphics g1;
+                        //Bitmap canvas;
                         int no = 0;
 
                         textrowbuf = text.Substring(countold + 2, inrowcount - 2);
 
                         //描画先とするImageオブジェクトを作成する
-                        canvas = new Bitmap(Defines.SelectBoxWidth, Defines.SelectBoxHeight);
-                        g1 = Graphics.FromImage(canvas);
+						Bitmap canvas1 = new Bitmap(Defines.SelectBoxWidth, Defines.SelectBoxHeight);
+                        Graphics g1 = Graphics.FromImage(canvas1);
                         g1.DrawString(textrowbuf, fnt, Color, 10, 17);
 
                         //表示する
@@ -1686,7 +1743,7 @@ namespace DoujinGameProject.Action
                             default:
                                 break;
                         }
-                        Program.Doujin_game_sharp.setSelectBoxImage(no, canvas);
+                        Program.Doujin_game_sharp.setSelectBoxImage(no, canvas1);
                         g1.Dispose();
                         //ImageオブジェクトのGraphicsオブジェクトを作成する
 
@@ -1710,19 +1767,19 @@ namespace DoujinGameProject.Action
                     {
                         /* ナレーション・セリフの表示 */
                         //描画先とするImageオブジェクトを作成する
-                        Bitmap canvas = new Bitmap(Defines.TextAreaWidth, Defines.TextAreaHeight);
+                        Bitmap canvas1 = new Bitmap(Defines.TextAreaWidth, Defines.TextAreaHeight);
                         //ImageオブジェクトのGraphicsオブジェクトを作成する
-                        Graphics g = Graphics.FromImage(canvas);
+                        Graphics g1 = Graphics.FromImage(canvas1);
 
                         textrowbuf = text.Substring(countold, inrowcount);
 
-                        g.DrawString(textrowbuf, fnt, Color, 0, 0);
+                        g1.DrawString(textrowbuf, fnt, Color, 30, 0);
                         //PictureBox1に表示する
-                        Program.Doujin_game_sharp.setTextAreaImage(canvas);
+                        Program.Doujin_game_sharp.setTextAreaImage(canvas1);
 
                         //リソースを解放する
                         fnt.Dispose();
-                        g.Dispose();
+                        g1.Dispose();
 
                         count++;
                         countold = count;
@@ -1750,89 +1807,7 @@ namespace DoujinGameProject.Action
         }
 
 
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：IsPassionLimit  　　　　　 　　　　　　　 　■ */
-        /* ■　内容：性欲限界判定                               　 ■ */
-        /* ■　入力：                                        　 　 ■ */
-        /* ■　出力：体力切れ…true                          　 　 ■ */
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public static bool IsPassionLimit(Parameter passion)
-        {
-            if (passion.CurrentValue >= passion.MaxValue)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：IsStaminaRunout  　　　　　 　　　　　　　 　■ */
-        /* ■　内容：体力切れ判定                               　 ■ */
-        /* ■　入力：                                        　 　 ■ */
-        /* ■　出力：体力切れ…true                          　 　 ■ */
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public static int IsStaminaRunout(int stamina)
-        {
-            if (stamina < 0)
-            {
-                return 2;
-            }
-            else if (stamina <= 10)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：IsMentalRunout  　　　　　 　　　　　　　 　■ */
-        /* ■　内容：気力切れ判定                               　 ■ */
-        /* ■　入力：                                        　 　 ■ */
-        /* ■　出力：体力切れ…true                          　 　 ■ */
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public static int IsMentalRunout(int energy)
-        {
-            if (energy < 0)
-            {
-                return 2;
-            }
-            else if (energy <= 10)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-
-
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        /* ■　関数名：IsDayFin      　　　　　　 　　　　　　　 　■ */
-        /* ■　内容：１日終了判定                               　 ■ */
-        /* ■　入力：                                        　 　 ■ */
-        /* ■　出力：１日終了…true                          　 　 ■ */
-        /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-        public static bool IsDayFin(int time)
-        {
-            if (time > 24)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
 
 
@@ -2090,22 +2065,32 @@ namespace DoujinGameProject.Action
                 case Defines.fileID.TXT_LEST:
                     text = Properties.Resources.休息;
                     break;
-                case Defines.fileID.TXT_SHOP:
+				case Defines.fileID.TXT_SHOP:
+					//text = Properties.Resources.商店;
                     break;
                 case Defines.fileID.TXT_READ:
                     text = Properties.Resources.読書;
                     break;
                 case Defines.fileID.TXT_ROSYUTSU:
+					//text = Properties.Resources.露出;
                     break;
-                case Defines.fileID.TXT_NEWSKILL:
+				case Defines.fileID.TXT_NEWSKILL:
+					text = Properties.Resources.スキル取得;
                     break;
-                case Defines.fileID.TXT_PUSSION_LIMIT:
+				case Defines.fileID.TXT_PUSSION_LIMIT:
+					text = Properties.Resources.性欲限界;
                     break;
-                case Defines.fileID.TXT_HP_RUNOUT:
+				case Defines.fileID.TXT_HP_RUNOUT:
+					text = Properties.Resources.体力切れ;
                     break;
-                case Defines.fileID.TXT_MENTAL_RUNOUT:
-                    break;
-                case Defines.fileID.TXT_ENDING:
+				case Defines.fileID.TXT_MENTAL_RUNOUT:
+					text = Properties.Resources.気力切れ;
+					break;
+				case Defines.fileID.TXT_DEVIL_PART:
+					text = Properties.Resources.魔物パート;
+					break;
+				case Defines.fileID.TXT_ENDING:
+					text = Properties.Resources.エンディング;
                     break;
                 default:
                     Console.WriteLine("エラー　該当するテキストファイルがありません");
@@ -2360,12 +2345,64 @@ namespace DoujinGameProject.Action
 			}
 			else
 			{
-				Console.WriteLine("error 外套の音楽がありません");
+				Console.WriteLine("error 該当の音楽がありません");
 				return Properties.Resources.音楽;
 			}
 
 		}
 
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：    　　　　　 　　　　　　　 　■ */
+		/* ■　内容：イベント終了時各特殊イベント判定           　 ■ */
+		/* ■　入力：                                        　 　 ■ */
+		/* ■　出力：体力切れ…true                          　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static bool EndEventCheck()
+		{
+			bool ret = false; 
+
+			GameData.ScenarioData.NowTime++;
+			if(doujin_game_sharp.IsPassionLimit(GameData.SisterData.PassionPoint))
+			{
+				/*性欲限界*/
+				ChangeFile(Defines.fileID.TXT_PUSSION_LIMIT);
+				ret = true;
+			}
+			else if (2 == doujin_game_sharp.IsStaminaRunout(GameData.SisterData.HitPoint))
+			{
+				/*体力限界*/
+				ChangeFile(Defines.fileID.TXT_HP_RUNOUT);
+				ret = true;
+			}
+			else if (2 == doujin_game_sharp.IsMentalRunout(GameData.SisterData.MentalPoint))
+			{
+				/*気力限界*/
+				ChangeFile(Defines.fileID.TXT_MENTAL_RUNOUT);
+				ret = true;
+			}
+			else if (1 == doujin_game_sharp.IsStaminaRunout(GameData.SisterData.HitPoint))
+			{
+				/*体力限界間近*/
+				ChangeFile(Defines.fileID.TXT_HP_RUNOUT);
+				ret = true;
+			}
+			else if (1 == doujin_game_sharp.IsMentalRunout(GameData.SisterData.MentalPoint))
+			{
+				/*気力限界間近*/
+				ChangeFile(Defines.fileID.TXT_MENTAL_RUNOUT);
+				ret = true;
+			}
+			else if (21 >= GameData.ScenarioData.NowTime)
+			{
+				/*１日終了*/
+				ChangeFile(Defines.fileID.TXT_DEVIL_PART);
+				GameData.ScenarioData.DayCt++;
+				ret = true;
+
+			}
+			return ret;
+		}
     }
 }
 

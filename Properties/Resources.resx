@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="douguya_dt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GRP_BG\douguya_dt.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -250,24 +247,6 @@
   <data name="g_btn_011_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_btn_011_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="g_chara_000_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_000_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_000_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_000_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="g_chara_001_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\grp_dummy\g_chara_001_2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="g_ev_000_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\g_ev_000_0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -307,6 +286,9 @@
   <data name="lidy_0_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\grp_dummy\後輩_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Nameform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nameform.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="rouya_nt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GRP_BG\rouya_nt.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -328,6 +310,9 @@
   <data name="text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\text.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
+  <data name="Textform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Textform.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="yadoya_dt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GRP_BG\yadoya_dt.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -337,19 +322,40 @@
   <data name="yadoya_ntr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GRP_BG\yadoya_ntr.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="エンディング" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\エンディング.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
   <data name="オープニング" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\オープニング.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="スキル取得" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\スキル取得.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
   <data name="休息" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\休息.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
+  <data name="体力切れ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\体力切れ.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="性欲限界" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\性欲限界.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
   <data name="教会" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\教会.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
+  <data name="気力切れ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\気力切れ.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
   <data name="読書" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\読書.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
+  <data name="露出" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\露出.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  </data>
   <data name="音楽" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\musicbox.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="魔物パート" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\魔物パート.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
   </data>
 </root>

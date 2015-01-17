@@ -16,7 +16,6 @@ namespace DoujinGameProject
     public partial class doujin_game_sharp : Form
     {
         /*--- ここに使用するクラスを置く ---*/
-        //public Sister Sara = new Sister();
 
         public static Defines.fileID nowfile = 0;
         public int sent_ct = 0;
@@ -24,6 +23,12 @@ namespace DoujinGameProject
         public int log_ct_use = 0;      /* ログ最古位置カウンタ */
 
         public bool MouseLeftPushed = false;
+		public bool fadein = false;
+		public int fadestage = 0;
+		public int currentAlphaPercent = 0;
+		public Image currentImage1;
+		public Control pictboxfade1;
+		public Control pictboxfade2;
 
         public doujin_game_sharp()
         {
@@ -40,9 +45,10 @@ namespace DoujinGameProject
             /* --- 各オブジェクトの背景色を透明にする --- */
 			PNL_Eventslct.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
 			PNL_Mainselect.BackColor = Color.Transparent;   /* メイン選択画面のPanel */
-            PNL_Event.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
+			PNL_Event.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
+			PIC_TextArea.BackColor = Color.Transparent;   /* 立ち絵位置１ */
 			PIC_Chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
-			PIC_Chara_pos2.BackColor = Color.Transparent;   /* 立ち絵位置１ */
+			PIC_Chara_pos2.BackColor = Color.Transparent;   /* 立ち絵位置２ */
 
             /* --- データ類初期化 --- */
             //TODO: ここでやるか、NewGame/LoadGame時にやるか検討
@@ -109,10 +115,47 @@ namespace DoujinGameProject
             if ( MouseLeftPushed == true )
 			{
 				nowfile = Defines.fileID.TXT_OPENING;
-				ParmInit();
 
                 PNL_Background.Visible =true;
 				PNL_Event.Visible = true;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//描画先とするImageオブジェクトを作成する
+				Bitmap canvas_tb = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
+				//ImageオブジェクトのGraphicsオブジェクトを作成する
+				Graphics g_tb = Graphics.FromImage(canvas_tb);
+
+				//画像を読み込む
+				Image img_tb = Image.FromFile(@"C:\Users\kank\Desktop\doujin_game\Resources\Textform.png"); //Properties.Resources.Textform;
+
+				//ColorMatrixオブジェクトの作成
+				System.Drawing.Imaging.ColorMatrix cm =
+					new System.Drawing.Imaging.ColorMatrix();
+				//ColorMatrixの行列の値を変更して、アルファ値が0.5に変更されるようにする
+				cm.Matrix00 = 1;
+				cm.Matrix11 = 1;
+				cm.Matrix22 = 1;
+				cm.Matrix33 = 0.5F;
+				cm.Matrix44 = 1;
+
+				//ImageAttributesオブジェクトの作成
+				System.Drawing.Imaging.ImageAttributes ia =
+					new System.Drawing.Imaging.ImageAttributes();
+				//ColorMatrixを設定する
+				ia.SetColorMatrix(cm);
+
+				//ImageAttributesを使用して画像を描画
+				g_tb.DrawImage(img_tb, new Rectangle(0, 0, img_tb.Width, img_tb.Height),
+					0, 0, img_tb.Width, img_tb.Height, GraphicsUnit.Pixel, ia);
+
+				//リソースを解放する
+				img_tb.Dispose();
+				g_tb.Dispose();
+
+				//PictureBox1に表示する
+				PIC_TextArea.BackgroundImage = canvas_tb;
+				//PIC_TextArea.BackgroundImageLayout = Stretch;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
             }
         }
@@ -173,7 +216,7 @@ namespace DoujinGameProject
         { if (BTN_Church.ClientRectangle.Contains(BTN_Church.PointToClient(Cursor.Position)) == false) { BTN_Church.Image = Properties.Resources.g_btn_003_0; MouseLeftPushed = false; } }
         ////////////////////////////////////////////////////////////////////
 
-
+		 
         ///////////////////////* === 休息ボタン === *///////////////////////
 		private void BTN_Lest_MouseEnter(object sender, EventArgs e)
         {BTN_Lest.Image = Properties.Resources.g_btn_004_1;}
@@ -213,18 +256,20 @@ namespace DoujinGameProject
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (textarea.Visible == true)
+                if (PIC_TextArea.Visible == true)
                 {
                     /* テキストエリア表示中だったら、表示消す */
-                    textarea.Visible = false;
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
                 }
                 else
                 {
                     /* テキストエリア消去中だったら、表示する */
-                    textarea.Visible = true;
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
                 }
             }
-            else
+			else if (PIC_TextArea.Visible == true)
             {
                 sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
@@ -246,22 +291,65 @@ namespace DoujinGameProject
 				}
 			}
         }
+
+		private void PIC_NameBox_MouseDown_1(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				if (PIC_TextArea.Visible == true)
+				{
+					/* テキストエリア表示中だったら、表示消す */
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
+				}
+				else
+				{
+					/* テキストエリア消去中だったら、表示する */
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
+				}
+			}
+			else if (PIC_TextArea.Visible == true)
+			{
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+
+				if (sent_ct == 0)
+				{
+					log_ct = 0;
+					log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
+				}
+				else
+				{
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
+				}
+			}
+		}
+
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (textarea.Visible == true)
+                if (PIC_TextArea.Visible == true)
                 {
                     /* テキストエリア表示中だったら、表示消す */
-                    textarea.Visible = false;
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
                 }
                 else
                 {
                     /* テキストエリア消去中だったら、表示する */
-                    textarea.Visible = true;
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
                 }
             }
-            else
+			else if (PIC_TextArea.Visible == true)
             {
                 sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
@@ -287,18 +375,20 @@ namespace DoujinGameProject
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (textarea.Visible == true)
+                if (PIC_TextArea.Visible == true)
                 {
                     /* テキストエリア表示中だったら、表示消す */
-                    textarea.Visible = false;
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
                 }
                 else
                 {
                     /* テキストエリア消去中だったら、表示する */
-                    textarea.Visible = true;
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
                 }
             }
-            else
+			else if (PIC_TextArea.Visible == true)
             {
                 sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
@@ -324,18 +414,20 @@ namespace DoujinGameProject
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (textarea.Visible == true)
+                if (PIC_TextArea.Visible == true)
                 {
                     /* テキストエリア表示中だったら、表示消す */
-                    textarea.Visible = false;
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
                 }
                 else
                 {
                     /* テキストエリア消去中だったら、表示する */
-                    textarea.Visible = true;
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
                 }
             }
-            else
+			else if (PIC_TextArea.Visible == true)
             {
                 sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
 
@@ -357,13 +449,52 @@ namespace DoujinGameProject
 				}
             }
         }
+		private void PIC_NameBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right)
+			{
+				if (PIC_TextArea.Visible == true)
+				{
+					/* テキストエリア表示中だったら、表示消す */
+					PIC_TextArea.Visible = false;
+					PIC_NameBox.Visible = false;
+				}
+				else
+				{
+					/* テキストエリア消去中だったら、表示する */
+					PIC_TextArea.Visible = true;
+					PIC_NameBox.Visible = true;
+				}
+			}
+			else if (PIC_TextArea.Visible == true)
+			{
+				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+
+				if (sent_ct == 0)
+				{
+					log_ct = 0;
+					log_ct_use = 0;
+					PNL_Event.Visible = false;
+					PNL_Mainselect.Visible = true;
+				}
+				else
+				{
+					if (log_ct_use < 99)
+					{
+						log_ct_use++;
+					}
+					/* パネル３にフォーカス */
+					PNL_Event.Focus();
+				}
+			}
+		}
 
         //バックログ関係
         private void panel3_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e.Delta > 3 && PNL_log.Visible == false)
             {
-                // バックログウィンドウ（panel4）を展開
+                // バックログパネルを展開
                 PNL_log.Visible = true;
                 PNL_log.Focus();
 
@@ -378,11 +509,15 @@ namespace DoujinGameProject
             if (e.Delta < 3)
             {
                 if (log_ct <= 1)
-                {
+				{
+
                     /* スクロール画面の一番下でホイールを下に動かした */
-                    /* ⇒テキスト画面に戻る */
+					/* ⇒イベントテキストパネルに戻る */
                     PNL_log.Visible = false;
                     PNL_Event.Focus();
+
+					// イベントテキストパネルを展開
+					PNL_Event.Visible = true;
                 }
                 else
                 {
@@ -554,20 +689,11 @@ namespace DoujinGameProject
         /* == 以下サブルーチン的メソッド == */
 
 
-		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：ParmInit			　  　　　　　　　　　　 　■ */
-		/* ■　内容：変数初期化	処理							   ■ */
-		/* ■　入力：		                                 　 　 ■ */
-		/* ■　出力：なし                                    　 　 ■ */
-		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		public static void ParmInit()
-		{
 
-		}
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：ChangeNowFile		　  　　　　　　　　　　 　■ */
-		/* ■　内容：ファイル変更処理							   ■ */
+		/* ■　関数名：ChangeNowFile		　  　　　　　　　　　		■ */
+		/* ■　内容：参照ファイル変更処理						   ■ */
 		/* ■　入力：file_id                                 　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -598,8 +724,13 @@ namespace DoujinGameProject
 
         public void setTextAreaImage(Bitmap canvas)
         {
-            textarea.Image = canvas;
+            PIC_TextArea.Image = canvas;
         }
+
+		public void setNameBoxImage(Bitmap canvas)
+		{
+			PIC_NameBox.Image = canvas;
+		}
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		/* ■　関数名：setSelectBoxImage　  　　　　　　　　　　 　■ */
@@ -645,46 +776,62 @@ namespace DoujinGameProject
             else if (tachie_name == "サラ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
 			else if (tachie_name == "サラ(落ち込み)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
 			else if (tachie_name == "サラ(発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_2;
+			else if (tachie_name == "サラ(後ろめたい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
 			else if (tachie_name == "サラ(驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(裸シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(淫魔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(淫魔怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(淫魔驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(淫魔発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "サラ(淫魔悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "マリー") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "マリー(驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "マリー(怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "マリー(発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
-            else if (tachie_name == "リディ") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "リディ(笑顔)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "リディ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "リディ(恐怖)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "サラ(悪)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(裸シナ悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(淫魔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(淫魔怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(淫魔驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(淫魔発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "サラ(淫魔悪笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "マリー") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "マリー(驚き)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "マリー(怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "マリー(発情)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			else if (tachie_name == "リディ") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "リディ(笑顔)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "リディ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "リディ(恐怖)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
 			else if (tachie_name == "リディ(苦しみ)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
 			else if (tachie_name == "触手娘") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
 			else if (tachie_name == "触手娘(恥じらい)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
 			else if (tachie_name == "触手娘(苦しみ)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "魔物") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "魔物(悪笑い)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            else if (tachie_name == "魔物(驚き)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
-            chrbox.Visible = true;
+			else if (tachie_name == "魔物") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "魔物(悪笑い)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+			else if (tachie_name == "魔物(驚き)") chrbox.BackgroundImage = Properties.Resources.lidy_0_0;
+
+			if (chrbox.Visible == false)
+			{
+				fadein = true;
+				currentAlphaPercent = 0;
+
+				pictboxfade1 = chrbox;
+
+				currentImage1 = chrbox.BackgroundImage;
+
+				FadeInTimer.Interval = 10;
+				//タイマーをスタート
+				FadeInTimer.Start();
+				chrbox.Visible = true;
+			}
         }
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -741,6 +888,93 @@ namespace DoujinGameProject
 					Console.WriteLine("背景画像の指定値がテーブル上に用意されていません");
 					break;
 					
+			}
+			
+		}
+
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：IsPassionLimit  　　　　　 　　　　　　　 　■ */
+		/* ■　内容：性欲限界判定                               　 ■ */
+		/* ■　入力：                                        　 　 ■ */
+		/* ■　出力：体力切れ…true                          　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static bool IsPassionLimit(Parameter passion)
+		{
+			if (passion.CurrentValue >= passion.MaxValue)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：IsStaminaRunout  　　　　　 　　　　　　　 　■ */
+		/* ■　内容：体力切れ判定                               　 ■ */
+		/* ■　入力：                                        　 　 ■ */
+		/* ■　出力：体力切れ…true                          　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static int IsStaminaRunout(Parameter stamina)
+		{
+			if (stamina.CurrentValue < 0)
+			{
+				return 2;
+			}
+			else if (stamina.CurrentValue <= 10)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：IsMentalRunout  　　　　　 　　　　　　　 　■ */
+		/* ■　内容：気力切れ判定                               　 ■ */
+		/* ■　入力：                                        　 　 ■ */
+		/* ■　出力：体力切れ…true                          　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static int IsMentalRunout(Parameter energy)
+		{
+			if (energy.CurrentValue < 0)
+			{
+				return 2;
+			}
+			else if (energy.CurrentValue <= 10)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：IsDayFin      　　　　　　 　　　　　　　 　■ */
+		/* ■　内容：１日終了判定                               　 ■ */
+		/* ■　入力：                                        　 　 ■ */
+		/* ■　出力：１日終了…true                          　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static bool IsDayFin(int time)
+		{
+			if (time > 24)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
     
@@ -812,5 +1046,806 @@ namespace DoujinGameProject
             PNL_Eventslct.Visible = true;
             PNL_Event.Visible = false;
         }
-    }    
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：DrawCharacterName 　　　　 　　　　　　　 　■ */
+		/* ■　内容：キャラクター名を表示する処理            　 　 ■ */
+		/* ■　入力：Slct_ct                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void DrawCharacterName(string Name)
+		{
+			Font fnt = new Font("メイリオ", 16);
+			Bitmap canvas0 = new Bitmap(PIC_NameBox.Width, PIC_NameBox.Height);
+			/* ImageオブジェクトのGraphicsオブジェクトを作成する */
+			Graphics g0 = Graphics.FromImage(canvas0);
+			/* 描画内容を準備 */
+			g0.DrawString(Name, fnt, Brushes.White, 20, 10);
+			/* PictureBoxに表示*/
+			PIC_NameBox.Image = canvas0;
+			/* リソースを解放 */
+			fnt.Dispose();
+			g0.Dispose();
+		}
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：ClearCharacterName 　　　　 　　　　　　　  ■ */
+		/* ■　内容：キャラクター名をクリアする処理          　 　 ■ */
+		/* ■　入力：Slct_ct                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void ClearCharacterName()
+		{
+			Font fnt = new Font("メイリオ", 16);
+			Bitmap canvas0 = new Bitmap(PIC_NameBox.Width, PIC_NameBox.Height);
+			/* ImageオブジェクトのGraphicsオブジェクトを作成する */
+			Graphics g0 = Graphics.FromImage(canvas0);
+			/* 描画内容を準備 */
+			g0.DrawString(" ", fnt, Brushes.White, 0, 10);
+			/* PictureBoxに表示*/
+			PIC_NameBox.Image = canvas0;
+			/* リソースを解放 */
+			fnt.Dispose();
+			g0.Dispose();
+		}
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：CreateTranslucentImage 　　 　　　　　　　  ■ */
+		/* ■　内容：指定された画像をフェードインさせる処理  　 　 ■ */
+		/* ■　入力：Slct_ct                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public static Image CreateTranslucentImage(Image img, float alpha)
+		{
+			//半透明の画像の描画先となるImageオブジェクトを作成
+			Bitmap transImg = new Bitmap(img.Width, img.Height);
+			//transImgのGraphicsオブジェクトを取得
+			Graphics g = Graphics.FromImage(transImg);
+			///Graphics g = Graphics.FromImage(img);
+
+			//imgを半透明にしてtransImgに描画
+			System.Drawing.Imaging.ColorMatrix cm =
+				new System.Drawing.Imaging.ColorMatrix();
+			cm.Matrix00 = 1;
+			cm.Matrix11 = 1;
+			cm.Matrix22 = 1;
+			cm.Matrix33 = alpha;
+			cm.Matrix44 = 1;
+			System.Drawing.Imaging.ImageAttributes ia =
+				new System.Drawing.Imaging.ImageAttributes();
+			ia.SetColorMatrix(cm);
+			g.DrawImage(img,
+				new Rectangle(0, 0, img.Width, img.Height),
+				0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia);
+
+			//リソースを解放する
+			g.Dispose();
+
+			return transImg;
+			///return img;
+		}
+		
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			//透明度を決定
+			if (fadein)
+			{
+				currentAlphaPercent += 5;
+				if (100 <= currentAlphaPercent)
+				{
+					fadein = false;
+				}
+			}
+			else
+			{
+				//タイマーを停止
+				((Timer)sender).Stop();
+			}
+
+			//半透明の画像を作成
+			Image nowimg = CreateTranslucentImage(currentImage1, currentAlphaPercent * 0.01f);
+
+			//半透明の画像を表示
+			if (pictboxfade1.BackgroundImage != null)
+			{
+				//pictboxfade1.BackgroundImage.Dispose();
+			}
+			pictboxfade1.BackgroundImage = nowimg;
+		}
+
+		/////////////////////////////////////////////////////////////////////////////////////
+		//		ステータス画面
+		/////////////////////////////////////////////////////////////////////////////////////
+		private void Gauge_HP_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			if(GameData.SisterData.HitPoint.CurrentValue > 150)
+			{
+				txt="どれほど動き回っても疲れる気がしない";
+			}
+			else if(GameData.SisterData.HitPoint.CurrentValue > 100)
+			{
+				txt="体力が有り余っている";
+			}
+			else if(GameData.SisterData.HitPoint.CurrentValue > 70)
+			{
+				txt="特に疲れは感じていない";
+			}
+			else if (GameData.SisterData.HitPoint.CurrentValue > 30)
+			{
+				txt="激しく体を動かすには疲れすぎている";
+			}
+			else
+			{
+				txt="疲れきっていて体が重い";
+			}
+
+			PrintSklTxt(txt);
+		}
+		private void Gauge_HP_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void Gauge_Mental_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			if (GameData.SisterData.MentalPoint.CurrentValue > 150)
+			{
+				txt = "どんなことでもできそうな万能感に満ち溢れている";
+			}
+			else if (GameData.SisterData.MentalPoint.CurrentValue > 100)
+			{
+				txt = "気力は充実している";
+			}
+			else if (GameData.SisterData.MentalPoint.CurrentValue > 70)
+			{
+				txt = "気力面で特に問題は抱えていない";
+			}
+			else if (GameData.SisterData.MentalPoint.CurrentValue > 30)
+			{
+				txt = "ストレスを感じて精神的に疲れている";
+			}
+			else
+			{
+				txt = "何もする気力が湧かない";
+			}
+
+			PrintSklTxt(txt);
+		}
+
+		private void Gauge_Mental_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void Gauge_Moral_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			if (GameData.SisterData.MoralPoint.CurrentValue > 80)
+			{
+				txt = "常に人々の事を考え、慈愛に満ちている";
+			}
+			else if (GameData.SisterData.MoralPoint.CurrentValue > 60)
+			{
+				txt = "他者の苦しみを自分の苦しみとして捉えることができる";
+			}
+			else if (GameData.SisterData.MoralPoint.CurrentValue > 40)
+			{
+				txt = "他人のために自分が苦しむことに疑問を覚えている";
+			}
+			else if (GameData.SisterData.MoralPoint.CurrentValue > 20)
+			{
+				txt = "他者の事情より、自分の都合や感情を優先する";
+			}
+			else
+			{
+				txt = "自分の欲望のためなら誰がどうなろうが関係ない";
+			}
+
+			PrintSklTxt(txt);
+		}
+
+		private void Gauge_Moral_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void Gauge_Passion_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			if (GameData.SisterData.PassionPoint.CurrentValue > 160)
+			{
+				txt = "人間だったら即座に発狂するような性欲に苛まれている";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 90)
+			{
+				txt = "立っているのも辛いほど体中が疼き異常に火照っている";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 60)
+			{
+				txt = "体が火照り、汗で服が体にまとわりついている";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 20)
+			{
+				txt = "少しムラムラとしている";
+			}
+			else
+			{
+				txt = "性欲はほとんど覚えず、シスターとしては理想的な状態";
+			}
+
+			PrintSklTxt(txt);
+
+		}
+
+		private void Gauge_Passion_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void Gauge_Shinrai_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			if (GameData.SisterData.PassionPoint.CurrentValue > 80)
+			{
+				txt = "周囲の人間にあつく信頼されている";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 60)
+			{
+				txt = "周囲の人間に信頼されている";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 40)
+			{
+				txt = "周囲の人間は違和感を覚えているようだ";
+			}
+			else if (GameData.SisterData.PassionPoint.CurrentValue > 20)
+			{
+				txt = "周囲の人間に疑いの目を向けられている";
+			}
+			else
+			{
+				txt = "周囲の人間に強く警戒されている";
+			}
+
+			PrintSklTxt(txt);
+		}
+
+		private void Gauge_Shinrai_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Rosyutsu_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[0].Level)
+			{
+				case 1:
+					txt = "人がいないところで裸になりたくなってしまう";
+					break;
+				case 2:
+					txt = "周りに人がいるところで隠れて裸になりたくなってしまう";
+					break;
+				case 3:
+					txt = "沢山の人に秘所を見てほしくてたまらない";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Rosyutsu_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Rosyutsu_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[0].Level)
+			{
+				case 1:
+					txt = "人がいないところで裸になりたくなってしまう";
+					break;
+				case 2:
+					txt = "周りに人がいるところで隠れて裸になりたくなってしまう";
+					break;
+				case 3:
+					txt = "沢山の人に秘所を見てほしくてたまらない";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Rosyutsu_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_MB_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[1].Level)
+			{
+				case 1:
+					txt = "気が付くとオナニーのことを考えている";
+					break;
+				case 2:
+					txt = "気を抜くと、無意識に手が胸や股間に伸びてしまう";
+					break;
+				case 3:
+					txt = "オナニーをせずに正気を保つのが難しい";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_MB_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_MB_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[1].Level)
+			{
+				case 1:
+					txt = "気が付くとオナニーのことを考えている";
+					break;
+				case 2:
+					txt = "気を抜くと、無意識に手が胸や股間に伸びてしまう";
+					break;
+				case 3:
+					txt = "オナニーをせずに正気を保つのが難しい";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_MB_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Lesb_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[2].Level)
+			{
+				case 1:
+					txt = "同性である女性のことを少し性的な目で見てしまう";
+					break;
+				case 2:
+					txt = "女性を性的対象と捉え、いやらしい視線を向けてしまう";
+					break;
+				case 3:
+					txt = "女性なら誰でもいいので性交したいと考えている";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Lesb_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Lesb_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[2].Level)
+			{
+				case 1:
+					txt = "同性である女性のことを少し性的な目で見てしまう";
+					break;
+				case 2:
+					txt = "女性を性的対象と捉え、いやらしい視線を向けてしまう";
+					break;
+				case 3:
+					txt = "女性なら誰でもいいので性交したいと考えている";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Lesb_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Maso_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[3].Level)
+			{
+				case 1:
+					txt = "痛みに対しての抵抗が他の人よりも薄い";
+					break;
+				case 2:
+					txt = "よほどの痛みでない限りは快感としてとらえる";
+					break;
+				case 3:
+					txt = "苦痛が大きいほど、より大きな快楽を感じる";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Maso_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Maso_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[3].Level)
+			{
+				case 1:
+					txt = "痛みに対しての抵抗が他の人よりも薄い";
+					break;
+				case 2:
+					txt = "よほどの痛みでない限りは快感としてとらえる";
+					break;
+				case 3:
+					txt = "苦痛が大きいほど、より大きな快楽を感じる";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Maso_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Sado_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[4].Level)
+			{
+				case 1:
+					txt = "人が嫌がる姿を見ると快感を覚える";
+					break;
+				case 2:
+					txt = "無抵抗な相手をいたぶると性的に興奮する";
+					break;
+				case 3:
+					txt = "自分より弱い人間をいたぶりたくて仕方ない";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Sado_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Sado_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[4].Level)
+			{
+				case 1:
+					txt = "人が嫌がる姿を見ると快感を覚える";
+					break;
+				case 2:
+					txt = "無抵抗な相手をいたぶると性的に興奮する";
+					break;
+				case 3:
+					txt = "自分より弱い人間をいたぶりたくて仕方ない";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Sado_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+		private void PIC_SklName_Smell_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[5].Level)
+			{
+				case 1:
+					txt = "自分や他人の体臭に魅力を感じている";
+					break;
+				case 2:
+					txt = "自分や他人の体臭に強く惹かれ、顔を埋めたくなる";
+					break;
+				case 3:
+					txt = "体臭に異様に執着し、人と話す際には不自然に歩み寄る";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Smell_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Smell_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[5].Level)
+			{
+				case 1:
+					txt = "自分や他人の体臭に魅力を感じている";
+					break;
+				case 2:
+					txt = "自分や他人の体臭に強く惹かれ、顔を埋めたくなる";
+					break;
+				case 3:
+					txt = "体臭に異様に執着し、人と話す際には不自然に歩み寄る";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Smell_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Fur_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[6].Level)
+			{
+				case 1:
+					txt = "フワフワとした生き物に魅力を感じる";
+					break;
+				case 2:
+					txt = "毛に覆われた生き物を見ると異様な興奮を覚える";
+					break;
+				case 3:
+					txt = "獣人を性欲の対象として認識している";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Fur_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Fur_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[6].Level)
+			{
+				case 1:
+					txt = "フワフワとした生き物に魅力を感じる";
+					break;
+				case 2:
+					txt = "毛に覆われた生き物を見ると異様な興奮を覚える";
+					break;
+				case 3:
+					txt = "獣人を性欲の対象として認識している";
+					break;
+
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Fur_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Monster_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[7].Level)
+			{
+				case 1:
+					txt = "身体能力が高まり、最大体力が増幅する";
+					break;
+				case 2:
+					txt = "瞳の構造が変化し、暗いところでもよく見えるようになる";
+					break;
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklName_Monster_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklLv_Monster_MouseEnter(object sender, EventArgs e)
+		{
+			string txt;
+
+			switch (GameData.SisterData.Skills[7].Level)
+			{
+				case 1:
+					txt = "身体能力が高まり、最大体力が増幅する";
+					break;
+				case 2:
+					txt = "瞳の構造が変化し、暗いところでもよく見えるようになる";
+					break;
+				case 0:
+				default:
+					txt = "";
+					break;
+			}
+			PrintSklTxt(txt);
+		}
+
+		private void PIC_SklLv_Monster_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Biyaku_MouseEnter(object sender, EventArgs e)
+		{
+			if (GameData.SisterData.Skills[8].IsEnabled)
+			{
+				PrintSklTxt("血液、唾液、愛液などの体液が媚薬となっている");
+			}
+		}
+
+		private void PIC_SklName_Biyaku_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Futa_MouseEnter(object sender, EventArgs e)
+		{
+			if (GameData.SisterData.Skills[9].IsEnabled)
+			{
+				PrintSklTxt("成人男性のそれよりも大きなペニスが生えている");
+			}
+		}
+
+		private void PIC_SklName_Futa_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+		private void PIC_SklName_Succubus_MouseEnter(object sender, EventArgs e)
+		{
+			if (GameData.SisterData.Skills[10].IsEnabled)
+			{
+				PrintSklTxt("性交した相手から魔力を奪い取ることができる");
+			}
+		}
+
+		private void PIC_SklName_Succubus_MouseLeave(object sender, EventArgs e)
+		{
+			PrintSklTxt("");
+		}
+
+
+
+		private void PrintSklTxt(string txt)
+		{
+			Font fnt = new Font("メイリオ", 12);
+			Bitmap canvas0 = new Bitmap(PIC_stus_text.Width, PIC_stus_text.Height);
+			/* ImageオブジェクトのGraphicsオブジェクトを作成する */
+			Graphics g0 = Graphics.FromImage(canvas0);
+			/* 描画内容を準備 */
+			g0.DrawString(txt, fnt, Brushes.White, 3, 3);
+			/* PictureBoxに表示*/
+			PIC_stus_text.Image = canvas0;
+			/* リソースを解放 */
+			fnt.Dispose();
+			g0.Dispose();
+		}
+
+		
+
+    }
+    
+
 }

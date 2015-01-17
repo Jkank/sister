@@ -405,6 +405,11 @@
     <None Include="grp_dummy\sister_raugh_02_cmp.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="露出.txt" />
+    <None Include="魔物パート.txt" />
+    <None Include="体力切れ.txt" />
+    <None Include="性欲限界.txt" />
+    <None Include="気力切れ.txt" />
     <None Include="教会.txt" />
     <None Include="Resources\lidy_0_0.bmp" />
     <None Include="grp_dummy\後輩_01.png" />
@@ -425,6 +430,10 @@
     <None Include="Resources\GRP_BG\yadoya_ntr.bmp" />
     <None Include="grp_dummy\yadoya_ev.bmp" />
     <None Include="grp_dummy\sister_raugh_02_cmp_2.png" />
+    <None Include="エンディング.txt" />
+    <None Include="スキル取得.txt" />
+    <None Include="Resources\Nameform.png" />
+    <None Include="Resources\Textform.png" />
     <Content Include="休息.txt" />
     <None Include="読書.txt" />
   </ItemGroup>
