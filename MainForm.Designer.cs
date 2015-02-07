@@ -37,6 +37,12 @@ namespace DoujinGameProject
 			this.PNL_Background = new System.Windows.Forms.Panel();
 			this.PNL_Eventslct = new System.Windows.Forms.Panel();
 			this.PNL_status = new System.Windows.Forms.Panel();
+			this.PNL_Devil = new System.Windows.Forms.Panel();
+			this.pictureBox8 = new System.Windows.Forms.PictureBox();
+			this.pictureBox7 = new System.Windows.Forms.PictureBox();
+			this.pictureBox6 = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.Gauge_Shinrai = new System.Windows.Forms.PictureBox();
 			this.PIC_SklLv_Monster = new System.Windows.Forms.PictureBox();
 			this.PIC_SklLv_Fur = new System.Windows.Forms.PictureBox();
@@ -90,18 +96,18 @@ namespace DoujinGameProject
 			this.BTN_Lest = new System.Windows.Forms.PictureBox();
 			this.BTN_Church = new System.Windows.Forms.PictureBox();
 			this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
-			this.PNL_Devil = new System.Windows.Forms.Panel();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
-			this.pictureBox6 = new System.Windows.Forms.PictureBox();
-			this.pictureBox7 = new System.Windows.Forms.PictureBox();
-			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Start)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Load)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_OpnOption)).BeginInit();
 			this.PNL_Background.SuspendLayout();
 			this.PNL_Eventslct.SuspendLayout();
 			this.PNL_status.SuspendLayout();
+			this.PNL_Devil.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Gauge_Shinrai)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_SklLv_Monster)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_SklLv_Fur)).BeginInit();
@@ -154,12 +160,6 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).BeginInit();
-			this.PNL_Devil.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// BTN_Start
@@ -266,6 +266,64 @@ namespace DoujinGameProject
 			this.PNL_status.Name = "PNL_status";
 			this.PNL_status.Size = new System.Drawing.Size(1067, 750);
 			this.PNL_status.TabIndex = 7;
+			// 
+			// PNL_Devil
+			// 
+			this.PNL_Devil.Controls.Add(this.pictureBox8);
+			this.PNL_Devil.Controls.Add(this.pictureBox7);
+			this.PNL_Devil.Controls.Add(this.pictureBox6);
+			this.PNL_Devil.Controls.Add(this.pictureBox5);
+			this.PNL_Devil.Controls.Add(this.pictureBox4);
+			this.PNL_Devil.Location = new System.Drawing.Point(0, 0);
+			this.PNL_Devil.Name = "PNL_Devil";
+			this.PNL_Devil.Size = new System.Drawing.Size(10, 10);
+			this.PNL_Devil.TabIndex = 34;
+			this.PNL_Devil.Visible = false;
+			// 
+			// pictureBox8
+			// 
+			this.pictureBox8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox8.Location = new System.Drawing.Point(86, 375);
+			this.pictureBox8.Name = "pictureBox8";
+			this.pictureBox8.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox8.TabIndex = 4;
+			this.pictureBox8.TabStop = false;
+			// 
+			// pictureBox7
+			// 
+			this.pictureBox7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox7.Location = new System.Drawing.Point(86, 319);
+			this.pictureBox7.Name = "pictureBox7";
+			this.pictureBox7.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox7.TabIndex = 3;
+			this.pictureBox7.TabStop = false;
+			// 
+			// pictureBox6
+			// 
+			this.pictureBox6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox6.Location = new System.Drawing.Point(86, 262);
+			this.pictureBox6.Name = "pictureBox6";
+			this.pictureBox6.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox6.TabIndex = 2;
+			this.pictureBox6.TabStop = false;
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox5.Location = new System.Drawing.Point(86, 205);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox5.TabIndex = 1;
+			this.pictureBox5.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox4.Location = new System.Drawing.Point(86, 148);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox4.TabIndex = 0;
+			this.pictureBox4.TabStop = false;
 			// 
 			// Gauge_Shinrai
 			// 
@@ -746,6 +804,7 @@ namespace DoujinGameProject
 			this.PIC_TextArea.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.PIC_TextArea.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_000_1;
 			this.PIC_TextArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.PIC_TextArea.Image = global::DoujinGameProject.Properties.Resources.Textform;
 			this.PIC_TextArea.Location = new System.Drawing.Point(193, 578);
 			this.PIC_TextArea.Margin = new System.Windows.Forms.Padding(4);
 			this.PIC_TextArea.Name = "PIC_TextArea";
@@ -861,64 +920,6 @@ namespace DoujinGameProject
 			// 
 			this.FadeInTimer.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// PNL_Devil
-			// 
-			this.PNL_Devil.Controls.Add(this.pictureBox8);
-			this.PNL_Devil.Controls.Add(this.pictureBox7);
-			this.PNL_Devil.Controls.Add(this.pictureBox6);
-			this.PNL_Devil.Controls.Add(this.pictureBox5);
-			this.PNL_Devil.Controls.Add(this.pictureBox4);
-			this.PNL_Devil.Location = new System.Drawing.Point(0, 0);
-			this.PNL_Devil.Name = "PNL_Devil";
-			this.PNL_Devil.Size = new System.Drawing.Size(10, 10);
-			this.PNL_Devil.TabIndex = 34;
-			this.PNL_Devil.Visible = false;
-			// 
-			// pictureBox4
-			// 
-			this.pictureBox4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox4.Location = new System.Drawing.Point(86, 148);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(100, 50);
-			this.pictureBox4.TabIndex = 0;
-			this.pictureBox4.TabStop = false;
-			// 
-			// pictureBox5
-			// 
-			this.pictureBox5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox5.Location = new System.Drawing.Point(86, 205);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(100, 50);
-			this.pictureBox5.TabIndex = 1;
-			this.pictureBox5.TabStop = false;
-			// 
-			// pictureBox6
-			// 
-			this.pictureBox6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox6.Location = new System.Drawing.Point(86, 262);
-			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(100, 50);
-			this.pictureBox6.TabIndex = 2;
-			this.pictureBox6.TabStop = false;
-			// 
-			// pictureBox7
-			// 
-			this.pictureBox7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox7.Location = new System.Drawing.Point(86, 319);
-			this.pictureBox7.Name = "pictureBox7";
-			this.pictureBox7.Size = new System.Drawing.Size(100, 50);
-			this.pictureBox7.TabIndex = 3;
-			this.pictureBox7.TabStop = false;
-			// 
-			// pictureBox8
-			// 
-			this.pictureBox8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox8.Location = new System.Drawing.Point(86, 375);
-			this.pictureBox8.Name = "pictureBox8";
-			this.pictureBox8.Size = new System.Drawing.Size(100, 50);
-			this.pictureBox8.TabIndex = 4;
-			this.pictureBox8.TabStop = false;
-			// 
 			// doujin_game_sharp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -941,6 +942,12 @@ namespace DoujinGameProject
 			this.PNL_Background.ResumeLayout(false);
 			this.PNL_Eventslct.ResumeLayout(false);
 			this.PNL_status.ResumeLayout(false);
+			this.PNL_Devil.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Gauge_Shinrai)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_SklLv_Monster)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_SklLv_Fur)).EndInit();
@@ -993,12 +1000,6 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).EndInit();
-			this.PNL_Devil.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
 			this.ResumeLayout(false);
 
         }

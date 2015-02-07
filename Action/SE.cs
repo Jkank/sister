@@ -1676,6 +1676,7 @@ namespace DoujinGameProject.Action
 						{
 							Program.Doujin_game_sharp.delCharacterImageRight();
 						}
+						Program.Doujin_game_sharp.BackgroundDraw(0);
 						count += 2;
 						countold = count;
 						sentence_ct = getNowSent(count);

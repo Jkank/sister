@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using DoujinGameProject.Data;
 using DoujinGameProject.Action;
+using System.Runtime.InteropServices;
 
 namespace DoujinGameProject
 {
@@ -29,6 +30,8 @@ namespace DoujinGameProject
 		public Image currentImage1;
 		public Control pictboxfade1;
 		public Control pictboxfade2;
+
+		static Image canvas_tb;
 
         public doujin_game_sharp()
         {
@@ -119,13 +122,15 @@ namespace DoujinGameProject
                 PNL_Background.Visible =true;
 				PNL_Event.Visible = true;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				//描画先とするImageオブジェクトを作成する
-				Bitmap canvas_tb = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
+				canvas_tb = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
 				//ImageオブジェクトのGraphicsオブジェクトを作成する
 				Graphics g_tb = Graphics.FromImage(canvas_tb);
 
 				//画像を読み込む
-				Image img_tb = Image.FromFile(@"C:\Users\kank\Desktop\doujin_game\Resources\Textform.png"); //Properties.Resources.Textform;
+				Image img_tb = Properties.Resources.Textform;
+				//Image img_tb = Image.FromFile(@"C:\Users\kank\Desktop\doujin_game\Resources\Textform.png"); //Properties.Resources.Textform;
 
 				//ColorMatrixオブジェクトの作成
 				System.Drawing.Imaging.ColorMatrix cm =
@@ -770,7 +775,7 @@ namespace DoujinGameProject
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         private void setCharacterImage(PictureBox chrbox, string tachie_name)
         {
-            if (tachie_name == "サラ") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
+			if (tachie_name == "サラ") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
             else if (tachie_name == "サラ(笑顔)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
             else if (tachie_name == "サラ(怒り)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
             else if (tachie_name == "サラ(恥じらい)") chrbox.BackgroundImage = Properties.Resources.sara_0_0;
@@ -1099,6 +1104,7 @@ namespace DoujinGameProject
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public static Image CreateTranslucentImage(Image img, float alpha)
 		{
+
 			//半透明の画像の描画先となるImageオブジェクトを作成
 			Bitmap transImg = new Bitmap(img.Width, img.Height);
 			//transImgのGraphicsオブジェクトを取得
@@ -1126,7 +1132,13 @@ namespace DoujinGameProject
 			return transImg;
 			///return img;
 		}
-		
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：timer1_Tick			 　　 　　　　　　　  ■ */
+		/* ■　内容：フェードイン用タイマ処理				　 　 ■ */
+		/* ■　入力：Slct_ct                                 　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			//透明度を決定
@@ -1153,6 +1165,44 @@ namespace DoujinGameProject
 				//pictboxfade1.BackgroundImage.Dispose();
 			}
 			pictboxfade1.BackgroundImage = nowimg;
+			BackgroundDraw(0);
+		}
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：BackgroundDraw			 　　 　　　　　　 ■ */
+		/* ■　内容：画像・パネルを描画する際、					   ■ */
+		/* ■　　　　見た目上他の画像が消えないようにする処理　 　 ■ */
+		/* ■　入力：targetpanel_id                          　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void BackgroundDraw(Int16 targetpanel_id)
+		{
+		
+			//現在の背景画像の状況を再現する。
+			Bitmap canvas = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
+			Graphics g = Graphics.FromImage(canvas);
+
+			Image Image1 = PIC_Chara_pos1.BackgroundImage;
+			Image Image2 = PIC_Chara_pos2.BackgroundImage;
+
+			if (Image1 != null && PIC_Chara_pos1.Visible == true)
+			{
+				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - PIC_TextArea.Location.X, PIC_Chara_pos1.Location.Y - PIC_TextArea.Location.Y, Image1.Width, Image1.Height);
+			}
+			if (Image2 != null && PIC_Chara_pos2.Visible == true)
+			{
+				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - PIC_TextArea.Location.X, PIC_Chara_pos2.Location.Y - PIC_TextArea.Location.Y, Image2.Width, Image2.Height);
+			}
+
+			g.DrawImage(canvas_tb, 0, 0, canvas_tb.Width, canvas_tb.Height);
+			
+
+			//Graphicsオブジェクトのリソースを解放する
+			g.Dispose();
+
+			//PictureBox1に表示する
+			PIC_TextArea.BackgroundImage = canvas;
 		}
 
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -1843,9 +1893,7 @@ namespace DoujinGameProject
 			g0.Dispose();
 		}
 
-		
-
     }
-    
+
 
 }

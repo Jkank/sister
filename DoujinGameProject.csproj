@@ -105,6 +105,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="doujin_game_sharp_TemporaryKey.pfx" />
+    <None Include="grp_dummy\Image1.gal" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -434,6 +435,7 @@
     <None Include="スキル取得.txt" />
     <None Include="Resources\Nameform.png" />
     <None Include="Resources\Textform.png" />
+    <None Include="grp_dummy\Image1.bmp" />
     <Content Include="休息.txt" />
     <None Include="読書.txt" />
   </ItemGroup>
