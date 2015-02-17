@@ -80,7 +80,7 @@ namespace DoujinGameProject.Action
 
         static int val_reg = 0;
 
-		static System.Media.SoundPlayer player = null;
+		static System.Media.SoundPlayer player = null; 
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         /* ■　関数名：s_ScriptEngine　　　　　　 　　　　　　　 　■ */
@@ -100,12 +100,18 @@ namespace DoujinGameProject.Action
             const int VAL_REG_B = 2;
             const int VAL_REG_C = 3;
 
+
 			
             if (fileID_next != file_no)
             {
                 ChangeFile(file_no);
-                fileID_next = file_no;
-			//	PlaySound("Property.Resource.音楽");
+				fileID_next = file_no;
+
+				Program.Doujin_game_sharp.PlaySoundEffect(0, false);
+				Program.Doujin_game_sharp.PlaySoundEffect(1, true);
+
+				//PlayBGM("音楽");
+				//PlayBGM("音楽");
             }
 			
 
@@ -2308,13 +2314,14 @@ namespace DoujinGameProject.Action
 
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：PlaySound     　　　　　　 　　　　　　　 　■ */
+		/* ■　関数名：PlayBGM     　　　　　　 　　　　　　　 　■ */
 		/* ■　内容：BGMを鳴動する処理					     　 　 ■ */
 		/* ■　入力：wavefilename                            　 　 ■ */
 		/* ■　出力：		                                 　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		//WAVEファイルを再生する
-		private static void PlaySound(string wavefilename)
+		
+		private static void PlayBGM(string wavefilename)
 		{
 
 			System.IO.UnmanagedMemoryStream music;
@@ -2329,6 +2336,7 @@ namespace DoujinGameProject.Action
 			player.PlayLooping();
 			
 		}
+
 		private static void StopSound()
 		{
 			if (player != null)
@@ -2338,11 +2346,17 @@ namespace DoujinGameProject.Action
 				player = null;
 			}
 		}
-		private static System.IO.UnmanagedMemoryStream GetwaveFile(string wavefilename)
+
+
+		public static System.IO.UnmanagedMemoryStream GetwaveFile(string wavefilename)
 		{
 			if (wavefilename == "音楽")
 			{
 				return Properties.Resources.音楽;
+			}
+			else if (wavefilename == "ohayougozaimasu_02")
+			{
+				return Properties.Resources.ohayougozaimasu_02;
 			}
 			else
 			{
@@ -2351,6 +2365,8 @@ namespace DoujinGameProject.Action
 			}
 
 		}
+
+
 
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */

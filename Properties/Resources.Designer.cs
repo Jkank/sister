@@ -641,6 +641,15 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ohayougozaimasu_02 {
+            get {
+                return ResourceManager.GetStream("ohayougozaimasu_02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.Drawing.Bitmap rouya_nt {

@@ -166,10 +166,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Start.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_000_0;
 			this.BTN_Start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Start.Location = new System.Drawing.Point(400, 396);
-			this.BTN_Start.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Start.Location = new System.Drawing.Point(300, 317);
 			this.BTN_Start.Name = "BTN_Start";
-			this.BTN_Start.Size = new System.Drawing.Size(267, 100);
+			this.BTN_Start.Size = new System.Drawing.Size(200, 80);
 			this.BTN_Start.TabIndex = 0;
 			this.BTN_Start.TabStop = false;
 			this.BTN_Start.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -182,10 +181,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Load.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_001_0;
 			this.BTN_Load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Load.Location = new System.Drawing.Point(400, 504);
-			this.BTN_Load.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Load.Location = new System.Drawing.Point(300, 403);
 			this.BTN_Load.Name = "BTN_Load";
-			this.BTN_Load.Size = new System.Drawing.Size(267, 100);
+			this.BTN_Load.Size = new System.Drawing.Size(200, 80);
 			this.BTN_Load.TabIndex = 1;
 			this.BTN_Load.TabStop = false;
 			// 
@@ -193,10 +191,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_OpnOption.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_001_0;
 			this.BTN_OpnOption.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_OpnOption.Location = new System.Drawing.Point(400, 611);
-			this.BTN_OpnOption.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_OpnOption.Location = new System.Drawing.Point(300, 489);
 			this.BTN_OpnOption.Name = "BTN_OpnOption";
-			this.BTN_OpnOption.Size = new System.Drawing.Size(267, 100);
+			this.BTN_OpnOption.Size = new System.Drawing.Size(200, 80);
 			this.BTN_OpnOption.TabIndex = 2;
 			this.BTN_OpnOption.TabStop = false;
 			// 
@@ -207,9 +204,8 @@ namespace DoujinGameProject
 			this.PNL_Background.Controls.Add(this.PNL_Mainselect);
 			this.PNL_Background.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Background.Location = new System.Drawing.Point(0, 0);
-			this.PNL_Background.Margin = new System.Windows.Forms.Padding(4);
 			this.PNL_Background.Name = "PNL_Background";
-			this.PNL_Background.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_Background.Size = new System.Drawing.Size(800, 600);
 			this.PNL_Background.TabIndex = 0;
 			this.PNL_Background.Visible = false;
 			// 
@@ -222,9 +218,8 @@ namespace DoujinGameProject
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_1);
 			this.PNL_Eventslct.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Eventslct.Location = new System.Drawing.Point(0, 0);
-			this.PNL_Eventslct.Margin = new System.Windows.Forms.Padding(4);
 			this.PNL_Eventslct.Name = "PNL_Eventslct";
-			this.PNL_Eventslct.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_Eventslct.Size = new System.Drawing.Size(800, 600);
 			this.PNL_Eventslct.TabIndex = 6;
 			this.PNL_Eventslct.Visible = false;
 			// 
@@ -263,8 +258,9 @@ namespace DoujinGameProject
 			this.PNL_status.Controls.Add(this.PIC_stus_text);
 			this.PNL_status.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_status.Location = new System.Drawing.Point(0, 0);
+			this.PNL_status.Margin = new System.Windows.Forms.Padding(2);
 			this.PNL_status.Name = "PNL_status";
-			this.PNL_status.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_status.Size = new System.Drawing.Size(800, 600);
 			this.PNL_status.TabIndex = 7;
 			// 
 			// PNL_Devil
@@ -275,62 +271,69 @@ namespace DoujinGameProject
 			this.PNL_Devil.Controls.Add(this.pictureBox5);
 			this.PNL_Devil.Controls.Add(this.pictureBox4);
 			this.PNL_Devil.Location = new System.Drawing.Point(0, 0);
+			this.PNL_Devil.Margin = new System.Windows.Forms.Padding(2);
 			this.PNL_Devil.Name = "PNL_Devil";
-			this.PNL_Devil.Size = new System.Drawing.Size(10, 10);
+			this.PNL_Devil.Size = new System.Drawing.Size(8, 8);
 			this.PNL_Devil.TabIndex = 34;
 			this.PNL_Devil.Visible = false;
 			// 
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox8.Location = new System.Drawing.Point(86, 375);
+			this.pictureBox8.Location = new System.Drawing.Point(64, 300);
+			this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox8.Name = "pictureBox8";
-			this.pictureBox8.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox8.Size = new System.Drawing.Size(75, 40);
 			this.pictureBox8.TabIndex = 4;
 			this.pictureBox8.TabStop = false;
 			// 
 			// pictureBox7
 			// 
 			this.pictureBox7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox7.Location = new System.Drawing.Point(86, 319);
+			this.pictureBox7.Location = new System.Drawing.Point(64, 255);
+			this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox7.Name = "pictureBox7";
-			this.pictureBox7.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox7.Size = new System.Drawing.Size(75, 40);
 			this.pictureBox7.TabIndex = 3;
 			this.pictureBox7.TabStop = false;
 			// 
 			// pictureBox6
 			// 
 			this.pictureBox6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox6.Location = new System.Drawing.Point(86, 262);
+			this.pictureBox6.Location = new System.Drawing.Point(64, 210);
+			this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox6.Size = new System.Drawing.Size(75, 40);
 			this.pictureBox6.TabIndex = 2;
 			this.pictureBox6.TabStop = false;
 			// 
 			// pictureBox5
 			// 
 			this.pictureBox5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox5.Location = new System.Drawing.Point(86, 205);
+			this.pictureBox5.Location = new System.Drawing.Point(64, 164);
+			this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox5.Size = new System.Drawing.Size(75, 40);
 			this.pictureBox5.TabIndex = 1;
 			this.pictureBox5.TabStop = false;
 			// 
 			// pictureBox4
 			// 
 			this.pictureBox4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox4.Location = new System.Drawing.Point(86, 148);
+			this.pictureBox4.Location = new System.Drawing.Point(64, 118);
+			this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(100, 50);
+			this.pictureBox4.Size = new System.Drawing.Size(75, 40);
 			this.pictureBox4.TabIndex = 0;
 			this.pictureBox4.TabStop = false;
 			// 
 			// Gauge_Shinrai
 			// 
 			this.Gauge_Shinrai.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Gauge_Shinrai.Location = new System.Drawing.Point(467, 104);
+			this.Gauge_Shinrai.Location = new System.Drawing.Point(350, 83);
+			this.Gauge_Shinrai.Margin = new System.Windows.Forms.Padding(2);
 			this.Gauge_Shinrai.Name = "Gauge_Shinrai";
-			this.Gauge_Shinrai.Size = new System.Drawing.Size(178, 50);
+			this.Gauge_Shinrai.Size = new System.Drawing.Size(134, 40);
 			this.Gauge_Shinrai.TabIndex = 33;
 			this.Gauge_Shinrai.TabStop = false;
 			this.Gauge_Shinrai.MouseEnter += new System.EventHandler(this.Gauge_Shinrai_MouseEnter);
@@ -339,9 +342,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Monster
 			// 
 			this.PIC_SklLv_Monster.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Monster.Location = new System.Drawing.Point(359, 449);
+			this.PIC_SklLv_Monster.Location = new System.Drawing.Point(269, 359);
+			this.PIC_SklLv_Monster.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Monster.Name = "PIC_SklLv_Monster";
-			this.PIC_SklLv_Monster.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Monster.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Monster.TabIndex = 30;
 			this.PIC_SklLv_Monster.TabStop = false;
 			this.PIC_SklLv_Monster.MouseEnter += new System.EventHandler(this.PIC_SklLv_Monster_MouseEnter);
@@ -350,9 +354,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Fur
 			// 
 			this.PIC_SklLv_Fur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Fur.Location = new System.Drawing.Point(359, 403);
+			this.PIC_SklLv_Fur.Location = new System.Drawing.Point(269, 322);
+			this.PIC_SklLv_Fur.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Fur.Name = "PIC_SklLv_Fur";
-			this.PIC_SklLv_Fur.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Fur.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Fur.TabIndex = 27;
 			this.PIC_SklLv_Fur.TabStop = false;
 			this.PIC_SklLv_Fur.MouseEnter += new System.EventHandler(this.PIC_SklLv_Fur_MouseEnter);
@@ -361,9 +366,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Smell
 			// 
 			this.PIC_SklLv_Smell.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Smell.Location = new System.Drawing.Point(359, 357);
+			this.PIC_SklLv_Smell.Location = new System.Drawing.Point(269, 286);
+			this.PIC_SklLv_Smell.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Smell.Name = "PIC_SklLv_Smell";
-			this.PIC_SklLv_Smell.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Smell.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Smell.TabIndex = 26;
 			this.PIC_SklLv_Smell.TabStop = false;
 			this.PIC_SklLv_Smell.MouseEnter += new System.EventHandler(this.PIC_SklLv_Smell_MouseEnter);
@@ -372,9 +378,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Sado
 			// 
 			this.PIC_SklLv_Sado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Sado.Location = new System.Drawing.Point(359, 311);
+			this.PIC_SklLv_Sado.Location = new System.Drawing.Point(269, 249);
+			this.PIC_SklLv_Sado.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Sado.Name = "PIC_SklLv_Sado";
-			this.PIC_SklLv_Sado.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Sado.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Sado.TabIndex = 25;
 			this.PIC_SklLv_Sado.TabStop = false;
 			this.PIC_SklLv_Sado.MouseEnter += new System.EventHandler(this.PIC_SklLv_Sado_MouseEnter);
@@ -383,9 +390,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Maso
 			// 
 			this.PIC_SklLv_Maso.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Maso.Location = new System.Drawing.Point(174, 449);
+			this.PIC_SklLv_Maso.Location = new System.Drawing.Point(130, 359);
+			this.PIC_SklLv_Maso.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Maso.Name = "PIC_SklLv_Maso";
-			this.PIC_SklLv_Maso.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Maso.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Maso.TabIndex = 24;
 			this.PIC_SklLv_Maso.TabStop = false;
 			this.PIC_SklLv_Maso.MouseEnter += new System.EventHandler(this.PIC_SklLv_Maso_MouseEnter);
@@ -394,9 +402,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Lesb
 			// 
 			this.PIC_SklLv_Lesb.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Lesb.Location = new System.Drawing.Point(174, 403);
+			this.PIC_SklLv_Lesb.Location = new System.Drawing.Point(130, 322);
+			this.PIC_SklLv_Lesb.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Lesb.Name = "PIC_SklLv_Lesb";
-			this.PIC_SklLv_Lesb.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Lesb.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Lesb.TabIndex = 23;
 			this.PIC_SklLv_Lesb.TabStop = false;
 			this.PIC_SklLv_Lesb.MouseEnter += new System.EventHandler(this.PIC_SklLv_Lesb_MouseEnter);
@@ -405,9 +414,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_MB
 			// 
 			this.PIC_SklLv_MB.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_MB.Location = new System.Drawing.Point(174, 357);
+			this.PIC_SklLv_MB.Location = new System.Drawing.Point(130, 286);
+			this.PIC_SklLv_MB.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_MB.Name = "PIC_SklLv_MB";
-			this.PIC_SklLv_MB.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_MB.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_MB.TabIndex = 22;
 			this.PIC_SklLv_MB.TabStop = false;
 			this.PIC_SklLv_MB.MouseEnter += new System.EventHandler(this.PIC_SklLv_MB_MouseEnter);
@@ -416,9 +426,10 @@ namespace DoujinGameProject
 			// PIC_SklLv_Rosyutsu
 			// 
 			this.PIC_SklLv_Rosyutsu.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklLv_Rosyutsu.Location = new System.Drawing.Point(174, 311);
+			this.PIC_SklLv_Rosyutsu.Location = new System.Drawing.Point(130, 249);
+			this.PIC_SklLv_Rosyutsu.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklLv_Rosyutsu.Name = "PIC_SklLv_Rosyutsu";
-			this.PIC_SklLv_Rosyutsu.Size = new System.Drawing.Size(40, 40);
+			this.PIC_SklLv_Rosyutsu.Size = new System.Drawing.Size(30, 32);
 			this.PIC_SklLv_Rosyutsu.TabIndex = 21;
 			this.PIC_SklLv_Rosyutsu.TabStop = false;
 			this.PIC_SklLv_Rosyutsu.MouseEnter += new System.EventHandler(this.PIC_SklLv_Rosyutsu_MouseEnter);
@@ -427,9 +438,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Smell
 			// 
 			this.PIC_SklName_Smell.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Smell.Location = new System.Drawing.Point(233, 357);
+			this.PIC_SklName_Smell.Location = new System.Drawing.Point(175, 286);
+			this.PIC_SklName_Smell.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Smell.Name = "PIC_SklName_Smell";
-			this.PIC_SklName_Smell.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Smell.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Smell.TabIndex = 19;
 			this.PIC_SklName_Smell.TabStop = false;
 			this.PIC_SklName_Smell.MouseEnter += new System.EventHandler(this.PIC_SklName_Smell_MouseEnter);
@@ -438,9 +450,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Succubus
 			// 
 			this.PIC_SklName_Succubus.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Succubus.Location = new System.Drawing.Point(418, 439);
+			this.PIC_SklName_Succubus.Location = new System.Drawing.Point(314, 351);
+			this.PIC_SklName_Succubus.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Succubus.Name = "PIC_SklName_Succubus";
-			this.PIC_SklName_Succubus.Size = new System.Drawing.Size(166, 50);
+			this.PIC_SklName_Succubus.Size = new System.Drawing.Size(124, 40);
 			this.PIC_SklName_Succubus.TabIndex = 18;
 			this.PIC_SklName_Succubus.TabStop = false;
 			this.PIC_SklName_Succubus.MouseEnter += new System.EventHandler(this.PIC_SklName_Succubus_MouseEnter);
@@ -449,9 +462,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Futa
 			// 
 			this.PIC_SklName_Futa.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Futa.Location = new System.Drawing.Point(418, 375);
+			this.PIC_SklName_Futa.Location = new System.Drawing.Point(314, 300);
+			this.PIC_SklName_Futa.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Futa.Name = "PIC_SklName_Futa";
-			this.PIC_SklName_Futa.Size = new System.Drawing.Size(166, 50);
+			this.PIC_SklName_Futa.Size = new System.Drawing.Size(124, 40);
 			this.PIC_SklName_Futa.TabIndex = 17;
 			this.PIC_SklName_Futa.TabStop = false;
 			this.PIC_SklName_Futa.MouseEnter += new System.EventHandler(this.PIC_SklName_Futa_MouseEnter);
@@ -460,9 +474,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Biyaku
 			// 
 			this.PIC_SklName_Biyaku.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Biyaku.Location = new System.Drawing.Point(418, 311);
+			this.PIC_SklName_Biyaku.Location = new System.Drawing.Point(314, 249);
+			this.PIC_SklName_Biyaku.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Biyaku.Name = "PIC_SklName_Biyaku";
-			this.PIC_SklName_Biyaku.Size = new System.Drawing.Size(166, 50);
+			this.PIC_SklName_Biyaku.Size = new System.Drawing.Size(124, 40);
 			this.PIC_SklName_Biyaku.TabIndex = 16;
 			this.PIC_SklName_Biyaku.TabStop = false;
 			this.PIC_SklName_Biyaku.MouseEnter += new System.EventHandler(this.PIC_SklName_Biyaku_MouseEnter);
@@ -471,9 +486,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Monster
 			// 
 			this.PIC_SklName_Monster.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Monster.Location = new System.Drawing.Point(233, 449);
+			this.PIC_SklName_Monster.Location = new System.Drawing.Point(175, 359);
+			this.PIC_SklName_Monster.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Monster.Name = "PIC_SklName_Monster";
-			this.PIC_SklName_Monster.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Monster.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Monster.TabIndex = 15;
 			this.PIC_SklName_Monster.TabStop = false;
 			this.PIC_SklName_Monster.MouseEnter += new System.EventHandler(this.PIC_SklName_Monster_MouseEnter);
@@ -482,9 +498,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Fur
 			// 
 			this.PIC_SklName_Fur.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Fur.Location = new System.Drawing.Point(233, 403);
+			this.PIC_SklName_Fur.Location = new System.Drawing.Point(175, 322);
+			this.PIC_SklName_Fur.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Fur.Name = "PIC_SklName_Fur";
-			this.PIC_SklName_Fur.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Fur.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Fur.TabIndex = 14;
 			this.PIC_SklName_Fur.TabStop = false;
 			this.PIC_SklName_Fur.MouseEnter += new System.EventHandler(this.PIC_SklName_Fur_MouseEnter);
@@ -493,9 +510,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Sado
 			// 
 			this.PIC_SklName_Sado.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Sado.Location = new System.Drawing.Point(233, 311);
+			this.PIC_SklName_Sado.Location = new System.Drawing.Point(175, 249);
+			this.PIC_SklName_Sado.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Sado.Name = "PIC_SklName_Sado";
-			this.PIC_SklName_Sado.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Sado.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Sado.TabIndex = 13;
 			this.PIC_SklName_Sado.TabStop = false;
 			this.PIC_SklName_Sado.MouseEnter += new System.EventHandler(this.PIC_SklName_Sado_MouseEnter);
@@ -504,9 +522,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Maso
 			// 
 			this.PIC_SklName_Maso.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Maso.Location = new System.Drawing.Point(48, 449);
+			this.PIC_SklName_Maso.Location = new System.Drawing.Point(36, 359);
+			this.PIC_SklName_Maso.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Maso.Name = "PIC_SklName_Maso";
-			this.PIC_SklName_Maso.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Maso.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Maso.TabIndex = 12;
 			this.PIC_SklName_Maso.TabStop = false;
 			this.PIC_SklName_Maso.MouseEnter += new System.EventHandler(this.PIC_SklName_Maso_MouseEnter);
@@ -515,9 +534,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Lesb
 			// 
 			this.PIC_SklName_Lesb.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Lesb.Location = new System.Drawing.Point(48, 403);
+			this.PIC_SklName_Lesb.Location = new System.Drawing.Point(36, 322);
+			this.PIC_SklName_Lesb.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Lesb.Name = "PIC_SklName_Lesb";
-			this.PIC_SklName_Lesb.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Lesb.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Lesb.TabIndex = 11;
 			this.PIC_SklName_Lesb.TabStop = false;
 			this.PIC_SklName_Lesb.MouseEnter += new System.EventHandler(this.PIC_SklName_Lesb_MouseEnter);
@@ -526,9 +546,10 @@ namespace DoujinGameProject
 			// PIC_SklName_MB
 			// 
 			this.PIC_SklName_MB.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_MB.Location = new System.Drawing.Point(48, 357);
+			this.PIC_SklName_MB.Location = new System.Drawing.Point(36, 286);
+			this.PIC_SklName_MB.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_MB.Name = "PIC_SklName_MB";
-			this.PIC_SklName_MB.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_MB.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_MB.TabIndex = 10;
 			this.PIC_SklName_MB.TabStop = false;
 			this.PIC_SklName_MB.MouseEnter += new System.EventHandler(this.PIC_SklName_MB_MouseEnter);
@@ -537,9 +558,10 @@ namespace DoujinGameProject
 			// PIC_SklName_Rosyutsu
 			// 
 			this.PIC_SklName_Rosyutsu.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_SklName_Rosyutsu.Location = new System.Drawing.Point(48, 311);
+			this.PIC_SklName_Rosyutsu.Location = new System.Drawing.Point(36, 249);
+			this.PIC_SklName_Rosyutsu.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_SklName_Rosyutsu.Name = "PIC_SklName_Rosyutsu";
-			this.PIC_SklName_Rosyutsu.Size = new System.Drawing.Size(120, 40);
+			this.PIC_SklName_Rosyutsu.Size = new System.Drawing.Size(90, 32);
 			this.PIC_SklName_Rosyutsu.TabIndex = 9;
 			this.PIC_SklName_Rosyutsu.TabStop = false;
 			this.PIC_SklName_Rosyutsu.MouseEnter += new System.EventHandler(this.PIC_SklName_Rosyutsu_MouseEnter);
@@ -548,9 +570,10 @@ namespace DoujinGameProject
 			// Gauge_Passion
 			// 
 			this.Gauge_Passion.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Gauge_Passion.Location = new System.Drawing.Point(256, 193);
+			this.Gauge_Passion.Location = new System.Drawing.Point(192, 154);
+			this.Gauge_Passion.Margin = new System.Windows.Forms.Padding(2);
 			this.Gauge_Passion.Name = "Gauge_Passion";
-			this.Gauge_Passion.Size = new System.Drawing.Size(178, 50);
+			this.Gauge_Passion.Size = new System.Drawing.Size(134, 40);
 			this.Gauge_Passion.TabIndex = 8;
 			this.Gauge_Passion.TabStop = false;
 			this.Gauge_Passion.MouseEnter += new System.EventHandler(this.Gauge_Passion_MouseEnter);
@@ -559,9 +582,10 @@ namespace DoujinGameProject
 			// Gauge_Mental
 			// 
 			this.Gauge_Mental.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Gauge_Mental.Location = new System.Drawing.Point(48, 193);
+			this.Gauge_Mental.Location = new System.Drawing.Point(36, 154);
+			this.Gauge_Mental.Margin = new System.Windows.Forms.Padding(2);
 			this.Gauge_Mental.Name = "Gauge_Mental";
-			this.Gauge_Mental.Size = new System.Drawing.Size(178, 50);
+			this.Gauge_Mental.Size = new System.Drawing.Size(134, 40);
 			this.Gauge_Mental.TabIndex = 7;
 			this.Gauge_Mental.TabStop = false;
 			this.Gauge_Mental.MouseEnter += new System.EventHandler(this.Gauge_Mental_MouseEnter);
@@ -570,9 +594,10 @@ namespace DoujinGameProject
 			// Gauge_Moral
 			// 
 			this.Gauge_Moral.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Gauge_Moral.Location = new System.Drawing.Point(256, 104);
+			this.Gauge_Moral.Location = new System.Drawing.Point(192, 83);
+			this.Gauge_Moral.Margin = new System.Windows.Forms.Padding(2);
 			this.Gauge_Moral.Name = "Gauge_Moral";
-			this.Gauge_Moral.Size = new System.Drawing.Size(178, 50);
+			this.Gauge_Moral.Size = new System.Drawing.Size(134, 40);
 			this.Gauge_Moral.TabIndex = 6;
 			this.Gauge_Moral.TabStop = false;
 			this.Gauge_Moral.MouseEnter += new System.EventHandler(this.Gauge_Moral_MouseEnter);
@@ -581,9 +606,10 @@ namespace DoujinGameProject
 			// Gauge_HP
 			// 
 			this.Gauge_HP.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Gauge_HP.Location = new System.Drawing.Point(48, 104);
+			this.Gauge_HP.Location = new System.Drawing.Point(36, 83);
+			this.Gauge_HP.Margin = new System.Windows.Forms.Padding(2);
 			this.Gauge_HP.Name = "Gauge_HP";
-			this.Gauge_HP.Size = new System.Drawing.Size(178, 50);
+			this.Gauge_HP.Size = new System.Drawing.Size(134, 40);
 			this.Gauge_HP.TabIndex = 5;
 			this.Gauge_HP.TabStop = false;
 			this.Gauge_HP.MouseEnter += new System.EventHandler(this.Gauge_HP_MouseEnter);
@@ -592,71 +618,75 @@ namespace DoujinGameProject
 			// BTN_stus_close
 			// 
 			this.BTN_stus_close.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.BTN_stus_close.Location = new System.Drawing.Point(880, 647);
+			this.BTN_stus_close.Location = new System.Drawing.Point(660, 518);
+			this.BTN_stus_close.Margin = new System.Windows.Forms.Padding(2);
 			this.BTN_stus_close.Name = "BTN_stus_close";
-			this.BTN_stus_close.Size = new System.Drawing.Size(175, 64);
+			this.BTN_stus_close.Size = new System.Drawing.Size(131, 51);
 			this.BTN_stus_close.TabIndex = 3;
 			this.BTN_stus_close.TabStop = false;
 			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.Location = new System.Drawing.Point(27, 259);
+			this.pictureBox3.Location = new System.Drawing.Point(20, 207);
+			this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(573, 403);
+			this.pictureBox3.Size = new System.Drawing.Size(430, 322);
 			this.pictureBox3.TabIndex = 4;
 			this.pictureBox3.TabStop = false;
 			// 
 			// pictureBox2
 			// 
-			this.pictureBox2.Location = new System.Drawing.Point(27, 12);
+			this.pictureBox2.Location = new System.Drawing.Point(20, 10);
+			this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(210, 43);
+			this.pictureBox2.Size = new System.Drawing.Size(158, 34);
 			this.pictureBox2.TabIndex = 3;
 			this.pictureBox2.TabStop = false;
 			// 
 			// PIC_stus_sara
 			// 
 			this.PIC_stus_sara.BackgroundImage = global::DoujinGameProject.Properties.Resources.sara_0_0;
-			this.PIC_stus_sara.Location = new System.Drawing.Point(643, 176);
+			this.PIC_stus_sara.Location = new System.Drawing.Point(482, 141);
+			this.PIC_stus_sara.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_stus_sara.Name = "PIC_stus_sara";
-			this.PIC_stus_sara.Size = new System.Drawing.Size(341, 574);
+			this.PIC_stus_sara.Size = new System.Drawing.Size(256, 459);
 			this.PIC_stus_sara.TabIndex = 1;
 			this.PIC_stus_sara.TabStop = false;
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Location = new System.Drawing.Point(27, 61);
+			this.pictureBox1.Location = new System.Drawing.Point(20, 49);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(1016, 192);
+			this.pictureBox1.Size = new System.Drawing.Size(762, 154);
 			this.pictureBox1.TabIndex = 2;
 			this.pictureBox1.TabStop = false;
 			// 
 			// PIC_stus_text
 			// 
 			this.PIC_stus_text.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_stus_text.Location = new System.Drawing.Point(27, 676);
+			this.PIC_stus_text.Location = new System.Drawing.Point(20, 541);
+			this.PIC_stus_text.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_stus_text.Name = "PIC_stus_text";
-			this.PIC_stus_text.Size = new System.Drawing.Size(544, 62);
+			this.PIC_stus_text.Size = new System.Drawing.Size(408, 50);
 			this.PIC_stus_text.TabIndex = 0;
 			this.PIC_stus_text.TabStop = false;
 			// 
 			// Slctbox_4
 			// 
 			this.Slctbox_4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Slctbox_4.Location = new System.Drawing.Point(233, 462);
-			this.Slctbox_4.Margin = new System.Windows.Forms.Padding(4);
+			this.Slctbox_4.Location = new System.Drawing.Point(175, 370);
 			this.Slctbox_4.Name = "Slctbox_4";
-			this.Slctbox_4.Size = new System.Drawing.Size(600, 75);
+			this.Slctbox_4.Size = new System.Drawing.Size(450, 60);
 			this.Slctbox_4.TabIndex = 3;
 			this.Slctbox_4.TabStop = false;
 			// 
 			// Slctbox_3
 			// 
 			this.Slctbox_3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Slctbox_3.Location = new System.Drawing.Point(233, 350);
-			this.Slctbox_3.Margin = new System.Windows.Forms.Padding(4);
+			this.Slctbox_3.Location = new System.Drawing.Point(175, 280);
 			this.Slctbox_3.Name = "Slctbox_3";
-			this.Slctbox_3.Size = new System.Drawing.Size(600, 75);
+			this.Slctbox_3.Size = new System.Drawing.Size(450, 60);
 			this.Slctbox_3.TabIndex = 2;
 			this.Slctbox_3.TabStop = false;
 			this.Slctbox_3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Slctbox_3_MouseDown);
@@ -668,10 +698,9 @@ namespace DoujinGameProject
 			// Slctbox_2
 			// 
 			this.Slctbox_2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Slctbox_2.Location = new System.Drawing.Point(233, 238);
-			this.Slctbox_2.Margin = new System.Windows.Forms.Padding(4);
+			this.Slctbox_2.Location = new System.Drawing.Point(175, 190);
 			this.Slctbox_2.Name = "Slctbox_2";
-			this.Slctbox_2.Size = new System.Drawing.Size(600, 75);
+			this.Slctbox_2.Size = new System.Drawing.Size(450, 60);
 			this.Slctbox_2.TabIndex = 1;
 			this.Slctbox_2.TabStop = false;
 			this.Slctbox_2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Slctbox_2_MouseDown);
@@ -683,10 +712,9 @@ namespace DoujinGameProject
 			// Slctbox_1
 			// 
 			this.Slctbox_1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.Slctbox_1.Location = new System.Drawing.Point(233, 125);
-			this.Slctbox_1.Margin = new System.Windows.Forms.Padding(4);
+			this.Slctbox_1.Location = new System.Drawing.Point(175, 100);
 			this.Slctbox_1.Name = "Slctbox_1";
-			this.Slctbox_1.Size = new System.Drawing.Size(600, 75);
+			this.Slctbox_1.Size = new System.Drawing.Size(450, 60);
 			this.Slctbox_1.TabIndex = 0;
 			this.Slctbox_1.TabStop = false;
 			this.Slctbox_1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Slctbox_1_MouseDown);
@@ -703,9 +731,8 @@ namespace DoujinGameProject
 			this.PNL_Event.Controls.Add(this.PIC_Chara_pos2);
 			this.PNL_Event.Controls.Add(this.PIC_Chara_pos1);
 			this.PNL_Event.Location = new System.Drawing.Point(0, 0);
-			this.PNL_Event.Margin = new System.Windows.Forms.Padding(4);
 			this.PNL_Event.Name = "PNL_Event";
-			this.PNL_Event.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_Event.Size = new System.Drawing.Size(800, 600);
 			this.PNL_Event.TabIndex = 1;
 			this.PNL_Event.Visible = false;
 			this.PNL_Event.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
@@ -721,59 +748,53 @@ namespace DoujinGameProject
 			this.PNL_log.Controls.Add(this.pictureBox9);
 			this.PNL_log.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_log.Location = new System.Drawing.Point(0, 0);
-			this.PNL_log.Margin = new System.Windows.Forms.Padding(4);
 			this.PNL_log.Name = "PNL_log";
-			this.PNL_log.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_log.Size = new System.Drawing.Size(800, 600);
 			this.PNL_log.TabIndex = 3;
 			this.PNL_log.Visible = false;
 			// 
 			// pictureBox10
 			// 
 			this.pictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox10.Location = new System.Drawing.Point(193, 578);
-			this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox10.Location = new System.Drawing.Point(145, 462);
 			this.pictureBox10.Name = "pictureBox10";
-			this.pictureBox10.Size = new System.Drawing.Size(697, 162);
+			this.pictureBox10.Size = new System.Drawing.Size(523, 130);
 			this.pictureBox10.TabIndex = 7;
 			this.pictureBox10.TabStop = false;
 			// 
 			// pictureBox14
 			// 
 			this.pictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox14.Location = new System.Drawing.Point(193, -25);
-			this.pictureBox14.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox14.Location = new System.Drawing.Point(145, -20);
 			this.pictureBox14.Name = "pictureBox14";
-			this.pictureBox14.Size = new System.Drawing.Size(697, 162);
+			this.pictureBox14.Size = new System.Drawing.Size(523, 130);
 			this.pictureBox14.TabIndex = 5;
 			this.pictureBox14.TabStop = false;
 			// 
 			// pictureBox13
 			// 
 			this.pictureBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox13.Location = new System.Drawing.Point(193, 125);
-			this.pictureBox13.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox13.Location = new System.Drawing.Point(145, 100);
 			this.pictureBox13.Name = "pictureBox13";
-			this.pictureBox13.Size = new System.Drawing.Size(697, 162);
+			this.pictureBox13.Size = new System.Drawing.Size(523, 130);
 			this.pictureBox13.TabIndex = 4;
 			this.pictureBox13.TabStop = false;
 			// 
 			// pictureBox12
 			// 
 			this.pictureBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox12.Location = new System.Drawing.Point(193, 278);
-			this.pictureBox12.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox12.Location = new System.Drawing.Point(145, 222);
 			this.pictureBox12.Name = "pictureBox12";
-			this.pictureBox12.Size = new System.Drawing.Size(697, 162);
+			this.pictureBox12.Size = new System.Drawing.Size(523, 130);
 			this.pictureBox12.TabIndex = 3;
 			this.pictureBox12.TabStop = false;
 			// 
 			// pictureBox11
 			// 
 			this.pictureBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox11.Location = new System.Drawing.Point(193, 428);
-			this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
+			this.pictureBox11.Location = new System.Drawing.Point(145, 342);
 			this.pictureBox11.Name = "pictureBox11";
-			this.pictureBox11.Size = new System.Drawing.Size(697, 162);
+			this.pictureBox11.Size = new System.Drawing.Size(523, 130);
 			this.pictureBox11.TabIndex = 2;
 			this.pictureBox11.TabStop = false;
 			// 
@@ -781,9 +802,8 @@ namespace DoujinGameProject
 			// 
 			this.pictureBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
 			this.pictureBox9.Location = new System.Drawing.Point(0, 0);
-			this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
 			this.pictureBox9.Name = "pictureBox9";
-			this.pictureBox9.Size = new System.Drawing.Size(10, 10);
+			this.pictureBox9.Size = new System.Drawing.Size(8, 8);
 			this.pictureBox9.TabIndex = 0;
 			this.pictureBox9.TabStop = false;
 			// 
@@ -792,9 +812,10 @@ namespace DoujinGameProject
 			this.PIC_NameBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.PIC_NameBox.BackgroundImage = global::DoujinGameProject.Properties.Resources.Nameform;
 			this.PIC_NameBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.PIC_NameBox.Location = new System.Drawing.Point(184, 504);
+			this.PIC_NameBox.Location = new System.Drawing.Point(138, 403);
+			this.PIC_NameBox.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_NameBox.Name = "PIC_NameBox";
-			this.PIC_NameBox.Size = new System.Drawing.Size(164, 66);
+			this.PIC_NameBox.Size = new System.Drawing.Size(123, 53);
 			this.PIC_NameBox.TabIndex = 4;
 			this.PIC_NameBox.TabStop = false;
 			this.PIC_NameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PIC_NameBox_MouseDown);
@@ -805,20 +826,18 @@ namespace DoujinGameProject
 			this.PIC_TextArea.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_000_1;
 			this.PIC_TextArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.PIC_TextArea.Image = global::DoujinGameProject.Properties.Resources.Textform;
-			this.PIC_TextArea.Location = new System.Drawing.Point(193, 578);
-			this.PIC_TextArea.Margin = new System.Windows.Forms.Padding(4);
+			this.PIC_TextArea.Location = new System.Drawing.Point(145, 462);
 			this.PIC_TextArea.Name = "PIC_TextArea";
-			this.PIC_TextArea.Size = new System.Drawing.Size(695, 170);
+			this.PIC_TextArea.Size = new System.Drawing.Size(521, 136);
 			this.PIC_TextArea.TabIndex = 0;
 			this.PIC_TextArea.TabStop = false;
 			this.PIC_TextArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textarea_MouseDown);
 			// 
 			// PIC_Chara_pos2
 			// 
-			this.PIC_Chara_pos2.Location = new System.Drawing.Point(563, 148);
-			this.PIC_Chara_pos2.Margin = new System.Windows.Forms.Padding(4);
+			this.PIC_Chara_pos2.Location = new System.Drawing.Point(422, 118);
 			this.PIC_Chara_pos2.Name = "PIC_Chara_pos2";
-			this.PIC_Chara_pos2.Size = new System.Drawing.Size(428, 602);
+			this.PIC_Chara_pos2.Size = new System.Drawing.Size(321, 482);
 			this.PIC_Chara_pos2.TabIndex = 2;
 			this.PIC_Chara_pos2.TabStop = false;
 			this.PIC_Chara_pos2.Visible = false;
@@ -826,10 +845,9 @@ namespace DoujinGameProject
 			// 
 			// PIC_Chara_pos1
 			// 
-			this.PIC_Chara_pos1.Location = new System.Drawing.Point(96, 148);
-			this.PIC_Chara_pos1.Margin = new System.Windows.Forms.Padding(4);
+			this.PIC_Chara_pos1.Location = new System.Drawing.Point(72, 118);
 			this.PIC_Chara_pos1.Name = "PIC_Chara_pos1";
-			this.PIC_Chara_pos1.Size = new System.Drawing.Size(428, 602);
+			this.PIC_Chara_pos1.Size = new System.Drawing.Size(321, 482);
 			this.PIC_Chara_pos1.TabIndex = 1;
 			this.PIC_Chara_pos1.TabStop = false;
 			this.PIC_Chara_pos1.Visible = false;
@@ -845,9 +863,8 @@ namespace DoujinGameProject
 			this.PNL_Mainselect.Controls.Add(this.BTN_Church);
 			this.PNL_Mainselect.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Mainselect.Location = new System.Drawing.Point(0, 0);
-			this.PNL_Mainselect.Margin = new System.Windows.Forms.Padding(4);
 			this.PNL_Mainselect.Name = "PNL_Mainselect";
-			this.PNL_Mainselect.Size = new System.Drawing.Size(1067, 750);
+			this.PNL_Mainselect.Size = new System.Drawing.Size(800, 600);
 			this.PNL_Mainselect.TabIndex = 2;
 			this.PNL_Mainselect.Visible = false;
 			// 
@@ -855,10 +872,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Status.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_007_0;
 			this.BTN_Status.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Status.Location = new System.Drawing.Point(749, 552);
-			this.BTN_Status.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Status.Location = new System.Drawing.Point(562, 442);
 			this.BTN_Status.Name = "BTN_Status";
-			this.BTN_Status.Size = new System.Drawing.Size(133, 159);
+			this.BTN_Status.Size = new System.Drawing.Size(100, 127);
 			this.BTN_Status.TabIndex = 4;
 			this.BTN_Status.TabStop = false;
 			// 
@@ -866,10 +882,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Read.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_006_0;
 			this.BTN_Read.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Read.Location = new System.Drawing.Point(608, 552);
-			this.BTN_Read.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Read.Location = new System.Drawing.Point(456, 442);
 			this.BTN_Read.Name = "BTN_Read";
-			this.BTN_Read.Size = new System.Drawing.Size(133, 159);
+			this.BTN_Read.Size = new System.Drawing.Size(100, 127);
 			this.BTN_Read.TabIndex = 3;
 			this.BTN_Read.TabStop = false;
 			// 
@@ -877,10 +892,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Out.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_005_0;
 			this.BTN_Out.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Out.Location = new System.Drawing.Point(467, 552);
-			this.BTN_Out.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Out.Location = new System.Drawing.Point(350, 442);
 			this.BTN_Out.Name = "BTN_Out";
-			this.BTN_Out.Size = new System.Drawing.Size(133, 159);
+			this.BTN_Out.Size = new System.Drawing.Size(100, 127);
 			this.BTN_Out.TabIndex = 2;
 			this.BTN_Out.TabStop = false;
 			// 
@@ -888,10 +902,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Lest.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_004_0;
 			this.BTN_Lest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Lest.Location = new System.Drawing.Point(325, 552);
-			this.BTN_Lest.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Lest.Location = new System.Drawing.Point(244, 442);
 			this.BTN_Lest.Name = "BTN_Lest";
-			this.BTN_Lest.Size = new System.Drawing.Size(133, 159);
+			this.BTN_Lest.Size = new System.Drawing.Size(100, 127);
 			this.BTN_Lest.TabIndex = 1;
 			this.BTN_Lest.TabStop = false;
 			this.BTN_Lest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BTN_Lest_MouseDown);
@@ -904,10 +917,9 @@ namespace DoujinGameProject
 			// 
 			this.BTN_Church.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_003_0;
 			this.BTN_Church.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.BTN_Church.Location = new System.Drawing.Point(184, 552);
-			this.BTN_Church.Margin = new System.Windows.Forms.Padding(4);
+			this.BTN_Church.Location = new System.Drawing.Point(138, 442);
 			this.BTN_Church.Name = "BTN_Church";
-			this.BTN_Church.Size = new System.Drawing.Size(133, 159);
+			this.BTN_Church.Size = new System.Drawing.Size(100, 127);
 			this.BTN_Church.TabIndex = 0;
 			this.BTN_Church.TabStop = false;
 			this.BTN_Church.MouseDown += new System.Windows.Forms.MouseEventHandler(this.church_btn_MouseDown);
@@ -922,20 +934,20 @@ namespace DoujinGameProject
 			// 
 			// doujin_game_sharp
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_bg_000_0;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.ClientSize = new System.Drawing.Size(1067, 750);
+			this.ClientSize = new System.Drawing.Size(800, 600);
 			this.Controls.Add(this.PNL_Background);
 			this.Controls.Add(this.BTN_Start);
 			this.Controls.Add(this.BTN_Load);
 			this.Controls.Add(this.BTN_OpnOption);
-			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "doujin_game_sharp";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "doujin_game_sharp";
+			this.Shown += new System.EventHandler(this.doujin_game_sharp_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Start)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Load)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_OpnOption)).EndInit();
