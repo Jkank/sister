@@ -10,6 +10,7 @@ namespace DoujinGameProject.Data
 		public int Slct_No { get; set; }
 		public int DayCt { get; set; }		//日数カウンタ
 		public int NowTime { get; set; }
+		public int NowPlace { get; set; }
 
         public Scenario ()
         {

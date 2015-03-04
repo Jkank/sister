@@ -424,7 +424,7 @@
     <None Include="教会.txt" />
     <None Include="Resources\lidy_0_0.bmp" />
     <None Include="grp_dummy\後輩_01.png" />
-    <None Include="Resources\musicbox.wav" />
+    <EmbeddedResource Include="Resources\musicbox.wav" />
     <None Include="Resources\GRP_BG\douguya_dt.bmp" />
     <None Include="Resources\GRP_BG\dungeon06.bmp" />
     <None Include="Resources\GRP_BG\hiroba_dt.bmp" />
@@ -446,7 +446,8 @@
     <None Include="Resources\Nameform.png" />
     <None Include="Resources\Textform.png" />
     <None Include="grp_dummy\Image1.bmp" />
-    <None Include="Resources\ohayougozaimasu_02.wav" />
+    <EmbeddedResource Include="Resources\ohayougozaimasu_02.wav" />
+    <None Include="Resources\Nameform2.png" />
     <Content Include="休息.txt" />
     <None Include="読書.txt" />
   </ItemGroup>

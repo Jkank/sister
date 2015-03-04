@@ -49,7 +49,15 @@ Text:
 Text:
 …………;
 
-//If( 乱数 > 90 ) [HP_RUNOUT_1000]:
+If( 現在位置 > 書庫 ) [HP_RUNOUT_5000]:
+
+If( 信頼度 > 80 ) [HP_RUNOUT_1200]:
+If( 信頼度 > 60 ) [HP_RUNOUT_1400]:
+If( 信頼度 > 40 ) [HP_RUNOUT_1600]:
+If( 信頼度 > 20 ) [HP_RUNOUT_1800]:
+JMP [HP_RUNOUT_2000]:
+
+[HP_RUNOUT_1200]:
 
 サラ:
 うぅん……ここは？;
@@ -86,6 +94,20 @@ Text:
 朝になりました。;
 
 背景 部屋昼:
+
+[HP_RUNOUT_5000]:
+//外
+
+If( 信頼度 > 80 ) [HP_RUNOUT_5200]:
+If( 信頼度 > 60 ) [HP_RUNOUT_5400]:
+If( 信頼度 > 40 ) [HP_RUNOUT_5600]:
+If( 信頼度 > 20 ) [HP_RUNOUT_5800]:
+JMP [HP_RUNOUT_6000]:
+
+
+
+Text:
+外;　
 
 [HP_RUNOUT_EXT]:
 END:

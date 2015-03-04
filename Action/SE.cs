@@ -921,6 +921,16 @@ namespace DoujinGameProject.Action
 							work_3 = GameData.ScenarioData.DayCt;
 							int_flag_L = true;
 						}
+						else if (work_ct_1 >= 4 && "現在位置" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = GameData.ScenarioData.NowPlace;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 3 && "信頼度" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = GameData.ScenarioData.NowPlace;
+							int_flag_L = true;
+						}
 						else if (work_ct_1 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = A_REG;
@@ -1011,6 +1021,51 @@ namespace DoujinGameProject.Action
 							work_5.CurrentValue = GameData.ScenarioData.DayCt;
 							int_flag_R = true;
 						}
+						else if (work_ct_2 >= 3 && "礼拝堂" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_CHAPEL;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 5 && "サラの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_SARAROOM;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 6 && "マリーの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_MARYROOM;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 6 && "リディの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_LIDYROOM;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 2 && "書庫" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_LIBRARY;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 2 && "商店" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_STORE;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 2 && "酒場" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_BAR;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 2 && "広場" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_SQUARE;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 3 && "路地裏" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Defines.LOC_BACKSTREET;
+							int_flag_R = true;
+						}
                         else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
                         {
                             work_5.CurrentValue = A_REG;
@@ -1035,7 +1090,7 @@ namespace DoujinGameProject.Action
                         {
                             work_5.CurrentValue = rand;
                             int_flag_R = true;
-                        }
+						}
                         else if (textrowbuf.Length >= inrowcountold + 4 && textrowbuf.Substring(inrowcountold, work_ct_2) == "true")
                         {
                             /* true (bool) */
@@ -1682,7 +1737,7 @@ namespace DoujinGameProject.Action
 						{
 							Program.Doujin_game_sharp.delCharacterImageRight();
 						}
-						Program.Doujin_game_sharp.BackgroundDraw(0);
+						Program.Doujin_game_sharp.BackgroundDraw2(0);
 						count += 2;
 						countold = count;
 						sentence_ct = getNowSent(count);

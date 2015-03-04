@@ -38,6 +38,15 @@ namespace DoujinGameProject
 			this.PNL_Eventslct = new System.Windows.Forms.Panel();
 			this.PNL_status = new System.Windows.Forms.Panel();
 			this.PNL_Devil = new System.Windows.Forms.Panel();
+			this.pictureBox23 = new System.Windows.Forms.PictureBox();
+			this.pictureBox22 = new System.Windows.Forms.PictureBox();
+			this.pictureBox21 = new System.Windows.Forms.PictureBox();
+			this.pictureBox20 = new System.Windows.Forms.PictureBox();
+			this.pictureBox19 = new System.Windows.Forms.PictureBox();
+			this.pictureBox18 = new System.Windows.Forms.PictureBox();
+			this.pictureBox17 = new System.Windows.Forms.PictureBox();
+			this.pictureBox16 = new System.Windows.Forms.PictureBox();
+			this.pictureBox15 = new System.Windows.Forms.PictureBox();
 			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.pictureBox7 = new System.Windows.Forms.PictureBox();
 			this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -103,6 +112,15 @@ namespace DoujinGameProject
 			this.PNL_Eventslct.SuspendLayout();
 			this.PNL_status.SuspendLayout();
 			this.PNL_Devil.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -256,15 +274,24 @@ namespace DoujinGameProject
 			this.PNL_status.Controls.Add(this.PIC_stus_sara);
 			this.PNL_status.Controls.Add(this.pictureBox1);
 			this.PNL_status.Controls.Add(this.PIC_stus_text);
-			this.PNL_status.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_status.Location = new System.Drawing.Point(0, 0);
 			this.PNL_status.Margin = new System.Windows.Forms.Padding(2);
 			this.PNL_status.Name = "PNL_status";
-			this.PNL_status.Size = new System.Drawing.Size(800, 600);
+			this.PNL_status.Size = new System.Drawing.Size(10, 10);
 			this.PNL_status.TabIndex = 7;
+			this.PNL_status.Visible = false;
 			// 
 			// PNL_Devil
 			// 
+			this.PNL_Devil.Controls.Add(this.pictureBox23);
+			this.PNL_Devil.Controls.Add(this.pictureBox22);
+			this.PNL_Devil.Controls.Add(this.pictureBox21);
+			this.PNL_Devil.Controls.Add(this.pictureBox20);
+			this.PNL_Devil.Controls.Add(this.pictureBox19);
+			this.PNL_Devil.Controls.Add(this.pictureBox18);
+			this.PNL_Devil.Controls.Add(this.pictureBox17);
+			this.PNL_Devil.Controls.Add(this.pictureBox16);
+			this.PNL_Devil.Controls.Add(this.pictureBox15);
 			this.PNL_Devil.Controls.Add(this.pictureBox8);
 			this.PNL_Devil.Controls.Add(this.pictureBox7);
 			this.PNL_Devil.Controls.Add(this.pictureBox6);
@@ -277,53 +304,143 @@ namespace DoujinGameProject
 			this.PNL_Devil.TabIndex = 34;
 			this.PNL_Devil.Visible = false;
 			// 
+			// pictureBox23
+			// 
+			this.pictureBox23.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox23.Location = new System.Drawing.Point(50, 482);
+			this.pictureBox23.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox23.Name = "pictureBox23";
+			this.pictureBox23.Size = new System.Drawing.Size(400, 101);
+			this.pictureBox23.TabIndex = 13;
+			this.pictureBox23.TabStop = false;
+			// 
+			// pictureBox22
+			// 
+			this.pictureBox22.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox22.Location = new System.Drawing.Point(285, 420);
+			this.pictureBox22.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox22.Name = "pictureBox22";
+			this.pictureBox22.Size = new System.Drawing.Size(108, 40);
+			this.pictureBox22.TabIndex = 12;
+			this.pictureBox22.TabStop = false;
+			// 
+			// pictureBox21
+			// 
+			this.pictureBox21.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox21.Location = new System.Drawing.Point(380, 60);
+			this.pictureBox21.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox21.Name = "pictureBox21";
+			this.pictureBox21.Size = new System.Drawing.Size(70, 40);
+			this.pictureBox21.TabIndex = 11;
+			this.pictureBox21.TabStop = false;
+			// 
+			// pictureBox20
+			// 
+			this.pictureBox20.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox20.Location = new System.Drawing.Point(119, 420);
+			this.pictureBox20.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox20.Name = "pictureBox20";
+			this.pictureBox20.Size = new System.Drawing.Size(59, 40);
+			this.pictureBox20.TabIndex = 10;
+			this.pictureBox20.TabStop = false;
+			// 
+			// pictureBox19
+			// 
+			this.pictureBox19.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox19.Location = new System.Drawing.Point(50, 420);
+			this.pictureBox19.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox19.Name = "pictureBox19";
+			this.pictureBox19.Size = new System.Drawing.Size(47, 40);
+			this.pictureBox19.TabIndex = 9;
+			this.pictureBox19.TabStop = false;
+			// 
+			// pictureBox18
+			// 
+			this.pictureBox18.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox18.Location = new System.Drawing.Point(50, 370);
+			this.pictureBox18.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox18.Name = "pictureBox18";
+			this.pictureBox18.Size = new System.Drawing.Size(400, 40);
+			this.pictureBox18.TabIndex = 8;
+			this.pictureBox18.TabStop = false;
+			// 
+			// pictureBox17
+			// 
+			this.pictureBox17.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox17.Location = new System.Drawing.Point(50, 320);
+			this.pictureBox17.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox17.Name = "pictureBox17";
+			this.pictureBox17.Size = new System.Drawing.Size(400, 40);
+			this.pictureBox17.TabIndex = 7;
+			this.pictureBox17.TabStop = false;
+			// 
+			// pictureBox16
+			// 
+			this.pictureBox16.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox16.Location = new System.Drawing.Point(50, 270);
+			this.pictureBox16.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox16.Name = "pictureBox16";
+			this.pictureBox16.Size = new System.Drawing.Size(400, 40);
+			this.pictureBox16.TabIndex = 6;
+			this.pictureBox16.TabStop = false;
+			// 
+			// pictureBox15
+			// 
+			this.pictureBox15.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.pictureBox15.Location = new System.Drawing.Point(50, 220);
+			this.pictureBox15.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox15.Name = "pictureBox15";
+			this.pictureBox15.Size = new System.Drawing.Size(400, 40);
+			this.pictureBox15.TabIndex = 5;
+			this.pictureBox15.TabStop = false;
+			// 
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox8.Location = new System.Drawing.Point(64, 300);
+			this.pictureBox8.Location = new System.Drawing.Point(50, 170);
 			this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox8.Name = "pictureBox8";
-			this.pictureBox8.Size = new System.Drawing.Size(75, 40);
+			this.pictureBox8.Size = new System.Drawing.Size(400, 40);
 			this.pictureBox8.TabIndex = 4;
 			this.pictureBox8.TabStop = false;
 			// 
 			// pictureBox7
 			// 
 			this.pictureBox7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox7.Location = new System.Drawing.Point(64, 255);
+			this.pictureBox7.Location = new System.Drawing.Point(50, 120);
 			this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox7.Name = "pictureBox7";
-			this.pictureBox7.Size = new System.Drawing.Size(75, 40);
+			this.pictureBox7.Size = new System.Drawing.Size(400, 40);
 			this.pictureBox7.TabIndex = 3;
 			this.pictureBox7.TabStop = false;
 			// 
 			// pictureBox6
 			// 
 			this.pictureBox6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox6.Location = new System.Drawing.Point(64, 210);
+			this.pictureBox6.Location = new System.Drawing.Point(250, 60);
 			this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(75, 40);
+			this.pictureBox6.Size = new System.Drawing.Size(90, 40);
 			this.pictureBox6.TabIndex = 2;
 			this.pictureBox6.TabStop = false;
 			// 
 			// pictureBox5
 			// 
 			this.pictureBox5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox5.Location = new System.Drawing.Point(64, 164);
+			this.pictureBox5.Location = new System.Drawing.Point(150, 60);
 			this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(75, 40);
+			this.pictureBox5.Size = new System.Drawing.Size(90, 40);
 			this.pictureBox5.TabIndex = 1;
 			this.pictureBox5.TabStop = false;
 			// 
 			// pictureBox4
 			// 
 			this.pictureBox4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox4.Location = new System.Drawing.Point(64, 118);
+			this.pictureBox4.Location = new System.Drawing.Point(50, 60);
 			this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
 			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(75, 40);
+			this.pictureBox4.Size = new System.Drawing.Size(90, 40);
 			this.pictureBox4.TabIndex = 0;
 			this.pictureBox4.TabStop = false;
 			// 
@@ -810,12 +927,12 @@ namespace DoujinGameProject
 			// PIC_NameBox
 			// 
 			this.PIC_NameBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_NameBox.BackgroundImage = global::DoujinGameProject.Properties.Resources.Nameform;
-			this.PIC_NameBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.PIC_NameBox.Location = new System.Drawing.Point(138, 403);
+			this.PIC_NameBox.BackgroundImage = global::DoujinGameProject.Properties.Resources.Nameform2;
+			this.PIC_NameBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.PIC_NameBox.Location = new System.Drawing.Point(101, 396);
 			this.PIC_NameBox.Margin = new System.Windows.Forms.Padding(2);
 			this.PIC_NameBox.Name = "PIC_NameBox";
-			this.PIC_NameBox.Size = new System.Drawing.Size(123, 53);
+			this.PIC_NameBox.Size = new System.Drawing.Size(196, 64);
 			this.PIC_NameBox.TabIndex = 4;
 			this.PIC_NameBox.TabStop = false;
 			this.PIC_NameBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PIC_NameBox_MouseDown);
@@ -823,9 +940,8 @@ namespace DoujinGameProject
 			// PIC_TextArea
 			// 
 			this.PIC_TextArea.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.PIC_TextArea.BackgroundImage = global::DoujinGameProject.Properties.Resources.g_btn_000_1;
+			this.PIC_TextArea.BackgroundImage = global::DoujinGameProject.Properties.Resources.Textform;
 			this.PIC_TextArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.PIC_TextArea.Image = global::DoujinGameProject.Properties.Resources.Textform;
 			this.PIC_TextArea.Location = new System.Drawing.Point(145, 462);
 			this.PIC_TextArea.Name = "PIC_TextArea";
 			this.PIC_TextArea.Size = new System.Drawing.Size(521, 136);
@@ -930,7 +1046,7 @@ namespace DoujinGameProject
 			// 
 			// FadeInTimer
 			// 
-			this.FadeInTimer.Tick += new System.EventHandler(this.timer1_Tick);
+			this.FadeInTimer.Tick += new System.EventHandler(this.FadeinTimer_Tick);
 			// 
 			// doujin_game_sharp
 			// 
@@ -955,6 +1071,15 @@ namespace DoujinGameProject
 			this.PNL_Eventslct.ResumeLayout(false);
 			this.PNL_status.ResumeLayout(false);
 			this.PNL_Devil.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -1083,6 +1208,15 @@ namespace DoujinGameProject
 		private System.Windows.Forms.PictureBox pictureBox6;
 		private System.Windows.Forms.PictureBox pictureBox5;
 		private System.Windows.Forms.PictureBox pictureBox8;
+		private System.Windows.Forms.PictureBox pictureBox18;
+		private System.Windows.Forms.PictureBox pictureBox17;
+		private System.Windows.Forms.PictureBox pictureBox16;
+		private System.Windows.Forms.PictureBox pictureBox15;
+		private System.Windows.Forms.PictureBox pictureBox23;
+		private System.Windows.Forms.PictureBox pictureBox22;
+		private System.Windows.Forms.PictureBox pictureBox21;
+		private System.Windows.Forms.PictureBox pictureBox20;
+		private System.Windows.Forms.PictureBox pictureBox19;
 
     }
 

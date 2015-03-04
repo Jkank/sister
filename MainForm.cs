@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using DoujinGameProject.Data;
@@ -31,10 +32,11 @@ namespace DoujinGameProject
 		public Control pictboxfade1;
 		public Control pictboxfade2;
 
-		static Image canvas_tb;
+		static Image canvas_tb1;
+		static Image canvas_tb2;
 
 		DirectSound dsound;
-
+		
 		public doujin_game_sharp()
 		{
 			InitializeComponent();
@@ -51,7 +53,8 @@ namespace DoujinGameProject
 			PNL_Eventslct.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
 			PNL_Mainselect.BackColor = Color.Transparent;   /* メイン選択画面のPanel */
 			PNL_Event.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
-			PIC_TextArea.BackColor = Color.Transparent;   /* 立ち絵位置１ */
+			PIC_NameBox.BackColor = Color.Transparent;   /* 名前ボックス */
+			PIC_TextArea.BackColor = Color.Transparent;   /* メッセージボックス */
 			PIC_Chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
 			PIC_Chara_pos2.BackColor = Color.Transparent;   /* 立ち絵位置２ */
 
@@ -72,29 +75,21 @@ namespace DoujinGameProject
 			//this.SetStyle(ControlStyles.UserPaint, true);
 			//this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			////////////////////////////////////////////////////////////////////////
-			SetDoubleBuffered(BTN_Start);
-			SetDoubleBuffered(BTN_Load);
-			SetDoubleBuffered(BTN_OpnOption);
+			//EnableDoubleBuffering(PNL_Background);
+			EnableDoubleBuffering(PNL_Event);
 		}
 
 		//        string line;
 
-		public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+
+		public static void EnableDoubleBuffering(Control control)
 		{
-			// リモートアクセス中の場合は何もしない
-			if (System.Windows.Forms.SystemInformation.TerminalServerSession)
-			{
-				return;
-			}
-
-			// ダブルバッファ制御用のプロパティを強制的に取得する
-			System.Reflection.PropertyInfo p;
-			p = typeof(System.Windows.Forms.Control).GetProperty(
-						 "DoubleBuffered",
-						  System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-			// ダブルバッファを有効にする
-			p.SetValue(c, true, null);
+			control.GetType().InvokeMember(
+			   "DoubleBuffered",
+			   BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+			   null,
+			   control,
+			   new object[] { true });
 		}
 
 		/////////////////////* === スタートボタン === */////////////////////
@@ -121,49 +116,13 @@ namespace DoujinGameProject
 			{
 				nowfile = Defines.fileID.TXT_OPENING;
 				
-				PNL_Background.Visible = true;
-				PNL_Event.Visible = true;
-				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-				//描画先とするImageオブジェクトを作成する
-				canvas_tb = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
-				//ImageオブジェクトのGraphicsオブジェクトを作成する
-				Graphics g_tb = Graphics.FromImage(canvas_tb);
-
-				//画像を読み込む
-				Image img_tb = Properties.Resources.Textform;
-				//Image img_tb = Image.FromFile(@"C:\Users\kank\Desktop\doujin_game\Resources\Textform.png"); //Properties.Resources.Textform;
-
-				//ColorMatrixオブジェクトの作成
-				System.Drawing.Imaging.ColorMatrix cm =
-					new System.Drawing.Imaging.ColorMatrix();
-				//ColorMatrixの行列の値を変更して、アルファ値が0.5に変更されるようにする
-				cm.Matrix00 = 1;
-				cm.Matrix11 = 1;
-				cm.Matrix22 = 1;
-				cm.Matrix33 = 0.5F;
-				cm.Matrix44 = 1;
-
-				//ImageAttributesオブジェクトの作成
-				System.Drawing.Imaging.ImageAttributes ia =
-					new System.Drawing.Imaging.ImageAttributes();
-				//ColorMatrixを設定する
-				ia.SetColorMatrix(cm);
-
-				//ImageAttributesを使用して画像を描画
-				g_tb.DrawImage(img_tb, new Rectangle(0, 0, img_tb.Width, img_tb.Height),
-					0, 0, img_tb.Width, img_tb.Height, GraphicsUnit.Pixel, ia);
-
-				//リソースを解放する
-				img_tb.Dispose();
-				g_tb.Dispose();
-
-				//PictureBox1に表示する
-				PIC_TextArea.BackgroundImage = canvas_tb;
-				//PIC_TextArea.BackgroundImageLayout = Stretch;
-				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				/* テキストエリアの半透明表示 */
+				ShowHalfClearly(PIC_NameBox);
+				ShowHalfClearly(PIC_TextArea);
 
 				sent_ct = SE.ScriptEngine(nowfile, sent_ct, log_ct, log_ct_use, GameData.ScenarioData.Slct_No);
+				PNL_Background.Visible = true;
+				PNL_Event.Visible = true;
 			}
 		}
 
@@ -830,9 +789,13 @@ namespace DoujinGameProject
 				fadein = true;
 				currentAlphaPercent = 0;
 
-				pictboxfade1 = chrbox;
 
+				pictboxfade1 = chrbox;
 				currentImage1 = chrbox.BackgroundImage;
+
+				//最初に透明度100%の画像を描画してしまう。（一瞬透明度0%の画像が表示されるのを防ぐ）
+				Image nowimg = CreateTranslucentImage(currentImage1, currentAlphaPercent * 0.01f);
+				pictboxfade1.BackgroundImage = nowimg;
 
 				FadeInTimer.Interval = 10;
 				//タイマーをスタート
@@ -849,47 +812,59 @@ namespace DoujinGameProject
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void setBGPic(string BGPicname)
 		{
-
 			switch (BGPicname)
 			{
 				case "オープニング":
-					PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
+					PNL_Event.BackgroundImage = Properties.Resources.g_bg_000_0;
+					//PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
 					break;
 				case "教会昼":
-					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
+					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_dt;
+					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
 					break;
 				case "教会夕":
-					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
+					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_ev;
+					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
 					break;
 				case "教会夜":
-					PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
+					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_nt;
+					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
 					break;
 				case "階段":
-					PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
+					PNL_Event.BackgroundImage = Properties.Resources.dungeon06;
+					//PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
 					break;
 				case "檻":
-					PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
+					PNL_Event.BackgroundImage = Properties.Resources.rouya_nt;
+					//PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
 					break;
 				case "部屋昼":
-					PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
+					PNL_Event.BackgroundImage = Properties.Resources.yadoya_dt;
+					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
 					break;
 				case "部屋夕":
-					PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
+					PNL_Event.BackgroundImage = Properties.Resources.yadoya_ev;
+					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
 					break;
 				case "部屋夜":
-					PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
+					PNL_Event.BackgroundImage = Properties.Resources.yadoya_ntr;
+					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
 					break;
 				case "書庫":
-					PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
+					PNL_Event.BackgroundImage = Properties.Resources.syoko_dt;
+					//PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
 					break;
 				case "町昼":
-					PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
+					PNL_Event.BackgroundImage = Properties.Resources.hiroba_dt;
+					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
 					break;
 				case "町夕":
-					PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
+					PNL_Event.BackgroundImage = Properties.Resources.hiroba_ev;
+					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
 					break;
 				case "町夜":
-					PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
+					PNL_Event.BackgroundImage = Properties.Resources.hiroba_nt;
+					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
 					break;
 				default:
 					Console.WriteLine("背景画像の指定値がテーブル上に用意されていません");
@@ -899,6 +874,61 @@ namespace DoujinGameProject
 
 		}
 
+		void ShowHalfClearly(PictureBox NowPicturebox)
+		{
+			Graphics g_tb = null;
+			if (NowPicturebox == PIC_TextArea)
+			{
+				//描画先とするImageオブジェクトを作成する
+				canvas_tb1 = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
+				//ImageオブジェクトのGraphicsオブジェクトを作成する
+				g_tb = Graphics.FromImage(canvas_tb1);
+			}
+			else if (NowPicturebox == PIC_NameBox)
+			{
+				canvas_tb2 = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
+				//ImageオブジェクトのGraphicsオブジェクトを作成する
+				g_tb = Graphics.FromImage(canvas_tb2);
+			}
+
+
+			//画像を読み込む
+			Image img_tb = NowPicturebox.BackgroundImage;
+
+			//ColorMatrixオブジェクトの作成
+			System.Drawing.Imaging.ColorMatrix cm =
+				new System.Drawing.Imaging.ColorMatrix();
+			//ColorMatrixの行列の値を変更して、アルファ値が0.5に変更されるようにする
+			cm.Matrix00 = 1;
+			cm.Matrix11 = 1;
+			cm.Matrix22 = 1;
+			cm.Matrix33 = 0.5F;
+			cm.Matrix44 = 1;
+
+			//ImageAttributesオブジェクトの作成
+			System.Drawing.Imaging.ImageAttributes ia =
+				new System.Drawing.Imaging.ImageAttributes();
+			//ColorMatrixを設定する
+			ia.SetColorMatrix(cm);
+
+			//ImageAttributesを使用して画像を描画
+			g_tb.DrawImage(img_tb, new Rectangle(0, 0, img_tb.Width, img_tb.Height),
+				0, 0, img_tb.Width, img_tb.Height, GraphicsUnit.Pixel, ia);
+
+			//リソースを解放する
+			img_tb.Dispose();
+			g_tb.Dispose();
+
+			//PictureBox1に表示する
+			if (NowPicturebox == PIC_TextArea)
+			{
+				NowPicturebox.BackgroundImage = canvas_tb1;
+			}
+			else if (NowPicturebox == PIC_NameBox)
+			{
+				NowPicturebox.BackgroundImage = canvas_tb2;
+			}
+		}
 
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -1136,12 +1166,12 @@ namespace DoujinGameProject
 		}
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：timer1_Tick			 　　 　　　　　　　  ■ */
+		/* ■　関数名：FadeinTimer_Tick		 　　 　　　　　　　  ■ */
 		/* ■　内容：フェードイン用タイマ処理				　 　 ■ */
 		/* ■　入力：Slct_ct                                 　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		private void timer1_Tick(object sender, EventArgs e)
+		private void FadeinTimer_Tick(object sender, EventArgs e)
 		{
 			//透明度を決定
 			if (fadein)
@@ -1167,7 +1197,8 @@ namespace DoujinGameProject
 				//pictboxfade1.BackgroundImage.Dispose();
 			}
 			pictboxfade1.BackgroundImage = nowimg;
-			BackgroundDraw(0);
+			BackgroundDraw(PIC_NameBox);
+			BackgroundDraw(PIC_TextArea);
 		}
 
 
@@ -1178,38 +1209,58 @@ namespace DoujinGameProject
 		/* ■　入力：targetpanel_id                          　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		public void BackgroundDraw(Int16 targetpanel_id)
+		public void BackgroundDraw(PictureBox NowPicturebox)
 		{
 
 			//現在の背景画像の状況を再現する。
-			Bitmap canvas = new Bitmap(PIC_TextArea.Width, PIC_TextArea.Height);
+			Bitmap canvas = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
 			Graphics g = Graphics.FromImage(canvas);
 
 			Image Image1 = PIC_Chara_pos1.BackgroundImage;
 			Image Image2 = PIC_Chara_pos2.BackgroundImage;
+			Image canvas_img;
+			if (NowPicturebox == PIC_TextArea)
+			{
+				canvas_img = canvas_tb1;
+			}
+			else if (NowPicturebox == PIC_NameBox)
+			{
+				canvas_img = canvas_tb2;
+			}
+			else
+			{
+				canvas_img = null;
+			}
 
 			if (Image1 != null && PIC_Chara_pos1.Visible == true)
 			{
-				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - PIC_TextArea.Location.X, PIC_Chara_pos1.Location.Y - PIC_TextArea.Location.Y, Image1.Width, Image1.Height);
+				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - NowPicturebox.Location.X, PIC_Chara_pos1.Location.Y - NowPicturebox.Location.Y, Image1.Width, Image1.Height);
 			}
 			if (Image2 != null && PIC_Chara_pos2.Visible == true)
 			{
-				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - PIC_TextArea.Location.X, PIC_Chara_pos2.Location.Y - PIC_TextArea.Location.Y, Image2.Width, Image2.Height);
+				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - NowPicturebox.Location.X, PIC_Chara_pos2.Location.Y - NowPicturebox.Location.Y, Image2.Width, Image2.Height);
 			}
 
-			g.DrawImage(canvas_tb, 0, 0, canvas_tb.Width, canvas_tb.Height);
+			g.DrawImage(canvas_img, 0, 0, canvas_img.Width, canvas_img.Height);
 
 
 			//Graphicsオブジェクトのリソースを解放する
 			g.Dispose();
 
-			//PictureBox1に表示する
-			PIC_TextArea.BackgroundImage = canvas;
+			//PictureBoxに表示する
+			NowPicturebox.BackgroundImage = canvas;
+		}
+
+		public void BackgroundDraw2(int a)
+		{
+			BackgroundDraw(PIC_NameBox);
+			BackgroundDraw(PIC_TextArea);
 		}
 
 		/////////////////////////////////////////////////////////////////////////////////////
 		//		ステータス画面
 		/////////////////////////////////////////////////////////////////////////////////////
+
 		private void Gauge_HP_MouseEnter(object sender, EventArgs e)
 		{
 			string txt;
@@ -1878,6 +1929,11 @@ namespace DoujinGameProject
 			PrintSklTxt("");
 		}
 
+		/////////////////////////////////////////////////////////////////////////////////////
+		//		魔物との取引画面
+		/////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 		private void PrintSklTxt(string txt)
@@ -1899,20 +1955,20 @@ namespace DoujinGameProject
 		{
 			// DirectSoundの初期化
 			dsound = new DirectSound(this);
-			// 利用する効果音数を指定する。
+			// 利用する音楽の数を指定する。
 			// 今回は3種類なので3を設定。
 			dsound.init(2);
 			// 効果音の読み込み。
-			
-			dsound.loadWave(0, @"C:\Users\kank\Desktop\doujin_game\Resources\ohayougozaimasu_02.wav");
-			dsound.loadWave(1, @"C:\Users\kank\Desktop\doujin_game\Resources\musicbox.wav");
+
+			dsound.loadWave(0, "ohayougozaimasu_02.wav");
+			dsound.loadWave(1, "musicbox.wav");
 		}
 
 		public void PlaySoundEffect(int idx, bool loop)
 		{
 			dsound.play(idx, loop);
 		}
-
+		
 
 	}
 

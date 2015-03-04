@@ -102,6 +102,18 @@ namespace DoujinGameProject.Data
             TXT_INIT            //初期化処理用破壊値
         }
 
+		/* 現在地ID */
+		public const int LOC_CHAPEL = 0;		//礼拝堂
+		public const int LOC_SARAROOM = 1;	//サラの部屋
+		public const int LOC_MARYROOM = 2;	//マリーの部屋
+		public const int LOC_LIDYROOM = 3;	//リディの部屋
+		public const int LOC_LIBRARY = 4;		//書庫
+		public const int LOC_STORE = 5;		//商店
+		public const int LOC_BAR = 6;			//酒場
+		public const int LOC_SQUARE = 7;		//広場
+		public const int LOC_BACKSTREET = 8;	//路地裏
+
+
         public const string FontName = "メイリオ";
         public const float MainTextFontSize = 12;
 

@@ -641,6 +641,16 @@ namespace DoujinGameProject.Properties {
         }
         
         /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap Nameform2 {
+            get {
+                object obj = ResourceManager.GetObject("Nameform2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream ohayougozaimasu_02 {
@@ -950,7 +960,7 @@ namespace DoujinGameProject.Properties {
         ///Text:
         ///…………;
         ///
-        /////If( 乱数 &gt; 90 ) [HP_RUNOUT_1000]:
+        /////If( 乱数 &gt; 90 ) [HP_RUNOUT_1200]:
         ///
         ///サラ:
         ///うぅん……ここは？;

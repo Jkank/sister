@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace DoujinGameProject
 {
@@ -82,7 +84,26 @@ namespace DoujinGameProject
 		{
 			try
 			{
-				bufSec[idx] = new SecondaryBuffer(fname, devSound);
+				BufferDescription desc = null;
+				desc = new BufferDescription();
+				desc.ControlPan = true;
+				desc.GlobalFocus = true;
+
+				//現在実行中のアセンブリを取得
+				Assembly thisExe = Assembly.GetExecutingAssembly();
+				string assemblyName = thisExe.GetName().Name;
+
+//				string FileName = assemblyName + "." + fname;
+				string FileName = "DoujinGameProject.Resources." + fname;
+
+				//埋め込みファイルのストリームを取得
+				Stream stream = thisExe.GetManifestResourceStream(FileName);
+				//ストリームからバッファ作成
+				bufSec[idx] = new SecondaryBuffer(stream, desc, devSound);
+				//ストリームを閉じる！
+				stream.Close();
+
+//				bufSec[idx] = new SecondaryBuffer(fname, devSound);
 			}
 			catch (Exception e)
 			{
