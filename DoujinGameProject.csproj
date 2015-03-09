@@ -82,6 +82,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_MainSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EvSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Status.cs" />
+    <Compile Include="Form_Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DirectSound.cs" />
     <Compile Include="Data\Scenario.cs" />
     <Compile Include="Data\DataManager.cs" />

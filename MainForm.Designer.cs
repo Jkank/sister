@@ -87,12 +87,13 @@ namespace DoujinGameProject
 			this.Slctbox_2 = new System.Windows.Forms.PictureBox();
 			this.Slctbox_1 = new System.Windows.Forms.PictureBox();
 			this.PNL_Event = new System.Windows.Forms.Panel();
-			this.PNL_log = new System.Windows.Forms.Panel();
-			this.pictureBox10 = new System.Windows.Forms.PictureBox();
-			this.pictureBox14 = new System.Windows.Forms.PictureBox();
-			this.pictureBox13 = new System.Windows.Forms.PictureBox();
-			this.pictureBox12 = new System.Windows.Forms.PictureBox();
-			this.pictureBox11 = new System.Windows.Forms.PictureBox();
+			this.PIC_Buffer = new System.Windows.Forms.PictureBox();
+			this.PNL_Log = new System.Windows.Forms.Panel();
+			this.PIC_LogBox_0 = new System.Windows.Forms.PictureBox();
+			this.PIC_LogBox_4 = new System.Windows.Forms.PictureBox();
+			this.PIC_LogBox_3 = new System.Windows.Forms.PictureBox();
+			this.PIC_LogBox_2 = new System.Windows.Forms.PictureBox();
+			this.PIC_LogBox_1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
 			this.PIC_NameBox = new System.Windows.Forms.PictureBox();
 			this.PIC_TextArea = new System.Windows.Forms.PictureBox();
@@ -104,9 +105,9 @@ namespace DoujinGameProject
 			this.BTN_Out = new System.Windows.Forms.PictureBox();
 			this.BTN_Lest = new System.Windows.Forms.PictureBox();
 			this.BTN_Church = new System.Windows.Forms.PictureBox();
-			this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
-			this.WaitTimer = new System.Windows.Forms.Timer(this.components);
-			this.PIC_Buffer = new System.Windows.Forms.PictureBox();
+			this.Timer_FadeIn = new System.Windows.Forms.Timer(this.components);
+			this.Timer_Wait = new System.Windows.Forms.Timer(this.components);
+			this.Timer_LogFin = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Start)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Load)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_OpnOption)).BeginInit();
@@ -163,12 +164,13 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.Slctbox_2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Slctbox_1)).BeginInit();
 			this.PNL_Event.SuspendLayout();
-			this.PNL_log.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).BeginInit();
+			this.PNL_Log.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_0)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_NameBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_TextArea)).BeginInit();
@@ -180,7 +182,6 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// BTN_Start
@@ -237,10 +238,9 @@ namespace DoujinGameProject
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_3);
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_2);
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_1);
-			this.PNL_Eventslct.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Eventslct.Location = new System.Drawing.Point(0, 0);
 			this.PNL_Eventslct.Name = "PNL_Eventslct";
-			this.PNL_Eventslct.Size = new System.Drawing.Size(800, 600);
+			this.PNL_Eventslct.Size = new System.Drawing.Size(10, 10);
 			this.PNL_Eventslct.TabIndex = 6;
 			this.PNL_Eventslct.Visible = false;
 			// 
@@ -846,7 +846,7 @@ namespace DoujinGameProject
 			// PNL_Event
 			// 
 			this.PNL_Event.Controls.Add(this.PIC_Buffer);
-			this.PNL_Event.Controls.Add(this.PNL_log);
+			this.PNL_Event.Controls.Add(this.PNL_Log);
 			this.PNL_Event.Controls.Add(this.PIC_NameBox);
 			this.PNL_Event.Controls.Add(this.PIC_TextArea);
 			this.PNL_Event.Controls.Add(this.PIC_Chara_pos2);
@@ -859,65 +859,75 @@ namespace DoujinGameProject
 			this.PNL_Event.Visible = false;
 			this.PNL_Event.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
 			// 
-			// PNL_log
+			// PIC_Buffer
 			// 
-			this.PNL_log.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.PNL_log.Controls.Add(this.pictureBox10);
-			this.PNL_log.Controls.Add(this.pictureBox14);
-			this.PNL_log.Controls.Add(this.pictureBox13);
-			this.PNL_log.Controls.Add(this.pictureBox12);
-			this.PNL_log.Controls.Add(this.pictureBox11);
-			this.PNL_log.Controls.Add(this.pictureBox9);
-			this.PNL_log.Location = new System.Drawing.Point(0, 0);
-			this.PNL_log.Name = "PNL_log";
-			this.PNL_log.Size = new System.Drawing.Size(10, 10);
-			this.PNL_log.TabIndex = 3;
-			this.PNL_log.Visible = false;
+			this.PIC_Buffer.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PIC_Buffer.Location = new System.Drawing.Point(0, 0);
+			this.PIC_Buffer.Name = "PIC_Buffer";
+			this.PIC_Buffer.Size = new System.Drawing.Size(800, 600);
+			this.PIC_Buffer.TabIndex = 5;
+			this.PIC_Buffer.TabStop = false;
 			// 
-			// pictureBox10
+			// PNL_Log
 			// 
-			this.pictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox10.Location = new System.Drawing.Point(145, 462);
-			this.pictureBox10.Name = "pictureBox10";
-			this.pictureBox10.Size = new System.Drawing.Size(523, 130);
-			this.pictureBox10.TabIndex = 7;
-			this.pictureBox10.TabStop = false;
+			this.PNL_Log.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PNL_Log.Controls.Add(this.PIC_LogBox_0);
+			this.PNL_Log.Controls.Add(this.PIC_LogBox_4);
+			this.PNL_Log.Controls.Add(this.PIC_LogBox_3);
+			this.PNL_Log.Controls.Add(this.PIC_LogBox_2);
+			this.PNL_Log.Controls.Add(this.PIC_LogBox_1);
+			this.PNL_Log.Controls.Add(this.pictureBox9);
+			this.PNL_Log.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PNL_Log.Location = new System.Drawing.Point(0, 0);
+			this.PNL_Log.Name = "PNL_Log";
+			this.PNL_Log.Size = new System.Drawing.Size(800, 600);
+			this.PNL_Log.TabIndex = 3;
+			this.PNL_Log.Visible = false;
 			// 
-			// pictureBox14
+			// PIC_LogBox_0
 			// 
-			this.pictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox14.Location = new System.Drawing.Point(145, -20);
-			this.pictureBox14.Name = "pictureBox14";
-			this.pictureBox14.Size = new System.Drawing.Size(523, 130);
-			this.pictureBox14.TabIndex = 5;
-			this.pictureBox14.TabStop = false;
+			this.PIC_LogBox_0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PIC_LogBox_0.Location = new System.Drawing.Point(145, 462);
+			this.PIC_LogBox_0.Name = "PIC_LogBox_0";
+			this.PIC_LogBox_0.Size = new System.Drawing.Size(523, 130);
+			this.PIC_LogBox_0.TabIndex = 7;
+			this.PIC_LogBox_0.TabStop = false;
 			// 
-			// pictureBox13
+			// PIC_LogBox_4
 			// 
-			this.pictureBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox13.Location = new System.Drawing.Point(145, 100);
-			this.pictureBox13.Name = "pictureBox13";
-			this.pictureBox13.Size = new System.Drawing.Size(523, 130);
-			this.pictureBox13.TabIndex = 4;
-			this.pictureBox13.TabStop = false;
+			this.PIC_LogBox_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PIC_LogBox_4.Location = new System.Drawing.Point(145, -20);
+			this.PIC_LogBox_4.Name = "PIC_LogBox_4";
+			this.PIC_LogBox_4.Size = new System.Drawing.Size(523, 130);
+			this.PIC_LogBox_4.TabIndex = 5;
+			this.PIC_LogBox_4.TabStop = false;
 			// 
-			// pictureBox12
+			// PIC_LogBox_3
 			// 
-			this.pictureBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox12.Location = new System.Drawing.Point(145, 222);
-			this.pictureBox12.Name = "pictureBox12";
-			this.pictureBox12.Size = new System.Drawing.Size(523, 130);
-			this.pictureBox12.TabIndex = 3;
-			this.pictureBox12.TabStop = false;
+			this.PIC_LogBox_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PIC_LogBox_3.Location = new System.Drawing.Point(145, 100);
+			this.PIC_LogBox_3.Name = "PIC_LogBox_3";
+			this.PIC_LogBox_3.Size = new System.Drawing.Size(523, 130);
+			this.PIC_LogBox_3.TabIndex = 4;
+			this.PIC_LogBox_3.TabStop = false;
 			// 
-			// pictureBox11
+			// PIC_LogBox_2
 			// 
-			this.pictureBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.pictureBox11.Location = new System.Drawing.Point(145, 342);
-			this.pictureBox11.Name = "pictureBox11";
-			this.pictureBox11.Size = new System.Drawing.Size(523, 130);
-			this.pictureBox11.TabIndex = 2;
-			this.pictureBox11.TabStop = false;
+			this.PIC_LogBox_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PIC_LogBox_2.Location = new System.Drawing.Point(145, 222);
+			this.PIC_LogBox_2.Name = "PIC_LogBox_2";
+			this.PIC_LogBox_2.Size = new System.Drawing.Size(523, 130);
+			this.PIC_LogBox_2.TabIndex = 3;
+			this.PIC_LogBox_2.TabStop = false;
+			// 
+			// PIC_LogBox_1
+			// 
+			this.PIC_LogBox_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.PIC_LogBox_1.Location = new System.Drawing.Point(145, 342);
+			this.PIC_LogBox_1.Name = "PIC_LogBox_1";
+			this.PIC_LogBox_1.Size = new System.Drawing.Size(523, 130);
+			this.PIC_LogBox_1.TabIndex = 2;
+			this.PIC_LogBox_1.TabStop = false;
 			// 
 			// pictureBox9
 			// 
@@ -1048,23 +1058,19 @@ namespace DoujinGameProject
 			this.BTN_Church.MouseMove += new System.Windows.Forms.MouseEventHandler(this.church_btn_MouseMove);
 			this.BTN_Church.MouseUp += new System.Windows.Forms.MouseEventHandler(this.church_btn_MouseUp);
 			// 
-			// FadeInTimer
+			// Timer_FadeIn
 			// 
-			this.FadeInTimer.Tick += new System.EventHandler(this.FadeinTimer_Tick);
+			this.Timer_FadeIn.Tick += new System.EventHandler(this.TimerFadein_Tick);
 			// 
-			// WaitTimer
+			// Timer_Wait
 			// 
-			this.WaitTimer.Interval = 10;
-			this.WaitTimer.Tick += new System.EventHandler(this.WaitTimer_Tick);
+			this.Timer_Wait.Interval = 10;
+			this.Timer_Wait.Tick += new System.EventHandler(this.WaitTimer_Tick);
 			// 
-			// PIC_Buffer
+			// Timer_LogFin
 			// 
-			this.PIC_Buffer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.PIC_Buffer.Location = new System.Drawing.Point(0, 0);
-			this.PIC_Buffer.Name = "PIC_Buffer";
-			this.PIC_Buffer.Size = new System.Drawing.Size(800, 600);
-			this.PIC_Buffer.TabIndex = 5;
-			this.PIC_Buffer.TabStop = false;
+			this.Timer_LogFin.Interval = 10;
+			this.Timer_LogFin.Tick += new System.EventHandler(this.Timer_LogFin_Tick);
 			// 
 			// doujin_game_sharp
 			// 
@@ -1138,12 +1144,13 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.Slctbox_2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Slctbox_1)).EndInit();
 			this.PNL_Event.ResumeLayout(false);
-			this.PNL_log.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).EndInit();
+			this.PNL_Log.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_0)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_LogBox_1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_NameBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PIC_TextArea)).EndInit();
@@ -1155,7 +1162,6 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1177,19 +1183,19 @@ namespace DoujinGameProject
         public System.Windows.Forms.PictureBox PIC_Chara_pos1;
 		public System.Windows.Forms.PictureBox PIC_Chara_pos2;
 		private System.Windows.Forms.PictureBox PIC_NameBox;
-        private System.Windows.Forms.Panel PNL_log;
+        private System.Windows.Forms.Panel PNL_Log;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.PictureBox pictureBox14;
-        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox PIC_LogBox_2;
+        private System.Windows.Forms.PictureBox PIC_LogBox_1;
+        private System.Windows.Forms.PictureBox PIC_LogBox_3;
+        private System.Windows.Forms.PictureBox PIC_LogBox_4;
+        private System.Windows.Forms.PictureBox PIC_LogBox_0;
         private System.Windows.Forms.Panel PNL_Eventslct;
         private System.Windows.Forms.PictureBox Slctbox_1;
         private System.Windows.Forms.PictureBox Slctbox_3;
         private System.Windows.Forms.PictureBox Slctbox_2;
 		private System.Windows.Forms.PictureBox Slctbox_4;
-		private System.Windows.Forms.Timer FadeInTimer;
+		private System.Windows.Forms.Timer Timer_FadeIn;
 		private System.Windows.Forms.Panel PNL_status;
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.PictureBox pictureBox2;
@@ -1236,8 +1242,9 @@ namespace DoujinGameProject
 		private System.Windows.Forms.PictureBox pictureBox21;
 		private System.Windows.Forms.PictureBox pictureBox20;
 		private System.Windows.Forms.PictureBox pictureBox19;
-		private System.Windows.Forms.Timer WaitTimer;
+		private System.Windows.Forms.Timer Timer_Wait;
 		private System.Windows.Forms.PictureBox PIC_Buffer;
+		private System.Windows.Forms.Timer Timer_LogFin;
 
     }
 

@@ -1576,7 +1576,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "Text";
 
-						/* ナレーション・セリフの消去 */
+						/* キャラ名の消去 */
 						Program.Doujin_game_sharp.ClearCharacterName();
 
 						count++;
@@ -1591,7 +1591,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "サラ";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
 						count++;
@@ -1607,7 +1607,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "マリー";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
                         count++;
@@ -1622,7 +1622,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "リディ";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
                         count++;
@@ -1637,7 +1637,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "触手娘";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
                         count++;
@@ -1652,7 +1652,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "魔物";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
                         count++;
@@ -1667,7 +1667,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "？？？";
 
-						/* ナレーション・セリフの表示 */
+						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
 						count++;
@@ -1681,7 +1681,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "Plus";
 
-						/* ナレーション・セリフの消去 */
+						/* キャラ名の消去 */
 						Program.Doujin_game_sharp.ClearCharacterName();
 
                         count++;
@@ -1695,7 +1695,7 @@ namespace DoujinGameProject.Action
 
 						name[0] = "Minus";
 
-						/* ナレーション・セリフの消去 */
+						/* キャラ名の消去 */
 						Program.Doujin_game_sharp.ClearCharacterName();
 
                         count++;
@@ -1933,7 +1933,7 @@ namespace DoujinGameProject.Action
                     /* ImageオブジェクトのGraphicsオブジェクトを作成する */
                     Graphics g0 = Graphics.FromImage(canvas0);
                     /* 描画内容を準備 */
-                    g0.DrawString(log[i], fnt, Color, 0, 0);
+                    g0.DrawString(log[i], fnt, Color, 30, 0);
                     /* PictureBoxに表示*/
                     o_bgpic_0.Image = canvas0;
                     /* リソースを解放 */
@@ -1943,7 +1943,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas1 = new Bitmap(o_bgpic_1.Width, o_bgpic_1.Height);
                     Graphics g1 = Graphics.FromImage(canvas1);
-                    g1.DrawString(log[i], fnt, Color, 0, 0);
+                    g1.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_1.Image = canvas1;
                     g1.Dispose();
                 }
@@ -1951,7 +1951,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas2 = new Bitmap(o_bgpic_2.Width, o_bgpic_2.Height);
                     Graphics g2 = Graphics.FromImage(canvas2);
-                    g2.DrawString(log[i], fnt, Color, 0, 0);
+                    g2.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_2.Image = canvas2;
                     g2.Dispose();
                 }
@@ -1959,7 +1959,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas3 = new Bitmap(o_bgpic_3.Width, o_bgpic_3.Height);
                     Graphics g3 = Graphics.FromImage(canvas3);
-                    g3.DrawString(log[i], fnt, Color, 0, 0);
+                    g3.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_3.Image = canvas3;
                     g3.Dispose();
                 }
@@ -1967,7 +1967,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas4 = new Bitmap(o_bgpic_4.Width, o_bgpic_4.Height);
                     Graphics g4 = Graphics.FromImage(canvas4);
-                    g4.DrawString(log[i], fnt, Color, 0, 0);
+                    g4.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_4.Image = canvas4;
                     g4.Dispose();
                 }
@@ -1984,7 +1984,7 @@ namespace DoujinGameProject.Action
 
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
         /* ■　関数名：s_ScrollRedraw　　　　　　 　　　　　　　 　■ */
-        /* ■　内容：バックログ初期表示処理                     　 ■ */
+        /* ■　内容：バックログ表示更新処理                     　 ■ */
         /* ■　入力：                                        　 　 ■ */
         /* ■　出力：                                        　 　 ■ */
         /* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -2036,7 +2036,7 @@ namespace DoujinGameProject.Action
                     /* ImageオブジェクトのGraphicsオブジェクトを作成する */
                     Graphics g0 = Graphics.FromImage(canvas0);
                     /* 描画内容を準備 */
-                    g0.DrawString(log[i], fnt, Color, 0, 0);
+                    g0.DrawString(log[i], fnt, Color, 30, 0);
                     /* PictureBoxに表示*/
                     o_bgpic_0.Image = canvas0;
                     /* リソースを解放 */
@@ -2046,7 +2046,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas1 = new Bitmap(o_bgpic_1.Width, o_bgpic_1.Height);
                     Graphics g1 = Graphics.FromImage(canvas1);
-                    g1.DrawString(log[i], fnt, Color, 0, 0);
+                    g1.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_1.Image = canvas1;
                     g1.Dispose();
                 }
@@ -2054,7 +2054,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas2 = new Bitmap(o_bgpic_2.Width, o_bgpic_2.Height);
                     Graphics g2 = Graphics.FromImage(canvas2);
-                    g2.DrawString(log[i], fnt, Color, 0, 0);
+                    g2.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_2.Image = canvas2;
                     g2.Dispose();
                 }
@@ -2062,7 +2062,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas3 = new Bitmap(o_bgpic_3.Width, o_bgpic_3.Height);
                     Graphics g3 = Graphics.FromImage(canvas3);
-                    g3.DrawString(log[i], fnt, Color, 0, 0);
+                    g3.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_3.Image = canvas3;
                     g3.Dispose();
                 }
@@ -2070,7 +2070,7 @@ namespace DoujinGameProject.Action
                 {
                     Bitmap canvas4 = new Bitmap(o_bgpic_4.Width, o_bgpic_4.Height);
                     Graphics g4 = Graphics.FromImage(canvas4);
-                    g4.DrawString(log[i], fnt, Color, 0, 0);
+                    g4.DrawString(log[i], fnt, Color, 30, 0);
                     o_bgpic_4.Image = canvas4;
                     g4.Dispose();
                 }
