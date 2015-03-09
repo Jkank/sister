@@ -1759,7 +1759,9 @@ namespace DoujinGameProject.Action
 					{
 						string str_BGPic = textrowbuf.Substring(3, textrowbuf.Length - 3);
 						/* 背景の変更 */
-						Program.Doujin_game_sharp.setBGPic(str_BGPic);
+						Program.Doujin_game_sharp.DispStatus = 0;
+						Program.Doujin_game_sharp.BGPicname = str_BGPic;
+						Program.Doujin_game_sharp.setBGPic();
 						count += 2;
 						countold = count;
 						sentence_ct = getNowSent(count);

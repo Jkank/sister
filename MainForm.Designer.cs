@@ -105,6 +105,8 @@ namespace DoujinGameProject
 			this.BTN_Lest = new System.Windows.Forms.PictureBox();
 			this.BTN_Church = new System.Windows.Forms.PictureBox();
 			this.FadeInTimer = new System.Windows.Forms.Timer(this.components);
+			this.WaitTimer = new System.Windows.Forms.Timer(this.components);
+			this.PIC_Buffer = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Start)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Load)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_OpnOption)).BeginInit();
@@ -178,6 +180,7 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// BTN_Start
@@ -842,11 +845,13 @@ namespace DoujinGameProject
 			// 
 			// PNL_Event
 			// 
+			this.PNL_Event.Controls.Add(this.PIC_Buffer);
 			this.PNL_Event.Controls.Add(this.PNL_log);
 			this.PNL_Event.Controls.Add(this.PIC_NameBox);
 			this.PNL_Event.Controls.Add(this.PIC_TextArea);
 			this.PNL_Event.Controls.Add(this.PIC_Chara_pos2);
 			this.PNL_Event.Controls.Add(this.PIC_Chara_pos1);
+			this.PNL_Event.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Event.Location = new System.Drawing.Point(0, 0);
 			this.PNL_Event.Name = "PNL_Event";
 			this.PNL_Event.Size = new System.Drawing.Size(800, 600);
@@ -863,10 +868,9 @@ namespace DoujinGameProject
 			this.PNL_log.Controls.Add(this.pictureBox12);
 			this.PNL_log.Controls.Add(this.pictureBox11);
 			this.PNL_log.Controls.Add(this.pictureBox9);
-			this.PNL_log.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_log.Location = new System.Drawing.Point(0, 0);
 			this.PNL_log.Name = "PNL_log";
-			this.PNL_log.Size = new System.Drawing.Size(800, 600);
+			this.PNL_log.Size = new System.Drawing.Size(10, 10);
 			this.PNL_log.TabIndex = 3;
 			this.PNL_log.Visible = false;
 			// 
@@ -1048,6 +1052,20 @@ namespace DoujinGameProject
 			// 
 			this.FadeInTimer.Tick += new System.EventHandler(this.FadeinTimer_Tick);
 			// 
+			// WaitTimer
+			// 
+			this.WaitTimer.Interval = 10;
+			this.WaitTimer.Tick += new System.EventHandler(this.WaitTimer_Tick);
+			// 
+			// PIC_Buffer
+			// 
+			this.PIC_Buffer.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PIC_Buffer.Location = new System.Drawing.Point(0, 0);
+			this.PIC_Buffer.Name = "PIC_Buffer";
+			this.PIC_Buffer.Size = new System.Drawing.Size(800, 600);
+			this.PIC_Buffer.TabIndex = 5;
+			this.PIC_Buffer.TabStop = false;
+			// 
 			// doujin_game_sharp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1137,6 +1155,7 @@ namespace DoujinGameProject
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Out)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Lest)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BTN_Church)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PIC_Buffer)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1217,6 +1236,8 @@ namespace DoujinGameProject
 		private System.Windows.Forms.PictureBox pictureBox21;
 		private System.Windows.Forms.PictureBox pictureBox20;
 		private System.Windows.Forms.PictureBox pictureBox19;
+		private System.Windows.Forms.Timer WaitTimer;
+		private System.Windows.Forms.PictureBox PIC_Buffer;
 
     }
 

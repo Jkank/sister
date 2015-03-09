@@ -34,6 +34,9 @@ namespace DoujinGameProject
 
 		static Image canvas_tb1;
 		static Image canvas_tb2;
+		public int DispStatus;
+		public string BGPicname;
+
 
 		DirectSound dsound;
 		
@@ -53,6 +56,7 @@ namespace DoujinGameProject
 			PNL_Eventslct.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
 			PNL_Mainselect.BackColor = Color.Transparent;   /* メイン選択画面のPanel */
 			PNL_Event.BackColor = Color.Transparent;   /* メッセージボックスのPanel */
+			PIC_Buffer.BackColor = Color.Transparent;   /* 行動選択画面のPanel */
 			PIC_NameBox.BackColor = Color.Transparent;   /* 名前ボックス */
 			PIC_TextArea.BackColor = Color.Transparent;   /* メッセージボックス */
 			PIC_Chara_pos1.BackColor = Color.Transparent;   /* 立ち絵位置１ */
@@ -600,7 +604,7 @@ namespace DoujinGameProject
 		}
 
 		//////////////////////////////////////////////////////////////////
-		////////////////////* === 選択肢２ボタン === *////////////////////
+		////////////////////* === 選択肢３ボタン === *////////////////////
 		//////////////////////////////////////////////////////////////////
 
 		private void Slctbox_3_MouseEnter(object sender, EventArgs e)
@@ -807,73 +811,113 @@ namespace DoujinGameProject
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		/* ■　関数名：setBGPic         　  　　　　　　　　　　 　■ */
 		/* ■　内容：背景画像表示処理							   ■ */
-		/* ■　入力：BGPicname                               　 　 ■ */
+		/* ■　入力：なし                                    　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		public void setBGPic(string BGPicname)
+		public void setBGPic()
 		{
-			switch (BGPicname)
+			switch(DispStatus)
 			{
-				case "オープニング":
-					PNL_Event.BackgroundImage = Properties.Resources.g_bg_000_0;
-					//PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
+				case 0:
+					ShowPanelforDisp();
 					break;
-				case "教会昼":
-					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_dt;
-					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
+				case 1:
+					PIC_Buffer.Visible = true;
+					switch (BGPicname)
+					{
+						case "オープニング":
+							//PNL_Event.BackgroundImage = Properties.Resources.g_bg_000_0;
+							PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
+							break;
+						case "教会昼":
+							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_dt;
+							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
+							break;
+						case "教会夕":
+							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_ev;
+							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
+							break;
+						case "教会夜":
+							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_nt;
+							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
+							break;
+						case "階段":
+							//PNL_Event.BackgroundImage = Properties.Resources.dungeon06;
+							PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
+							break;
+						case "檻":
+							//PNL_Event.BackgroundImage = Properties.Resources.rouya_nt;
+							PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
+							break;
+						case "部屋昼":
+							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_dt;
+							PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
+							break;
+						case "部屋夕":
+							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_ev;
+							PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
+							break;
+						case "部屋夜":
+							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_ntr;
+							PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
+							break;
+						case "書庫":
+							//PNL_Event.BackgroundImage = Properties.Resources.syoko_dt;
+							PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
+							break;
+						case "町昼":
+							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_dt;
+							PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
+							break;
+						case "町夕":
+							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_ev;
+							PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
+							break;
+						case "町夜":
+							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_nt;
+							PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
+							break;
+						default:
+							Console.WriteLine("背景画像の指定値がテーブル上に用意されていません");
+							break;
+
+					}
 					break;
-				case "教会夕":
-					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_ev;
-					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
-					break;
-				case "教会夜":
-					PNL_Event.BackgroundImage = Properties.Resources.kyoukai_nt;
-					//PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
-					break;
-				case "階段":
-					PNL_Event.BackgroundImage = Properties.Resources.dungeon06;
-					//PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
-					break;
-				case "檻":
-					PNL_Event.BackgroundImage = Properties.Resources.rouya_nt;
-					//PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
-					break;
-				case "部屋昼":
-					PNL_Event.BackgroundImage = Properties.Resources.yadoya_dt;
-					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
-					break;
-				case "部屋夕":
-					PNL_Event.BackgroundImage = Properties.Resources.yadoya_ev;
-					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
-					break;
-				case "部屋夜":
-					PNL_Event.BackgroundImage = Properties.Resources.yadoya_ntr;
-					//PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
-					break;
-				case "書庫":
-					PNL_Event.BackgroundImage = Properties.Resources.syoko_dt;
-					//PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
-					break;
-				case "町昼":
-					PNL_Event.BackgroundImage = Properties.Resources.hiroba_dt;
-					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
-					break;
-				case "町夕":
-					PNL_Event.BackgroundImage = Properties.Resources.hiroba_ev;
-					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
-					break;
-				case "町夜":
-					PNL_Event.BackgroundImage = Properties.Resources.hiroba_nt;
-					//PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
-					break;
-				default:
-					Console.WriteLine("背景画像の指定値がテーブル上に用意されていません");
+				case 2:
+					WaitTimer.Stop();
+					DispStatus = 0;
+					PIC_Buffer.Visible = false;
 					break;
 
 			}
-
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：ShowPanelforDisp　  　　　　　　　　　　 　■ */
+		/* ■　内容：背景画像表示処理							   ■ */
+		/* ■　入力：なし		                             　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		void ShowPanelforDisp()
+		{
+			BackgroundDraw_All(PIC_Buffer);
+			WaitTimer.Start();
+		}
+
+
+		private void WaitTimer_Tick(object sender, EventArgs e)
+		{
+			DispStatus++;
+			setBGPic();
+		}
+
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：ShowHalfClearly		 　　　　　　　　　 　■ */
+		/* ■　内容：画像半透明表示処理							   ■ */
+		/* ■　入力：NowPicturebox                           　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		void ShowHalfClearly(PictureBox NowPicturebox)
 		{
 			Graphics g_tb = null;
@@ -1209,6 +1253,48 @@ namespace DoujinGameProject
 		/* ■　入力：targetpanel_id                          　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void BackgroundDraw_All(PictureBox NowPicturebox)
+		{
+
+			//現在の背景画像の状況を再現する。
+			Bitmap canvas = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
+			Graphics g = Graphics.FromImage(canvas);
+
+			Image Image1 = PIC_Chara_pos1.BackgroundImage;
+			Image Image2 = PIC_Chara_pos2.BackgroundImage;
+			Image Image3 = PIC_NameBox.BackgroundImage;
+			Image Image4 = PIC_TextArea.BackgroundImage;
+			Image canvas_img;
+
+			canvas_img = new Bitmap(NowPicturebox.Width, NowPicturebox.Height); ;
+			
+
+			if (Image1 != null && PIC_Chara_pos1.Visible == true)
+			{
+				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - NowPicturebox.Location.X, PIC_Chara_pos1.Location.Y - NowPicturebox.Location.Y, Image1.Width, Image1.Height);
+			}
+			if (Image2 != null && PIC_Chara_pos2.Visible == true)
+			{
+				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - NowPicturebox.Location.X, PIC_Chara_pos2.Location.Y - NowPicturebox.Location.Y, Image2.Width, Image2.Height);
+			}
+			if (Image3 != null && PIC_NameBox.Visible == true)
+			{
+				g.DrawImage(Image3, PIC_NameBox.Location.X - NowPicturebox.Location.X, PIC_NameBox.Location.Y - NowPicturebox.Location.Y, Image3.Width, Image3.Height);
+			}
+			if (Image4 != null && PIC_TextArea.Visible == true)
+			{
+				g.DrawImage(Image4, PIC_TextArea.Location.X - NowPicturebox.Location.X, PIC_TextArea.Location.Y - NowPicturebox.Location.Y, Image4.Width, Image4.Height);
+			}
+
+			g.DrawImage(canvas_img, 0, 0, canvas_img.Width, canvas_img.Height);
+
+
+			//Graphicsオブジェクトのリソースを解放する
+			g.Dispose();
+
+			//PictureBoxに表示する
+			NowPicturebox.BackgroundImage = canvas;
+		}
 		public void BackgroundDraw(PictureBox NowPicturebox)
 		{
 
