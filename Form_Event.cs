@@ -17,6 +17,7 @@ namespace DoujinGameProject
 {
 	public partial class doujin_game_sharp
 	{
+		static int LogFinStatus = 0; 
 		////////////////////////////////////////////////////////////////////
 		//////////////////////* === イベント画面 === *//////////////////////
 		////////////////////////////////////////////////////////////////////
@@ -286,7 +287,7 @@ namespace DoujinGameProject
 
 		public void DispLogPnl()
 		{
-			switch (DispStatus)
+			switch (LogFinStatus)
 			{
 				case 0:
 					ShowPicforLogEnd();
@@ -296,7 +297,7 @@ namespace DoujinGameProject
 					break;
 				case 2:
 					Timer_LogFin.Stop();
-					DispStatus = 0;
+					LogFinStatus = 0;
 					PIC_LogBox_0.Visible = false;
 					PIC_LogBox_1.Visible = false;
 					PIC_LogBox_2.Visible = false;
@@ -323,7 +324,7 @@ namespace DoujinGameProject
 
 		private void Timer_LogFin_Tick(object sender, EventArgs e)
 		{
-			DispStatus++;
+			LogFinStatus++;
 			DispLogPnl();
 		}
 

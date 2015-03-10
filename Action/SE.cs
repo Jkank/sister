@@ -51,6 +51,12 @@ namespace DoujinGameProject.Action
     ////            　int型でさえあれば、即値でも変数でも良い。
     ////            ・演算子や等号の両側には半角スペースを置くこと。
     ////            ・割り算の場合、得られる結果は「商,あまり」のうちの商のみ。
+	////
+	////			（TODO 動作確認）
+	////			計算した結果は表示する文字列の中で表示させることが出来る。
+	////			その場合、A_REGに計算結果を入れ、文字列中では<汎用Ａ>と表記すれば
+	////			＜汎用Ａ＞が計算結果の数値に置き換わる。
+	////			他に、＜汎用Ｂ＞＜汎用Ｃ＞に対応している。
     ////
     ////○コメント　"//"でその行のそれ以降の部分は無視される。
     //////////////////////////////////////////////////////////////////
@@ -95,7 +101,7 @@ namespace DoujinGameProject.Action
         {
             int i;
             const int D_CHAR_LAST = 1000000;              /* １ファイルの最大文字数のDefine( ENDコードが無かった時の Fail Safe ) */
-            const short D_WORKVAL_MAX = 100;
+            const int D_WORKVAL_MAX = 100000;
             const int VAL_REG_A = 1;
             const int VAL_REG_B = 2;
             const int VAL_REG_C = 3;
@@ -1836,6 +1842,11 @@ namespace DoujinGameProject.Action
                         Graphics g1 = Graphics.FromImage(canvas1);
 
                         textrowbuf = text.Substring(countold, inrowcount);
+
+						//計算結果部分を文字列に置き換える
+						textrowbuf = textrowbuf.Replace("<汎用Ａ>", A_REG.ToString("D"));
+						textrowbuf = textrowbuf.Replace("<汎用Ｂ>", B_REG.ToString("D"));
+						textrowbuf = textrowbuf.Replace("<汎用Ｃ>", C_REG.ToString("D"));
 
                         g1.DrawString(textrowbuf, fnt, Color, 30, 0);
                         //PictureBox1に表示する
