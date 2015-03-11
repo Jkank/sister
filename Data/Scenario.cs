@@ -23,6 +23,7 @@ namespace DoujinGameProject.Data
 			Slct_No = 0;
 			DayCt = 0;
 			NowTime = 8;
+			NowPlace = Defines.LOC_CHAPEL;
 
 			/*** 既読フラグ ***/
 			//既読スキップ機能で参照

@@ -276,57 +276,98 @@ namespace DoujinGameProject.Action
                         sentence_ct = getNowSent(count);
                         inrowcount = 0;
                     }
-                    else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "計算")
-                    {
-                        /*** 計算 ***/
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "移動")
+					{
+						string place = textrowbuf.Substring(3, (textrowbuf.Length - 3));
+						switch (place)
+						{
+							case "礼拝堂":
+								GameData.ScenarioData.NowPlace = Defines.LOC_CHAPEL;
+								break;
+							case "サラの部屋":
+								GameData.ScenarioData.NowPlace = Defines.LOC_SARAROOM;
+								break;
+							case "マリーの部屋":
+								GameData.ScenarioData.NowPlace = Defines.LOC_MARYROOM;
+								break;
+							case "リディの部屋":
+								GameData.ScenarioData.NowPlace = Defines.LOC_LIDYROOM;
+								break;
+							case "書庫":
+								GameData.ScenarioData.NowPlace = Defines.LOC_LIBRARY;
+								break;
+							case "商店":
+								GameData.ScenarioData.NowPlace = Defines.LOC_STORE;
+								break;
+							case "酒場":
+								GameData.ScenarioData.NowPlace = Defines.LOC_BAR;
+								break;
+							case "広場":
+								GameData.ScenarioData.NowPlace = Defines.LOC_SQUARE;
+								break;
+							case "路地裏":
+								GameData.ScenarioData.NowPlace = Defines.LOC_BACKSTREET;
+								break;
+							default:
+								GameData.ScenarioData.NowPlace = Defines.LOC_CHAPEL;
+								break;
+						}
+						count += 2;
+						countold = count;
+						sentence_ct = getNowSent(count);
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "計算")
+					{
+						/*** 計算 ***/
 
-                        inrowcount = 3;
-                        int inrowcountold = inrowcount;
-                        int work_ct = 0;
-                        Parameter work_1 = new Parameter();
-                        int work_1_v = 0;
-                        int work_2 = 0;
-                        Parameter right_1 = new Parameter();
-                        Parameter right_2 = new Parameter();
-                        int work_value_1 = 0;
-                        int work_value_2 = 0;
-                        bool var_flag_L = false;            /*即値フラグ*/
-                        bool int_flag_R_1 = false;            /*即値フラグ*/
-                        bool int_flag_R_2 = false;            /*即値フラグ*/
+						inrowcount = 3;
+						int inrowcountold = inrowcount;
+						int work_ct = 0;
+						Parameter work_1 = new Parameter();
+						int work_1_v = 0;
+						int work_2 = 0;
+						Parameter right_1 = new Parameter();
+						Parameter right_2 = new Parameter();
+						int work_value_1 = 0;
+						int work_value_2 = 0;
+						bool var_flag_L = false;            /*即値フラグ*/
+						bool int_flag_R_1 = false;            /*即値フラグ*/
+						bool int_flag_R_2 = false;            /*即値フラグ*/
 
-                        /** 計算式左辺取得 **/
-                        while (textrowbuf.Substring(inrowcount, 1) != " ")
-                        {
-                            inrowcount++;
-                            work_ct++;
-                        }
-                        if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.HitPoint;
-                        }
-                        else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
+						/** 計算式左辺取得 **/
+						while (textrowbuf.Substring(inrowcount, 1) != " ")
+						{
+							inrowcount++;
+							work_ct++;
+						}
+						if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.HitPoint;
+						}
+						else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
 							work_1 = Sis.MentalPoint;
-                        }
-                        else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.PassionPoint;
-                        }
-                        else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.MoralPoint;
-                        }
-                        else if (work_ct >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.MoralPoint;
-                        }
-                        else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.MoralPoint;
-                        }
-                        else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.PassionPoint;
+						}
+						else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1 = Sis.MoralPoint;
 						}
 						else if (work_ct >= 2 && "時刻" == textrowbuf.Substring(inrowcountold, work_ct))
 						{
@@ -338,571 +379,571 @@ namespace DoujinGameProject.Action
 							val_reg = VAL_REG_A;
 							var_flag_L = true;
 						}
-                        else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1_v = A_REG;
-                            val_reg = VAL_REG_A;
-                            var_flag_L = true;
-                        }
-                        else if (work_ct >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1_v = B_REG;
-                            val_reg = VAL_REG_B;
-                            var_flag_L = true;
-                        }
-                        else if (work_ct >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct))
-                        {
-                            work_1_v = C_REG;
-                            val_reg = VAL_REG_C;
-                            var_flag_L = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("work_1 該当するパラメーターが存在しないようです");
-                        }
+						else if (work_ct >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1_v = A_REG;
+							val_reg = VAL_REG_A;
+							var_flag_L = true;
+						}
+						else if (work_ct >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1_v = B_REG;
+							val_reg = VAL_REG_B;
+							var_flag_L = true;
+						}
+						else if (work_ct >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							work_1_v = C_REG;
+							val_reg = VAL_REG_C;
+							var_flag_L = true;
+						}
+						else
+						{
+							Console.WriteLine("work_1 該当するパラメーターが存在しないようです");
+						}
 
-                        inrowcount++;
-                        inrowcountold = inrowcount;
+						inrowcount++;
+						inrowcountold = inrowcount;
 
-                        /** 計算式等号取得 **/
-                        while (textrowbuf.Substring(inrowcount, 1) != " ")
-                        {
-                            inrowcount++;
-                            work_2++;
-                        }
+						/** 計算式等号取得 **/
+						while (textrowbuf.Substring(inrowcount, 1) != " ")
+						{
+							inrowcount++;
+							work_2++;
+						}
 
-                        inrowcount++;
-                        /* inrowcountoldは、演算子付き等号を後で拾うために動かさない */
+						inrowcount++;
+						/* inrowcountoldは、演算子付き等号を後で拾うために動かさない */
 
-                        if (2 >= work_2)
-                        {
-                            /* += -= *= /= <-(代入) */
-                            /* 右辺の項は一つ */
+						if (2 >= work_2)
+						{
+							/* += -= *= /= <-(代入) */
+							/* 右辺の項は一つ */
 
-                            /** 右辺取得 **/
-                            if ("性欲値" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_1 = Sis.PassionPoint;
-                            }
-                            else if ("堕落度" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_1 = Sis.MoralPoint;
-                            }
-                            else if ("お香数" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_1 = Sis.MoralPoint;
-                            }
-                            else if ("酒数" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_1 = Sis.MoralPoint;
+							/** 右辺取得 **/
+							if ("性欲値" == textrowbuf.Substring(inrowcount))
+							{
+								right_1 = Sis.PassionPoint;
+							}
+							else if ("堕落度" == textrowbuf.Substring(inrowcount))
+							{
+								right_1 = Sis.MoralPoint;
+							}
+							else if ("お香数" == textrowbuf.Substring(inrowcount))
+							{
+								right_1 = Sis.MoralPoint;
+							}
+							else if ("酒数" == textrowbuf.Substring(inrowcount))
+							{
+								right_1 = Sis.MoralPoint;
 							}
 							else if ("日数" == textrowbuf.Substring(inrowcount))
 							{
 								work_value_1 = GameData.ScenarioData.DayCt;
 								int_flag_R_1 = true;
 							}
-                            else if ("乱数" == textrowbuf.Substring(inrowcount))
-                            {
-                                work_value_1 = rand;
-                                int_flag_R_1 = true;
-                            }
-                            else
-                            {
-                                /* 整数値 */
-                                while (work_value_1 < D_WORKVAL_MAX)
-                                {
-                                    if (textrowbuf.Substring(inrowcountold) == work_value_1.ToString())
-                                    {
-                                        break;
-                                    }
-                                    work_value_1++;
-                                    int_flag_R_1 = true;
-                                }
-                            }
+							else if ("乱数" == textrowbuf.Substring(inrowcount))
+							{
+								work_value_1 = rand;
+								int_flag_R_1 = true;
+							}
+							else
+							{
+								/* 整数値 */
+								while (work_value_1 < D_WORKVAL_MAX)
+								{
+									if (textrowbuf.Substring(inrowcountold) == work_value_1.ToString())
+									{
+										break;
+									}
+									work_value_1++;
+									int_flag_R_1 = true;
+								}
+							}
 
-                            if (var_flag_L == true)
-                            {
-                                /* 左辺、汎用パラメーター */
-                                if (int_flag_R_1 == true)
-                                {
-                                    /* 右辺は即値 */
-                                    if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v += work_value_1;
-                                    }
-                                    else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v -= work_value_1;
-                                    }
-                                    else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v *= work_value_1;
-                                    }
-                                    else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v /= work_value_1;
-                                    }
-                                    else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v = work_value_1;
-                                    }
-                                }
-                                else
-                                {
-                                    /* 右辺は変数 */
-                                    if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v += right_1.CurrentValue;
-                                    }
-                                    else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v -= right_1.CurrentValue;
-                                    }
-                                    else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v *= right_1.CurrentValue;
-                                    }
-                                    else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v /= right_1.CurrentValue;
-                                    }
-                                    else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1_v = right_1.CurrentValue;
-                                    }
-                                }
-                                switch (val_reg)        //汎用ＲＡＭに値を入れる
-                                {
-                                    case VAL_REG_A:
-                                        A_REG = work_1_v;
-                                        break;
-                                    case VAL_REG_B:
-                                        B_REG = work_1_v;
-                                        break;
-                                    case VAL_REG_C:
-                                        C_REG = work_1_v;
-                                        break;
-                                    default:
-                                        Console.WriteLine("error val_reg");
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                if (int_flag_R_1 == true)
-                                {
-                                    /* 右辺は即値 */
-                                    if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue += work_value_1;
-                                    }
-                                    else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue -= work_value_1;
-                                    }
-                                    else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue *= work_value_1;
-                                    }
-                                    else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue /= work_value_1;
-                                    }
-                                    else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue = work_value_1;
-                                    }
-                                }
-                                else
-                                {
-                                    /* 右辺は変数 */
-                                    if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue += right_1.CurrentValue;
-                                    }
-                                    else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue -= right_1.CurrentValue;
-                                    }
-                                    else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue *= right_1.CurrentValue;
-                                    }
-                                    else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue /= right_1.CurrentValue;
-                                    }
-                                    else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            /* = */
-                            /* 右辺の項は二つ */
+							if (var_flag_L == true)
+							{
+								/* 左辺、汎用パラメーター */
+								if (int_flag_R_1 == true)
+								{
+									/* 右辺は即値 */
+									if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v += work_value_1;
+									}
+									else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v -= work_value_1;
+									}
+									else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v *= work_value_1;
+									}
+									else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v /= work_value_1;
+									}
+									else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v = work_value_1;
+									}
+								}
+								else
+								{
+									/* 右辺は変数 */
+									if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v += right_1.CurrentValue;
+									}
+									else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v -= right_1.CurrentValue;
+									}
+									else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v *= right_1.CurrentValue;
+									}
+									else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v /= right_1.CurrentValue;
+									}
+									else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1_v = right_1.CurrentValue;
+									}
+								}
+								switch (val_reg)        //汎用ＲＡＭに値を入れる
+								{
+									case VAL_REG_A:
+										A_REG = work_1_v;
+										break;
+									case VAL_REG_B:
+										B_REG = work_1_v;
+										break;
+									case VAL_REG_C:
+										C_REG = work_1_v;
+										break;
+									default:
+										Console.WriteLine("error val_reg");
+										break;
+								}
+							}
+							else
+							{
+								if (int_flag_R_1 == true)
+								{
+									/* 右辺は即値 */
+									if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue += work_value_1;
+									}
+									else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue -= work_value_1;
+									}
+									else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue *= work_value_1;
+									}
+									else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue /= work_value_1;
+									}
+									else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue = work_value_1;
+									}
+								}
+								else
+								{
+									/* 右辺は変数 */
+									if ("+=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue += right_1.CurrentValue;
+									}
+									else if ("-=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue -= right_1.CurrentValue;
+									}
+									else if ("*=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue *= right_1.CurrentValue;
+									}
+									else if ("/=" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue /= right_1.CurrentValue;
+									}
+									else if ("<-" == textrowbuf.Substring(inrowcountold, work_2))
+									{
+										work_1.CurrentValue = right_1.CurrentValue;
+									}
+								}
+							}
+						}
+						else
+						{
+							/* = */
+							/* 右辺の項は二つ */
 
-                            inrowcountold = inrowcount;
-                            /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
+							inrowcountold = inrowcount;
+							/* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
 
-                            /** 右辺第一項取得 **/
-                            while (textrowbuf.Substring(inrowcount, 1) != ":")
-                            {
-                                inrowcount++;
-                                work_ct++;
-                            }
-                            if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcount, work_ct))
-                            {
-                                work_1 = Sis.HitPoint;
-                            }
-                            else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcount, work_ct))
-                            {
+							/** 右辺第一項取得 **/
+							while (textrowbuf.Substring(inrowcount, 1) != ":")
+							{
+								inrowcount++;
+								work_ct++;
+							}
+							if (work_ct >= 2 && "体力" == textrowbuf.Substring(inrowcount, work_ct))
+							{
+								work_1 = Sis.HitPoint;
+							}
+							else if (work_ct >= 2 && "気力" == textrowbuf.Substring(inrowcount, work_ct))
+							{
 								work_1 = Sis.MentalPoint;
-                            }
-                            else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcount, work_ct))
-                            {
-                                work_1 = Sis.PassionPoint;
-                            }
-                            else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcount, work_ct))
-                            {
-                                work_1 = Sis.MoralPoint;
-                            }
-                            else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_1 = Sis.MoralPoint;
-                            }
-                            else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_1 = Sis.MoralPoint;
-                            }
-                            else if (work_ct >= 2 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_value_1 = A_REG;
-                                int_flag_R_1 = true;
-                            }
-                            else if (work_ct >= 2 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_value_1 = B_REG;
-                                int_flag_R_1 = true;
-                            }
-                            else if (work_ct >= 2 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_value_1 = C_REG;
-                                int_flag_R_1 = true;
-                            }
-                            else if (work_ct >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct))
-                            {
-                                work_value_1 = rand;
-                                int_flag_R_1 = true;
-                            }
-                            else
-                            {
-                                /* 整数値 */
-                                while (work_value_1 < D_WORKVAL_MAX)
-                                {
-                                    if (textrowbuf.Substring(inrowcountold, work_ct) == work_value_1.ToString())
-                                    {
-                                        break;
-                                    }
-                                    work_value_1++;
-                                    int_flag_R_1 = true;
-                                }
-                            }
+							}
+							else if (work_ct >= 3 && "性欲値" == textrowbuf.Substring(inrowcount, work_ct))
+							{
+								work_1 = Sis.PassionPoint;
+							}
+							else if (work_ct >= 3 && "道徳心" == textrowbuf.Substring(inrowcount, work_ct))
+							{
+								work_1 = Sis.MoralPoint;
+							}
+							else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_1 = Sis.MoralPoint;
+							}
+							else if (work_ct >= 2 && "酒数" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_1 = Sis.MoralPoint;
+							}
+							else if (work_ct >= 2 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = A_REG;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 2 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = B_REG;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 2 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = C_REG;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = rand;
+								int_flag_R_1 = true;
+							}
+							else
+							{
+								/* 整数値 */
+								while (work_value_1 < D_WORKVAL_MAX)
+								{
+									if (textrowbuf.Substring(inrowcountold, work_ct) == work_value_1.ToString())
+									{
+										break;
+									}
+									work_value_1++;
+									int_flag_R_1 = true;
+								}
+							}
 
-                            inrowcount++;
-                            inrowcountold = inrowcount;
-                            /* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
+							inrowcount++;
+							inrowcountold = inrowcount;
+							/* こちらの分岐では演算子付き等号は出てこないので、inrowcountoldは更新してしまって良い */
 
-                            /* 演算子の分カウンタを進める */
-                            inrowcount++;
-                            inrowcount++;
-                            /* inrowcountoldは、演算子を後で拾うために動かさない */
+							/* 演算子の分カウンタを進める */
+							inrowcount++;
+							inrowcount++;
+							/* inrowcountoldは、演算子を後で拾うために動かさない */
 
-                            /** 右辺第二項取得 **/
-                            if ("性欲値" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_2 = Sis.PassionPoint;
-                            }
-                            else if ("堕落度" == textrowbuf.Substring(inrowcount))
-                            {
-                                right_2 = Sis.MoralPoint;
-                            }
-                            else if ("汎用Ａ" == textrowbuf.Substring(inrowcount - work_ct))
-                            {
-                                work_value_2 = A_REG;
-                                int_flag_R_2 = true;
-                            }
-                            else if ("汎用Ｂ" == textrowbuf.Substring(inrowcount - work_ct))
-                            {
-                                work_value_2 = B_REG;
-                                int_flag_R_2 = true;
-                            }
-                            else if ("汎用Ｃ" == textrowbuf.Substring(inrowcount - work_ct))
-                            {
-                                work_value_2 = C_REG;
-                                int_flag_R_2 = true;
-                            }
-                            else if ("乱数" == textrowbuf.Substring(inrowcount - work_ct))
-                            {
-                                work_value_2 = rand;
-                                int_flag_R_2 = true;
-                            }
-                            else
-                            {
-                                /* 整数値 */
-                                while (work_value_2 < D_WORKVAL_MAX)
-                                {
-                                    if (textrowbuf.Substring(inrowcount) == work_value_2.ToString())
-                                    {
-                                        break;
-                                    }
-                                    work_value_2++;
-                                    int_flag_R_2 = true;
-                                }
-                            }
+							/** 右辺第二項取得 **/
+							if ("性欲値" == textrowbuf.Substring(inrowcount))
+							{
+								right_2 = Sis.PassionPoint;
+							}
+							else if ("堕落度" == textrowbuf.Substring(inrowcount))
+							{
+								right_2 = Sis.MoralPoint;
+							}
+							else if ("汎用Ａ" == textrowbuf.Substring(inrowcount - work_ct))
+							{
+								work_value_2 = A_REG;
+								int_flag_R_2 = true;
+							}
+							else if ("汎用Ｂ" == textrowbuf.Substring(inrowcount - work_ct))
+							{
+								work_value_2 = B_REG;
+								int_flag_R_2 = true;
+							}
+							else if ("汎用Ｃ" == textrowbuf.Substring(inrowcount - work_ct))
+							{
+								work_value_2 = C_REG;
+								int_flag_R_2 = true;
+							}
+							else if ("乱数" == textrowbuf.Substring(inrowcount - work_ct))
+							{
+								work_value_2 = rand;
+								int_flag_R_2 = true;
+							}
+							else
+							{
+								/* 整数値 */
+								while (work_value_2 < D_WORKVAL_MAX)
+								{
+									if (textrowbuf.Substring(inrowcount) == work_value_2.ToString())
+									{
+										break;
+									}
+									work_value_2++;
+									int_flag_R_2 = true;
+								}
+							}
 
-                            /** 計算 **/
-                            if (var_flag_L == true)
-                            {
-                                if (int_flag_R_1 == true && int_flag_R_2 == true)
-                                {
-                                    /* 右辺の両項とも即値 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 + work_value_2;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 - work_value_2;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 * work_value_2;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 / work_value_2;
-                                    }
-                                }
-                                else if (int_flag_R_1 == true && int_flag_R_2 == false)
-                                {
-                                    /* 右辺の第一項：即値　第二項：変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 + right_2.CurrentValue;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 - right_2.CurrentValue;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 * right_2.CurrentValue;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = work_value_1 / right_2.CurrentValue;
-                                    }
-                                }
-                                else if (int_flag_R_1 == false && int_flag_R_2 == true)
-                                {
-                                    /* 右辺の第一項：即値　第二項：変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue + work_value_2;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue - work_value_2;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue * work_value_2;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue / work_value_2;
-                                    }
-                                }
-                                else
-                                {
-                                    /* 右辺の両項とも変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue + right_2.CurrentValue;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue - right_2.CurrentValue;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue * right_2.CurrentValue;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1_v = right_1.CurrentValue / right_2.CurrentValue;
-                                    }
-                                }
+							/** 計算 **/
+							if (var_flag_L == true)
+							{
+								if (int_flag_R_1 == true && int_flag_R_2 == true)
+								{
+									/* 右辺の両項とも即値 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 + work_value_2;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 - work_value_2;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 * work_value_2;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 / work_value_2;
+									}
+								}
+								else if (int_flag_R_1 == true && int_flag_R_2 == false)
+								{
+									/* 右辺の第一項：即値　第二項：変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 + right_2.CurrentValue;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 - right_2.CurrentValue;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 * right_2.CurrentValue;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = work_value_1 / right_2.CurrentValue;
+									}
+								}
+								else if (int_flag_R_1 == false && int_flag_R_2 == true)
+								{
+									/* 右辺の第一項：即値　第二項：変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue + work_value_2;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue - work_value_2;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue * work_value_2;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue / work_value_2;
+									}
+								}
+								else
+								{
+									/* 右辺の両項とも変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue + right_2.CurrentValue;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue - right_2.CurrentValue;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue * right_2.CurrentValue;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1_v = right_1.CurrentValue / right_2.CurrentValue;
+									}
+								}
 
-                                switch (val_reg)        //汎用ＲＡＭに値を入れる
-                                {
-                                    case VAL_REG_A:
-                                        A_REG = work_1_v;
-                                        break;
-                                    case VAL_REG_B:
-                                        B_REG = work_1_v;
-                                        break;
-                                    case VAL_REG_C:
-                                        C_REG = work_1_v;
-                                        break;
-                                    default:
-                                        Console.WriteLine("error val_reg");
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                if (int_flag_R_1 == true && int_flag_R_2 == true)
-                                {
-                                    /* 右辺の両項とも即値 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 + work_value_2;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 - work_value_2;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 * work_value_2;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 / work_value_2;
-                                    }
-                                }
-                                else if (int_flag_R_1 == true && int_flag_R_2 == false)
-                                {
-                                    /* 右辺の第一項：即値　第二項：変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 + right_2.CurrentValue;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 - right_2.CurrentValue;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 * right_2.CurrentValue;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = work_value_1 / right_2.CurrentValue;
-                                    }
-                                }
-                                else if (int_flag_R_1 == false && int_flag_R_2 == true)
-                                {
-                                    /* 右辺の第一項：即値　第二項：変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue + work_value_2;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue - work_value_2;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue * work_value_2;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue / work_value_2;
-                                    }
-                                }
-                                else
-                                {
-                                    /* 右辺の両項とも変数 */
-                                    if ("+" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue + right_2.CurrentValue;
-                                    }
-                                    else if ("-" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue - right_2.CurrentValue;
-                                    }
-                                    else if ("*" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue * right_2.CurrentValue;
-                                    }
-                                    else if ("/" == textrowbuf.Substring(inrowcountold, 1))
-                                    {
-                                        work_1.CurrentValue = right_1.CurrentValue / right_2.CurrentValue;
-                                    }
-                                }
-                            }
-                        }
+								switch (val_reg)        //汎用ＲＡＭに値を入れる
+								{
+									case VAL_REG_A:
+										A_REG = work_1_v;
+										break;
+									case VAL_REG_B:
+										B_REG = work_1_v;
+										break;
+									case VAL_REG_C:
+										C_REG = work_1_v;
+										break;
+									default:
+										Console.WriteLine("error val_reg");
+										break;
+								}
+							}
+							else
+							{
+								if (int_flag_R_1 == true && int_flag_R_2 == true)
+								{
+									/* 右辺の両項とも即値 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 + work_value_2;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 - work_value_2;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 * work_value_2;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 / work_value_2;
+									}
+								}
+								else if (int_flag_R_1 == true && int_flag_R_2 == false)
+								{
+									/* 右辺の第一項：即値　第二項：変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 + right_2.CurrentValue;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 - right_2.CurrentValue;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 * right_2.CurrentValue;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = work_value_1 / right_2.CurrentValue;
+									}
+								}
+								else if (int_flag_R_1 == false && int_flag_R_2 == true)
+								{
+									/* 右辺の第一項：即値　第二項：変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue + work_value_2;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue - work_value_2;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue * work_value_2;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue / work_value_2;
+									}
+								}
+								else
+								{
+									/* 右辺の両項とも変数 */
+									if ("+" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue + right_2.CurrentValue;
+									}
+									else if ("-" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue - right_2.CurrentValue;
+									}
+									else if ("*" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue * right_2.CurrentValue;
+									}
+									else if ("/" == textrowbuf.Substring(inrowcountold, 1))
+									{
+										work_1.CurrentValue = right_1.CurrentValue / right_2.CurrentValue;
+									}
+								}
+							}
+						}
 
-                        /* 改行 */
-                        count++;
-                        count++;
+						/* 改行 */
+						count++;
+						count++;
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                        inrowcountold = 0;
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+						inrowcountold = 0;
 
-                    }
-                    else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "If(")
-                    {
-                        /*** 条件分岐 If文 ***/
+					}
+					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "If(")
+					{
+						/*** 条件分岐 If文 ***/
 
-                        inrowcount = 4;
-                        int inrowcountold = inrowcount;
-                        int work_ct_1 = 0;
-                        int work_ct_2 = 0;
-                        Parameter work_1 = new Parameter();
-                        int work_1_v = 0;
-                        int work_2 = 0;
-                        int work_3 = 0;
-                        int work_4 = 0;
-                        Parameter work_5 = new Parameter();
-                        int work_value = 0;
-                        bool int_flag_L = false;              /* 左辺即値 */
-                        bool int_flag_R = false;              /* 右辺即値 */
+						inrowcount = 4;
+						int inrowcountold = inrowcount;
+						int work_ct_1 = 0;
+						int work_ct_2 = 0;
+						Parameter work_1 = new Parameter();
+						int work_1_v = 0;
+						int work_2 = 0;
+						int work_3 = 0;
+						int work_4 = 0;
+						Parameter work_5 = new Parameter();
+						int work_value = 0;
+						bool int_flag_L = false;              /* 左辺即値 */
+						bool int_flag_R = false;              /* 右辺即値 */
 
-                        /** 条件左辺取得 **/
-                        while (textrowbuf.Substring(inrowcount, 1) != " ")
-                        {
-                            inrowcount++;
-                            work_ct_1++;
-                        }
-                        if (work_ct_1 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.HitPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
+						/** 条件左辺取得 **/
+						while (textrowbuf.Substring(inrowcount, 1) != " ")
+						{
+							inrowcount++;
+							work_ct_1++;
+						}
+						if (work_ct_1 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.HitPoint;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
 							work_1 = Sis.MentalPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.PassionPoint;
-                            int_flag_L = false;
-                        }
-                        else if (work_ct_1 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_1))
-                        {
-                            work_1 = Sis.MoralPoint;
-                            int_flag_L = false;
-                        }
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.PassionPoint;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_1 = Sis.MoralPoint;
+							int_flag_L = false;
+						}
 						else if (work_ct_1 >= 4 && "ふたなり" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							//////////未作成//////////
@@ -967,60 +1008,60 @@ namespace DoujinGameProject.Action
 							Console.WriteLine("if文左辺");
 						}
 
-                        inrowcount++;
-                        inrowcountold = inrowcount;
+						inrowcount++;
+						inrowcountold = inrowcount;
 
-                        /** 比較演算子取得 **/
-                        while (textrowbuf.Substring(inrowcount, 1) != " ")
-                        {
-                            inrowcount++;
-                            work_2++;
-                        }
-
-                        inrowcount++;
-                        inrowcountold = inrowcount;
-
-                        /** 条件右辺取得 **/
-                        /* 文字数取得 */
-                        while (textrowbuf.Substring(inrowcountold + work_ct_2, 1) != " ")
-                        {
-                            inrowcount++;
-                            work_ct_2++;
-                        }
-                        if (work_ct_2 >= 2 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.HitPoint;
-                            int_flag_R = false;
-                        }
-                        if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.HitPoint;
-                            int_flag_R = false;
-                        }
-                        if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.HitPoint;
-                            int_flag_R = false;
-                        }
-                        else if (work_ct_2 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-							work_5 = Sis.MentalPoint;
-                            int_flag_R = false;
-                        }
-                        else if (work_ct_2 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.PassionPoint;
-                            int_flag_R = false;
-                        }
-                        else if (work_ct_2 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.MoralPoint;
-                            int_flag_R = false;
+						/** 比較演算子取得 **/
+						while (textrowbuf.Substring(inrowcount, 1) != " ")
+						{
+							inrowcount++;
+							work_2++;
 						}
-                        else if (work_ct_2 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5 = Sis.MoralPoint;
-                            int_flag_R = false;
+
+						inrowcount++;
+						inrowcountold = inrowcount;
+
+						/** 条件右辺取得 **/
+						/* 文字数取得 */
+						while (textrowbuf.Substring(inrowcountold + work_ct_2, 1) != " ")
+						{
+							inrowcount++;
+							work_ct_2++;
+						}
+						if (work_ct_2 >= 2 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.HitPoint;
+							int_flag_R = false;
+						}
+						if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.HitPoint;
+							int_flag_R = false;
+						}
+						if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.HitPoint;
+							int_flag_R = false;
+						}
+						else if (work_ct_2 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.MentalPoint;
+							int_flag_R = false;
+						}
+						else if (work_ct_2 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.PassionPoint;
+							int_flag_R = false;
+						}
+						else if (work_ct_2 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.MoralPoint;
+							int_flag_R = false;
+						}
+						else if (work_ct_2 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5 = Sis.MoralPoint;
+							int_flag_R = false;
 						}
 						else if (work_ct_2 >= 5 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
@@ -1072,513 +1113,513 @@ namespace DoujinGameProject.Action
 							work_5.CurrentValue = Defines.LOC_BACKSTREET;
 							int_flag_R = true;
 						}
-                        else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5.CurrentValue = A_REG;
+						else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = A_REG;
 							int_flag_R = true;
-                        }
-                        else if (work_ct_2 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5.CurrentValue = B_REG;
-							int_flag_R = true;
-                        }
-                        else if (work_ct_2 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5.CurrentValue = C_REG;
-							int_flag_R = true;
-                        }
-                        else if (work_ct_2 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5.CurrentValue = Slct_No;
-                            int_flag_R = true;
-                        }
-                        else if (work_ct_2 >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct_2))
-                        {
-                            work_5.CurrentValue = rand;
-                            int_flag_R = true;
 						}
-                        else if (textrowbuf.Length >= inrowcountold + 4 && textrowbuf.Substring(inrowcountold, work_ct_2) == "true")
-                        {
-                            /* true (bool) */
-                            /* bool値は、true⇒1　false⇒0 と変換して使用する */
+						else if (work_ct_2 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = B_REG;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = C_REG;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = Slct_No;
+							int_flag_R = true;
+						}
+						else if (work_ct_2 >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct_2))
+						{
+							work_5.CurrentValue = rand;
+							int_flag_R = true;
+						}
+						else if (textrowbuf.Length >= inrowcountold + 4 && textrowbuf.Substring(inrowcountold, work_ct_2) == "true")
+						{
+							/* true (bool) */
+							/* bool値は、true⇒1　false⇒0 と変換して使用する */
 
-                            work_value = 1;
-                            int_flag_R = true;
-                        }
-                        else if (textrowbuf.Length >= inrowcountold + 5 && textrowbuf.Substring(inrowcountold, work_ct_2) == "false")
-                        {
-                            /* false (bool) */
+							work_value = 1;
+							int_flag_R = true;
+						}
+						else if (textrowbuf.Length >= inrowcountold + 5 && textrowbuf.Substring(inrowcountold, work_ct_2) == "false")
+						{
+							/* false (bool) */
 
-                            work_value = 0;
-                            int_flag_R = true;
-                        }
-                        else
-                        {
-                            /* 整数値 */
-                            while (work_value < D_WORKVAL_MAX)
-                            {
-                                if (textrowbuf.Substring(inrowcountold, work_ct_2) == work_value.ToString())
-                                {
-                                    break;
-                                }
-                                work_value++;
-                            }
-                            int_flag_R = true;
-                        }
+							work_value = 0;
+							int_flag_R = true;
+						}
+						else
+						{
+							/* 整数値 */
+							while (work_value < D_WORKVAL_MAX)
+							{
+								if (textrowbuf.Substring(inrowcountold, work_ct_2) == work_value.ToString())
+								{
+									break;
+								}
+								work_value++;
+							}
+							int_flag_R = true;
+						}
 
-                        inrowcount += 3;
+						inrowcount += 3;
 
-                        /** ジャンプ先ラベル文字数取得 **/
-                        while (textrowbuf.Substring(inrowcount + work_4, 1) != "]")
-                        {
-                            work_4++;
-                        }
-                        work_4++;
+						/** ジャンプ先ラベル文字数取得 **/
+						while (textrowbuf.Substring(inrowcount + work_4, 1) != "]")
+						{
+							work_4++;
+						}
+						work_4++;
 
-                        /** 条件式に従ってジャンプ **/
+						/** 条件式に従ってジャンプ **/
 
-                        if (int_flag_L == false && int_flag_R == false)
-                        {
-                            //左辺：変数　右辺：変数
+						if (int_flag_L == false && int_flag_R == false)
+						{
+							//左辺：変数　右辺：変数
 
-                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
-                                if (work_1.CurrentValue < work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+							if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
+								if (work_1.CurrentValue < work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue <= work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue <= work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue > work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue > work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue >= work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue >= work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue == work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue == work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue != work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue != work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
+									count++;
+								}
+							}
 
-                        }
-                        else if (int_flag_L == false && int_flag_R == true)
-                        {
-                            // 左辺変数
-                            int_flag_R = false;
+						}
+						else if (int_flag_L == false && int_flag_R == true)
+						{
+							// 左辺変数
+							int_flag_R = false;
 
-                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
-                                if (work_1.CurrentValue < work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+							if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
+								if (work_1.CurrentValue < work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue <= work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue <= work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue > work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue > work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue >= work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue >= work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue == work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue == work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_1.CurrentValue != work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_1.CurrentValue != work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
+									count++;
+								}
+							}
 
-                        }
-                        else if (int_flag_L == true && int_flag_R == false)
-                        {
-                            //右辺変数
+						}
+						else if (int_flag_L == true && int_flag_R == false)
+						{
+							//右辺変数
 
-                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
-                                if (work_3 < work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+							if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
+								if (work_3 < work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 <= work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 <= work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 > work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 > work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 >= work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 >= work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 == work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 == work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 != work_5.CurrentValue)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 != work_5.CurrentValue)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
+									count++;
+								}
+							}
 
-                        }
-                        else if (int_flag_L == true && int_flag_R == true)
-                        {
-                            // 左辺：整数値　右辺：整数値
-                            int_flag_R = false;
+						}
+						else if (int_flag_L == true && int_flag_R == true)
+						{
+							// 左辺：整数値　右辺：整数値
+							int_flag_R = false;
 
-                            if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
-                                if (work_3 < work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+							if ("<" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
+								if (work_3 < work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("<=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 <= work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 <= work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 > work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 > work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if (">=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 >= work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 >= work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 == work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 == work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
-                            else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
-                            {
+									count++;
+								}
+							}
+							else if ("!=" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
 
-                                if (work_3 != work_value)
-                                {
-                                    string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
-                                    count = text.IndexOf(aiueo) + 2;
-                                }
-                                else
-                                {
-                                    /* 改行 */
-                                    count++;
-                                    count++;
+								if (work_3 != work_value)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
 
-                                    count++;
-                                }
-                            }
+									count++;
+								}
+							}
 
-                        }
+						}
 
-                        countold = count;
-                        sentence_ct = getNowSent(count);
-                        inrowcount = 0;
-                        inrowcountold = 0;
-                    }
-                    /*======================*/
-                    /*    発言者コマンド    */
-                    /*======================*/
-                    else if (textrowbuf == "Text")
-                    {
-                        Color = Brushes.White;
+						countold = count;
+						sentence_ct = getNowSent(count);
+						inrowcount = 0;
+						inrowcountold = 0;
+					}
+					/*======================*/
+					/*    発言者コマンド    */
+					/*======================*/
+					else if (textrowbuf == "Text")
+					{
+						Color = Brushes.White;
 
 						name[0] = "Text";
 
@@ -1589,10 +1630,10 @@ namespace DoujinGameProject.Action
 						countold = count;
 						sentence_ct++;
 						inrowcount = 0;
-                    }
+					}
 					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "サラ")
-                    {
-                        Color = Brushes.Pink;
+					{
+						Color = Brushes.Pink;
 						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
 						name[0] = "サラ";
@@ -1604,10 +1645,10 @@ namespace DoujinGameProject.Action
 						countold = count;
 						sentence_ct++;
 						inrowcount = 0;
-                    }
+					}
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "マリー")
-                    {
-                        Color = Brushes.Yellow;
+					{
+						Color = Brushes.Yellow;
 
 						Program.Doujin_game_sharp.setCharacterImageLeft(textrowbuf);
 
@@ -1616,14 +1657,14 @@ namespace DoujinGameProject.Action
 						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                    }
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "リディ")
-                    {
-                        Color = Brushes.Orange;
+					{
+						Color = Brushes.Orange;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
 						name[0] = "リディ";
@@ -1631,13 +1672,13 @@ namespace DoujinGameProject.Action
 						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                    }
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "触手娘")
-                    {
+					{
 						Color = Brushes.Green;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
@@ -1646,13 +1687,13 @@ namespace DoujinGameProject.Action
 						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                    }
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
 					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "魔物")
-                    {
+					{
 						Color = Brushes.Magenta;
 						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
@@ -1661,10 +1702,10 @@ namespace DoujinGameProject.Action
 						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
 					}
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "？？？")
 					{
@@ -1681,37 +1722,37 @@ namespace DoujinGameProject.Action
 						sentence_ct++;
 						inrowcount = 0;
 					}
-                    else if (textrowbuf == "Plus")
-                    {
-                        Color = Brushes.Blue;
+					else if (textrowbuf == "Plus")
+					{
+						Color = Brushes.Blue;
 
 						name[0] = "Plus";
 
 						/* キャラ名の消去 */
 						Program.Doujin_game_sharp.ClearCharacterName();
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                    }
-                    else if (textrowbuf == "Minus")
-                    {
-                        Color = Brushes.Red;
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf == "Minus")
+					{
+						Color = Brushes.Red;
 
 						name[0] = "Minus";
 
 						/* キャラ名の消去 */
 						Program.Doujin_game_sharp.ClearCharacterName();
 
-                        count++;
-                        countold = count;
-                        sentence_ct++;
-                        inrowcount = 0;
-                    }
-                    /*======================*/
-                    /*     効果コマンド     */
-                    /*======================*/
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					/*======================*/
+					/*     効果コマンド     */
+					/*======================*/
 					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "IN")
 					{
 						/* 立ち絵の表示 */
