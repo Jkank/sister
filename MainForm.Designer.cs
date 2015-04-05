@@ -238,9 +238,10 @@ namespace DoujinGameProject
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_3);
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_2);
 			this.PNL_Eventslct.Controls.Add(this.Slctbox_1);
+			this.PNL_Eventslct.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PNL_Eventslct.Location = new System.Drawing.Point(0, 0);
 			this.PNL_Eventslct.Name = "PNL_Eventslct";
-			this.PNL_Eventslct.Size = new System.Drawing.Size(10, 10);
+			this.PNL_Eventslct.Size = new System.Drawing.Size(800, 600);
 			this.PNL_Eventslct.TabIndex = 6;
 			this.PNL_Eventslct.Visible = false;
 			// 
@@ -1065,7 +1066,7 @@ namespace DoujinGameProject
 			// Timer_Wait
 			// 
 			this.Timer_Wait.Interval = 10;
-			this.Timer_Wait.Tick += new System.EventHandler(this.WaitTimer_Tick);
+			this.Timer_Wait.Tick += new System.EventHandler(this.Timer_Wait_Tick);
 			// 
 			// Timer_LogFin
 			// 

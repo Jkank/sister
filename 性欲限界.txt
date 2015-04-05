@@ -6,8 +6,105 @@
 あぁぁ……もうだめ……
 我慢できないよぉぉ……！！;
 
+If( サキュバス化 == true ) [L_PASSION_LIMIT_2000]:
+
+サラ:
+……ひゃあああんっ！！
+
 Text:
-私はその場で;
+私はその場で絶頂に達し、
+あられもない声を上げてしまいました……;
+
+If( 現在位置 == 礼拝堂 ) [L_PASSION_LIMIT_0000]:
+If( 現在位置 == サラの部屋 ) [L_PASSION_LIMIT_0100]:
+If( 現在位置 == マリーの部屋 ) [L_PASSION_LIMIT_0200]:
+If( 現在位置 == リディの部屋 ) [L_PASSION_LIMIT_0300]:
+If( 現在位置 == 書庫 ) [L_PASSION_LIMIT_0400]:
+If( 現在位置 == 商店 ) [L_PASSION_LIMIT_0500]:
+If( 現在位置 == 酒場 ) [L_PASSION_LIMIT_0600]:
+If( 現在位置 == 広場 ) [L_PASSION_LIMIT_0700]:
+If( 現在位置 == 路地裏 ) [L_PASSION_LIMIT_0800]:
+
+[L_PASSION_LIMIT_0000]:
+//礼拝堂にいる場合
+
+If ( 時刻 >= 18 ) [L_PASSION_LIMIT_0050]:
+//昼
+
+計算 汎用Ａ = 乱数:
+
+If ( 汎用Ａ > 60 ) [L_PASSION_LIMIT_0010]:
+If ( 汎用Ａ > 40 ) [L_PASSION_LIMIT_0020]:
+If ( 汎用Ａ > 20 ) [L_PASSION_LIMIT_0030]:
+JMP [L_PASSION_LIMIT_0040]:
+
+[L_PASSION_LIMIT_0010]:
+//一人
+
+サラ:
+はぁ……はぁ……;
+
+Talk:
+…………;
+
+Talk:
+幸い、誰にも聞かれていなかったようです。;
+
+サラ:
+あ……あぶなかったぁ……;
+
+サラ:
+（……でも、ドキドキしてたせいか、
+　すっごく気持ち良かったな……）;
+
+Plus:
+性欲が70解消された;
+
+計算 性欲 -= 70;
+
+Minus:
+体力が10下がった;
+
+計算 体力 -= 10;
+
+Minus:
+気力が10下がった;
+
+計算 気力 -= 10;
+
+
+計算 汎用Ｂ = 露出癖ＬＶ * 3:
+計算 汎用Ａ = 汎用Ｂ + 40:
+
+Minus:
+魔力が＜汎用Ａ＞たまった;
+
+計算 魔力 += 50;
+
+JMP [L_PASSION_LIMIT_EXT]:
+
+[L_PASSION_LIMIT_0020]:
+//マリー
+
+[L_PASSION_LIMIT_0030]:
+//リディ
+
+[L_PASSION_LIMIT_0040]:
+//一般信者
+
+
+[L_PASSION_LIMIT_0050]:
+//夜
+Talk:
+
+
+
+
+[L_PASSION_LIMIT_2000]:
+//サキュバス
+
+Text:
+
 
 
 END:

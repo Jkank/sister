@@ -66,19 +66,17 @@ namespace DoujinGameProject
 			//TODO: ここでやるか、NewGame/LoadGame時にやるか検討
 			GameData.Initialize();
 
-			GameData.SisterData.PassionPoint.MaxValue = 100;
+			/* 気力 */
 			GameData.SisterData.MoralPoint.MaxValue = 100;
+			GameData.SisterData.MoralPoint.CurrentValue = 100;
+
+			/* 性欲値 */
+			GameData.SisterData.PassionPoint.MaxValue = 100;
 			GameData.SisterData.PassionPoint.CurrentValue = 80;
-			GameData.SisterData.MoralPoint.CurrentValue = 20;
+
 
 			GameData.ScenarioData.Slct_No = 0;
 
-			//this.DoubleBuffered = true;  // ダブルバッファリング: 画面のちらつきを抑止
-			////////確認中　ちらつき防止にダブルバッファリングを有効にしたい////////
-			//this.SetStyle(ControlStyles.DoubleBuffer, true);
-			//this.SetStyle(ControlStyles.UserPaint, true);
-			//this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-			////////////////////////////////////////////////////////////////////////
 			//EnableDoubleBuffering(PNL_Background);
 			EnableDoubleBuffering(PNL_Event);
 		}
@@ -97,37 +95,13 @@ namespace DoujinGameProject
 		}
 
 
-
-
-		//////////////////////* === ロードボタン === *//////////////////////
-
-
-		////////////////////////////////////////////////////////////////////
-
-
-
-		////////////////////* === オプションボタン === *////////////////////
-
-
-		////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
 		/* == 以下サブルーチン的メソッド == */
 
 
 
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：ChangeNowFile		　  　　　　　　　　　		■ */
+		/* ■　関数名：ChangeNowFile		　  　　　　　　　　　■ */
 		/* ■　内容：参照ファイル変更処理						   ■ */
 		/* ■　入力：file_id                                 　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
@@ -137,41 +111,79 @@ namespace DoujinGameProject
 			nowfile = file_id;
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：setCharacterImageLeft　  　　　　　　　　　■ */
+		/* ■　内容：左キャラボックスにキャラ画像を				   ■ */
+		/* ■　　　　設定・表示する処理							   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void setCharacterImageLeft(string imagename)
 		{
 			setCharacterImage(PIC_Chara_pos1, imagename);
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：setCharacterImageRight　  　　　　　　　　　■ */
+		/* ■　内容：右キャラボックスにキャラ画像を				   ■ */
+		/* ■　　　　設定・表示する処理							   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void setCharacterImageRight(string imagename)
 		{
 			setCharacterImage(PIC_Chara_pos2, imagename);
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：delCharacterImageLeft　  　　　　　　　　　■ */
+		/* ■　内容：左キャラボックスにキャラ画像を				   ■ */
+		/* ■　　　　消去する処理								   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void delCharacterImageLeft()
 		{
 			PIC_Chara_pos1.Visible = false;
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：delCharacterImageLeft　  　　　　　　　　　■ */
+		/* ■　内容：右キャラボックスにキャラ画像を				   ■ */
+		/* ■　　　　消去する処理								   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void delCharacterImageRight()
 		{
 			PIC_Chara_pos2.Visible = false;
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：delCharacterImageLeft　  　　　　　　　　　■ */
+		/* ■　内容：テキストボックスに画像を設定する処理		   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void setTextAreaImage(Bitmap canvas)
 		{
 			PIC_TextArea.Image = canvas;
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：delCharacterImageLeft　  　　　　　　　　　■ */
+		/* ■　内容：名前ボックスに画像を設定する処理			   ■ */
+		/* ■　入力：imagename                               　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void setNameBoxImage(Bitmap canvas)
 		{
 			PIC_NameBox.Image = canvas;
 		}
-
-
-
+		
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：setCharacterImage　  　　　　　　　　　　 　■ */
-		/* ■　内容：立ち絵設定処理								   ■ */
+		/* ■　関数名：setCharacterImage　  　　　　　　　　　　   ■ */
+		/* ■　内容：立ち絵設定・表示開始処理					   ■ */
 		/* ■　入力：chrbox                                  　 　 ■ */
 		/* ■　      imageID                                 　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
@@ -264,55 +276,42 @@ namespace DoujinGameProject
 					switch (BGPicname)
 					{
 						case "オープニング":
-							//PNL_Event.BackgroundImage = Properties.Resources.g_bg_000_0;
 							PNL_Background.BackgroundImage = Properties.Resources.g_bg_000_0;
 							break;
 						case "教会昼":
-							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_dt;
 							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_dt;
 							break;
 						case "教会夕":
-							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_ev;
 							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_ev;
 							break;
 						case "教会夜":
-							//PNL_Event.BackgroundImage = Properties.Resources.kyoukai_nt;
 							PNL_Background.BackgroundImage = Properties.Resources.kyoukai_nt;
 							break;
 						case "階段":
-							//PNL_Event.BackgroundImage = Properties.Resources.dungeon06;
 							PNL_Background.BackgroundImage = Properties.Resources.dungeon06;
 							break;
 						case "檻":
-							//PNL_Event.BackgroundImage = Properties.Resources.rouya_nt;
 							PNL_Background.BackgroundImage = Properties.Resources.rouya_nt;
 							break;
 						case "部屋昼":
-							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_dt;
 							PNL_Background.BackgroundImage = Properties.Resources.yadoya_dt;
 							break;
 						case "部屋夕":
-							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_ev;
 							PNL_Background.BackgroundImage = Properties.Resources.yadoya_ev;
 							break;
 						case "部屋夜":
-							//PNL_Event.BackgroundImage = Properties.Resources.yadoya_ntr;
 							PNL_Background.BackgroundImage = Properties.Resources.yadoya_ntr;
 							break;
 						case "書庫":
-							//PNL_Event.BackgroundImage = Properties.Resources.syoko_dt;
 							PNL_Background.BackgroundImage = Properties.Resources.syoko_dt;
 							break;
 						case "町昼":
-							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_dt;
 							PNL_Background.BackgroundImage = Properties.Resources.hiroba_dt;
 							break;
 						case "町夕":
-							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_ev;
 							PNL_Background.BackgroundImage = Properties.Resources.hiroba_ev;
 							break;
 						case "町夜":
-							//PNL_Event.BackgroundImage = Properties.Resources.hiroba_nt;
 							PNL_Background.BackgroundImage = Properties.Resources.hiroba_nt;
 							break;
 						default:
@@ -332,7 +331,7 @@ namespace DoujinGameProject
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		/* ■　関数名：ShowPicforDisp　  　　　　　　　　　　   　■ */
-		/* ■　内容：背景画像をちらつかせずに表示させる処理		   ■ */
+		/* ■　内容：背景画像をちらつかせずに変更する処理		   ■ */
 		/* ■　入力：なし		                             　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
@@ -343,7 +342,13 @@ namespace DoujinGameProject
 		}
 
 
-		private void WaitTimer_Tick(object sender, EventArgs e)
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：Timer_Wait_Tick　  　　　　　　　　　　    ■ */
+		/* ■　内容：背景画像変更の待ち時間経過					   ■ */
+		/* ■　入力：なし		                             　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		private void Timer_Wait_Tick(object sender, EventArgs e)
 		{
 			DispStatus++;
 			setBGPic();
@@ -413,12 +418,7 @@ namespace DoujinGameProject
 		}
 
 
-
-
-
-
-
-
+		
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		/* ■　関数名：CreateTranslucentImage 　　 　　　　　　　  ■ */
 		/* ■　内容：指定された画像をフェードインさせる処理  　 　 ■ */
@@ -495,53 +495,12 @@ namespace DoujinGameProject
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		/* ■　関数名：BackgroundDraw			 　　 　　　　　　 ■ */
-		/* ■　内容：画像・パネルを描画する際、					   ■ */
-		/* ■　　　　見た目上他の画像が消えないようにする処理　 　 ■ */
+		/* ■　内容：透過部分画像・パネルを描画する際、			   ■ */
+		/* ■　　　　透過部分に被られた奥の画像が				   ■ */
+		/* ■		 見た目上消えないようにする処理			　 　  ■ */
 		/* ■　入力：targetpanel_id                          　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		public void BackgroundDraw_All(PictureBox NowPicturebox)
-		{
-
-			//現在の背景画像の状況を再現する。
-			Bitmap canvas = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
-			Graphics g = Graphics.FromImage(canvas);
-
-			Image Image1 = PIC_Chara_pos1.BackgroundImage;
-			Image Image2 = PIC_Chara_pos2.BackgroundImage;
-			Image Image3 = PIC_NameBox.BackgroundImage;
-			Image Image4 = PIC_TextArea.BackgroundImage;
-			Image canvas_img;
-
-			canvas_img = new Bitmap(NowPicturebox.Width, NowPicturebox.Height); ;
-			
-
-			if (Image1 != null && PIC_Chara_pos1.Visible == true)
-			{
-				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - NowPicturebox.Location.X, PIC_Chara_pos1.Location.Y - NowPicturebox.Location.Y, Image1.Width, Image1.Height);
-			}
-			if (Image2 != null && PIC_Chara_pos2.Visible == true)
-			{
-				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - NowPicturebox.Location.X, PIC_Chara_pos2.Location.Y - NowPicturebox.Location.Y, Image2.Width, Image2.Height);
-			}
-			if (Image3 != null && PIC_NameBox.Visible == true)
-			{
-				g.DrawImage(Image3, PIC_NameBox.Location.X - NowPicturebox.Location.X, PIC_NameBox.Location.Y - NowPicturebox.Location.Y, Image3.Width, Image3.Height);
-			}
-			if (Image4 != null && PIC_TextArea.Visible == true)
-			{
-				g.DrawImage(Image4, PIC_TextArea.Location.X - NowPicturebox.Location.X, PIC_TextArea.Location.Y - NowPicturebox.Location.Y, Image4.Width, Image4.Height);
-			}
-
-			g.DrawImage(canvas_img, 0, 0, canvas_img.Width, canvas_img.Height);
-
-
-			//Graphicsオブジェクトのリソースを解放する
-			g.Dispose();
-
-			//PictureBoxに表示する
-			NowPicturebox.BackgroundImage = canvas;
-		}
 		public void BackgroundDraw(PictureBox NowPicturebox)
 		{
 
@@ -584,34 +543,79 @@ namespace DoujinGameProject
 			NowPicturebox.BackgroundImage = canvas;
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：BackgroundDraw2			 　　 　　　　　　 ■ */
+		/* ■　内容：名前表示ウィンドウとテキストウィンドウの	   ■ */
+		/* ■　　　　両方に、BackgroundDraw処理を適用			   ■ */
+		/* ■　入力：targetpanel_id                          　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void BackgroundDraw2(int a)
 		{
 			BackgroundDraw(PIC_NameBox);
 			BackgroundDraw(PIC_TextArea);
 		}
 
-		/////////////////////////////////////////////////////////////////////////////////////
-		//		魔物との取引画面
-		/////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-		private void PrintSklTxt(string txt)
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：BackgroundDraw_All		 　　 　　　　　　 ■ */
+		/* ■　内容：名前表示ウィンドウとテキストウィンドウ、	   ■ */
+		/* ■　		 そして二つのキャラクター画像のすべてに、	   ■ */
+		/* ■　　　　BackgroundDraw処理を適用					   ■ */
+		/* ■　入力：targetpanel_id                          　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		public void BackgroundDraw_All(PictureBox NowPicturebox)
 		{
-			Font fnt = new Font("メイリオ", 12);
-			Bitmap canvas0 = new Bitmap(PIC_stus_text.Width, PIC_stus_text.Height);
-			/* ImageオブジェクトのGraphicsオブジェクトを作成する */
-			Graphics g0 = Graphics.FromImage(canvas0);
-			/* 描画内容を準備 */
-			g0.DrawString(txt, fnt, Brushes.White, 3, 3);
-			/* PictureBoxに表示*/
-			PIC_stus_text.Image = canvas0;
-			/* リソースを解放 */
-			fnt.Dispose();
-			g0.Dispose();
+
+			//現在の背景画像の状況を再現する。
+			Bitmap canvas = new Bitmap(NowPicturebox.Width, NowPicturebox.Height);
+			Graphics g = Graphics.FromImage(canvas);
+
+			Image Image1 = PIC_Chara_pos1.BackgroundImage;
+			Image Image2 = PIC_Chara_pos2.BackgroundImage;
+			Image Image3 = PIC_NameBox.BackgroundImage;
+			Image Image4 = PIC_TextArea.BackgroundImage;
+			Image canvas_img;
+
+			canvas_img = new Bitmap(NowPicturebox.Width, NowPicturebox.Height); ;
+
+
+			if (Image1 != null && PIC_Chara_pos1.Visible == true)
+			{
+				g.DrawImage(Image1, PIC_Chara_pos1.Location.X - NowPicturebox.Location.X, PIC_Chara_pos1.Location.Y - NowPicturebox.Location.Y, Image1.Width, Image1.Height);
+			}
+			if (Image2 != null && PIC_Chara_pos2.Visible == true)
+			{
+				g.DrawImage(Image2, PIC_Chara_pos2.Location.X - NowPicturebox.Location.X, PIC_Chara_pos2.Location.Y - NowPicturebox.Location.Y, Image2.Width, Image2.Height);
+			}
+			if (Image3 != null && PIC_NameBox.Visible == true)
+			{
+				g.DrawImage(Image3, PIC_NameBox.Location.X - NowPicturebox.Location.X, PIC_NameBox.Location.Y - NowPicturebox.Location.Y, Image3.Width, Image3.Height);
+			}
+			if (Image4 != null && PIC_TextArea.Visible == true)
+			{
+				g.DrawImage(Image4, PIC_TextArea.Location.X - NowPicturebox.Location.X, PIC_TextArea.Location.Y - NowPicturebox.Location.Y, Image4.Width, Image4.Height);
+			}
+
+			g.DrawImage(canvas_img, 0, 0, canvas_img.Width, canvas_img.Height);
+
+
+			//Graphicsオブジェクトのリソースを解放する
+			g.Dispose();
+
+			//PictureBoxに表示する
+			NowPicturebox.BackgroundImage = canvas;
 		}
 
+
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：BackgroundDraw_All		 　　 　　　　　　 ■ */
+		/* ■　内容：名前表示ウィンドウとテキストウィンドウ、	   ■ */
+		/* ■　		 そして二つのキャラクター画像のすべてに、	   ■ */
+		/* ■　　　　BackgroundDraw処理を適用					   ■ */
+		/* ■　入力：targetpanel_id                          　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void doujin_game_sharp_Shown(object sender, EventArgs e)
 		{
 			// DirectSoundの初期化
@@ -625,10 +629,18 @@ namespace DoujinGameProject
 			dsound.loadWave(1, "musicbox.wav");
 		}
 
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
+		/* ■　関数名：PlaySoundEffect			 　　 　　　　　　 ■ */
+		/* ■　内容：サウンド鳴動開始処理						   ■ */
+		/* ■　入力：targetpanel_id                          　 　 ■ */
+		/* ■　出力：なし                                    　 　 ■ */
+		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
 		public void PlaySoundEffect(int idx, bool loop)
 		{
 			dsound.play(idx, loop);
 		}
+
+
 
 
 		

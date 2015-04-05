@@ -95,6 +95,13 @@ Text:
 
 ”wŒi •”‰®’‹:
 
+JMP [HP_RUNOUT_EXT]:
+
+[HP_RUNOUT_1400]:
+[HP_RUNOUT_1600]:
+[HP_RUNOUT_1800]:
+
+
 [HP_RUNOUT_5000]:
 //ŠO
 

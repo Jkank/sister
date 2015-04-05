@@ -58,6 +58,10 @@ namespace DoujinGameProject.Action
 	////			＜汎用Ａ＞が計算結果の数値に置き換わる。
 	////			他に、＜汎用Ｂ＞＜汎用Ｃ＞に対応している。
     ////
+	////○END文		イベントを終了する。イベント終了時には、
+	////			性欲限界判定・体力限界判定・気力限界判定が行われ、
+	////			必要なら限界値が得られる。
+	////
     ////○コメント　"//"でその行のそれ以降の部分は無視される。
     //////////////////////////////////////////////////////////////////
 
@@ -618,6 +622,11 @@ namespace DoujinGameProject.Action
 							{
 								work_1 = Sis.MoralPoint;
 							}
+							else if (work_ct >= 5 && "露出癖ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = Sis.Skills[0].Level;
+								int_flag_R_1 = true;
+							}
 							else if (work_ct >= 2 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct))
 							{
 								work_value_1 = A_REG;
@@ -947,6 +956,14 @@ namespace DoujinGameProject.Action
 						else if (work_ct_1 >= 4 && "ふたなり" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							//////////未作成//////////
+							work_3 = Sis.Skills[9].Level;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 6 && "サキュバス化" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							//////////未作成//////////
+							work_3 = Sis.Skills[10].Level;
+							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
@@ -2479,7 +2496,7 @@ namespace DoujinGameProject.Action
 
 
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		/* ■　関数名：    　　　　　 　　　　　　　 　■ */
+		/* ■　関数名：EndEventCheck  　　　　　 　　　　　　　 　■ */
 		/* ■　内容：イベント終了時各特殊イベント判定           　 ■ */
 		/* ■　入力：                                        　 　 ■ */
 		/* ■　出力：体力切れ…true                          　 　 ■ */

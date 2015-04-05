@@ -13,16 +13,170 @@ namespace DoujinGameProject.Data
         public Parameter MoralPoint { get; set; }
         public Parameter PassionPoint { get; set; }
         public Parameter MagicPoint { get; set; }
+		public Parameter TrustPoint { get; set; }
         public int ChargedMagicPoint { get; set; }
 
         public Skill[] Skills;
         public Item[] Items;
         public bool[] EventFlags;
 
-		public const int SkillNo = 11;
+		/* スキル番号 */
+		public const int SKL_ROSYUTSU = 0;		  //露出癖
+		public const int SKL_MB = 1;             //オナニー中毒
+		public const int SKL_LESB = 2;           //レズっ気
+		public const int SKL_MASO = 3;    　     //マゾっ気
+		public const int SKL_SADO = 4;           //サドっ気
+		public const int SKL_SMLFETI = 5;        //匂いフェチ
+		public const int SKL_KEMONER = 6;        //ケモナー  
+		public const int SKL_MONSTER = 7;        //一部魔物化
+		public const int SKL_BODY_BIYAKU = 8;    //体液媚薬  
+		public const int SKL_FUTA = 9;           //フタ
+		public const int SKL_SUCCUBUS = 10;      //サキュバス
+
+		public const int SKILL_NUM = SKL_SUCCUBUS+1;
+
+		/* ステータス番号 */
+		public const int STATUS_HITPOINT	= 0;											// 0 ヒットポイント
+		public const int STATUS_MENTALPOINT = 1;											// 1 メンタルポイント
+		public const int STATUS_MAGICPOINT	= 2;											// 2 モラルポイント
+		public const int STATUS_PATTIONPOINT= 3;											// 3 パッションポイント
+		public const int STATUS_TRUSTPOINT	= 4;											// 4 トラストポイント
+		public const int STATUS_ROSYUTSU	= SKL_ROSYUTSU		+ STATUS_TRUSTPOINT + 1;	// 5 露出癖
+		public const int STATUS_MB			= SKL_MB			+ STATUS_TRUSTPOINT + 1;	// 6 オナニー中毒
+		public const int STATUS_LESB		= SKL_LESB			+ STATUS_TRUSTPOINT + 1;	// 7 レズっ気
+		public const int STATUS_MASO		= SKL_MASO			+ STATUS_TRUSTPOINT + 1;	// 8 マゾっ気
+		public const int STATUS_SADO		= SKL_SADO			+ STATUS_TRUSTPOINT + 1;	// 9 サドっ気
+		public const int STATUS_SMLFETI		= SKL_SMLFETI		+ STATUS_TRUSTPOINT + 1;	//10 匂いフェチ
+		public const int STATUS_KEMONER		= SKL_KEMONER		+ STATUS_TRUSTPOINT + 1;	//11 ケモナー  
+		public const int STATUS_MONSTER		= SKL_MONSTER		+ STATUS_TRUSTPOINT + 1;	//12 一部魔物化
+		public const int STATUS_BODY_BIYAKU	= SKL_BODY_BIYAKU	+ STATUS_TRUSTPOINT + 1;	//13 体液媚薬  
+		public const int STATUS_FUTA		= SKL_FUTA			+ STATUS_TRUSTPOINT + 1;	//14 フタ
+		public const int STATUS_SUCCUBUS	= SKL_SUCCUBUS		+ STATUS_TRUSTPOINT + 1;	//15 サキュバス
+
+		public const int STATUS_NUM = STATUS_SUCCUBUS + 1;
+
+		public string[][] T_StatusExpress = new string[][]
+		{
+			new string[]
+			{
+				/* HitPoint */
+				"どれほど動き回っても疲れる気がしない",
+				"体力が有り余っている",
+				"特に疲れは感じていない",
+				"激しく体を動かすには疲れすぎている",
+				"疲れきっていて体が重い"
+			},
+			new string[]
+			{
+				/* MentalPoint*/
+				"どんなことでもできそうな万能感に満ち溢れている",
+				"気力は充実している",
+				"気力面で特に問題は抱えていない",
+				"ストレスを感じて精神的に疲れている",
+				"何もする気力が湧かない"
+			},
+			new string[]
+			{
+				/* MoralPoint */
+				"常に人々の事を考え、慈愛に満ちている",
+				"他者の苦しみを自分の苦しみとして捉えることができる",
+				"他人のために自分が苦しむことに疑問を覚えている",
+				"他者の事情より、自分の都合や感情を優先する",
+				"自分の欲望のためなら誰がどうなろうが関係ない"
+			},
+			new string[]
+			{
+				/* PassionPoint */
+				"人間だったら即座に発狂するような性欲に苛まれている",
+				"立っているのも辛いほど体中が疼き異常に火照っている",
+				"体が火照り、汗で服が体にまとわりついている",
+				"少しムラムラとしている",
+				"性欲はほとんど覚えず、シスターとしては理想的な状態"
+			},
+			new string[]
+			{
+				/* TrustPoint */
+				"周囲の人間にあつく信頼されている",
+				"周囲の人間に信頼されている",
+				"周囲の人間は違和感を覚えているようだ",
+				"周囲の人間に疑いの目を向けられている",
+				"周囲の人間に強く警戒されている"
+			},
+			new string[]
+			{
+				/* 露出癖 */
+				"人がいないところで裸になりたくなってしまう",
+				"周りに人がいるところで隠れて裸になりたくなってしまう",
+				"沢山の人に秘所を見てほしくてたまらない"
+			},
+			new string[]
+			{
+				/* オナニー中毒 */
+				"気が付くとオナニーのことを考えている",
+				"気を抜くと、無意識に手が胸や股間に伸びてしまう",
+				"股間に手をやっていないと正気を保つのが難しい"
+			},
+			new string[]
+			{
+				/* レズっ気 */
+				"同性である女性のことを少し性的な目で見てしまう",
+				"女性を性的対象と捉え、いやらしい視線を向けてしまう",
+				"女性なら誰でもいいので性交したいと考えている"
+			},
+			new string[]
+			{
+				/* マゾっ気 */
+				"痛みに対しての抵抗が他の人よりも薄い",
+				"よほどの痛みでない限りは快感としてとらえる",
+				"苦痛が大きいほど、より大きな快楽を感じる"
+			},
+			new string[]
+			{
+				/* サドっ気 */
+				"人が嫌がる姿を見ると快感を覚える",
+				"無抵抗な相手をいたぶると性的に興奮する",
+				"自分より弱い人間をいたぶりたくて仕方ない"
+			},
+			new string[]
+			{
+				/* 匂いフェチ */
+				"自分や他人の体臭に魅力を感じている",
+				"自分や他人の体臭に強く惹かれ、顔を埋めたくなる",
+				"体臭に異様に執着し、人と話す際には不自然に歩み寄る"
+			},
+			new string[]
+			{
+				/* ケモナー */
+				"フワフワとした生き物に魅力を感じる",
+				"毛に覆われた生き物を見ると異様な興奮を覚える",
+				"獣人を性欲の対象として認識している"
+			},
+			new string[]
+			{
+				/* 一部魔物化 */
+				"身体能力が高まり、最大体力が増幅する",
+				"瞳の構造が変化し、暗いところでもよく見えるようになる"
+			},
+			new string[]
+			{
+				/* 体液媚薬化 */
+				"血液、唾液、愛液などの体液が媚薬となっている"
+			},
+			new string[]
+			{
+				/* フタ */
+				"成人男性のそれよりも大きなペニスが生えている"
+			},
+			new string[]
+			{
+				/* サキュバス */
+				"性交した相手から魔力を奪い取ることができる"
+			}
+		};
 
         public Sister ()
         {
+
             // スキルリストの生成
 
 					/*
@@ -45,18 +199,6 @@ namespace DoujinGameProject.Data
 		*/
 
 
-			const int SKL_ROSYUTSU = 0;	//露出癖
-			const int SKL_MB = 1;             //オナニー中毒
-			const int SKL_LESB = 2;           //レズっ気
-			const int SKL_MASO = 3;    　     //マゾっ気
-			const int SKL_SADO = 4;           //サドっ気
-			const int SKL_SMLFETI = 5;        //匂いフェチ
-			const int SKL_KEMONER = 6;        //ケモナー  
-			const int SKL_MONSTER = 7;        //一部魔物化
-			const int SKL_BODY_BIYAKU = 8;    //体液媚薬  
-			const int SKL_FUTA = 9;           //フタ
-			const int SKL_SUCCUBUS = 10;      //サキュバス
-
             // アイテムリストの生成
             // イベントフラグリストの生成
 
@@ -66,27 +208,29 @@ namespace DoujinGameProject.Data
             MoralPoint = new Parameter();
             PassionPoint = new Parameter();
             MagicPoint = new Parameter();
+			TrustPoint = new Parameter();
 
-			Skills = new Skill[SkillNo];
-			
-			Skills[0] = new Skill("露出癖", 3, 0);
-			Skills[1] = new Skill("オナニー中毒", 3, 0);
-			Skills[2] = new Skill("レズっ気", 3, 0);
-			Skills[3] = new Skill("マゾっ気", 3, 0);
-			Skills[4] = new Skill("サドっ気", 3, 0);
-			Skills[5] = new Skill("匂いフェチ", 3, 0);
-			Skills[6] = new Skill("ケモナー", 3, 0);
-			Skills[7] = new Skill("一部魔族化", 2, 0);
-			Skills[8] = new Skill("体液媚薬", 1, 0);
-			Skills[9] = new Skill("ふたなり", 1, 0);
-			Skills[10] = new Skill("サキュバス化", 1, 0);
+			Skills = new Skill[SKILL_NUM];
+
+			Skills[SKL_ROSYUTSU]	= new Skill("露出癖", 3, 0);
+			Skills[SKL_MB]			= new Skill("オナニー中毒", 3, 0);
+			Skills[SKL_LESB]		= new Skill("レズっ気", 3, 0);
+			Skills[SKL_MASO]		= new Skill("マゾっ気", 3, 0);
+			Skills[SKL_SADO]		= new Skill("サドっ気", 3, 0);
+			Skills[SKL_SMLFETI]		= new Skill("匂いフェチ", 3, 0);
+			Skills[SKL_KEMONER]		= new Skill("ケモナー", 3, 0);
+			Skills[SKL_MONSTER]		= new Skill("一部魔族化", 2, 0);
+			Skills[SKL_BODY_BIYAKU] = new Skill("体液媚薬", 1, 0);
+			Skills[SKL_FUTA]		= new Skill("ふたなり", 1, 0);
+			Skills[SKL_SUCCUBUS]	= new Skill("サキュバス化", 1, 0);
 			
             Money = 0;
             ChargedMagicPoint = 0;
 
+
+			
+    
         }
 
-
-    
     }
 }
