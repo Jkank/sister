@@ -60,7 +60,9 @@ namespace DoujinGameProject.Action
     ////
 	////○END文		イベントを終了する。イベント終了時には、
 	////			性欲限界判定・体力限界判定・気力限界判定が行われ、
-	////			必要なら限界値が得られる。
+	////			必要なら各種限界イベント・魔物イベントが行われる。
+	////
+	////○ENDRETURN文		各種限界イベント・魔物イベント終了後の戻り処理。
 	////
     ////○コメント　"//"でその行のそれ以降の部分は無視される。
     //////////////////////////////////////////////////////////////////
@@ -70,7 +72,8 @@ namespace DoujinGameProject.Action
 
         /* パラメーター */
 
-        static Defines.fileID fileID_next = Defines.fileID.TXT_INIT;
+		static Defines.fileID fileID_next = Defines.fileID.TXT_INIT;
+		static Defines.fileID fileID_forReturn = Defines.fileID.TXT_INIT;
 
         static int count = 0;              /* テキストファイル全体の中でのカウンタ */
         static int countold = 0;           /* 前回処理終了時点でのカウンタの値 */
@@ -222,25 +225,62 @@ namespace DoujinGameProject.Action
 
                     /*====================*/
                     /*    文法コマンド    */
-                    /*====================*/
+					/*====================*/
+//					else if (textrowbuf.Length >= 9 && textrowbuf.Substring(0, 9) == "ENDRETURN")
+//					{
+//						sentence_ct = 0;
+//						count = 0;
+//						countold = 0;
+//
+//						/*** 文章表示終了処理 ***/
+//						textrowbuf = "";
+//
+//						/* 立ち絵の消去 */
+//						Program.Doujin_game_sharp.delCharacterImageLeft();
+//						Program.Doujin_game_sharp.delCharacterImageRight();
+//
+//
+//						if (true == EndEventCheck())
+//						{
+//							/* 戻り先ファイル名 */
+//							//break;
+//						}
+//						else
+//						{
+//							count = 0;
+//							countold = 0;
+//							/* ファイルを戻す */
+//							ChangeFile(fileID_forReturn);
+//						}
+//
+//						return sentence_ct;
+//					}
                     else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "END")
 					{
 						sentence_ct = 0;
+						count = 0;
+						countold = 0;
+						
+						/*** 文章表示終了処理 ***/
+						textrowbuf = "";
+
+						/* 戻り先ファイル名 */
+						fileID_forReturn = file_no;
+
+
 						if (true == EndEventCheck())
 						{
-							break;
+							//break;
 						}
+						else
+						{
+							/* 立ち絵の消去 */
+							Program.Doujin_game_sharp.delCharacterImageLeft();
+							Program.Doujin_game_sharp.delCharacterImageRight();
 
-
-                        /*** 文章表示終了処理 ***/
-						textrowbuf = "";
-						
-						/* 立ち絵の消去 */
-						Program.Doujin_game_sharp.delCharacterImageLeft();
-						Program.Doujin_game_sharp.delCharacterImageRight();
-
-                        return sentence_ct;
-                    }
+							return sentence_ct;
+						}
+					}
                     else if (textrowbuf.Substring(0, 1) == "[")
                     {
                         /*** ラベル ***/
@@ -316,7 +356,7 @@ namespace DoujinGameProject.Action
 								GameData.ScenarioData.NowPlace = Defines.LOC_CHAPEL;
 								break;
 						}
-						count += 2;
+						count += 3;
 						countold = count;
 						sentence_ct = getNowSent(count);
 						inrowcount = 0;
@@ -363,6 +403,11 @@ namespace DoujinGameProject.Action
 						}
 						else if (work_ct >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct))
 						{
+							work_1 = Sis.MoralPoint;
+						}
+						else if (work_ct >= 5 && "姉様パンツ" == textrowbuf.Substring(inrowcountold, work_ct))
+						{
+							//work_1 = Sis.Panty;
 							work_1 = Sis.MoralPoint;
 						}
 						else if (work_ct >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct))
@@ -623,6 +668,21 @@ namespace DoujinGameProject.Action
 								work_1 = Sis.MoralPoint;
 							}
 							else if (work_ct >= 5 && "露出癖ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = Sis.Skills[0].Level;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 6 && "レズっ気ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = Sis.Skills[0].Level;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 6 && "マゾっ気ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct))
+							{
+								work_value_1 = Sis.Skills[0].Level;
+								int_flag_R_1 = true;
+							}
+							else if (work_ct >= 6 && "サドっ気ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct))
 							{
 								work_value_1 = Sis.Skills[0].Level;
 								int_flag_R_1 = true;
@@ -927,6 +987,11 @@ namespace DoujinGameProject.Action
 						bool int_flag_L = false;              /* 左辺即値 */
 						bool int_flag_R = false;              /* 右辺即値 */
 
+						bool work_value_b_L = false;
+						bool work_value_b_R = false;
+						bool bool_flag_L = false;			  /* 右辺Bool値 */
+						bool bool_flag_R = false;			  /* 右辺Bool値 */
+
 						/** 条件左辺取得 **/
 						while (textrowbuf.Substring(inrowcount, 1) != " ")
 						{
@@ -953,22 +1018,33 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
+						else if (work_ct_1 >= 5 && "匂いフェチ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
+							int_flag_L = false;
+						}
 						else if (work_ct_1 >= 4 && "ふたなり" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							//////////未作成//////////
-							work_3 = Sis.Skills[9].Level;
+							work_3 = Sis.Skills[Sister.SKL_FUTA].Level;
 							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 6 && "サキュバス化" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							//////////未作成//////////
-							work_3 = Sis.Skills[10].Level;
+							work_3 = Sis.Skills[Sister.SKL_SUCCUBUS].Level;
 							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 5 && "姉様パンツ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							//work_1 = Sis.MaryPanty;
+							work_1 = Sis.MoralPoint;
+							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 3 && "お香数" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
@@ -980,9 +1056,26 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
+						else if (work_ct_1 >= 5 && "触手経験済" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_value_b_L = Sis.EventFlags[Sister.EVFLG_SHOKUSYU];
+							int_flag_L = false;
+							bool_flag_L = true;
+						}
+						else if (work_ct_1 >= 6 && "治療会経験済" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_value_b_L = Sis.EventFlags[Sister.EVFLG_HEAL];
+							int_flag_L = false;
+							bool_flag_L = true;
+						}
 						else if (work_ct_1 >= 2 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = GameData.ScenarioData.DayCt;
+							int_flag_L = true;
+						}
+						else if (work_ct_1 >= 2 && "時刻" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = GameData.ScenarioData.NowTime;
 							int_flag_L = true;
 						}
 						else if (work_ct_1 >= 4 && "現在位置" == textrowbuf.Substring(inrowcountold, work_ct_1))
@@ -1022,7 +1115,7 @@ namespace DoujinGameProject.Action
 						}
 						else
 						{
-							Console.WriteLine("if文左辺");
+							Console.WriteLine("if文左辺に想定外の値が入っている");
 						}
 
 						inrowcount++;
@@ -1049,126 +1142,143 @@ namespace DoujinGameProject.Action
 						{
 							work_5 = Sis.HitPoint;
 							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5 = Sis.HitPoint;
 							int_flag_R = false;
-						}
-						if (work_ct_2 >= 2 && "体力" == textrowbuf.Substring(inrowcountold, work_ct_2))
-						{
-							work_5 = Sis.HitPoint;
-							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "気力" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5 = Sis.MentalPoint;
 							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "性欲値" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5 = Sis.PassionPoint;
 							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "道徳心" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5 = Sis.MoralPoint;
 							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 5 && "触手成長度" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5 = Sis.MoralPoint;
 							int_flag_R = false;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 5 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = GameData.ScenarioData.DayCt;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "礼拝堂" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_CHAPEL;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 5 && "サラの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_SARAROOM;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 6 && "マリーの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_MARYROOM;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 6 && "リディの部屋" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_LIDYROOM;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "書庫" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_LIBRARY;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "商店" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_STORE;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "酒場" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_BAR;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "広場" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_SQUARE;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "路地裏" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Defines.LOC_BACKSTREET;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "汎用Ａ" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = A_REG;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "汎用Ｂ" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = B_REG;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 3 && "汎用Ｃ" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = C_REG;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 4 && "選択番号" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = Slct_No;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (work_ct_2 >= 2 && "乱数" == textrowbuf.Substring(inrowcountold, work_ct_2))
 						{
 							work_5.CurrentValue = rand;
 							int_flag_R = true;
+							bool_flag_R = false;
 						}
 						else if (textrowbuf.Length >= inrowcountold + 4 && textrowbuf.Substring(inrowcountold, work_ct_2) == "true")
 						{
 							/* true (bool) */
-							/* bool値は、true⇒1　false⇒0 と変換して使用する */
 
-							work_value = 1;
+							work_value_b_R = true;
 							int_flag_R = true;
+							bool_flag_R = true;
 						}
 						else if (textrowbuf.Length >= inrowcountold + 5 && textrowbuf.Substring(inrowcountold, work_ct_2) == "false")
 						{
 							/* false (bool) */
 
-							work_value = 0;
+							work_value_b_R = false;
 							int_flag_R = true;
+							bool_flag_R = true;
 						}
 						else
 						{
@@ -1195,7 +1305,27 @@ namespace DoujinGameProject.Action
 
 						/** 条件式に従ってジャンプ **/
 
-						if (int_flag_L == false && int_flag_R == false)
+						if (bool_flag_L == true && bool_flag_R == true)
+						{
+							//bool値
+							if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
+							{
+								if (work_value_b_L == work_value_b_R)
+								{
+									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
+									count = text.IndexOf(aiueo) + 2;
+								}
+								else
+								{
+									/* 改行 */
+									count++;
+									count++;
+
+									count++;
+								}
+							}
+						}
+						else if (int_flag_L == false && int_flag_R == false)
 						{
 							//左辺：変数　右辺：変数
 
@@ -1268,7 +1398,6 @@ namespace DoujinGameProject.Action
 							}
 							else if ("==" == textrowbuf.Substring(5 + work_ct_1, work_2))
 							{
-
 								if (work_1.CurrentValue == work_5.CurrentValue)
 								{
 									string aiueo = "\r\n" + textrowbuf.Substring(inrowcount, work_4);
@@ -1727,9 +1856,84 @@ namespace DoujinGameProject.Action
 					else if (textrowbuf.Length >= 3 && textrowbuf.Substring(0, 3) == "？？？")
 					{
 						Color = Brushes.Gray;
-						Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
 
 						name[0] = "？？？";
+
+						/* キャラ名の表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "商人")
+					{
+						Color = Brushes.Gray;
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						name[0] = "商人";
+
+						/* キャラ名の表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "店員")
+					{
+						Color = Brushes.Gray;
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						name[0] = "店員";
+
+						/* キャラ名の表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "男１")
+					{
+						Color = Brushes.Gray;
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						name[0] = "男";
+
+						/* キャラ名の表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "男２")
+					{
+						Color = Brushes.Gray;
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						name[0] = "男";
+
+						/* キャラ名の表示 */
+						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
+
+						count++;
+						countold = count;
+						sentence_ct++;
+						inrowcount = 0;
+					}
+					else if (textrowbuf.Length >= 2 && textrowbuf.Substring(0, 2) == "男３")
+					{
+						Color = Brushes.Gray;
+						//Program.Doujin_game_sharp.setCharacterImageRight(textrowbuf);
+
+						name[0] = "男";
 
 						/* キャラ名の表示 */
 						Program.Doujin_game_sharp.DrawCharacterName(name[0]);
@@ -1826,7 +2030,7 @@ namespace DoujinGameProject.Action
 						Program.Doujin_game_sharp.DispStatus = 0;
 						Program.Doujin_game_sharp.BGPicname = str_BGPic;
 						Program.Doujin_game_sharp.setBGPic();
-						count += 2;
+						count += 3;
 						countold = count;
 						sentence_ct = getNowSent(count);
 						inrowcount = 0;
@@ -2536,7 +2740,7 @@ namespace DoujinGameProject.Action
 				ChangeFile(Defines.fileID.TXT_MENTAL_RUNOUT);
 				ret = true;
 			}
-			else if (21 >= GameData.ScenarioData.NowTime)
+			else if (21 < GameData.ScenarioData.NowTime)
 			{
 				/*１日終了*/
 				ChangeFile(Defines.fileID.TXT_DEVIL_PART);

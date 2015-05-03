@@ -656,6 +656,10 @@ Text:
 
 [L_FORTESTPLAY]:
 
+Minus:
+露出癖がついてしまった。;
+
 背景 教会昼:
+移動 礼拝堂:
 
 END:

@@ -21,26 +21,39 @@ namespace DoujinGameProject.Data
         public bool[] EventFlags;
 
 		/* スキル番号 */
-		public const int SKL_ROSYUTSU = 0;		  //露出癖
-		public const int SKL_MB = 1;             //オナニー中毒
-		public const int SKL_LESB = 2;           //レズっ気
-		public const int SKL_MASO = 3;    　     //マゾっ気
-		public const int SKL_SADO = 4;           //サドっ気
-		public const int SKL_SMLFETI = 5;        //匂いフェチ
-		public const int SKL_KEMONER = 6;        //ケモナー  
-		public const int SKL_MONSTER = 7;        //一部魔物化
-		public const int SKL_BODY_BIYAKU = 8;    //体液媚薬  
-		public const int SKL_FUTA = 9;           //フタ
-		public const int SKL_SUCCUBUS = 10;      //サキュバス
+		public const int SKL_ROSYUTSU		= 0;						//露出癖
+		public const int SKL_MB				= SKL_ROSYUTSU		+ 1;    //オナニー中毒
+		public const int SKL_LESB			= SKL_MB			+ 1;    //レズっ気
+		public const int SKL_MASO			= SKL_LESB			+ 1;    //マゾっ気
+		public const int SKL_SADO			= SKL_MASO			+ 1;	//サドっ気
+		public const int SKL_SMLFETI		= SKL_SADO			+ 1;	//匂いフェチ
+		public const int SKL_KEMONER		= SKL_SMLFETI		+ 1;	//ケモナー  
+		public const int SKL_MONSTER		= SKL_KEMONER		+ 1;    //一部魔物化
+		public const int SKL_BODY_BIYAKU	= SKL_MONSTER		+ 1;    //体液媚薬  
+		public const int SKL_FUTA			= SKL_BODY_BIYAKU	+ 1;    //フタ
+		public const int SKL_SUCCUBUS		= SKL_FUTA			+ 1;   //サキュバス
 
 		public const int SKILL_NUM = SKL_SUCCUBUS+1;
 
+		/* アイテム番号 */
+
+		public const int ITEM_NUM = 1;
+
+		/* 経験番号 */
+		public const int EVFLG_SHOKUSYU = 0;		//触手経験済フラグ
+		public const int EVFLG_STEAL	= EVFLG_SHOKUSYU + 1;		//器盗難経験済フラグ
+		public const int EVFLG_PANTS	= EVFLG_STEAL + 1;		//パンツ盗難経験済フラグ
+		public const int EVFLG_HEAL = EVFLG_PANTS + 1;	//怪我治療の会経験済フラグ
+
+		public const int EVFLG_NUM = EVFLG_HEAL + 1;
+
+
 		/* ステータス番号 */
 		public const int STATUS_HITPOINT	= 0;											// 0 ヒットポイント
-		public const int STATUS_MENTALPOINT = 1;											// 1 メンタルポイント
-		public const int STATUS_MAGICPOINT	= 2;											// 2 モラルポイント
-		public const int STATUS_PATTIONPOINT= 3;											// 3 パッションポイント
-		public const int STATUS_TRUSTPOINT	= 4;											// 4 トラストポイント
+		public const int STATUS_MENTALPOINT	= STATUS_HITPOINT		+ 1;					// 1 メンタルポイント
+		public const int STATUS_MAGICPOINT	= STATUS_MENTALPOINT	+ 1;					// 2 モラルポイント
+		public const int STATUS_PATTIONPOINT= STATUS_MAGICPOINT		+ 1;					// 3 パッションポイント
+		public const int STATUS_TRUSTPOINT	= STATUS_PATTIONPOINT	+ 1;					// 4 トラストポイント
 		public const int STATUS_ROSYUTSU	= SKL_ROSYUTSU		+ STATUS_TRUSTPOINT + 1;	// 5 露出癖
 		public const int STATUS_MB			= SKL_MB			+ STATUS_TRUSTPOINT + 1;	// 6 オナニー中毒
 		public const int STATUS_LESB		= SKL_LESB			+ STATUS_TRUSTPOINT + 1;	// 7 レズっ気
@@ -210,8 +223,9 @@ namespace DoujinGameProject.Data
             MagicPoint = new Parameter();
 			TrustPoint = new Parameter();
 
-			Skills = new Skill[SKILL_NUM];
 
+			// スキル値初期化
+			Skills = new Skill[SKILL_NUM];
 			Skills[SKL_ROSYUTSU]	= new Skill("露出癖", 3, 0);
 			Skills[SKL_MB]			= new Skill("オナニー中毒", 3, 0);
 			Skills[SKL_LESB]		= new Skill("レズっ気", 3, 0);
@@ -223,6 +237,16 @@ namespace DoujinGameProject.Data
 			Skills[SKL_BODY_BIYAKU] = new Skill("体液媚薬", 1, 0);
 			Skills[SKL_FUTA]		= new Skill("ふたなり", 1, 0);
 			Skills[SKL_SUCCUBUS]	= new Skill("サキュバス化", 1, 0);
+
+			// アイテム所持数初期化
+			Items = new Item[ITEM_NUM];
+
+
+			// 経験数初期化
+			EventFlags = new bool[EVFLG_NUM];
+			EventFlags[EVFLG_SHOKUSYU]	= false;
+			EventFlags[EVFLG_STEAL]		= false;
+			EventFlags[EVFLG_PANTS]		= false;
 			
             Money = 0;
             ChargedMagicPoint = 0;
