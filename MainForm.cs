@@ -67,26 +67,7 @@ namespace DoujinGameProject
 			GameData.Initialize();
 
 
-			/* 体力 */
-			GameData.SisterData.HitPoint.MaxValue = 100;
-			GameData.SisterData.HitPoint.CurrentValue = 100;
-
-			/* 気力 */
-			GameData.SisterData.MentalPoint.MaxValue = 100;
-			GameData.SisterData.MentalPoint.CurrentValue = 100;
-
-			/* 性欲値 */
-			GameData.SisterData.PassionPoint.MaxValue = 100;
-			GameData.SisterData.PassionPoint.CurrentValue = 10;
-
-			/* 道徳心 */
-			GameData.SisterData.MoralPoint.MaxValue = 100;
-			GameData.SisterData.MoralPoint.CurrentValue = 100;
-
-			/* 信頼度 */
-			GameData.SisterData.TrustPoint.MaxValue = 100;
-			GameData.SisterData.TrustPoint.CurrentValue = 100;
-
+			
 			GameData.ScenarioData.Slct_No = 0;
 
 			//EnableDoubleBuffering(PNL_Background);

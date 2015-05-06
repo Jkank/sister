@@ -8,17 +8,18 @@ namespace DoujinGameProject.Data
     {
 
         public int Money { get; set; }
+		public int DevilMoney { get; set; }
         public Parameter HitPoint { get; set; }
 		public Parameter MentalPoint { get; set; }
         public Parameter MoralPoint { get; set; }
         public Parameter PassionPoint { get; set; }
         public Parameter MagicPoint { get; set; }
 		public Parameter TrustPoint { get; set; }
-        public int ChargedMagicPoint { get; set; }
+        public Parameter DevilAdmire { get; set; }
 
         public Skill[] Skills;
-        public Item[] Items;
-        public bool[] EventFlags;
+		public Item[] Items;
+		public int[] ExpNums;
 
 		/* スキル番号 */
 		public const int SKL_ROSYUTSU		= 0;						//露出癖
@@ -40,20 +41,22 @@ namespace DoujinGameProject.Data
 		public const int ITEM_NUM = 1;
 
 		/* 経験番号 */
-		public const int EVFLG_SHOKUSYU = 0;		//触手経験済フラグ
-		public const int EVFLG_STEAL	= EVFLG_SHOKUSYU + 1;		//器盗難経験済フラグ
-		public const int EVFLG_PANTS	= EVFLG_STEAL + 1;		//パンツ盗難経験済フラグ
-		public const int EVFLG_HEAL = EVFLG_PANTS + 1;	//怪我治療の会経験済フラグ
+		public const int EXP_INCENSE = 0;
+		public const int EXP_LOPER = EXP_INCENSE + 1;		//触手経験
+		public const int EXP_STEAL = EXP_LOPER + 1;		//器盗難経験
+		public const int EXP_PANTS = EXP_STEAL + 1;		//パンツ盗難経験
+		public const int EXP_HEAL = EXP_PANTS + 1;	//怪我治療の会経験
+		public const int EXP_MARYLSB = EXP_HEAL + 1;
 
-		public const int EVFLG_NUM = EVFLG_HEAL + 1;
+		public const int EXP_NUM = EXP_MARYLSB + 1;
 
 
 		/* ステータス番号 */
-		public const int STATUS_HITPOINT	= 0;											// 0 ヒットポイント
-		public const int STATUS_MENTALPOINT	= STATUS_HITPOINT		+ 1;					// 1 メンタルポイント
-		public const int STATUS_MAGICPOINT	= STATUS_MENTALPOINT	+ 1;					// 2 モラルポイント
-		public const int STATUS_PATTIONPOINT= STATUS_MAGICPOINT		+ 1;					// 3 パッションポイント
-		public const int STATUS_TRUSTPOINT	= STATUS_PATTIONPOINT	+ 1;					// 4 トラストポイント
+		public const int STATUS_HITPOINT	= 0;											// 0 体力
+		public const int STATUS_MENTALPOINT	= STATUS_HITPOINT		+ 1;					// 1 気力
+		public const int STATUS_MAGICPOINT	= STATUS_MENTALPOINT	+ 1;					// 2 道徳心
+		public const int STATUS_PATTIONPOINT= STATUS_MAGICPOINT		+ 1;					// 3 性欲
+		public const int STATUS_TRUSTPOINT	= STATUS_PATTIONPOINT	+ 1;					// 4 信頼度
 		public const int STATUS_ROSYUTSU	= SKL_ROSYUTSU		+ STATUS_TRUSTPOINT + 1;	// 5 露出癖
 		public const int STATUS_MB			= SKL_MB			+ STATUS_TRUSTPOINT + 1;	// 6 オナニー中毒
 		public const int STATUS_LESB		= SKL_LESB			+ STATUS_TRUSTPOINT + 1;	// 7 レズっ気
@@ -212,9 +215,6 @@ namespace DoujinGameProject.Data
 		*/
 
 
-            // アイテムリストの生成
-            // イベントフラグリストの生成
-
             // その他値の読み込み
             HitPoint = new Parameter();
             MentalPoint = new Parameter();
@@ -222,39 +222,74 @@ namespace DoujinGameProject.Data
             PassionPoint = new Parameter();
             MagicPoint = new Parameter();
 			TrustPoint = new Parameter();
-
-
-			// スキル値初期化
-			Skills = new Skill[SKILL_NUM];
-			Skills[SKL_ROSYUTSU]	= new Skill("露出癖", 3, 0);
-			Skills[SKL_MB]			= new Skill("オナニー中毒", 3, 0);
-			Skills[SKL_LESB]		= new Skill("レズっ気", 3, 0);
-			Skills[SKL_MASO]		= new Skill("マゾっ気", 3, 0);
-			Skills[SKL_SADO]		= new Skill("サドっ気", 3, 0);
-			Skills[SKL_SMLFETI]		= new Skill("匂いフェチ", 3, 0);
-			Skills[SKL_KEMONER]		= new Skill("ケモナー", 3, 0);
-			Skills[SKL_MONSTER]		= new Skill("一部魔族化", 2, 0);
-			Skills[SKL_BODY_BIYAKU] = new Skill("体液媚薬", 1, 0);
-			Skills[SKL_FUTA]		= new Skill("ふたなり", 1, 0);
-			Skills[SKL_SUCCUBUS]	= new Skill("サキュバス化", 1, 0);
+			DevilAdmire = new Parameter();
 
 			// アイテム所持数初期化
 			Items = new Item[ITEM_NUM];
 
 
 			// 経験数初期化
-			EventFlags = new bool[EVFLG_NUM];
-			EventFlags[EVFLG_SHOKUSYU]	= false;
-			EventFlags[EVFLG_STEAL]		= false;
-			EventFlags[EVFLG_PANTS]		= false;
-			
-            Money = 0;
-            ChargedMagicPoint = 0;
-
-
-			
-    
+			ExpNums = new int[EXP_NUM];
         }
+
+		public void InitializeSisterVars()
+		{
+			/* 所持金 */
+			Money = 100;
+			DevilMoney = 0;
+			
+			/* 体力 */
+			HitPoint.MaxValue = 100;
+			HitPoint.CurrentValue = 100;
+
+			/* 気力 */
+			MentalPoint.MaxValue = 100;
+			MentalPoint.CurrentValue = 100;
+
+			/* 道徳心 */
+			MoralPoint.MaxValue = 100;
+			MoralPoint.CurrentValue = 100;
+
+			/* 性欲値 */
+			PassionPoint.MaxValue = 100;
+			PassionPoint.CurrentValue = 0;
+
+			/* 魔力 */
+			MagicPoint.MaxValue = 100;
+			MagicPoint.CurrentValue = 0;
+
+			/* 信頼度 */
+			TrustPoint.MaxValue = 100;
+			TrustPoint.CurrentValue = 100;
+
+			/* 魔物信仰度 */
+			DevilAdmire.MaxValue = 100;
+			DevilAdmire.CurrentValue = 0;
+
+			// スキル値初期化
+			Skills = new Skill[SKILL_NUM];
+			Skills[SKL_ROSYUTSU] = new Skill("露出癖", 3, 0);
+			Skills[SKL_MB] = new Skill("オナニー中毒", 3, 0);
+			Skills[SKL_LESB] = new Skill("レズっ気", 3, 0);
+			Skills[SKL_MASO] = new Skill("マゾっ気", 3, 0);
+			Skills[SKL_SADO] = new Skill("サドっ気", 3, 0);
+			Skills[SKL_SMLFETI] = new Skill("匂いフェチ", 3, 0);
+			Skills[SKL_KEMONER] = new Skill("ケモナー", 3, 0);
+			Skills[SKL_MONSTER] = new Skill("一部魔族化", 2, 0);
+			Skills[SKL_BODY_BIYAKU] = new Skill("体液媚薬", 1, 0);
+			Skills[SKL_FUTA] = new Skill("ふたなり", 1, 0);
+			Skills[SKL_SUCCUBUS] = new Skill("サキュバス化", 1, 0);
+
+			//経験値初期化
+			ExpNums[EXP_LOPER] = 0;
+			ExpNums[EXP_STEAL] = 0;
+			ExpNums[EXP_PANTS] = 0;
+			ExpNums[EXP_MARYLSB] = 0;
+
+		}
+
+
+
 
     }
 }

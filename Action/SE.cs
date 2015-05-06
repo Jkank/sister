@@ -1018,7 +1018,12 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 5 && "匂いフェチ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 6 && "レズっ気ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 7 && "匂いフェチＬＶ" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
 							int_flag_L = false;
@@ -1056,17 +1061,25 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 5 && "触手経験済" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 4 && "お香経験" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
-							work_value_b_L = Sis.EventFlags[Sister.EVFLG_SHOKUSYU];
+							work_3 = Sis.ExpNums[Sister.EXP_INCENSE];
 							int_flag_L = false;
-							bool_flag_L = true;
 						}
-						else if (work_ct_1 >= 6 && "治療会経験済" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 4 && "触手経験" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
-							work_value_b_L = Sis.EventFlags[Sister.EVFLG_HEAL];
+							work_3 = Sis.ExpNums[Sister.EXP_LOPER];
 							int_flag_L = false;
-							bool_flag_L = true;
+						}
+						else if (work_ct_1 >= 5 && "治療会経験" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = Sis.ExpNums[Sister.EXP_HEAL];
+							int_flag_L = false;
+						}
+						else if (work_ct_1 >= 6 && "姉様レズ経験" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						{
+							work_3 = Sis.ExpNums[Sister.EXP_MARYLSB];
+							int_flag_L = false;
 						}
 						else if (work_ct_1 >= 2 && "日数" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{

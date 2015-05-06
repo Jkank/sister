@@ -39,6 +39,8 @@ namespace DoujinGameProject
 			BTN_Start.Image = Properties.Resources.g_btn_000_1;
 			if (MouseLeftPushed == true)
 			{
+				InitializeVers();
+
 				nowfile = Defines.fileID.TXT_OPENING;
 
 				/* テキストエリアの半透明表示 */
@@ -66,6 +68,21 @@ namespace DoujinGameProject
 			}
 		}
 		////////////////////////////////////////////////////////////////////
+
+
+		private void InitializeVers()
+		{
+			Sister Sis = GameData.SisterData;
+			Scenario Scn = GameData.ScenarioData;
+ 
+			//シナリオ変数初期化
+			Scn.InitializeScenarioVars();
+			
+
+			//サラ変数初期化
+			Sis.InitializeSisterVars();
+
+		}
 
 	}
 }
