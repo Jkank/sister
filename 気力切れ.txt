@@ -6,4 +6,4 @@
 地獄地獄地獄ゥッ;
 
 
-END:
+ENDRETURN:

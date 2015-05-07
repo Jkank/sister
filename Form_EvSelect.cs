@@ -253,7 +253,7 @@ namespace DoujinGameProject
 
 
 			PNL_Eventslct.Visible = true;
-			PNL_Event.Visible = false;
+//			PNL_Event.Visible = false;
 		}
 	}
 }

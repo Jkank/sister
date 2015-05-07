@@ -543,7 +543,7 @@ namespace DoujinGameProject
 		/* ■　入力：targetpanel_id                          　 　 ■ */
 		/* ■　出力：なし                                    　 　 ■ */
 		/* ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ */
-		public void BackgroundDraw2(int a)
+		public void BackgroundDraw2(int targetpanel_id)
 		{
 			BackgroundDraw(PIC_NameBox);
 			BackgroundDraw(PIC_TextArea);

@@ -278,6 +278,10 @@ namespace DoujinGameProject.Action
 							Program.Doujin_game_sharp.delCharacterImageLeft();
 							Program.Doujin_game_sharp.delCharacterImageRight();
 
+							/* 立ち絵の消去に対応してウィンドウ透過のリセット */
+							Program.Doujin_game_sharp.BackgroundDraw2(0);
+
+
 							return sentence_ct;
 						}
 					}
@@ -1018,12 +1022,12 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 6 && "レズっ気ＬＶ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 6 && "レズっ気" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 7 && "匂いフェチＬＶ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 7 && "匂いフェチ" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
 							int_flag_L = false;

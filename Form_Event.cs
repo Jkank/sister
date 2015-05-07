@@ -231,7 +231,7 @@ namespace DoujinGameProject
 		////////////////////////////////////////////////////////////////////
 		private void panel3_MouseWheel(object sender, MouseEventArgs e)
 		{
-			if (e.Delta > 3 && PNL_Log.Visible == false)
+			if (e.Delta > 3 && PNL_Log.Visible == false && PNL_Event.Visible == true)
 			{
 
 				// バックログパネルを展開

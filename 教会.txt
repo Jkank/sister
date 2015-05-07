@@ -2017,7 +2017,7 @@ If( 汎用Ａ > 30 ) [L_CHRC_MARY_TALK_0200]:
 Text:
 その後、私はしばらく姉様とおしゃべりを楽しみました。;
 
-If( レズっ気ＬＶ >= 1 ) [L_CHRC_MARY_TALK_0050]:
+If( レズっ気 >= 1 ) [L_CHRC_MARY_TALK_0050]:
 
 Plus:
 体力が20回復した。;
@@ -2939,7 +2939,7 @@ Text:
 Text:
 私の鼻腔を、姉様の香りがくすぐりました……;
 
-If( レズ >= 2 ) [L_CHRC_MARY_TALK_0820]:
+If( レズっ気 >= 2 ) [L_CHRC_MARY_TALK_0820]:
 If( 匂いフェチ >= 1 ) [L_CHRC_MARY_TALK_0820]:
 
 サラ:

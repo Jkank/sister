@@ -46,6 +46,8 @@ namespace DoujinGameProject.Data
 			/* チャージ済魔力初期化 */
 			ChargedMagicPoint = 0;
 
+			/*  */
+
 		}
     }
 }
