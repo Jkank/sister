@@ -505,7 +505,9 @@ namespace DoujinGameProject.Action
 								/* 整数値 */
 								while (work_value_1 < D_WORKVAL_MAX)
 								{
-									if (textrowbuf.Substring(inrowcountold) == work_value_1.ToString())
+									string aaaa = textrowbuf.Substring(inrowcount);
+									//if (textrowbuf.Substring(inrowcount) == work_value_1.ToString())
+									if (aaaa == work_value_1.ToString())
 									{
 										break;
 									}
@@ -1022,12 +1024,12 @@ namespace DoujinGameProject.Action
 							work_1 = Sis.MoralPoint;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 6 && "レズっ気" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 4 && "レズっ気" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
 							int_flag_L = false;
 						}
-						else if (work_ct_1 >= 7 && "匂いフェチ" == textrowbuf.Substring(inrowcountold, work_ct_1))
+						else if (work_ct_1 >= 5 && "匂いフェチ" == textrowbuf.Substring(inrowcountold, work_ct_1))
 						{
 							work_3 = Sis.Skills[Sister.SKL_SMLFETI].Level;
 							int_flag_L = false;
@@ -2385,6 +2387,8 @@ namespace DoujinGameProject.Action
 
             if (name == "オープニング") file_no = Defines.fileID.TXT_OPENING;
             else if (name == "教会") file_no = Defines.fileID.TXT_CHURCH;
+			else if (name == "マリーの部屋") file_no = Defines.fileID.TXT_MARY;
+			else if (name == "リディの部屋") file_no = Defines.fileID.TXT_LIDY;
             else if (name == "休息") file_no = Defines.fileID.TXT_LEST;
             else if (name == "お店") file_no = Defines.fileID.TXT_SHOP;
             else if (name == "読書") file_no = Defines.fileID.TXT_READ;
@@ -2415,7 +2419,13 @@ namespace DoujinGameProject.Action
                     break;
                 case Defines.fileID.TXT_CHURCH:
                     text = Properties.Resources.教会;
-                    break;
+					break;
+				case Defines.fileID.TXT_MARY:
+					text = Properties.Resources.マリーの部屋;
+					break;
+				case Defines.fileID.TXT_LIDY:
+					text = Properties.Resources.リディの部屋;
+					break;
                 case Defines.fileID.TXT_LEST:
                     text = Properties.Resources.休息;
                     break;

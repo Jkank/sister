@@ -463,6 +463,8 @@
     <None Include="grp_dummy\Image1.bmp" />
     <EmbeddedResource Include="Resources\ohayougozaimasu_02.wav" />
     <None Include="Resources\Nameform2.png" />
+    <Content Include="リディの部屋.txt" />
+    <Content Include="マリーの部屋.txt" />
     <Content Include="休息.txt" />
     <None Include="読書.txt" />
   </ItemGroup>

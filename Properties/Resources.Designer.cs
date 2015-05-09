@@ -812,6 +812,8 @@ namespace DoujinGameProject.Properties {
         ///この小さな町にただ一つある教会で
         ///シスターをしています。;
         ///
+        ///JMP	[L_FORTESTPLAY]:
+        ///
         ///Text:
         ///日々町の皆さんの健康やこの世界の平和を願って
         ///お祈りをするのが私の仕事です。;
@@ -837,10 +839,7 @@ namespace DoujinGameProject.Properties {
         ///はい、わかりました、姉様。;
         ///
         ///Text:
-        ///この人はシスターマリー。私の先輩です。;
-        ///
-        ///Text:
-        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///この人はシスタ [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string オープニング {
             get {
@@ -859,6 +858,85 @@ namespace DoujinGameProject.Properties {
         internal static string スキル取得 {
             get {
                 return ResourceManager.GetString("スキル取得", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///[L_CHRC_MARY]:
+        ///
+        ///If( 時刻 &gt; 19 ) [L_CHRC_MARY_NT]:
+        ///If( 時刻 &gt; 16 ) [L_CHRC_MARY_EV]:
+        ///
+        ///背景 部屋昼:
+        ///JMP [L_CHRC_MARY_START]:
+        ///[L_CHRC_MARY_EV]:
+        ///背景 部屋夕:
+        ///JMP [L_CHRC_MARY_START]:
+        ///[L_CHRC_MARY_NT]:
+        ///背景 部屋夜:
+        ///[L_CHRC_MARY_START]:
+        ///
+        ///Text:
+        ///姉様の部屋に来ました。;
+        ///
+        ///If( 乱数 &gt;= 80 ) [L_CHRC_MARY_OUT]:
+        /////マリー在室
+        ///
+        ///If( 道徳心 &lt; 30 ) [L_CHRC_MARY_TALK_3000]:
+        ///If( 道徳心 &lt; 50 ) [L_CHRC_MARY_TALK_2000]:
+        ///If( 道徳心 &lt; 70 ) [L_CHRC_MARY_TALK_1000]:
+        ///
+        /////堕落度 1
+        ///
+        ///計算 汎用Ａ &lt;- 乱数:
+        ///
+        ///If( 汎用Ａ &gt; 80 ) [L_CHRC_MARY_TALK_0800]:
+        ///If( 汎用Ａ &gt; 50 ) [L_CH [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string マリーの部屋 {
+            get {
+                return ResourceManager.GetString("マリーの部屋", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   
+        ///[L_CHRC_LIDY]:
+        ///
+        ///If( 時刻 &gt; 19 ) [L_CHRC_LIDY_NT]:
+        ///If( 時刻 &gt; 16 ) [L_CHRC_LIDY_EV]:
+        ///
+        ///背景 部屋昼:
+        ///JMP [L_CHRC_LIDY_START]:
+        ///[L_CHRC_LIDY_EV]:
+        ///背景 部屋夕:
+        ///JMP [L_CHRC_LIDY_START]:
+        ///[L_CHRC_LIDY_NT]:
+        ///背景 部屋夜:
+        ///[L_CHRC_LIDY_START]:
+        ///
+        ///Text:
+        ///リディの部屋に来ました。;
+        ///
+        ///If( 乱数 &gt;= 80 ) [L_CHRC_LIDY_OUT]:
+        /////リディ在室
+        ///
+        ///If( 道徳心 &lt; 30 ) [L_CHRC_LIDY_3000]:
+        ///If( 道徳心 &lt; 50 ) [L_CHRC_LIDY_2000]:
+        ///If( 道徳心 &lt; 70 ) [L_CHRC_LIDY_1000]:
+        ///
+        /////堕落度 1
+        ///
+        ///計算 汎用Ａ &lt;- 乱数:
+        ///
+        ///If( 汎用Ａ &gt; 80 ) [L_CHRC_LIDY_0800]:
+        ///If( 汎用Ａ &gt; 50 ) [L_CHRC_LIDY_0400]:
+        ///If( [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string リディの部屋 {
+            get {
+                return ResourceManager.GetString("リディの部屋", resourceCulture);
             }
         }
         
@@ -914,10 +992,13 @@ namespace DoujinGameProject.Properties {
         ///
         ///
         ///If( 体力 &gt;= 10 ) [HP_RUNOUT_0000]:
+        ///If( 現在位置 == サラの部屋 ) [HP_RUNOUT_0000]:
         ///JMP [HP_RUNOUT_1000]:
         ///
         ///[HP_RUNOUT_0000]:
-        /////体力切れ間近
+        /////体力切れ間近 or サラの部屋にいる
+        ///
+        ///
         ///サラ:
         ///はぁ……はぁ……;
         ///
@@ -936,8 +1017,9 @@ namespace DoujinGameProject.Properties {
         ///Text:
         ///…………;
         ///
-        ///計算 時刻 = 6:
+        ///計算 時刻 &lt;- 6:
         ///
+        ///移動 サラの部屋:
         ///背景 部屋昼:
         ///
         ///Text:
@@ -960,18 +1042,7 @@ namespace DoujinGameProject.Properties {
         ///Text:
         ///…………;
         ///
-        /////If( 乱数 &gt; 90 ) [HP_RUNOUT_1200]:
-        ///
-        ///サラ:
-        ///うぅん……ここは？;
-        ///
-        ///マリー:
-        ///目が覚めたかい？;
-        ///
-        ///サラ:
-        ///あっ……姉様……;
-        ///
-        ///マリー: [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///If( 現在位置 &gt; 書庫 ) [HP_RUNOUT_500 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 体力切れ {
             get {
@@ -981,9 +1052,33 @@ namespace DoujinGameProject.Properties {
         
         /// <summary>
         ///   
+        ///[L_PASSION_LIMIT]:
+        /////性欲限界
         ///
-        ///END:
-        /// に類似しているローカライズされた文字列を検索します。
+        ///サラ:
+        ///あぁぁ……もうだめ……
+        ///我慢できないよぉぉ……！！;
+        ///
+        ///If( サキュバス化 == true ) [L_PASSION_LIMIT_2000]:
+        ///
+        ///サラ:
+        ///……ひゃあああんっ！！
+        ///
+        ///Text:
+        ///私はその場で絶頂に達し、
+        ///あられもない声を上げてしまいました……;
+        ///
+        ///サラ:
+        ///はぁ……はぁ……;
+        ///
+        ///If( 現在位置 == 礼拝堂 ) [L_PASSION_LIMIT_0000]:
+        ///If( 現在位置 == サラの部屋 ) [L_PASSION_LIMIT_0100]:
+        ///If( 現在位置 == マリーの部屋 ) [L_PASSION_LIMIT_0200]:
+        ///If( 現在位置 == リディの部屋 ) [L_PASSION_LIMIT_0300]:
+        ///If( 現在位置 == 書庫 ) [L_PASSION_LIMIT_0400]:
+        ///If( 現在位置 == 酒場 ) [L_PASSION_LIMIT_0600]:
+        ///If( 現在位置 == 広場 ) [L_PASSION_LIMIT_0700]:
+        ///If( 現在位 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 性欲限界 {
             get {
@@ -1011,6 +1106,8 @@ namespace DoujinGameProject.Properties {
         ///
         ///[L_CHRC_SEL_START]:
         ///
+        ///移動 礼拝堂:
+        ///
         ///サラ:
         ///教会でお勤めをしようっと;
         ///
@@ -1030,7 +1127,7 @@ namespace DoujinGameProject.Properties {
         ///選択肢終:
         ///
         ///If( 選択番号 == 1 ) [L_CHRC_PRAY]:
-        ///If( 選択番号 == [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 教会 {
             get {
@@ -1040,8 +1137,14 @@ namespace DoujinGameProject.Properties {
         
         /// <summary>
         ///   
+        ///サラ:
+        ///気力限界成功！;
         ///
-        ///END:
+        ///サラ:
+        ///地獄地獄地獄ゥッ;
+        ///
+        ///
+        ///ENDRETURN:
         /// に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string 気力切れ {
@@ -1052,7 +1155,8 @@ namespace DoujinGameProject.Properties {
         
         /// <summary>
         ///   
-        ///背景 
+        ///背景 書庫:
+        ///移動 書庫:
         ///
         ///END: に類似しているローカライズされた文字列を検索します。
         /// </summary>

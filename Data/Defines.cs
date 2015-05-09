@@ -89,6 +89,8 @@ namespace DoujinGameProject.Data
         {
             TXT_OPENING = 0,    //オープニング
             TXT_CHURCH,         //教会
+			TXT_MARY,			//マリーの部屋
+			TXT_LIDY,			//リディの部屋
             TXT_LEST,           //休憩
             TXT_SHOP,           //店
             TXT_READ,           //読書
